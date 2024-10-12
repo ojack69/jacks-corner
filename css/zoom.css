@@ -1,0 +1,21 @@
+.zoom-overlay{
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: zoom-in;
+    width: 100%;
+    transition: opacity .3s;
+    opacity: 0;
+}
+    
+
+@media (min-width: 768px) {
+    .zoom-overlay.active {
+        opacity:1;
+        position: relative;
+        cursor: zoom-out;
+        z-index: 90;
+        transform: scale(1.5); 
+        border-radius: 5px;
+    }
+}
