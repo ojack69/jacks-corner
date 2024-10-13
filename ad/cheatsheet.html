@@ -300,9 +300,6 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <div class="highlight"><pre><span></span><code>net<span class="w"> </span>accounts<span class="w"> </span>/domain
 </code></pre></div>
 <h3 id="powershell-enumeration">Powershell Enumeration</h3>
-<p>Enumerate SMB shares:</p>
-<div class="highlight"><pre><span></span><code>Get-SmbShare
-</code></pre></div>
 <p>Get domain information:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-NetDomain</span> <span class="p">[</span><span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;]</span>
@@ -317,22 +314,105 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="c"># AD Module</span>
 <span class="p">(</span><span class="nb">Get-ADDomain</span><span class="p">).</span><span class="n">DomainSID</span>
 </code></pre></div>
-<p>Get a list of all operating systems on the domain (<code>PowerView</code>): </p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-NetComputer</span> <span class="n">-fulldata</span> <span class="p">|</span> <span class="nb">select </span><span class="n">operatingsystem</span>
+<p>Get a list of all operating systems on the domain: </p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetComputer</span>
+<span class="nb">Get-NetComputer</span> <span class="n">-OperatingSytem</span> <span class="s2">"*Server 2019*"</span>
+<span class="nb">Get-NetComputer</span> <span class="n">-Ping</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADComputer</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span>
+<span class="nb">Get-ADComputer</span> <span class="n">-Filter</span> <span class="s1">'OperatingSystem -like "*Server 2016*"'</span> <span class="n">-Properties</span> <span class="n">OperatingSystem</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span><span class="p">,</span><span class="n">OperatingSystem</span>
+<span class="nb">Get-ADComputer</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="n">DNSHostName</span> <span class="p">|</span> <span class="p">%{</span><span class="nb">Test-Connection</span> <span class="n">-Count</span> <span class="n">1</span> <span class="n">-ComputerName</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DNSHostName</span><span class="p">}</span> <span class="c"># Ping</span>
 </code></pre></div>
 <p>Gets a list of all users on the domain (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">select </span><span class="n">cn</span>
 </code></pre></div>
 <p>Get details about a user in the AD:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-Server</span> <span class="p">&lt;</span><span class="n">DC</span><span class="p">&gt;</span> <span class="n">-Properties</span> <span class="p">*</span>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetUser</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-Server</span> <span class="p">&lt;</span><span class="n">DC</span><span class="p">&gt;</span> <span class="n">-Properties</span> <span class="p">*</span>
 </code></pre></div>
-<p>Enumerate domain groups (<code>PowerView</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-NetGroup</span> <span class="n">-GroupName</span> <span class="p">*</span><span class="n">admin</span><span class="p">*</span>
+<p>Get user last set date for password:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="n">cn</span><span class="p">,</span><span class="n">pwdlastset</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,@{</span><span class="n">expression</span><span class="p">={</span><span class="no">[datetime]</span><span class="p">::</span><span class="n">fromFileTime</span><span class="p">(</span><span class="nv">$_</span><span class="p">.</span><span class="n">pwdlastset</span><span class="p">)}}</span>
+</code></pre></div>
+<p>Get user wrong password count:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="n">cn</span><span class="p">,</span><span class="n">badpwdcount</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">badpwdcount</span>
+</code></pre></div>
+<p>Get the list of all available users' properties:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
+</code></pre></div>
+<p>Search user by property:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">where </span><span class="n">-Property</span> <span class="n">Description</span> <span class="o">-Like</span> <span class="s2">"*built*"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="s1">'Description -like "*something*"'</span> <span class="n">-Properties</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
+</code></pre></div>
+<p>Enumerate domain groups:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetGroup</span>
+<span class="nb">Get-NetGroup</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">targetdomain</span><span class="p">&gt;</span>
+<span class="nb">Get-NetGroup</span> <span class="n">-GroupName</span> <span class="s2">"*admin*"</span>
+<span class="nb">Get-NetLocalGroup</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span> <span class="c"># Local group (needs admin privs on non-dc machine)</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADGroup</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span>
+<span class="nb">Get-ADGroup</span> <span class="n">-Filter</span> <span class="s1">'Name -like "*admin*"'</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
+</code></pre></div>
+<p>Enumerate <strong>domain</strong> groups membership:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetGroupMember</span> <span class="n">-Identity</span> <span class="s2">"Domain Admins"</span> <span class="n">-Recurse</span> <span class="c"># By group</span>
+<span class="nb">Get-NetGroup</span> <span class="n">-UserName</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;</span> <span class="c"># By username</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">"Domain Admins"</span> <span class="n">-Recursive</span> <span class="c"># By group</span>
+<span class="nb">Get-ADPrincipalGroupMembership</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;</span> <span class="c"># By username</span>
+</code></pre></div>
+<p>Enumerate <strong>local</strong> groups membership (needs administrator privs on non-dc machines)(<code>Powerview</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetLocalGroupMember</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+<span class="nb">Get-NetLocalGroupMember</span> <span class="n">-GroupName</span> <span class="p">&lt;</span><span class="nb">group </span><span class="n">name</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Get domain policy (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-DomainPolicy</span> <span class="p">[</span><span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;]</span>
 <span class="p">(</span><span class="nb">Get-DomainPolicy</span><span class="p">).</span><span class="s2">"SystemAccess"</span>
 <span class="p">(</span><span class="nb">Get-DomainPolicy</span><span class="p">).</span><span class="s2">"KerberosPolicy"</span>
+</code></pre></div>
+<p>Get the list of active logged users on a computer (needs admin privs on the target):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetLoggedon</span> <span class="err">&ndash;</span><span class="n">ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Get locally logged users on a computer (needs remote registry on the target - started by-default on server OS)(<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-LoggedonLocal</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Get the last logged user on a computer (needs administrative rights and
+remote registry on the target)(<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-LastLoggedOn</span> <span class="err">&ndash;</span><span class="n">ComputerName</span> <span class="p">&lt;</span><span class="n">servername</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Enumerate SMB shares for current computer (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-SmbShare</span>
+</code></pre></div>
+<p>Find shares on hosts in current domain (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-ShareFinder</span> <span class="err">&ndash;</span><span class="n">Verbose</span>
+</code></pre></div>
+<p>Find sensitive files on computers in the domain (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-FileFinder</span> <span class="err">&ndash;</span><span class="n">Verbose</span>
+</code></pre></div>
+<p>Get all fileservers of the domain (<code>PowerView</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetFileServer</span>
 </code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>
 <p>Use .NET classes to enumerate domains:</p>

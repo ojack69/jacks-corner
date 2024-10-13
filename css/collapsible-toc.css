@@ -24,7 +24,11 @@
 }
 
 
-.toc li.highlighted{
+.light-theme .toc li.highlighted{
+    border: 1px solid #ff5a09;
+}
+
+.dark-theme .toc li.highlighted{
     border: 1px solid white;
 }
 
@@ -40,20 +44,36 @@
 }
 
 .toc.fixed .scrolltop{
-    border: 1px solid white;
     border-radius: 50%;
     text-align: center;
     display: none;
     cursor: pointer;
 }
 
+.light-theme .toc.fixed .scrolltop{
+    border: 1px solid #ff5a09;
+    color: #ff5a09;
+}
+
+.dark-theme .toc.fixed .scrolltop{
+    border: 1px solid white;
+}
+
 .toc.fixed .handle {
     cursor: pointer;
     margin-left: -45px;
-    border: 1px solid white;
     border-radius: 50%;
     text-align: center;
     padding: 10px;
+}
+
+.light-theme .toc.fixed .handle {
+    border: 1px solid #ff5a09;
+    color: #ff5a09;
+}
+
+.dark-theme .toc.fixed .handle {
+    border: 1px solid white;
 }
 
 .toc.fixed.active .handle
@@ -81,8 +101,15 @@
     position: fixed;
     right: -15px;
     top: 25%;
-    background-color: #333;
     opacity: 0.25;
+}
+
+.light-theme .toc.fixed {
+    background-color: white;
+}
+
+.dark-theme .toc.fixed {
+    background-color: #333;
 }
 
 .toc.fixed.active {
@@ -92,9 +119,16 @@
     overflow: auto;
     padding-right: 15px;
     border-radius: 5px;
-    border: 0.5px solid white;
-
 }
+
+.light-theme .toc.fixed.active {
+    border: 0.5px solid #ff5a09;
+}
+
+.dark-theme .toc.fixed.active {
+    border: 0.5px solid white;
+}
+
 
 /*.toc li:not(.collapsible) a::before{*/
 .toc li a::before{
