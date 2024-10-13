@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "ad/active-directory.md"
+url = "/ad/active-directory.html"
+title = "Active Directory"
+
+[[input.files]]
 path = "mobile/mobilehackinglab/note-keeper.md"
 url = "/mobile/mobilehackinglab/note-keeper.html"
 title = "MobileHackingLab - Note Keeper"
@@ -142,11 +147,6 @@ title = "Heap Journey - Fastbin Dup (Duplication)"
 path = "binary-exploitation/heap-journey/house-of-force.md"
 url = "/binary-exploitation/heap-journey/house-of-force.html"
 title = "Heap Journey - House of Force"
-
-[[input.files]]
-path = "ad/active-directory.md"
-url = "/ad/active-directory.html"
-title = "Active Directory"
 
 [[input.files]]
 path = "ad/active-directory-cheatsheet.md"

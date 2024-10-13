@@ -124,6 +124,40 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">MAPNA CTF 2024 - ninipwn</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>Running checksec against the binary:</p>
+<blockquote>
+<p>&gt; checksec ./ninipwn<br/>
+[*] './ninipwn'<br/>
+    Arch:     amd64-64-little<br/>
+    RELRO:    Full RELRO<br/>
+    Stack:    <strong>Canary found</strong><br/>
+    NX:       NX enabled<br/>
+    PIE:      PIE enabled  </p>
+</blockquote>
+<p>the binary has all security settings enabled.</p>
+<p>Running the binary with gdb and listing available symbols*:</p>
+<blockquote>
+<p>&gt; gdb ./ninipwn<br/>
+&gt; info symbol // then TAB TAB</p>
+</blockquote>
+<p>Some interesting symbols are found …</p></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html">eJPT-v2 Concepts</a></h2>
     <p>
 
@@ -299,29 +333,6 @@ To get the correct version of glibc it is possible to run the libc file itself s
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Active Directory is a centralized directory service used to manage Windows networks. It stores information about objects on the network and make it easy to configure what is needed.</p>
-<h2 id="concepts">Concepts</h2>
-<h3 id="domain-controllers">Domain Controllers</h3>
-<p>A domain controller is a server with the AD DS server role:</p>
-<ul>
-<li>Hosts a copy of the <strong>AD …</strong></li></ul></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">
           Continue reading
         </a>
   </div>

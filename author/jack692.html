@@ -124,6 +124,25 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2csu.html">ROP Emporium - ret2csu</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>When dealing with little useful gadget number or looking for a "universal" gadget solution, <strong>ret2csu</strong> is the answer.</p>
+<p>This technique results in the exploitation of the "attached code" by the linker to <strong>dynamically compiled applications</strong>. Some of this code is used at program-level to implement <em>initializers</em> and <em>finalizers</em>; for example …</p></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2csu.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/pivot.html">ROP Emporium - pivot</a></h2>
     <p>
 
@@ -423,40 +442,6 @@ This is done by passing the <code>puts@GOT</code> as parameter to <code>puts@PLT
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">MAPNA CTF 2024 - ninipwn</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Running checksec against the binary:</p>
-<blockquote>
-<p>&gt; checksec ./ninipwn<br/>
-[*] './ninipwn'<br/>
-    Arch:     amd64-64-little<br/>
-    RELRO:    Full RELRO<br/>
-    Stack:    <strong>Canary found</strong><br/>
-    NX:       NX enabled<br/>
-    PIE:      PIE enabled  </p>
-</blockquote>
-<p>the binary has all security settings enabled.</p>
-<p>Running the binary with gdb and listing available symbols*:</p>
-<blockquote>
-<p>&gt; gdb ./ninipwn<br/>
-&gt; info symbol // then TAB TAB</p>
-</blockquote>
-<p>Some interesting symbols are found …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">
           Continue reading
         </a>
   </div>
