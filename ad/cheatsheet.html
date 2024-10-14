@@ -299,6 +299,9 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <p>Get details about domain password policy:</p>
 <div class="highlight"><pre><span></span><code>net<span class="w"> </span>accounts<span class="w"> </span>/domain
 </code></pre></div>
+<p>List applied GPO:</p>
+<div class="highlight"><pre><span></span><code>gpresult<span class="w"> </span>/R<span class="w"> </span>/V<span class="w"> </span>
+</code></pre></div>
 <h3 id="powershell-enumeration">Powershell Enumeration</h3>
 <p>Get domain information:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
@@ -355,7 +358,9 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
 
 <span class="c"># AD Module</span>
-<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
+<span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span>
+<span class="nb">Invoke-ShareFinder</span> <span class="n">-Verbose</span> <span class="n">-ExcludeStandard</span> <span class="n">-ExcludePrint</span> <span class="n">-ExcludeIPC</span> <span class="c"># exclude default shares</span>
+<span class="nb">Invoke-ShareFinder</span> <span class="n">-Verbose</span> <span class="n">-ExcludeStandard</span> <span class="n">-ExcludePrint</span> <span class="n">-ExcludeIPC</span> <span class="c"># exclude default shares select -First 1 | Get-Member -MemberType "*Property" | select Name</span>
 </code></pre></div>
 <p>Search user by property:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
@@ -395,26 +400,69 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="p">(</span><span class="nb">Get-DomainPolicy</span><span class="p">).</span><span class="s2">"KerberosPolicy"</span>
 </code></pre></div>
 <p>Get the list of active logged users on a computer (needs admin privs on the target):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-NetLoggedon</span> <span class="err">&ndash;</span><span class="n">ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetLoggedon</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Get locally logged users on a computer (needs remote registry on the target - started by-default on server OS)(<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-LoggedonLocal</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Get the last logged user on a computer (needs administrative rights and
 remote registry on the target)(<code>PowerView</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-LastLoggedOn</span> <span class="err">&ndash;</span><span class="n">ComputerName</span> <span class="p">&lt;</span><span class="n">servername</span><span class="p">&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-LastLoggedOn</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">servername</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>Enumerate SMB+ shares for current computer (<code>PowerView</code>):</p>
+<p>Enumerate SMB shares for current computer (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-SmbShare</span>
 </code></pre></div>
 <p>Find shares on hosts in current domain (<code>PowerView</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-ShareFinder</span> <span class="err">&ndash;</span><span class="n">Verbose</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-ShareFinder</span> <span class="n">-Verbose</span>
 </code></pre></div>
 <p>Find sensitive files on computers in the domain (<code>PowerView</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Invoke-FileFinder</span> <span class="err">&ndash;</span><span class="n">Verbose</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-FileFinder</span> <span class="n">-Verbose</span>
 </code></pre></div>
 <p>Get all file-servers of the domain (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-NetFileServer</span>
+</code></pre></div>
+<p>Get list of GPO in current domain</p>
+<div class="highlight"><pre><span></span><code><span class="c">#PowerView</span>
+<span class="nb">Get-NetGPO</span>
+
+<span class="c">#AD Module</span>
+<span class="nb">Get-GPO</span> <span class="n">-All</span>
+<span class="nb">Get-GPResultantSetOfPolicy</span> <span class="n">-ReportType</span> <span class="n">Html</span> <span class="n">-Path</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">Administrator</span><span class="p">\</span><span class="n">report</span><span class="p">.</span><span class="n">html</span>
+</code></pre></div>
+<p>Get list of GPOs applied to a computer:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetGPO</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span> 
+</code></pre></div>
+<p>Get list of GPO restricted groups:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetGPOGroup</span>
+</code></pre></div>
+<p>Get users which are in a local group of a machine using GPO restricted groups:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Find-GPOComputerAdmin</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Get machines where the given user is member of a specific GPO restricted group:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Find-GPOLocation</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;</span> <span class="n">-Verbose</span>
+</code></pre></div>
+<p>Get OUs in a domain:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetOU</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADOrganizationalUnit</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span>
+</code></pre></div>
+<p>Get GPO applied on an OU:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetGPO</span> <span class="n">-Identity</span> <span class="s2">"{&lt;gplink attribute's CN part from Get-NetOU&gt;}"</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-GPO</span> <span class="n">-Guid</span> <span class="s2">"&lt;gPLink attributes's CN part from Get-ADOrganizationalUnit&gt;"</span>
+</code></pre></div>
+<p>Enumerate ACLs:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-ObjectAcl</span> <span class="n">-ResolveGUIDs</span> <span class="c"># get all</span>
+<span class="nb">Get-ObjectAcl</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span> <span class="n">or</span> <span class="n">group</span><span class="p">&gt;</span>  <span class="n">-ResolveGUIDs</span> <span class="c"># by username or group</span>
 </code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>
 <p>Use .NET classes to enumerate domains:</p>
