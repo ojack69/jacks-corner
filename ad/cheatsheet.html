@@ -325,6 +325,7 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="nb">Get-ADComputer</span> <span class="n">-Filter</span> <span class="s1">'OperatingSystem -like "*Server 2016*"'</span> <span class="n">-Properties</span> <span class="n">OperatingSystem</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span><span class="p">,</span><span class="n">OperatingSystem</span>
 <span class="nb">Get-ADComputer</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="n">DNSHostName</span> <span class="p">|</span> <span class="p">%{</span><span class="nb">Test-Connection</span> <span class="n">-Count</span> <span class="n">1</span> <span class="n">-ComputerName</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DNSHostName</span><span class="p">}</span> <span class="c"># Ping</span>
 </code></pre></div>
+<p><strong>Note</strong>: the existence of a computer object does not necessarily imply that in the network this computer really exists i.e. it could be just be an object in the LDAP but not mapped with a real computer or VM.</p>
 <p>Gets a list of all users on the domain (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">select </span><span class="n">cn</span>
 </code></pre></div>
@@ -383,6 +384,7 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="nb">Get-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">"Domain Admins"</span> <span class="n">-Recursive</span> <span class="c"># By group</span>
 <span class="nb">Get-ADPrincipalGroupMembership</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;</span> <span class="c"># By username</span>
 </code></pre></div>
+<p><strong>Note</strong>: <code>-Recurse</code> and <code>-Recursive</code> are needed to expand memberships of nested groups.</p>
 <p>Enumerate <strong>local</strong> groups membership (needs administrator privs on non-dc machines)(<code>Powerview</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-NetLocalGroupMember</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
 <span class="nb">Get-NetLocalGroupMember</span> <span class="n">-GroupName</span> <span class="p">&lt;</span><span class="nb">group </span><span class="n">name</span><span class="p">&gt;</span>
@@ -402,7 +404,7 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 remote registry on the target)(<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-LastLoggedOn</span> <span class="err">&ndash;</span><span class="n">ComputerName</span> <span class="p">&lt;</span><span class="n">servername</span><span class="p">&gt;</span>
 </code></pre></div>
-<p>Enumerate SMB shares for current computer (<code>PowerView</code>):</p>
+<p>Enumerate SMB+ shares for current computer (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-SmbShare</span>
 </code></pre></div>
 <p>Find shares on hosts in current domain (<code>PowerView</code>):</p>
@@ -411,7 +413,7 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <p>Find sensitive files on computers in the domain (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Invoke-FileFinder</span> <span class="err">&ndash;</span><span class="n">Verbose</span>
 </code></pre></div>
-<p>Get all fileservers of the domain (<code>PowerView</code>):</p>
+<p>Get all file-servers of the domain (<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-NetFileServer</span>
 </code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>

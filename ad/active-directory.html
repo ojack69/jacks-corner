@@ -206,7 +206,7 @@
 <li><strong>User</strong>: enables network resource access for a user. Users are alos known as <strong>security principals</strong>, meaning that they can be authenticated by the domain and can be assigned privileges over <strong>resources</strong> like files or printers. Generally, a security principal is an object that can act upon resources in the network. <strong>Users can be people or services</strong>.</li>
 <li><strong>InetOrgPerson</strong>: similar to a user account; used for compatibility with other directory services.</li>
 <li><strong>Contacts</strong>: used to assign e-mail addresses to external users. Does not provide network access.</li>
-<li><strong>Security Groups</strong>: used to simplify administration of access control. Security Groups are also considered security principals and, therefore, can have privileges over resources on the network. <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups">Reference to existing groups</a>.</li>
+<li><strong>Security Groups</strong>: used to simplify administration of access control. Security Groups are also considered security principals and, therefore, can have privileges over resources on the network. <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups">Reference to existing groups</a>. <strong>Groups can be member of other groups</strong>.</li>
 <li><strong>Computers</strong>: enable authentication and auditing of computer access to resources. Machines are also considered "security principals" and are assigned an account just as any regular user. This account has somewhat limited rights within the domain itself. The machine accounts themselves are <strong>local administrators</strong> on the assigned computer, they are generally not supposed to be accessed by anyone except the computer itself, but as with any other account, if you have the password, you can use it to log in.<ul>
 <li>Machine Account passwords are automatically rotated out and are generally comprised of 120 random characters.</li>
 <li>They follow a specific naming scheme: the machine account name is the computer's name followed by a dollar sign (ex: for a machine named <em>DC01</em> there's the account <em>DC01$</em>). </li>
@@ -215,6 +215,11 @@
 <li><strong>Printers</strong>: used to simplify the process of locating and connecting to printers.</li>
 <li><strong>Shared Folders</strong>: enables users to search for a shared folders based on properties.</li>
 </ul>
+<p>Each object has a SID which uniquely identifies it in the domain; the SID is generally structured as follows:</p>
+<ul>
+<li><code>S-&lt;Revision level&gt;-&lt;Domain Identifier&gt;-&lt;Object ID (Relative Identifier)&gt;</code></li>
+</ul>
+<p>Built-in object can be found <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers#well-known-sids">here</a>.</p>
 <p><strong>Note</strong>: the difference between OUs and security groups is that the first are used to <strong>apply policies to users and computers</strong> whilst the latter is used to <strong>grant permissions over resources</strong>. A user or computer can belong to only one OU at a time whilst can be part of many security groups.</p>
 <h3 id="group-policy-objects-gpo">Group Policy Objects (GPO)</h3>
 <p><strong>Group Policy Objects (GPO)</strong> are a collection of settings that can be applied to OUs. GPOs can contain policies aimed at either users or computers.</p>
@@ -489,6 +494,7 @@ WMI has a provider called <code>root\directory\ldap</code> which can be used for
 </ul>
 </li>
 <li>Quite often cleartext password are store in the <code>Description</code> property for a user. This is generally true for those users that are shared, for example, between help desk operators.</li>
+<li>Target for users belonging to <strong>enteprise adminstrators</strong> groups; these groups can be found only on the DC of a forest's root.</li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#enumeration">Active Directory Cheatsheet - Enumeration</a>.</p>
 <h2 id="ad-lateral-movements_2">AD Lateral Movements</h2>
