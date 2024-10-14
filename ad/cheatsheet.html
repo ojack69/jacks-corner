@@ -459,10 +459,16 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <span class="c"># AD Module</span>
 <span class="nb">Get-GPO</span> <span class="n">-Guid</span> <span class="s2">"&lt;gPLink attributes's CN part from Get-ADOrganizationalUnit&gt;"</span>
 </code></pre></div>
-<p>Enumerate ACLs:</p>
+<p>Enumerate ACLs :</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-ObjectAcl</span> <span class="n">-ResolveGUIDs</span> <span class="c"># get all</span>
 <span class="nb">Get-ObjectAcl</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">username</span> <span class="n">or</span> <span class="n">group</span><span class="p">&gt;</span>  <span class="n">-ResolveGUIDs</span> <span class="c"># by username or group</span>
+<span class="nb">Get-ObjectAcl</span> <span class="n">-ADSpath</span> <span class="s2">"LDAP://&lt;Object DN&gt;"</span> <span class="n">-ResolveGUIDs</span> <span class="n">-Verbose</span>
+<span class="nb">Get-PathAcl</span> <span class="n">-Path</span> <span class="s2">"&lt;path&gt;"</span>
+<span class="nb">Invoke-ACLScanner</span> <span class="n">-ResolveGUIDs</span> <span class="c"># Look for intersing ACEs</span>
+
+<span class="c"># AD Module</span>
+<span class="p">(</span><span class="nb">Get-Acl</span> <span class="s1">'AD:\&lt;Object DN&gt;'</span><span class="p">).</span><span class="n">Access</span>
 </code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>
 <p>Use .NET classes to enumerate domains:</p>

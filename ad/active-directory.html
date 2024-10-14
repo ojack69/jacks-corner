@@ -196,10 +196,15 @@
 <p>Trusts provide a mechanism for user to gain access to resources in another domain. </p>
 <p>There are two type of trusts:</p>
 <ul>
-<li><strong>Directional</strong>: The trust direction flows from a <em>trusting domain</em> A to a <em>trusted domain</em> B. A trusts B and B can access A's resources.</li>
-<li><strong>Transitive</strong>: The trust relationship is extended to include other trusted domain beyond a  two-domain trust. If a domain B trusts A and C trusts B, then C trusts A.</li>
+<li><strong>Directional</strong>: The trust direction flows from a <em>trusting domain</em> A to a <em>trusted domain</em> B. A trusts B and B can access A's resources (<strong>One-way trust</strong>). The trust can also be bi-directional (<strong>Two-way-trust</strong>) i.e. B trusts A and A can access B's resources. </li>
+<li><strong>Transitive</strong>: The trust relationship is extended to include other trusted domain beyond a two-domain trust. If a domain B trusts A and C trusts B, then C trusts A.</li>
 </ul>
-<p>All domains in a forest trust all other domains in the forest.</p>
+<p>Trust can be <strong>automatic</strong>:
+- All parent-child domains trust each other (is always two-way transitive).
+- All domains in a forest trust all other domains in the forest (is always two-way transitive).</p>
+<p>Instead, trust across forest boundaries need to be explicitly <strong>established</strong>.</p>
+<p>Trust relationships i represented by a <strong>Trusted Domain Objects (TDOs)</strong> in a
+domain.</p>
 <h3 id="objects">Objects</h3>
 <p>An object is anything that can be present in an OU or domain:</p>
 <ul>
