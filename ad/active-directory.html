@@ -180,9 +180,13 @@
 <ul>
 <li>Forests share a common schema.</li>
 <li>Forests share a common configuration partition.</li>
-<li>Forests share a common global catalog to enable searching.</li>
+<li>Forests share a common <strong>Global Catalog (GC)</strong> to enable searching.</li>
 <li>Forests <strong>enable trusts between all the domains in the forest</strong>.</li>
 <li>Forests share the Enterprise Admins and Schema Admins groups.</li>
+</ul>
+<p>The <strong>Global Catalog</strong> is a feature of Active Directory (AD) that allows a domain controller (DC) to provide information on any object in the forest, It's used to locate objects outside its domain is beyond its scope.</p>
+<ul>
+<li>Domain controllers with the global catalog feature enabled are referred to as <strong>global catalog servers</strong>.</li>
 </ul>
 <h3 id="organizational-units-ous">Organizational Units (OUs)</h3>
 <p>Organizational Units are containers defined in a domain for users, groups, computers and other OUs. They're used to:</p>
@@ -197,12 +201,26 @@
 <p>There are two type of trusts:</p>
 <ul>
 <li><strong>Directional</strong>: The trust direction flows from a <em>trusting domain</em> A to a <em>trusted domain</em> B. A trusts B and B can access A's resources (<strong>One-way trust</strong>). The trust can also be bi-directional (<strong>Two-way-trust</strong>) i.e. B trusts A and A can access B's resources. </li>
-<li><strong>Transitive</strong>: The trust relationship is extended to include other trusted domain beyond a two-domain trust. If a domain B trusts A and C trusts B, then C trusts A.</li>
+<li><strong>Transitive</strong>: The trust relationship is extended to include other trusted domain beyond a two-domain trust. If a domain B trusts A and C trusts B, then C trusts A.<ul>
+<li>It's possible to define <strong>Shortcut Trusts</strong>, a direct trust between two domain that are transitively trusting each other via many other domains transitive trusts relationships to reduce access times in complex trust scenarios.</li>
 </ul>
-<p>Trust can be <strong>automatic</strong>:
-- All parent-child domains trust each other (is always two-way transitive).
-- All domains in a forest trust all other domains in the forest (is always two-way transitive).</p>
-<p>Instead, trust across forest boundaries need to be explicitly <strong>established</strong>.</p>
+</li>
+</ul>
+<p>Trust can be <strong>automatic</strong> in the same forest:</p>
+<ul>
+<li>All parent-child domains trust each other (is always two-way transitive).</li>
+<li>All domains in a forest trust all other domains in the forest (is always two-way transitive).</li>
+</ul>
+<p>Instead, trusts across forests boundaries need to be explicitly established with <strong>External Trusts</strong> between two domains in different forests, when forests don't have a trust relationship:</p>
+<ul>
+<li>Can be one-way or two-way and is nontransitive.</li>
+</ul>
+<p>It's possible to establish trusts between two forests (their root domains) with a <strong>Forest Trust</strong>:</p>
+<ul>
+<li>Can only be created between two forests and can't be implicitly extended to a third forest-</li>
+<li>Can be one-way or two-way and transitive (<strong>domain-to-domain, not forest-to-forest!</strong>) or nontransitive.</li>
+</ul>
+<p><img alt="ad-forest-trusts.png" src="https://ojack69.github.io/jacks-corner/images/ad/active-directory/ad-forest-trusts.png"/></p>
 <p>Trust relationships i represented by a <strong>Trusted Domain Objects (TDOs)</strong> in a
 domain.</p>
 <h3 id="objects">Objects</h3>

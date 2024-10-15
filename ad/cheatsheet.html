@@ -470,6 +470,42 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <span class="c"># AD Module</span>
 <span class="p">(</span><span class="nb">Get-Acl</span> <span class="s1">'AD:\&lt;Object DN&gt;'</span><span class="p">).</span><span class="n">Access</span>
 </code></pre></div>
+<p>Get details about a forest:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetForest</span>
+<span class="nb">Get-NetForest</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">forest</span> <span class="n">name</span><span class="p">&gt;</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADForest</span>
+<span class="nb">Get-ADForest</span> <span class="err">&ndash;</span><span class="n">Identity</span> <span class="p">&lt;</span><span class="n">forest</span> <span class="n">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Get all domains in a forest:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetForestDomain</span>
+<span class="nb">Get-NetForestDomain</span> <span class="n">-Forest</span> <span class="p">&lt;</span><span class="n">forest</span> <span class="n">name</span><span class="p">&gt;</span>
+<span class="nb">Get-NetForestTrust</span>
+<span class="nb">Get-NetForestTrust</span> <span class="err">&ndash;</span><span class="n">Forest</span> <span class="p">&lt;</span><span class="n">forest</span> <span class="n">domain</span><span class="p">&gt;</span>
+
+<span class="c"># AD Module</span>
+<span class="p">(</span><span class="nb">Get-ADForest</span><span class="p">).</span><span class="n">Domains</span>
+<span class="nb">Get-ADTrust</span> <span class="n">-Filter</span> <span class="s1">'msDS-TrustForestTrustInfo -ne "$null"'</span>
+</code></pre></div>
+<p>Enumerate domains and forests trusts:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetDomainTrust</span>
+<span class="nb">Get-NetDomainTrust</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADTrust</span> <span class="n">-Filter</span> <span class="p">*</span>
+</code></pre></div>
+<p>Get all global catalogs for a forest:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetForestCatalog</span>
+<span class="nb">Get-NetForestCatalog</span> <span class="n">-Forest</span> <span class="p">&lt;</span><span class="n">forest</span> <span class="n">name</span><span class="p">&gt;</span>
+
+<span class="c"># AD Module</span>
+<span class="p">(</span><span class="nb">Get-ADForest</span><span class="p">).</span><span class="n">GlobalCatalogs</span> 
+</code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>
 <p>Use .NET classes to enumerate domains:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$ADClass</span> <span class="p">=</span> <span class="no">[System.DirectoryServices.ActiveDirectory.Domain]</span>
