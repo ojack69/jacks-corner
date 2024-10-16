@@ -369,6 +369,22 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="s1">'Description -like "*something*"'</span> <span class="n">-Properties</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
 </code></pre></div>
+<p>Check whether the current user has local admin access on a computer:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Find-LocalAdminAccess</span> <span class="err">&ndash;</span><span class="n">Verbose</span> <span class="c"># Automated: uses Invoke-CheckLocalAdminAccess for every machine on the current domain</span>
+
+<span class="c"># PowerView</span>
+<span class="nb">Invoke-CheckLocalAdminAccess</span> <span class="n">-Computer</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+
+<span class="c"># Useful when RPC and SMB, generally used by Find-LocalAdminAccess, are blocked</span>
+<span class="nb">Find-WMILocalAdminAccess</span>
+<span class="nb">Find-PSRemotingLocalAdminAccess</span> 
+</code></pre></div>
+<ul>
+<li><a href="https://github.com/RedTeamMagic/Powershell/blob/main/Find-WMILocalAdminAccess.ps1">Find-WMILocalAdminAccess.ps1</a></li>
+<li><a href="https://github.com/RedTeamMagic/Powershell/blob/main/Find-PSRemotingLocalAdminAccess.ps1">Find-PSRemotingLocalAdminAccess.ps1</a></li>
+</ul>
+<p><strong>Note</strong>: running those script for chunks of machines instead of a single run (all domain machines) can lower the chances to be detected since they generate an high  activity.</p>
 <p>Enumerate domain groups:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-NetGroup</span>
@@ -427,7 +443,7 @@ remote registry on the target)(<code>PowerView</code>):</p>
 
 <span class="c">#AD Module</span>
 <span class="nb">Get-GPO</span> <span class="n">-All</span>
-<span class="nb">Get-GPResultantSetOfPolicy</span> <span class="n">-ReportType</span> <span class="n">Html</span> <span class="n">-Path</span> <span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">Administrator</span><span class="p">\</span><span class="n">report</span><span class="p">.</span><span class="n">html</span>
+<span class="nb">Get-GPResultantSetOfPolicy</span> <span class="n">-ReportType</span> <span class="n">Html</span> <span class="n">-Path</span> <span class="p">&lt;</span><span class="n">output</span> <span class="n">path</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Get list of GPOs applied to a computer:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
