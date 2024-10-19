@@ -260,7 +260,6 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <span class="nv">$sec</span><span class="p">.</span><span class="n">SetSecurityDescriptorSddlForm</span><span class="p">(</span><span class="nv">$computerobject</span><span class="p">.</span><span class="n">defaultSecurityDescriptor</span><span class="p">)</span>
 
 <span class="c">## List the privileges of the object owneer</span>
-
 <span class="nv">$acc</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Principal</span><span class="p">.</span><span class="n">NTAccount</span><span class="p">(</span><span class="s2">"CREATOR OWNER"</span><span class="p">)</span> <span class="c">## Note: the principal name may be different if AD is installed with another language</span>
 
 <span class="nv">$sec</span><span class="p">.</span><span class="n">GetAccessRules</span><span class="p">(</span><span class="nv">$true</span><span class="p">,</span><span class="nv">$false</span><span class="p">,</span><span class="no">[System.Security.Principal.NTAccount]</span><span class="p">)</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">IdentityReference</span> <span class="o">-eq</span> <span class="nv">$acc</span><span class="p">}</span>
@@ -378,6 +377,7 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 
 <span class="c"># Useful when RPC and SMB, generally used by Find-LocalAdminAccess, are blocked</span>
 <span class="nb">Find-WMILocalAdminAccess</span>
+<span class="nb">Find-WMILocalAdminAccess</span> <span class="n">-ComputerFile</span> <span class="p">.\</span><span class="n">computers</span><span class="p">.</span><span class="n">txt</span> <span class="n">-Verbose</span>
 <span class="nb">Find-PSRemotingLocalAdminAccess</span> 
 </code></pre></div>
 <ul>
@@ -385,6 +385,17 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <li><a href="https://github.com/RedTeamMagic/Powershell/blob/main/Find-PSRemotingLocalAdminAccess.ps1">Find-PSRemotingLocalAdminAccess.ps1</a></li>
 </ul>
 <p><strong>Note</strong>: running those script for chunks of machines instead of a single run (all domain machines) can lower the chances to be detected since they generate an high  activity.</p>
+<p>Find local admins on all machines of the domain (needs administrator privs on non-dc machines:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Invoke-EnumerateLocalAdmin</span> <span class="err">&ndash;</span><span class="n">Verbose</span> <span class="c"># Automated: uses Get-NetLocalGroup on every computer in the domain</span>
+</code></pre></div>
+<p>Find computers where a domain admin (or specified user/group) has sessions:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Invoke-UserHunter</span> <span class="c"># Automated: queries the DC of the current or provided domain for members of the given group (Domain Admins by default) using Get-NetGroupMember, gets a list of computers ( Get-NetComputer) and list sessions and logged on users ( Get-NetSession/Get-NetLoggedon ) from each machine.</span>
+<span class="nb">Invoke-UserHunter</span> <span class="n">-GroupName</span> <span class="s2">"RDPUsers"</span>
+<span class="nb">Invoke-UserHunter</span> <span class="n">-CheckAccess</span> <span class="c"># To confirm admin access</span>
+<span class="nb">Invoke-UserHunter</span> <span class="n">-Stealth</span> <span class="c"># it goes for high traffic servers (DC, File Servers and Distributed File servers) for less traffic generation</span>
+</code></pre></div>
 <p>Enumerate domain groups:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-NetGroup</span>
@@ -420,6 +431,8 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 </code></pre></div>
 <p>Get locally logged users on a computer (needs remote registry on the target - started by-default on server OS)(<code>PowerView</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-LoggedonLocal</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+<span class="nb">Get-NetSession</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
+<span class="nb">Get-NetLoggedon</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">name</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>Get the last logged user on a computer (needs administrative rights and
 remote registry on the target)(<code>PowerView</code>):</p>
