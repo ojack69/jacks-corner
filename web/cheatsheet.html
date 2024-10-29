@@ -709,11 +709,11 @@ It could be enabled by default and exploitable to perform Host Header injections
 <li><code>X-HTTP-Host-Override</code></li>
 <li><code>Forwarded</code></li>
 </ul>
-<p>Webservers allow a port to be specified in the Host header, but ignore it for the purpose of deciding which virtual host to pass the request to; it's possible to inject an evil host with the following payload:</p>
+<p>Web servers allow a port to be specified in the Host header, but ignore it for the purpose of deciding which virtual host to pass the request to; it's possible to inject an evil host with the following payload:</p>
 <div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/targeturl</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">legitmhostname:@evilhostname</span>
 </code></pre></div>
-<p>Sometimes it's possible to bypass IP-based restrictions using the <code>X-Forwarded-For</code> header.</p>
+<p>Sometimes it's possible to bypass IP-based restrictions using the <code>X-Forwarded-For</code> or <code>X-Real-IP</code> headers.</p>
 <p>Another possible approach is to try adding duplicate Host headers, useful when different system are involved and their host header handling is different:</p>
 <div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/targeturl</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">vulnerable-website.com # &lt;--- Correctly routes the request</span>
