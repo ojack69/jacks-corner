@@ -678,7 +678,12 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <p>*Note: these commands would not work with Windows Server 2019</p>
 <h3 id="sharphound_1">Sharphound</h3>
 <p>Collect information for <code>Bloodhound</code>:</p>
-<div class="highlight"><pre><span></span><code>Sharphound.exe<span class="w"> </span>--CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>--Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--ExcludeDCs
+<div class="highlight"><pre><span></span><code><span class="c1"># Using exe</span>
+Sharphound.exe<span class="w"> </span>--CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>--Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--ExcludeDCs
+
+<span class="c1"># Using ps1</span>
+.<span class="w"> </span>./Sharphound.ps1
+Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>-Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>-ExcludeDCs
 </code></pre></div>
 <p>Where:</p>
 <ul>
@@ -686,6 +691,7 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <li><strong>Domain</strong> - The domain we want to enumerate. In some instances, you may want to enumerate a parent or other domain that has trust with your existing domain. You can tell Sharphound which domain should be enumerated by altering this parameter.</li>
 <li><strong>ExcludeDCs</strong> -This will instruct <code>sharphound</code> not to touch domain controllers, which reduces the likelihood that the <code>sharphound</code> run will raise an alert.</li>
 </ul>
+<p>*Note: <code>Sharphound.ps1</code> is less likely to be blocked by AVs.</p>
 <p>References:</p>
 <ul>
 <li><a href="https://github.com/BloodHoundAD/SharpHound">Sharphound</a></li>
