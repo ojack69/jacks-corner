@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "certifications/secops/capen.md"
+url = "/certifications/secops/capen-peparation.html"
+title = "CAPen Preparation"
+
+[[input.files]]
 path = "ad/active-directory.md"
 url = "/ad/active-directory.html"
 title = "Active Directory"

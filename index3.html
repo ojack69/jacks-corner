@@ -124,6 +124,40 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">ROP Emporium - ret2win</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>Run checksec against the binary:</p>
+<blockquote>
+<p>[*] ret2win<br/>
+    &nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
+    &nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO<br/>
+    &nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found<br/>
+    &nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled<br/>
+    &nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)</p>
+</blockquote>
+<p>List all symbols in the text (code) section:</p>
+<blockquote>
+<p>&gt; nm ret2win &nbsp;| grep '\st\s'<br/>
+00000000004005f0 t deregister_tm_clones  <br/>
+0000000000400660 t __do_global_dtors_aux  <br/>
+0000000000400690 t frame_dummy  <br/>
+00000000004006e8 t pwnme  <br/>
+0000000000400620 t register_tm_clones …</p></blockquote></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">MAPNA CTF 2024 - ninipwn</a></h2>
     <p>
 
@@ -333,31 +367,6 @@ To get the correct version of glibc it is possible to run the libc file itself s
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
-<h3 id="llmnrnbt-ns-poisoning">LLMNR/NBT-NS Poisoning</h3>
-<p>Setup various services listeners an respond with spoofed responses in order to perform poisoning:</p>
-<div class="highlight"><pre><span></span><code>responder<span class="w"> </span>-I<span class="w"> </span>&lt;interface&gt;<span class="w"> </span>-dw<span class="w"> </span>
-</code></pre></div>
-<h3 id="smb-relay">SMB Relay</h3>
-<p>1 - Maps the network of live hosts and saves a list of only the hosts that don't require SMB signing:</p>
-<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>network …</code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
           Continue reading
         </a>
   </div>
