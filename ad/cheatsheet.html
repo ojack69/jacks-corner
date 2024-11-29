@@ -706,19 +706,30 @@ Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </sp
 </ul>
 <h2 id="lateral-movements_1">Lateral Movements</h2>
 <h3 id="powershell-remoting">PowerShell Remoting</h3>
-<p>Enabled by default on Windows Server 2012 onwards.</p>
-<ul>
-<li>If not, it can be enabled with <code>Enable-PSRemoting</code>. This operation requires local Administrator privileges.</li>
-</ul>
-<p>You get elevated shell on remote system if admin creds are used to authenticate (which is the default setting).</p>
-<p>By default, PSRemoting listeners run on default ports:</p>
-<ul>
-<li>5985 for http</li>
-<li>5986 for https</li>
-</ul>
+<p>Open a remote interactive session (one-to-one approach):</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Stateless Session</span>
+<span class="nb">Enter-PSSession</span> <span class="n">-Computer</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span>
+
+<span class="c"># Stateful Session</span>
+<span class="nv">$sess</span> <span class="p">=</span> <span class="nb">New-PSSession</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span> 
+<span class="nb">Enter-PSSession</span> <span class="n">-Session</span> <span class="nv">$sess</span>
+</code></pre></div>
+<p>Run command/scripts on multiple targets (one-to-many approach):</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Execute commands or scriptblocks</span>
+<span class="nb">Invoke-Command</span> <span class="err">&ndash;</span><span class="n">Scriptblock</span> <span class="p">{&lt;</span><span class="n">commands</span><span class="p">&gt;}</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">list_of_servers</span><span class="p">&gt;</span> <span class="c"># Use (Get-Content &lt;file with list of servers&gt;) in order to get the list from a file</span>
+
+<span class="c"># Execute scripts from files</span>
+<span class="nb">Invoke-Command</span> <span class="err">&ndash;</span><span class="n">FilePath</span> <span class="p">&lt;</span><span class="n">Script</span> <span class="n">path</span><span class="p">&gt;</span> <span class="n">-ComputerName</span> <span class="p">&lt;</span><span class="n">list_of_servers</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Install dependencies on Linux:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>pwsh<span class="w"> </span>-Command<span class="w"> </span><span class="s1">'Install-Module -Name PSWSMan'</span>
+sudo<span class="w"> </span>pwsh<span class="w"> </span>-Command<span class="w"> </span><span class="s1">'Install-WSMan'</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gss-ntlmssp
+</code></pre></div>
 <p>Useful Resources:</p>
 <ul>
 <li><a href="https://thomask.sdf.org/blog/2019/12/15/linux-windows-powershell-remoting-troubleshooting.html">PSRemoting - Linux to Windows</a></li>
+<li><a href="https://devblogs.microsoft.com/powershell/powershell-constrained-language-mode/">PowerShell Constrained Language Mode</a></li>
 </ul>
 <h3 id="dumping-credentials">Dumping Credentials</h3>
 <p>Dumping credentials with mimikatz:</p>
