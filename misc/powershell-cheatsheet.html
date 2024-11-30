@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Import a module: Import-Module &lt;modulepath&gt; List commands in a module: Get-Command -Module &lt;modulename&gt; Remote File Download remote …" />
+<meta name="description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Check LanguageMode in current ExecutionContenxt: $ExecutionContext.SessionState.LanguageMode Import a module: Import-Module &lt;modulepath&gt; List commands in a …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="PowerShell Cheatsheet"/>
-  <meta property="og:description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Import a module: Import-Module &lt;modulepath&gt; List commands in a module: Get-Command -Module &lt;modulename&gt; Remote File Download remote …"/>
+  <meta property="og:description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Check LanguageMode in current ExecutionContenxt: $ExecutionContext.SessionState.LanguageMode Import a module: Import-Module &lt;modulepath&gt; List commands in a …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html"/>
   <meta property="og:type" content="article"/>
@@ -150,11 +150,23 @@
 <span class="nv">$env:PSExecutionPolicyPreference</span><span class="p">=</span><span class="s2">"bypass"</span>
 </code></pre></div>
 <p>*Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts.</p>
+<p>Check <code>LanguageMode</code> in current <code>ExecutionContenxt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">LanguageMode</span>
+</code></pre></div>
 <p>Import a module:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">&lt;</span><span class="n">modulepath</span><span class="p">&gt;</span>
 </code></pre></div>
 <p>List commands in a module:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="p">&lt;</span><span class="n">modulename</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>List locally loaded functions:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">ls </span><span class="k">function</span><span class="p">:</span> <span class="c"># Only on Windows</span>
+<span class="nb">Get-Command</span> <span class="n">-CommandType</span> <span class="k">Function</span>
+</code></pre></div>
+<p>Get function content:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Command</span> <span class="p">&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">ScriptBlock</span>
+<span class="p">(</span><span class="nb">Get-Command</span> <span class="p">&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;).</span><span class="n">ScriptBlock</span>
+<span class="nv">$Function</span><span class="p">:&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;</span>
 </code></pre></div>
 <h2 id="remote-file">Remote File</h2>
 <p>Download remote script and execute it in memory:</p>
