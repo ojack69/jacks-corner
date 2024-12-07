@@ -723,7 +723,7 @@ See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-director
 <h3 id="golden-silver-tickets">Golden &amp; Silver Tickets</h3>
 <p>Having the hash of <strong>krbtgt</strong> account's password, the TGT service account, it's possible to use it to forge a TGT, called <strong>Golden Ticket</strong>. The golden ticket then can be used to request TGS for almost all services.</p>
 <ul>
-<li>Apart from the domain name, domain SID, and user ID for the person we want to impersonate, to forge a Golden ticked are needed the domain name, domain SID, and user ID for the person we want to impersonate.</li>
+<li>Apart from <strong>krbtgt</strong>'s hash, to forge a Golden ticked is needed the domain name, domain SID, and user ID for the person we want to impersonate.</li>
 <li>If it's possible to obtain the the <strong>domain name</strong>, <strong>domain SID</strong>, and <strong>user ID</strong> for the person we want to impersonate, than is highly probable that is possible to recover the other information.</li>
 </ul>
 <p>The Golden ticket than can be used with the Pass-the-ticket attack.</p>
@@ -739,10 +739,10 @@ See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-director
 <li>It's possible to generate a golden ticket on any machine, even one that is not domain-joined (such as the attacker machine), making it harder for the blue team to detect.</li>
 <li>Forge a Golden Ticket that it's compliant to the <strong>Kerberos Policy</strong> for a domain can reduce the chances to be detected.</li>
 </ul>
-<p><strong>Silver tickets</strong> are TGS tickets forged by using the machine account's password hash for the target service host. Whilst with a Golden ticket it's possible to access to every service, with a Silver ticket is possible to access only to a specific service host and to only impersonate users on that host itself.</p>
+<p><strong>Silver tickets</strong> are TGS tickets forged by using the <strong>machine account's password hash</strong> for the target service host. Whilst with a Golden ticket it's possible to access to every service, with a Silver ticket is possible to access only to a specific service host and to only impersonate users on that host itself.</p>
 <p>Some considerations:</p>
 <ul>
-<li>Since the TGS is forged, there is no associated TGT, meaning the DC was never contacted. This makes the attack incredibly dangerous since the only available logs would be on the targeted server. So while the scope is more limited, it is significantly harder for the blue team to detect.</li>
+<li>Since the TGS is forged, there is no associated TGT, meaning the DC was never contacted (i.e, starting from step AP_REQ). This makes the attack incredibly dangerous since the only available logs would be on the targeted server. So while the scope is more limited, it is significantly harder for the blue team to detect.</li>
 <li>Since permissions are determined through SIDs, it's possible to create a non-existing user for our silver ticket, as long as we ensure the ticket has the relevant SIDs that would place the user in the host's local administrators group.</li>
 <li>The machine account's password is usually rotated every 30 days, which would not be good for persistence. <ul>
 <li>It could be possible to use a forged TGS to access to the target host and alter the parameter in the registry that is responsible for the password rotation of the machine account. Thereby ensuring the machine account remains static and granting persistence on the machine.</li>
