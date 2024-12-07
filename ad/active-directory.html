@@ -275,9 +275,9 @@ All users in a domain should typically have access to this share over the networ
 Users with tickets can present them to a service to demonstrate they have already authenticated into the network before and are therefore enabled to use it.</p>
 <p>The Kerberos authentication flow is the following:</p>
 <ol>
-<li>The user sends its username and a timestamp (encrypted with a symmetric key generated from the user) in a <code>Authentication Service Request (AS_REQ)</code>, to the <code>Authentication Server (AS)</code>, a component of the <code>Key Distribution Center (KDC)</code>, generally installed on the DC.</li>
+<li>The user sends its username and a timestamp (encrypted with a symmetric key - the user NTLM hash) in a <code>Authentication Service Request (AS_REQ)</code>, to the <code>Authentication Server (AS)</code>, a component of the <code>Key Distribution Center (KDC)</code>, generally installed on the DC.</li>
 <li>If the credentials and the timestamp are successfully verified by the <code>AS</code> by using the user password hash (stored in the <code>AS</code>), it will return the followings in an  <code>Authentication Server Reply (AS_REP)</code>:<ul>
-<li><code>Ticket Granting Ticket</code>: ticket that will be used by the user to request tickets to access specific services. It's encrypted with the <code>krbtgt</code> service account's password hash and therefore users can't access its content.</li>
+<li><code>Ticket Granting Ticket</code>: ticket that will be used by the user to request tickets to access specific services. It's encrypted with the <code>krbtgt</code> service account's password hash and therefore other users than <code>krbtgt</code> can't access its content.</li>
 <li><code>Session Key</code>: It's a symmetric key encrypted with the user password hash. It's also contained in the <code>TGT</code>.</li>
 </ul>
 </li>
@@ -292,9 +292,14 @@ Users with tickets can present them to a service to demonstrate they have alread
 <li><code>Service Session Key</code>: It's a symmetric key encrypted using the <code>Session Key</code>. It's also contained in the <code>ST</code>.</li>
 </ul>
 </li>
-<li>The user sends the <code>ST</code> along with the username and a timestamp encrypted with the <code>Service Session Key</code> to the request service application server in <code>Application Request (AP-REQ)</code>.</li>
+<li>The user sends the <code>ST</code> along with the username and a timestamp encrypted with the <code>Service Session Key</code> to the request service application server in <code>Application Request (AP-REQ)</code>.<ol>
+<li>[Optional] - The application server passes the <code>Privilege Attribute Certificate (PAC)</code>, a Microsoft-specific authorization data present in the authorization data field of a ticket containing several logical components, including group membership data for authorization, alternate credentials for non-Kerberos authentication protocols, and policy control information for supporting interactive logon, to the <code>DC</code> in order to validate it (<code>KERB_VERIFY_PAC</code>).</li>
+<li>[Optional] - After verifying the <code>PAC</code>, the <code>DC</code> returns a RPC status code depending on the outcome of the validation.</li>
+</ol>
+</li>
 <li>The application server decrypts the <code>ST</code> with its secret key (that is derived from the <code>Service Owner Hash</code>) and obtains the <code>Service Session Key</code> that uses to decrypt and validate the encrypted username and timestamp. If everything checks out, the user is granted to access the service with an <code>Application Server Reply (AP-REP)</code>.</li>
 </ol>
+<p><strong>Kerberos Authentication Flow</strong></p>
 <p>Flow Summary:</p>
 <ol>
 <li>User -&gt; AS-REQ -&gt; AS</li>
@@ -306,6 +311,9 @@ Users with tickets can present them to a service to demonstrate they have alread
 </ol>
 <p><strong>Note1</strong>: The KDC is composed by the AS and the TGS.
 <strong>Note2</strong>: The <strong>ST</strong> is more commonly referred as <strong>TGS</strong>.</p>
+<p><strong>PAC Validation flow</strong>
+<img alt="kerberos-pac-validation.png" src="https://ojack69.github.io/jacks-corner/images/ad/active-directory/kerberos-pac-validation.png"/>
+PAC validation is generally disabled by default.</p>
 <h4 id="service-principal-name-spn">Service Principal Name (SPN)</h4>
 <p>An SPN is a unique identifier for a service on a network that uses Kerberos authentication. It consists of a service class, a host name, and sometimes a port. It's possible to register an SPN as follows:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Setspn</span> <span class="n">-s</span> <span class="p">&lt;</span><span class="n">service-class</span><span class="p">&gt;/&lt;</span><span class="n">computer-name</span><span class="p">&gt;.&lt;</span><span class="n">domain-name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">domain-user-account</span><span class="p">&gt;</span>
