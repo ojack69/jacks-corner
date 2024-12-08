@@ -752,10 +752,17 @@ See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-director
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#golden-silver-tickets">Active Directory Cheatsheet - Golden &amp; Silver Tickets</a>.</p>
 <h3 id="skeleton-key">Skeleton Key</h3>
-<p>Skeleton key technique consists into patching a DC's <code>lsass</code> process so that it allows to access as any user with a single password.</p>
+<p>Skeleton key technique consists into patching a DC's <code>lsass</code> process so that it allows to access as any user with a single 'master' password.</p>
 <ul>
-<li>This technique is NOT persistent across reboots.</li>
+<li>This technique requires <strong>domain admin</strong> privileges.</li>
+<li>This technique is <strong>NOT</strong> persistent across reboots.</li>
+<li>Users can still authenticate with their original password. <ul>
+<li>It makes detecting it hard to detect.</li>
 </ul>
+</li>
+<li>This attack currently supports NTLM and Kerberos (RC4 only) authentications. For more details, take a look <a href="https://www.thehacker.recipes/ad/persistence/skeleton-key/#theory">here</a>.</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#skeleton-key">Active Directory Cheatsheet - Skeleton Key</a>.</p>
 <h2 id="post-exploitation_1">Post Exploitation</h2>
 <h2 id="evasion">Evasion</h2>
 <p>https://www.reddit.com/r/HowToHack/comments/16pxfl4/comment/k220pl8/?context=3</p>
