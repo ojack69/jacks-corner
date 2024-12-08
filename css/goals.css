@@ -1,0 +1,127 @@
+.goal-title:after {
+    font-size: 14px;
+    font-style: italic;
+}
+.goal-title.short:after {
+    content: ' Short Term Goals'
+}
+
+.goal-title.medium:after {
+    content: ' Medium Term Goals'
+}
+
+.goal-title.long:after {
+    content: ' Long Term Goals'
+}
+
+.goal-group-container {
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 25px;
+    position: relative;
+}
+
+.goal-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-top: 25px;
+  position: relative;
+}
+
+.goal-item,
+.goal-timeline-item {
+  flex: 0 0 25%;
+  justify-content: center;
+  text-align: center;
+  max-width: 210px;
+  margin: 0 25px;
+  position: relative;
+}
+
+.goal-timeline {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 25px;
+    position: relative;
+}
+
+.goal-timeline-line{
+    border-bottom: 1px solid #999;
+}
+
+.goal-timeline-item .fa {
+    border-radius: 50%;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.goal-timeline-tick {
+  width: 0;
+  border: 1px solid #999;
+  height: 15px;
+  margin: auto;
+}
+
+.goal-item.completed,
+.goal-timeline-item.completed,
+.goal-timeline-item.completed .goal-timeline-tick
+{
+    color: green;
+    border-color: green;
+}
+
+.goal-item.todo:not(.past-due) small
+{
+    color: orange;
+}
+
+.goal-timeline-item.todo:not(.past-due),
+.goal-timeline-item.todo:not(.past-due) .goal-timeline-tick 
+{
+    color: #999;
+    border-color: #999;
+}
+
+.goal-timeline-item.todo:not(.past-due).active,
+.goal-timeline-item.todo:not(.past-due).active .goal-timeline-tick
+{
+    color: #ADEEE3;
+    border-color: #ADEEE3;
+    -webkit-animation: goal-blink 4s infinite both;
+    animation: goal-blink 4s infinite both;
+}
+
+.goal-item.todo.past-due,
+.goal-timeline-item.todo.past-due,
+.goal-timeline-item.todo.past-due .goal-timeline-tick
+{
+    color: red;
+    border-color: red;
+}
+
+@-webkit-keyframes goal-blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes goal-blink {
+  0%,
+  50%,
+  100% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0.4;
+  }
+}

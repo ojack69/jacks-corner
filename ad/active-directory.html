@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:8000/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:8000/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:8000/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:8000/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Active Directory is a centralized directory service used to manage Windows networks. It stores information about objects on the network and make it easy to configure what is needed. Concepts Domain Controllers A domain controller is a server with the AD DS server role: Hosts a copy of the AD …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Active Directory"/>
+  <meta property="og:description" content="Active Directory is a centralized directory service used to manage Windows networks. It stores information about objects on the network and make it easy to configure what is needed. Concepts Domain Controllers A domain controller is a server with the AD DS server role: Hosts a copy of the AD …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:8000/ad/active-directory.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-10-01 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:8000/author/jack69.html">
+  <meta property="article:section" content="Active Directory"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Active Directory</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:8000/">
+      <img src="http://localhost:8000/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:8000/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:8000/">Home</a>
+
+  <a href="http://localhost:8000/categories.html">Categories</a>
+  <a href="http://localhost:8000/category/cheatsheet.html">Cheatsheets</a>
+  <a href="http://localhost:8000/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ad/active-directory">Active Directory</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a><ul><li><a class="toc-href" href="#domain-controllers" title="Domain Controllers">Domain Controllers</a></li><li><a class="toc-href" href="#ad-ds-data-store" title="AD DS Data Store">AD DS Data Store</a></li><li><a class="toc-href" href="#ad-ds-schema" title="AD DS Schema">AD DS Schema</a></li><li><a class="toc-href" href="#domains" title="Domains">Domains</a></li><li><a class="toc-href" href="#trees" title="Trees">Trees</a></li><li><a class="toc-href" href="#forests" title="Forests">Forests</a></li><li><a class="toc-href" href="#organizational-units-ous" title="Organizational Units (OUs)">Organizational Units (OUs)</a></li><li><a class="toc-href" href="#trusts" title="Trusts">Trusts</a></li><li><a class="toc-href" href="#objects" title="Objects">Objects</a></li><li><a class="toc-href" href="#group-policy-objects-gpo" title="Group Policy Objects (GPO)">Group Policy Objects (GPO)</a></li></ul></li><li><a class="toc-href" href="#access-control-lists_1" title="Access Control Lists">Access Control Lists</a><ul><li><a class="toc-href" href="#kerberos-authentication" title="Kerberos Authentication">Kerberos Authentication</a><ul><li><a class="toc-href" href="#service-principal-name-spn" title="Service Principal Name (SPN)">Service Principal Name (SPN)</a></li></ul></li><li><a class="toc-href" href="#netntlm-authentication_1" title="NetNTLM Authentication">NetNTLM Authentication</a><ul><li><a class="toc-href" href="#lm-vs-ntlm-vs-net-ntlmv1-vs-net-ntlmv2" title="LM vs NTLM vs Net-NTLMv1 vs Net-NTLMv2">LM vs NTLM vs Net-NTLMv1 vs Net-NTLMv2</a></li><li><a class="toc-href" href="#authentication-flow" title="Authentication Flow">Authentication Flow</a></li></ul></li></ul></li><li><a class="toc-href" href="#initial-attack-vectors_2" title="Initial Attack Vectors">Initial Attack Vectors</a><ul><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#llmnrnbt-ns-poisoning" title="LLMNR/NBT-NS Poisoning">LLMNR/NBT-NS Poisoning</a><ul><li><a class="toc-href" href="#mitigations" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#smb-relay_1" title="SMB Relay">SMB Relay</a><ul><li><a class="toc-href" href="#mitigations_1" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#dns-takeover-via-ipv6_1" title="DNS takeover via IPv6">DNS takeover via IPv6</a><ul><li><a class="toc-href" href="#mitigations_2" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#ldap-pass-back_1" title="LDAP Pass-back">LDAP Pass-back</a></li><li><a class="toc-href" href="#pxe-boot-image-retrieval" title="PXE Boot Image Retrieval">PXE Boot Image Retrieval</a><ul><li><a class="toc-href" href="#mitigations_3" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#gpp-and-local-administrator-password-solution-laps_1" title="GPP and Local Administrator Password Solution (LAPS)">GPP and Local Administrator Password Solution (LAPS)</a></li><li><a class="toc-href" href="#mssql-ntlm-hash-dump" title="MSSQL NTLM hash dump">MSSQL NTLM hash dump</a></li></ul></li><li><a class="toc-href" href="#ad-enumeration_1" title="AD Enumeration">AD Enumeration</a><ul><li><a class="toc-href" href="#network-credentials-injection" title="Network Credentials Injection">Network Credentials Injection</a><ul><li><a class="toc-href" href="#force-ntlm-authentication-over-kerberos" title="Force NTLM Authentication over Kerberos">Force NTLM Authentication over Kerberos</a></li></ul></li><li><a class="toc-href" href="#sysvol_1" title="SYSVOL">SYSVOL</a></li><li><a class="toc-href" href="#command-line-powershell-enumeration" title="Command Line &amp; Powershell Enumeration">Command Line &amp; Powershell Enumeration</a><ul><li><a class="toc-href" href="#hints" title="Hints">Hints</a></li></ul></li><li><a class="toc-href" href="#defense_1" title="Defense">Defense</a></li></ul></li><li><a class="toc-href" href="#ad-lateral-movements_1" title="AD Lateral Movements">AD Lateral Movements</a><ul><li><a class="toc-href" href="#pass-the-attacks" title="Pass-the-* attacks">Pass-the-* attacks</a><ul><li><a class="toc-href" href="#mitigations_4" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#token-impersonation_1" title="Token Impersonation">Token Impersonation</a><ul><li><a class="toc-href" href="#mitigations_5" title="Mitigations">Mitigations</a></li></ul></li><li><a class="toc-href" href="#kerberoasting_1" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a><ul><li><a class="toc-href" href="#local-privilege-escalation" title="Local Privilege Escalation">Local Privilege Escalation</a><ul><li><a class="toc-href" href="#misconfigured-services" title="Misconfigured Services">Misconfigured Services</a></li><li><a class="toc-href" href="#dll-hijacking" title="DLL Hijacking">DLL Hijacking</a></li></ul></li></ul></li><li><a class="toc-href" href="#powershell-remoting_2" title="PowerShell Remoting">PowerShell Remoting</a></li></ul></li><li><a class="toc-href" href="#ad-persistence_1" title="AD Persistence">AD Persistence</a><ul><li><a class="toc-href" href="#golden-silver-tickets" title="Golden &amp; Silver Tickets">Golden &amp; Silver Tickets</a></li><li><a class="toc-href" href="#skeleton-key" title="Skeleton Key">Skeleton Key</a></li><li><a class="toc-href" href="#directory-services-restore-mode-dsrm" title="Directory Services Restore Mode (DSRM)">Directory Services Restore Mode (DSRM)</a></li><li><a class="toc-href" href="#security-support-provider-ssp" title="Security Support Provider (SSP)">Security Support Provider (SSP)</a></li></ul></li><li><a class="toc-href" href="#post-exploitation_1" title="Post Exploitation">Post Exploitation</a></li><li><a class="toc-href" href="#evasion" title="Evasion">Evasion</a></li></ul></div>
+        </div>
+    <p>Active Directory is a centralized directory service used to manage Windows networks. It stores information about objects on the network and make it easy to configure what is needed.</p>
+<h2 id="concepts">Concepts</h2>
+<h3 id="domain-controllers">Domain Controllers</h3>
+<p>A domain controller is a server with the AD DS server role:</p>
+<ul>
+<li>Hosts a copy of the <strong>AD DS Data Store</strong></li>
+<li>Provides authentication and authorization services</li>
+<li>Replicates updates to other domain controllers in the <strong>domain</strong> or <strong>forest</strong></li>
+<li>Allows administrative access to manage user accounts and network resources</li>
+</ul>
+<h3 id="ad-ds-data-store">AD DS Data Store</h3>
+<p>The <strong>AD DS Data Store</strong> contains the database files and processes that store and manage information for users, services and applications such as users, objects, groups, password hashes, etc.:</p>
+<ul>
+<li>Consists of the <code>Ntds.dit</code> file</li>
+<li>It's stored by default in the <code>%SystemRoot%\NTDS</code> folder on all domain controllers </li>
+<li>Is accessible only through domain controller processes and protocols</li>
+</ul>
+<h3 id="ad-ds-schema">AD DS Schema</h3>
+<p>The AD DS Schema defines every type of object that can be stored in the AD and enforces rules regarding object creation and configuration.</p>
+<h3 id="domains">Domains</h3>
+<p>Domains are used to group and manage object in an organization:</p>
+<ul>
+<li>Defines an administrative boundary for applying policies to group of objects.</li>
+<li>Defines a replication boundary for replication data between domain controllers.</li>
+<li>Defines an authentication and authorization boundary that provides a way to limit the scope of access to resources.</li>
+</ul>
+<h3 id="trees">Trees</h3>
+<p>Trees are a group of domains organized in a hierarchy, identifying parent and child domain. All domains in the tree:</p>
+<ul>
+<li>Share the namespace with the parent domain.</li>
+<li>Can have additional child domains.</li>
+<li>By default, they create a <strong>two-way transitive trust with other domains</strong>.</li>
+</ul>
+<h3 id="forests">Forests</h3>
+<p>A forest is a collection of one or more domain trees:</p>
+<ul>
+<li>Forests share a common schema.</li>
+<li>Forests share a common configuration partition.</li>
+<li>Forests share a common <strong>Global Catalog (GC)</strong> to enable searching.</li>
+<li>Forests <strong>enable trusts between all the domains in the forest</strong>.</li>
+<li>Forests share the Enterprise Admins and Schema Admins groups.</li>
+</ul>
+<p>The <strong>Global Catalog</strong> is a feature of Active Directory (AD) that allows a domain controller (DC) to provide information on any object in the forest, It's used to locate objects outside its domain is beyond its scope.</p>
+<ul>
+<li>Domain controllers with the global catalog feature enabled are referred to as <strong>global catalog servers</strong>.</li>
+</ul>
+<h3 id="organizational-units-ous">Organizational Units (OUs)</h3>
+<p>Organizational Units are containers defined in a domain for users, groups, computers and other OUs. They're used to:</p>
+<ul>
+<li>Represent an organization hierarchically and logically.</li>
+<li>Manage a collection of objects in a consistent way.</li>
+<li>Delegate permissions to administer groups of objects.</li>
+<li>Apply Policies.</li>
+</ul>
+<h3 id="trusts">Trusts</h3>
+<p>Trusts provide a mechanism for user to gain access to resources in another domain. </p>
+<p>There are two type of trusts:</p>
+<ul>
+<li><strong>Directional</strong>: The trust direction flows from a <em>trusting domain</em> A to a <em>trusted domain</em> B. A trusts B and B can access A's resources (<strong>One-way trust</strong>). The trust can also be bi-directional (<strong>Two-way-trust</strong>) i.e. B trusts A and A can access B's resources. </li>
+<li><strong>Transitive</strong>: The trust relationship is extended to include other trusted domain beyond a two-domain trust. If a domain B trusts A and C trusts B, then C trusts A.<ul>
+<li>It's possible to define <strong>Shortcut Trusts</strong>, a direct trust between two domain that are transitively trusting each other via many other domains transitive trusts relationships to reduce access times in complex trust scenarios.</li>
+</ul>
+</li>
+</ul>
+<p>Trust can be <strong>automatic</strong> in the same forest:</p>
+<ul>
+<li>All parent-child domains trust each other (is always two-way transitive).</li>
+<li>All domains in a forest trust all other domains in the forest (is always two-way transitive).</li>
+</ul>
+<p>Instead, trusts across forests boundaries need to be explicitly established with <strong>External Trusts</strong> between two domains in different forests, when forests don't have a trust relationship:</p>
+<ul>
+<li>Can be one-way or two-way and is nontransitive.</li>
+</ul>
+<p>It's possible to establish trusts between two forests (their root domains) with a <strong>Forest Trust</strong>:</p>
+<ul>
+<li>Can only be created between two forests and can't be implicitly extended to a third forest-</li>
+<li>Can be one-way or two-way and transitive (<strong>domain-to-domain, not forest-to-forest!</strong>) or nontransitive.</li>
+</ul>
+<p><img alt="ad-forest-trusts.png" src="http://localhost:8000/images/ad/active-directory/ad-forest-trusts.png"/></p>
+<p>Trust relationships i represented by a <strong>Trusted Domain Objects (TDOs)</strong> in a
+domain.</p>
+<h3 id="objects">Objects</h3>
+<p>An object is anything that can be present in an OU or domain:</p>
+<ul>
+<li><strong>User</strong>: enables network resource access for a user. Users are alos known as <strong>security principals</strong>, meaning that they can be authenticated by the domain and can be assigned privileges over <strong>resources</strong> like files or printers. Generally, a security principal is an object that can act upon resources in the network. <strong>Users can be people or services</strong>.</li>
+<li><strong>InetOrgPerson</strong>: similar to a user account; used for compatibility with other directory services.</li>
+<li><strong>Contacts</strong>: used to assign e-mail addresses to external users. Does not provide network access.</li>
+<li><strong>Security Groups</strong>: used to simplify administration of access control. Security Groups are also considered security principals and, therefore, can have privileges over resources on the network. <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-groups">Reference to existing groups</a>. <strong>Groups can be member of other groups</strong>.</li>
+<li><strong>Computers</strong>: enable authentication and auditing of computer access to resources. Machines are also considered "security principals" and are assigned an account just as any regular user. This account has somewhat limited rights within the domain itself. The machine accounts themselves are <strong>local administrators</strong> on the assigned computer, they are generally not supposed to be accessed by anyone except the computer itself, but as with any other account, if you have the password, you can use it to log in.<ul>
+<li>Machine Account passwords are automatically rotated out and are generally comprised of 120 random characters.</li>
+<li>They follow a specific naming scheme: the machine account name is the computer's name followed by a dollar sign (ex: for a machine named <em>DC01</em> there's the account <em>DC01$</em>). </li>
+</ul>
+</li>
+<li><strong>Printers</strong>: used to simplify the process of locating and connecting to printers.</li>
+<li><strong>Shared Folders</strong>: enables users to search for a shared folders based on properties.</li>
+</ul>
+<p>Each object has a SID which uniquely identifies it in the domain; the SID is generally structured as follows:</p>
+<ul>
+<li><code>S-&lt;Revision level&gt;-&lt;Domain Identifier&gt;-&lt;Object ID (Relative Identifier)&gt;</code></li>
+</ul>
+<p>Built-in object can be found <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-security-identifiers#well-known-sids">here</a>.</p>
+<p><strong>Note</strong>: the difference between OUs and security groups is that the first are used to <strong>apply policies to users and computers</strong> whilst the latter is used to <strong>grant permissions over resources</strong>. A user or computer can belong to only one OU at a time whilst can be part of many security groups.</p>
+<h3 id="group-policy-objects-gpo">Group Policy Objects (GPO)</h3>
+<p><strong>Group Policy Objects (GPO)</strong> are a collection of settings that can be applied to OUs. GPOs can contain policies aimed at either users or computers.</p>
+<p>GPOs are distributed to the network via a network share called <code>SYSVOL</code>, stored in the DC.
+All users in a domain should typically have access to this share over the network to sync their GPOs periodically. The SYSVOL share points by default to the <code>C:\Windows\SYSVOL\sysvol\</code> directory on each of the DCs in our network.</p>
+<p>Once a change has been made to any GPOs, it might take up to 2 hours for computers to catch up. Alternatively, it's possible to force the sync with the following command:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gpupdate</span> <span class="p">/</span><span class="n">force</span>
+</code></pre></div>
+<p>In GPO can be set a <strong>restricted group</strong>; these allow an administrator to define the following two properties for security-sensitive (restricted) groups:</p>
+<ul>
+<li><strong>Members</strong>: defines who should and shouldn't belong to the restricted group.</li>
+<li><strong>Member Of</strong>: specifies which other groups the restricted group should belong to.</li>
+</ul>
+<p>Restricted groups are used to manage local group memberships of Windows workstations and servers from on a central way.</p>
+<h2 id="access-control-lists_1">Access Control Lists</h2>
+<p>In the access control model used by AD there are two main entities:</p>
+<ul>
+<li><strong>Access Tokens</strong>: defines the security context for a process; contains the identity of its principal (a user or a group) and privileges associated to that principal.</li>
+<li><strong>Security Descriptors</strong>: are data structure associated  ton an AD object that define its access control. It contains: <ul>
+<li>the SID of the object owner.</li>
+<li>a <strong>Discretionary ACL (DACL)</strong> containing the list of permissions that an access token must have to access the object.</li>
+<li>a <strong>System ACL (SACL)</strong> that allows administrators to log attempts to access a secured object, defining the audit policy for that object.</li>
+</ul>
+</li>
+</ul>
+<p>Whenever a process wants to access an object into AD, it presents its <strong>Access Token</strong>. The access to this object is granted or not depending on its <strong>Security Descriptor</strong>.</p>
+<p>An <strong>Access Control List (ACL)</strong> consists into a list of <strong>Access Control Entries (ACE)</strong>, each of which corresponds to individual permission or audits access. </p>
+<h3 id="kerberos-authentication">Kerberos Authentication</h3>
+<p><strong>Kerberos</strong> authentication is the default authentication protocol for any recent version of Windows. Users who log into a service using Kerberos will be assigned tickets.
+Users with tickets can present them to a service to demonstrate they have already authenticated into the network before and are therefore enabled to use it.</p>
+<p>The Kerberos authentication flow is the following:</p>
+<ol>
+<li>The user sends its username and a timestamp (encrypted with a symmetric key - the user NTLM hash) in a <code>Authentication Service Request (AS_REQ)</code>, to the <code>Authentication Server (AS)</code>, a component of the <code>Key Distribution Center (KDC)</code>, generally installed on the DC.</li>
+<li>If the credentials and the timestamp are successfully verified by the <code>AS</code> by using the user password hash (stored in the <code>AS</code>), it will return the followings in an  <code>Authentication Server Reply (AS_REP)</code>:<ul>
+<li><code>Ticket Granting Ticket</code>: ticket that will be used by the user to request tickets to access specific services. It's encrypted with the <code>krbtgt</code> service account's password hash and therefore other users than <code>krbtgt</code> can't access its content.</li>
+<li><code>Session Key</code>: It's a symmetric key encrypted with the user password hash. It's also contained in the <code>TGT</code>.</li>
+</ul>
+</li>
+<li>To access some service, the users contacts the <code>KDC</code>'s <code>Ticket Granting Service (TGS)</code> component, in charge of generating <code>Service Tickets (ST)</code>, tickets that are used to access the requested service. This is done with a <code>Ticket Granting Server Request (TGS-REQ)</code>, containing the followings:<ul>
+<li>Username and timestamp encrypted with the session key.</li>
+<li>The <code>TGT</code>.</li>
+<li>The <code>Service Principal Name (SPN)</code> identifying the resource that the user is trying to access</li>
+</ul>
+</li>
+<li>The <code>TGS</code> then will check if the requested resource exists in the realm, decrypt the <code>TGT</code> and extract the session key from it in order to decrypt and validate the username and the timestamp. If everything checks out, the <code>TGS</code> will respond with a <code>Ticket Granting Server Reply (TGS-REP)</code>, containing the followings:<ul>
+<li><code>Service Ticket (ST)</code>: Ticket encrypted with a key derived from the <code>Service Owner Hash</code>, a service account used to authenticate against the requested service.</li>
+<li><code>Service Session Key</code>: It's a symmetric key encrypted using the <code>Session Key</code>. It's also contained in the <code>ST</code>.</li>
+</ul>
+</li>
+<li>The user sends the <code>ST</code> along with the username and a timestamp encrypted with the <code>Service Session Key</code> to the request service application server in <code>Application Request (AP-REQ)</code>.<ol>
+<li>[Optional] - The application server passes the <code>Privilege Attribute Certificate (PAC)</code>, a Microsoft-specific authorization data present in the authorization data field of a ticket containing several logical components, including group membership data for authorization, alternate credentials for non-Kerberos authentication protocols, and policy control information for supporting interactive logon, to the <code>DC</code> in order to validate it (<code>KERB_VERIFY_PAC</code>).</li>
+<li>[Optional] - After verifying the <code>PAC</code>, the <code>DC</code> returns a RPC status code depending on the outcome of the validation.</li>
+</ol>
+</li>
+<li>The application server decrypts the <code>ST</code> with its secret key (that is derived from the <code>Service Owner Hash</code>) and obtains the <code>Service Session Key</code> that uses to decrypt and validate the encrypted username and timestamp. If everything checks out, the user is granted to access the service with an <code>Application Server Reply (AP-REP)</code>.</li>
+</ol>
+<p><strong>Kerberos Authentication Flow</strong></p>
+<p>Flow Summary:</p>
+<ol>
+<li>User -&gt; AS-REQ -&gt; AS</li>
+<li>AS -&gt; AS-REP (TGT + Session Key) -&gt; User</li>
+<li>User -&gt; TGS-REQ (TGT + SPN) -&gt; TGS</li>
+<li>TGS -&gt; TGS-REP (ST + Service Session Key) -&gt; User</li>
+<li>User -&gt; AS-REQ (ST) -&gt; Service</li>
+<li>Service -&gt; AS-REP -&gt; User</li>
+</ol>
+<p><strong>Note1</strong>: The KDC is composed by the AS and the TGS.
+<strong>Note2</strong>: The <strong>ST</strong> is more commonly referred as <strong>TGS</strong>.</p>
+<p><strong>PAC Validation flow</strong>
+<img alt="kerberos-pac-validation.png" src="http://localhost:8000/images/ad/active-directory/kerberos-pac-validation.png"/>
+PAC validation is generally disabled by default.</p>
+<h4 id="service-principal-name-spn">Service Principal Name (SPN)</h4>
+<p>An SPN is a unique identifier for a service on a network that uses Kerberos authentication. It consists of a service class, a host name, and sometimes a port. It's possible to register an SPN as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Setspn</span> <span class="n">-s</span> <span class="p">&lt;</span><span class="n">service-class</span><span class="p">&gt;/&lt;</span><span class="n">computer-name</span><span class="p">&gt;.&lt;</span><span class="n">domain-name</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">domain-user-account</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>On a network that uses Kerberos authentication, a SPN for the server must be registered under either a built-in computer account (such as <em>NetworkService</em> or <em>LocalSystem</em>) or user account. SPNs are registered for built-in accounts automatically whilst are to be manually registered for domain user accounts.</p>
+<h3 id="netntlm-authentication_1">NetNTLM Authentication</h3>
+<h4 id="lm-vs-ntlm-vs-net-ntlmv1-vs-net-ntlmv2">LM vs NTLM vs Net-NTLMv1 vs Net-NTLMv2</h4>
+<p><strong>LM-hashes</strong> is the oldest password storage used by Windows, obtainable, if still available, from the SAM database on a Windows system, or the NTDS database on the Domain Controller. LM was turned off by default starting in Windows Vista/Server 2008.</p>
+<p>The algorithm is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Convert</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">lower</span><span class="w"> </span><span class="n">case</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">upper</span><span class="w"> </span><span class="n">case</span><span class="w">  </span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Pad</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">NULL</span><span class="w"> </span><span class="n">characters</span><span class="w">  </span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Split</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="mf">7</span><span class="w"> </span><span class="n">character</span><span class="w"> </span><span class="n">chunks</span><span class="w">  </span>
+<span class="mf">4.</span><span class="w"> </span><span class="n">Create</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">DES</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="mf">7</span><span class="w"> </span><span class="n">character</span><span class="w"> </span><span class="n">chunk</span><span class="w">  </span>
+<span class="mf">5.</span><span class="w"> </span><span class="n">DES</span><span class="w"> </span><span class="n">encrypt</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">string</span><span class="w"> </span><span class="s">"KGS!@#$%"</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">these</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">chunks</span><span class="w">  </span>
+<span class="mf">6.</span><span class="w"> </span><span class="n">Concatenate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">DES</span><span class="w"> </span><span class="n">encrypted</span><span class="w"> </span><span class="n">strings</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">LM</span><span class="w"> </span><span class="n">hash</span><span class="mf">.</span>
+</code></pre></div>
+<p><strong>NTLM (or NTHash)</strong> is used to store password hashs in modern Windows systems. It's obtainable by dumping the <em>SAM database</em> or the <em>NTDS</em> from a DC, using <code>Mimikatz</code>, etc.</p>
+<p>The algorithm is the following:</p>
+<div class="highlight"><pre><span></span><code>MD4(UTF-16-LE(password))
+</code></pre></div>
+<p><strong>NetNTLMv1</strong> is an authentication protocol that uses <em>NTLM</em> and <em>LM</em> in a challenge/response between the server and the client. Can be captured with the <code>responder</code> tool.</p>
+<p><strong>NetNTLMv2</strong> is an improved version of the previous protocol. Can be captured with the <code>responder</code> tool.</p>
+<p><strong>Note</strong>: NetNTLM is often referred to as "<em>Windows Authentication</em>".</p>
+<h4 id="authentication-flow">Authentication Flow</h4>
+<p>Following the authentication flow for the <strong>NetNTLMv2</strong>:
+1. The client sends an authentication request to the server they want to access.
+2. The server generates a random number and sends it as a challenge to the client.
+3. The client combines their NTLM password hash with the challenge (and other known data) to generate a response to the challenge and sends it back to the server for verification.
+4. The server forwards the challenge and the response to the Domain Controller for verification.
+5. The domain controller uses the challenge to recalculate the response and compares it to the original response sent by the client. If they both match, the client is authenticated; otherwise, access is denied. The authentication result is sent back to the server.
+6. The server forwards the authentication result to the client.</p>
+<p><img alt="NTLM-authentication-flow.png" src="http://localhost:8000/images/ad/active-directory/NTLM-authentication-flow.png"/></p>
+<p>The user's password (or hash) is never transmitted through the network for security.</p>
+<p><strong>Note:</strong> The described process applies when using a <strong>domain account</strong>. If a local account is used, the server can verify the response to the challenge itself without requiring interaction with the domain controller since it has the password hash stored locally on its SAM.</p>
+<h2 id="initial-attack-vectors_2">Initial Attack Vectors</h2>
+<h3 id="password-spraying">Password Spraying</h3>
+<p>If there are any exposed services using NetNTLM authentication, a list of possible usernames is available (ex: through OSINT) and a known password is available (ex: default password for new users), it's worth trying a <strong>Password Spray</strong> attack. </p>
+<p>This is a particular type of brute-force attack where, given a known password, it is used to perform login by testing various usernames/emails. </p>
+<h3 id="llmnrnbt-ns-poisoning">LLMNR/NBT-NS Poisoning</h3>
+<p><strong>Link Local Multicast Name Resolution (LLMNR)</strong>, previously known as Netbios Nameservice (N BT-NS) is a protocol based on the Domain Name System (DNS) packet format that allows both IPv4 and IPv6 hosts to perform name resolution for hosts on the same local link. 
+<strong>It is used to resolve local name when the DNS fails</strong>.</p>
+<p>This service utilizes the user's username and NTLMv2 hash when appropriately responded; moreover it's unauthenticated and clear-text transmitted over UDP.  For these reasons it's easily spoofable and can be abused to obtain users password hashes that could be lately cracked.</p>
+<p>It's possible to use the <code>responder</code> tool, an LLMNR, NBT-NS and MDNS poisoner.
+It will answer to specific NBT-NS (NetBIOS Name Service) queries based on their name suffix. By default, the tool will only answer to File Server Service request, which is for SMB.</p>
+<h4 id="mitigations">Mitigations</h4>
+<ul>
+<li>Disable LLMNR/NBT-NS</li>
+<li>If it's not possible to disable it:<ul>
+<li>Require Network Access Control</li>
+<li>Require strong user password policy ( lenght &gt;14 and limited common word usage)</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#llmnr-nbt-ns-poisoning">Active Directory Cheatsheet - LLMR/NBT-NS Poisoning</a>.</p>
+<h3 id="smb-relay_1">SMB Relay</h3>
+<p>Instead of cracking hashes gathered with <code>responder</code>,  those hashes are relayed to specific machines and potentially gain access.</p>
+<p>Requirements for the attack to be applicable:</p>
+<ul>
+<li><strong>SMB signing</strong> must be disabled on the target; SMB signing is a security mechanism in the SMB protocol. SMB signing means that every SMB message contains a signature that is generated by using the session key. The client puts a hash of the entire message into the signature field of the SMB header.</li>
+<li><strong>Relayed credentials must belong to an admin</strong> on the machine with SMB signing disabled.</li>
+<li>It's not possible to use relayed credentials to target services on the same machine the credentials come from!</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#smb-relay">Active Directory Cheatsheet - SMB Relay</a>.</p>
+<h4 id="mitigations_1">Mitigations</h4>
+<ul>
+<li>Enable SMB Signing on all devices:<ul>
+<li><strong>Pro</strong>: Completely stops the attack</li>
+<li><strong>Co</strong>n: Can cause performance issues with file copies</li>
+</ul>
+</li>
+<li>Disable NTLM authentication on network<ul>
+<li><strong>Pro</strong>: Completely stops the attack</li>
+<li><strong>Con</strong>: If Kerberos stops working, Windows defaults back to NTLM</li>
+</ul>
+</li>
+<li>Account tiering:<ul>
+<li><strong>Pro</strong>: Limits domain admins to specific tasks (e.g. only log onto servers with need for DA)</li>
+<li><strong>Con</strong>: Enforcing the policy may be difficult</li>
+</ul>
+</li>
+<li>Local admin restriction:<ul>
+<li><strong>Pro</strong>: Can prevent a lot of lateral movement</li>
+<li><strong>Con</strong>: Potential increase in the amount of service desk tickets</li>
+</ul>
+</li>
+</ul>
+<h3 id="dns-takeover-via-ipv6_1">DNS takeover via IPv6</h3>
+<p>Usually IPv6 is enable but no DNS service is generally configured to respond to IPv6. IPv6 attacks abuses the default IPv6 configuration in Windows networks to spoof DNS replies by acting as a malicious DNS server and redirect traffic to an attacker specified endpoint.
+IPv6 is enabled and preferred over IPv4 from Windows Vista and on.</p>
+<p>By spoofing DNS, credentials get sent to the fake DNS server which will relay them to the target; when targeting a DC, it's possible to abuse this mechanism to obtain all the information stored int the DC and create evil accounts/policies to gain access to it or even new domain machines. This is possible when the relayed credentials belongs to an administrator.
+In order to work, SMB (without signing - SMB Relay attack), LDAPS or any service to which relay the credentials should be enabled on the DC.</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#dns-takeover-via-ipv6">Active Directory Cheatsheet - DNS takeover via IPv6</a>.</p>
+<h4 id="mitigations_2">Mitigations</h4>
+<ul>
+<li>IPv6 poisoning abuses the fact that Windows queries for an IPv6 address even in IPv4-only environments. If IPv6 isn't used internally, the safest way to prevent <code>mitm6</code> is to block DHCPv6 traffic and incoming router advertisements in Windows Firewall via Group Policy. <ul>
+<li>Disabling IPv6 entirely may have unwanted side effects. </li>
+<li>Setting the following predefined rules to <em>Block</em> instead of <em>Allow</em> prevents the attack from working:
+    a. (Inbound) Core Networking - Dynamic Host Configuration Protocol for IPv6(DHCPV6-In)
+    b. (Inbound) Core Networking - Router Advertisement (ICMPv6-In)
+    c. (Outbound) Core Networking - Dynamic Host Configuration Protocol for IPv6(DHCPV6-Out)</li>
+</ul>
+</li>
+<li>If WPAD is not in use internally, disable it via Group Policy and by disabling the <strong>WinHttpAutoProxySvc service</strong>.</li>
+<li>Relaying to LDAP and LDAPS can only be mitigated by enabling both LDAP signing and LDAP channel binding.</li>
+<li>Consider <em>Administrative</em> users to the <em>Protected Users</em> group or marking them as <em>Account</em> is sensitive and cannot be delegated, which will prevent any impersonation of that user via delegation.</li>
+</ul>
+<h3 id="ldap-pass-back_1">LDAP Pass-back</h3>
+<p>Another method of AD authentication that applications can use is <strong>Lightweight Directory Access Protocol (LDAP)</strong> authentication. With this type of authentication, the application directly verifies the user's credentials by querying the LDAP. To do so, it necessarily has to hold its pair of AD credentials in order to authenticate itself to the LDAP.</p>
+<p>LDAP authentication is often used with third-party (non-Microsoft) applications that integrate with AD, such as:</p>
+<ul>
+<li>Gitlab</li>
+<li>Jenkins</li>
+<li>Custom-developed web applications</li>
+<li>Printers</li>
+<li>VPNs</li>
+</ul>
+<p>One of the main attackers aim is to obtain those service AD credentials. </p>
+<p><strong>LDAP Pass-back</strong> is a common attack against network devices, such as printers. This attack is possible when the attacker has the possibility to update the application's LDAP connection configuration (ex: through a vulnerable or unprotected printer web interface).
+The LDAP Pass-back consists into forcing the target application to attempt an LDAP authentication to an attacker-controlled IP in order to leak the LDAP credentials by altering the configuration settings.</p>
+<p>The smartest way to intercept those credentials is to host a rogue LDAP server since, generally, the targeted application will try to negotiate the LDAP authentication method details, selecting the most secure authentication method that both the target and the LDAP server support. </p>
+<p>If the authentication method is too secure, the credentials will not be transmitted in cleartext: for this reason, the rogue LDAP server has to downgrade the authentication method, forcing the credentials to be sent in cleartext.</p>
+<p>This <a href="https://github.com/pedrojosenavasperez/ldap-passback-docker">LDAP server container</a> is configured to support plaintext authentication, easing to perform a LDAP Pass-back attack.</p>
+<h3 id="pxe-boot-image-retrieval">PXE Boot Image Retrieval</h3>
+<p><strong>Microsoft Deployment Toolkit (MDT)</strong> is a Microsoft service that assists with automating the deployment of Microsoft Operating Systems (OS) to the organization machines. Essentially it allows the IT team to pre-configure and manage boot images.</p>
+<p>The <strong>System Center Configuration Manager (SCCM)</strong> can be seen as almost an expansion of the MDT. It allows the IT team to review available updates to all software installed across the organization. The team can also test these patches in a sandbox environment to ensure they are stable before centrally deploying them to all domain-joined machines.</p>
+<p><strong>Preboot Execution Environment (PXE)</strong> boot enables a computer to load an OS over a network connection. MDT can be used to create, manage, and host PXE boot images. 
+PXE boot is usually integrated with DHCP, which means that if DHCP assigns an IP, the host is allowed to request the PXE boot image and start the network OS installation process.</p>
+<p>Following the flow of the PXE boot:</p>
+<p><img alt="PXE-boot-flow.png" src="http://localhost:8000/images/ad/active-directory/PXE-boot-flow.png"/>Once the process is performed, the client will use a <strong>TFTP connection</strong> to download the PXE boot image. We can exploit the PXE boot image for two different purposes:</p>
+<ul>
+<li>Inject a privilege escalation vector, such as a Local Administrator account, to gain Administrative access to the OS once the PXE boot has been completed.</li>
+<li>Perform password scraping attacks to recover AD credentials used during the install. </li>
+</ul>
+<p>At step <em>6</em> the user receives the names of the BCD files. These files store the information relevant to PXE Boots for the different types of architecture.</p>
+<p>They also contain the <strong>PXE Boot Image Location</strong> consisting into the path of the <strong>WIM File</strong>, a bootable image in the <strong>Windows Images Format (WIM)</strong>. This is obtainable from the BCD file using the <code>PowerPXE</code> powershell script.</p>
+<p>It's then possible to retrieve these BCD file with a TFTP client (step <em>7-8</em>). <strong>The BCD files are always located in the /Tmp/ directory on the MDT server</strong>.</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#pxe-boot-image-retrieval">Active Directory Cheatsheet - PXE Boot Image Retrieval</a>.</p>
+<h4 id="mitigations_3">Mitigations</h4>
+<ul>
+<li>To avoid an attacker with access to the corporate network booting into PXE, it is strongly recommended that the ability to boot this way is limited to specific network areas, such as dedicated rooms with physical access control.</li>
+<li>It is also recommended to require a password before starting the deployment. This can be configured by checking the "<em>Require a Password when computers use PXE</em>" checkbox in the SCCM configuration.</li>
+<li>Follow Microsoft's recommendations for deploying PXE,</li>
+</ul>
+<h3 id="gpp-and-local-administrator-password-solution-laps_1">GPP and Local Administrator Password Solution (LAPS)</h3>
+<p>Microsoft implemented a method to change local administrator accounts across workstations using <strong>Group Policy Preferences (GPP)</strong>. Until 2015, GPP relevant XML files, such as <strong>Groups.xml</strong>, were stored in the SYSVOL. These files contain encrypted passwords using AES-256 bit encryption:</p>
+<ul>
+<li>The password is stored in the <strong>cPassword</strong> field.</li>
+</ul>
+<p>There are other files that can contain encrypted passwords:</p>
+<ul>
+<li>Groups.xml</li>
+<li>Services.xml </li>
+<li>Scheduledtasks.xml </li>
+<li>DataSources.xml </li>
+<li>Printers.xml </li>
+<li>Drives.xml</li>
+</ul>
+<p>At that time, the encryption was good enough until Microsoft somehow published its private key making easy to decrypt the stored passwords.</p>
+<ul>
+<li><strong>Even though the issue has been fixed, the patch is not retroactive for existing users</strong></li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#crack-gpp">Active Directory Cheatsheet - Crack GPP</a>.</p>
+<p>In 2015, Microsoft removed storing the encrypted password in the SYSVOL folder. It introduced the <strong>Local Administrator Password Solution (LAPS),</strong> which offers a much more secure approach to remotely managing the local administrator password.
+LAPS includes two new attributes of computer objects in the Active Directory:</p>
+<ul>
+<li><code>ms-mcs-AdmPwd</code>: contains a clear-text password of the local administrator. By default, it can only be viewed by Domain Admins , and unlike other attributes, is not accessible by Authenticated Users.</li>
+<li><code>ms-mcs-AdmPwdExpirationTime</code>: contains the expiration time to reset the password. </li>
+</ul>
+<p>LAPS uses <code>admpwd.dll</code>, usually located at <code>C:\Program Files\LAPS\CSE</code> to change the local administrator password and update the value of <code>ms-mcs-AdmPwd</code>.</p>
+<p>The <code>Find-AdmPwdExtendedRights</code> from the <code>AdmPwd.PS</code> module can list all groups with rights to read the <code>ms-mcs-AdmPwd</code>. If the attacker controls an user that belongs to one of these groups, him can access to the local Administrator password.</p>
+<p>Moreover, when a machine joins a domain, an object of the class &ldquo;computer&rdquo; is created in the Active Directory. The user account used to create this object, i.e. joining a machine, is defined as the <strong>owner</strong> of this object.
+The owner of an object, inherited from the class &ldquo;computer&rdquo;, has by default the privilege <code>ExtendedRight</code> (<code>All extended rights</code>in the GUI) that allows access to the LAPS password. If the attacker controls an user with the <code>ExtendedRight</code> privilege, him can access to the local Administrator password.</p>
+<p><strong>Note</strong>: often a dedicated service account is used to join machines to domain; if LAPS is broadly used across various workstations with the same service account used to join to the domain, compromising this service accounts can compromise all the workstations's local Administrators.</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#workstation-takeover-with-laps">Active Directory Cheatsheet - Workstation takeover with LAPS</a>.</p>
+<h3 id="mssql-ntlm-hash-dump">MSSQL NTLM hash dump</h3>
+<p>Having access to a MSSQL session, if the current service account can use <code>xp_dirtree</code>, <code></code>xp_fileexist<code>or</code>xp_subdirs<code>stored procedures, it could be possible to capture the MSSQL service account's NTLM hash by setting up an SMB share using Impacket's</code>smbserver`. </p>
+<ul>
+<li>These stored procedures are used to list files and directories in a folder. By setting this target folder to the Impacket's <code>smbserver</code>, the NTLM hash will be passed to it.</li>
+</ul>
+<p>If the MSSQL service is running under a high-privilege account (such as Domain Admin or Local Admin) and the password is weak (quite common), it could be possible to crack
+the password and perform a lateral movement or gain access to the whole Active Directory.</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#mssql-ntlm-relay">Active Directory Cheatsheet - MSSQL NTLM Relay</a>.</p>
+<h2 id="ad-enumeration_1">AD Enumeration</h2>
+<h3 id="network-credentials-injection">Network Credentials Injection</h3>
+<p>Often, in security assessments, you will have network access and have just discovered AD credentials but have no means or privileges to create a new domain-joined machine. So we need the ability to use those credentials on a Windows machine we control.</p>
+<p>With the command <code>runas</code> is possible to inject the discovered AD credentials in memory and then <strong>use them for network level authentication</strong> (Kerberos or NTLM) and interact with domain services even though the machine is not joined to the domain.</p>
+<div class="highlight"><pre><span></span><code>runas.exe<span class="w"> </span>/netonly<span class="w"> </span>/user:&lt;domain&gt;<span class="se">\&lt;</span>username&gt;<span class="w"> </span>cmd.exe
+</code></pre></div>
+<ul>
+<li><strong>/netonly</strong> - Commands are executed locally on the computer will run in the context of your standard Windows account, but any network connections will occur using the account specified here.</li>
+<li><strong>/user</strong> - The details of the domain and the username. It is always a safe bet to use the <strong>Fully Qualified Domain Name (FQDN)</strong> instead of just the <strong>NetBIOS</strong> name of the domain since this will help with resolution.</li>
+<li><strong>cmd.exe</strong> - This is the program we want to execute once the credentials are injected. This can be changed to anything, but the safest bet is cmd.exe since allows then to launch any other program with the credentials injected.</li>
+</ul>
+<p><strong>Note</strong>: it's always helpful to run the first cmd as Administrator since this will inject and Administrative token in the CMD. <strong>This DOES NOT give you administrative privileges on the network</strong>, it just ensure that any <strong>local</strong> command gets executed with administrative privileges.</p>
+<p>Once the previous <code>runas</code> command get executed, the network credential gets injected into memory; all network communication generate from application executed from the opened command line terminal will use these injected credentials for authentication.
+For example, it's possible to run the <strong>Microsoft Management Console (MMC)</strong> and visually enumerate forests, domain, OUs, and objects. </p>
+<p>Another example is to launch <code>sharphound</code> from the attacker-controlled machine with the credentials injected; this allows to circumvent the problem of AVs blocking <code>sharphound</code>, <strong>even though, it remains a noisy tool and it can still be detected by blue teams</strong>. </p>
+<ul>
+<li>If MMC is not installed, enable <strong>Remote Server Administraton Tools (RSAT)</strong> from control panel.</li>
+</ul>
+<h4 id="force-ntlm-authentication-over-kerberos">Force NTLM Authentication over Kerberos</h4>
+<p>When the <strong>hostname</strong> is provided, network authentication will attempt first to perform Kerberos authentication since Kerberos authentication uses hostnames embedded in the tickets. 
+- <strong>if the IP is instead provided, it's possible to force the authentication type to be NTLM</strong>.</p>
+<p>In some scenarios, this can be useful to avoid detection.</p>
+<h3 id="sysvol_1">SYSVOL</h3>
+<p><strong>SYSVOL</strong> is a folder that exists on all domain controllers. It is a shared folder storing the <strong>Group Policy Objects (GPOs)</strong> and information along with any other domain related scripts. It is an essential component for Active Directory since it delivers these GPOs to all computers on the domain. Domain-joined computers can then read these GPOs and apply the applicable ones, making domain-wide configuration changes from a central location.</p>
+<ul>
+<li><strong>Any AD account, no matter how low-privileged, can read the contents of the SYSVOL directory.</strong></li>
+</ul>
+<p>It is good to enumerate its contents since there may be some additional AD credentials or other useful information in there.</p>
+<h3 id="command-line-powershell-enumeration">Command Line &amp; Powershell Enumeration</h3>
+<p>CMD has a built-in command that we can use to enumerate information about AD, namely <code>net</code>. The <code>net</code> command is a handy tool to enumerate information about the local system and AD.
+No additional or external tooling is required, and  <code>net</code> commands are often not monitored for by the Blue team. However,  <code>net</code> commands must be executed from a domain-joined machine. If the machine is not domain-joined, it will default to the WORKGROUP domain.
+Moreover,  <code>net</code> commands may not show all information. For example, if a user is a member of more than ten groups, not all of these groups will be shown in the output.</p>
+<p>PowerShell permits to obtain more complex enumeration results thanks to his <strong>cmdlets</strong> within the <strong>Active Directory Module</strong> generally installed via <em>RSAT</em> toolkit*. Moreover, various advanced enumeration cmdlets exists, such as the  <a href="https://github.com/PowerShellMafia/PowerSploit/blob/dev/Recon/PowerView.ps1">PowerView</a> script, part of the "Recon" module of the <a href="https://github.com/PowerShellMafia/PowerSploit">PowerSploit</a> collection. A .NET port for <code>PowerSploit</code> is <a href="https://github.com/cobbr/SharpSploit">SharpSploit</a>.
+Another alternative is <a href="https://github.com/adrecon/ADRecon">ADRecon</a>.</p>
+<ul>
+<li>Using <strong>Active Directory Module</strong> there are very low chances of detection by AV, very wide coverage by cmdlets, good filters for cmdlets, signed by Microsoft etc. </li>
+<li>However, PowerShell is often monitored more by the blue teams than Command Prompt and the AD-RSAT tooling need to be installed. The alternative is to use other, potentially detectable, enumeration scripts.</li>
+<li>PowerSploit has been deprecated and is no longer mantained!</li>
+</ul>
+<p>*Note: If <em>RSAT</em> is not available, it's possible to directly import the Active Directory Module's DLL with the <code>Import-Module</code> PowerShell cmdlet. <strong>This operation does NOT require elevated privileges</strong>.</p>
+<p>A more manual enumeration is possible by using  powershell's <strong>Windows Management Instrumentation (WMI)</strong> cmdlet. WMI is the infrastructure for management data and operations on Windows-based operating systems generally used to automate administrative tasks on remote computers.
+WMI has a provider called <code>root\directory\ldap</code> which can be used for interaction with the active directory environment. Each class contained in this is provider is prefixed; each prefix has a meaning:</p>
+<ul>
+<li>Classes with <code>ds_</code> prefix are dynamic. These classes are the only ones useful to us since they allow retrieval of instances.</li>
+<li>Classes with <code>ads_</code> prefix are abstract.</li>
+<li>Classes with <code>win32_</code> prefix contain data about processes, users, groups, events, etc.</li>
+</ul>
+<p>*Note: by default WMI provides remote access only to <strong>local administrators</strong>. In order to run WMI commands against a remote computer, the user used must be also a local administrator on the remote computer.</p>
+<h4 id="hints">Hints</h4>
+<ul>
+<li>When enumerating users, take a look to <code>pwdlastset</code> and <code>badpwdcount</code> properties; often, blue teams create <strong>decoy users</strong> which are deliberately made "desirable" for attackers in order to detect them. These users are monitored but can be spotted by looking at those attributes:<ul>
+<li><code>pwdlastset</code> is really old i.e. the password has not been changed for a long time which is really unlikely in a enterprise network configuration.</li>
+<li><code>badpwdcount</code> is set to 0 i.e. the user has never inserted a wrong password which is really unlikely for a real user</li>
+</ul>
+</li>
+<li>Quite often cleartext password are store in the <code>Description</code> property for a user. This is generally true for those users that are shared, for example, between help desk operators.</li>
+<li>Target for users belonging to <strong>enteprise adminstrators</strong> groups; these groups can be found only on the DC of a forest's root.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#enumeration">Active Directory Cheatsheet - Enumeration</a>.</p>
+<h3 id="defense_1">Defense</h3>
+<p>Hardening can be done on the DC (or other machines) to contain the information provided by the queried machine.</p>
+<p>By default, whenever a users performs a domain authentication, it gets assigned with the <strong>Authenticated Users</strong> identity (or security principal) - see <a href="https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/understand-special-identities-groups#authenticated-users">there</a>.</p>
+<ul>
+<li>This identity allows access to shared resources within the domain, such as files in a shared folder that should be accessible to all the workers in the organization. Membership is controlled by the operating system.</li>
+</ul>
+<p><strong>Netcease</strong> is a script which changes permissions on the NetSessionEnum
+method by removing permission for Authenticated Users group.</p>
+<ul>
+<li>This fails many of the attacker's session enumeration and hence user hunting capabilities.</li>
+</ul>
+<p><strong>SAMRi10</strong> hardens Windows 10 and Server 2016 against enumeration using <strong>SAM Remote (SAMR)</strong> protocol, generally used by <code>net.exe</code>.</p>
+<h2 id="ad-lateral-movements_1">AD Lateral Movements</h2>
+<h3 id="pass-the-attacks">Pass-the-* attacks</h3>
+<ul>
+<li><strong>Pass-the-password</strong>: This attack consists into passing around users credentials (previously obtained, for example, from a SAM dump). </li>
+<li><strong>Pass-the-hash</strong>: This attacks consists into passing around <strong>local accounts hashes</strong> to check if same credentials for one or more accounts have been used on other machines.</li>
+<li><strong>Overpass the hash</strong>: When attackers know the RC4 key (which is in fact the user's NT hash), and when the <em>RC4 etype</em> is not disabled, they can use it to obtain Kerberos tickets.</li>
+</ul>
+<p>// TODO: Pass the key, pass the ticket, pass the cache</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#pass-the-attacks">Active Directory Cheatsheet - Pass-the-* attacks</a>.</p>
+<h4 id="mitigations_4">Mitigations</h4>
+<ul>
+<li>Limit account re-use:<ul>
+<li>Avoid re-using local admin password</li>
+<li>Disable Guest and Administrator accounts</li>
+<li>Limit who is a local administrator (least privilege)</li>
+</ul>
+</li>
+<li>Utilize strong passwords:<ul>
+<li>The longer the better (&gt;14 characters)</li>
+<li>Avoid using common words</li>
+<li>Also long sentences are good</li>
+</ul>
+</li>
+<li>Privilege Access Management (PAM)<ul>
+<li>Check out/in sensitive accounts when needed</li>
+<li>Automatically rotate passwords on check out and check in</li>
+<li>Limits pass attacks as hash/password is strong and constantly rotated</li>
+</ul>
+</li>
+</ul>
+<h3 id="token-impersonation_1">Token Impersonation</h3>
+<p><strong>Tokens</strong> in Windows are temporary keys that allow you access to a system/network without having to provide credentials each time you access a file, like "cookies" for computers.</p>
+<p>There are two type of tokens:
+- <strong>Delegation Token</strong>: created when users interactively login into a system using their credentials, also remotely (RDP or VNC). 
+- <strong>Impersonation Token</strong>: created when users non-interactively login into a system, like accessing a shared drive on the network.</p>
+<p><strong>Token impersonation</strong> is a Windows post-exploitation technique that allows an attacker to steal the access token of a logged-on user on the system without knowing their credentials and impersonate them to perform operations with their privileges.</p>
+<ul>
+<li>The impersonation technique requires the attacker to gain local admin privileges on the compromised machine to steal its tokens.</li>
+<li>An attacker can obtain <strong>domain admin privileges</strong> if a logged-on user is a <strong>domain administrator</strong>.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#token-impersonation">Active Directory Cheatsheet - Token Impersonation</a>.</p>
+<h4 id="mitigations_5">Mitigations</h4>
+<ul>
+<li>Mitigation Strategies:<ul>
+<li>Limit user/group token creation permissions</li>
+<li>Account tiering</li>
+<li>Local admin restriction</li>
+</ul>
+</li>
+</ul>
+<h3 id="kerberoasting_1">Kerberoasting</h3>
+<p><strong>Kerberoasting</strong> is a common AD attack to obtain Kerberos tickets that helps with persistence. In order for this attack to work, the attacker must have access to <strong>SPN</strong>  accounts such as IIS User, MSSQL, etc. </p>
+<ul>
+<li>The Kerberoasting attack involves requesting a <strong>Ticket Granting Service (TGS)</strong> for a <strong>SPN (Service Principal Name)</strong> using a valid <strong>Ticket Granting Ticket (TGT)</strong> for a compromised domain account.<ul>
+<li>Since the <strong>TGS</strong> is encrypted using the SPN's account hash, it's possible to try cracking it in order to obtain this service account's password.</li>
+</ul>
+</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#kerberoasting">Active Directory Cheatsheet - Kerberoasting</a>.</p>
+<h3 id="dumping-credentials">Dumping Credentials</h3>
+<p>Mimikatz is a tool used to extract plaintexts passwords, hash, PIN code and kerberos tickets from memory. It can also perform pass-the-hash, pass-the-ticket, build Golden tickets, Silver Ticket, etc.</p>
+<p>It comes with various modules:</p>
+<ul>
+<li><strong>sekurlsa</strong>: This module extracts <strong>passwords</strong>, <strong>keys</strong>, <strong>pin codes</strong>, <strong>tickets</strong> from the memory of <code>lsass</code> (<code>Local Security Authority Subsystem Service</code>)</li>
+<li><strong>kerberos</strong>: This module can be used without any privilege. It permits to create offline 'Golden tickets' (TGT).</li>
+<li><strong>lsadump</strong>: This module can be used to dump credentials from LSA* and SAM database or to decrypt secrets into registry.</li>
+<li>Many others</li>
+</ul>
+<p>*Note: <strong>Local Security Authority (LSA)</strong> is the Windows component responsible for the authentication and privileges management for users accessing to a system resource. It manages credentials such as usernames and passwords and regulates the access to resources such as files, folders, printers, networks, etc.</p>
+<p>Every user that has logged to a server has its credentials stored in memory: mimikatz allows to dump these credentials hashes from memory.</p>
+<ul>
+<li>The hashes can be relayed or cracked.</li>
+</ul>
+<p>If <strong>WDigest</strong> authentication is enabled, the password will be plaintext stored in memory:</p>
+<ul>
+<li>Until Windows 7, this authentication was enabled by default. From Windows 8 it has been disabled  but it's still present.</li>
+</ul>
+<p>An attacker that controls a compromised server could enable the WDigest authentication and then wait for user to logon in order to dump their plaintext password with mimikatz.</p>
+<p>Mimikatz exe would be almost certainly blocked by Windows Defender; by using PowerSploit <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-Mimikatz.ps1">Invoke-Mimikatz.ps1</a> it's possible to execute mimikatz into memory, helping with bypassing Defender and Real Time Monitoring.</p>
+<ul>
+<li>Invoke-Mimikatz reflectively loads Mimikatz in memory using PowerShell. Can be used for any functionality provided with Mimikatz without writing anything to disk.</li>
+</ul>
+<p>See <a href="https://github.com/gentilkiwi/mimikatz/wiki">Mimikatz Wiki</a> and <a href="https://book.hacktricks.xyz/windows-hardening/stealing-credentials/credentials-mimikatz">Mimikatz HackTricks</a>  for more information about mimikatz usage and capabilities.</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#dumping-credentials">Active Directory Cheatsheet - Dumping Credentials</a>.</p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<h4 id="local-privilege-escalation">Local Privilege Escalation</h4>
+<p>There are various ways of locally escalating privileges on Windows box:</p>
+<ul>
+<li>Missing patches</li>
+<li>Automated deployment and AutoLogon passwords in clear text (stored in Windows registry)</li>
+<li>AlwaysInstallElevated (Any user can run MSI as SYSTEM)</li>
+<li>Misconfigured Services</li>
+<li>DLL Hijacking and more</li>
+</ul>
+<h5 id="misconfigured-services">Misconfigured Services</h5>
+<ul>
+<li>Services that uses binaries with unquoted paths and a space in their name.<ul>
+<li>Allows an attacker to drop an arbitrary binary to be executed by the service abusing the ambiguity in the service's bin path.</li>
+</ul>
+</li>
+</ul>
+<p>Consider the following bin path:</p>
+<div class="highlight"><pre><span></span><code>c:\program files\sub dir\program name
+</code></pre></div>
+<p>The system tries to interpret the possibilities in the following order:</p>
+<ol>
+<li>c:\program.exe </li>
+<li>c:\program files\sub.exe </li>
+<li>c:\program files\sub dir\program.exe</li>
+<li>
+<p>c:\program files\sub dir\program name.exe...</p>
+</li>
+<li>
+<p>Services where the current user can write to its binary path or change arguments to the binary.</p>
+</li>
+<li>Services whose current user can modify the current configuration.<ul>
+<li>Generally, possible when the current user has too many permissions on the service. </li>
+</ul>
+</li>
+</ol>
+<h5 id="dll-hijacking">DLL Hijacking</h5>
+<p>TODO
+See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-directory-on-path</p>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#privilege-escalation">Active Directory Cheatsheet - Privilege Escalation</a>.</p>
+<h3 id="powershell-remoting_2">PowerShell Remoting</h3>
+<p>Enabled by default on Windows Server 2012 onwards.</p>
+<ul>
+<li>If not, it can be enabled with <code>Enable-PSRemoting</code>. This operation requires local Administrator privileges.</li>
+</ul>
+<p>Generally, it requires Administrator privileges on the target machine* :</p>
+<ul>
+<li>The shell will have elevated privileges.</li>
+</ul>
+<p>*Note: Administrator privileges are required only on the target machine, not on the machine where the commands are being executed.</p>
+<p>By default, PSRemoting listeners run on default ports:</p>
+<ul>
+<li>5985 for http</li>
+<li>5986 for https</li>
+</ul>
+<p>A PSRemoting session runs in a new <code>wsmprovhost</code> process.</p>
+<p>There are two different kinds of PSRemoting:</p>
+<ul>
+<li><strong>One-to-One</strong>: Consists into interactively logging to another computer - (using <code>New-PSSession</code> or <code>Enter-PSSession</code>).</li>
+<li><strong>One-to-Many</strong>: Consists into executing parallel commands or scripts on multiple machines - (using <code>Invoke-Command</code>).</li>
+</ul>
+<p>The one-to-many approach allows to run commands and scripts on:</p>
+<ul>
+<li>multiple remote computers,</li>
+<li>on disconnected sessions (v3)</li>
+<li>as background job and more.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#powershell-remoting">Active Directory Cheatsheet - PowerShell Remoting</a>.</p>
+<h2 id="ad-persistence_1">AD Persistence</h2>
+<h3 id="golden-silver-tickets">Golden &amp; Silver Tickets</h3>
+<p>Having the hash of <strong>krbtgt</strong> account's password, the TGT service account, it's possible to use it to forge a TGT, called <strong>Golden Ticket</strong>. The golden ticket then can be used to request TGS for almost all services.</p>
+<ul>
+<li>Apart from <strong>krbtgt</strong>'s hash, to forge a Golden ticked is needed the domain name, domain SID, and user ID for the person we want to impersonate.</li>
+<li>If it's possible to obtain the the <strong>domain name</strong>, <strong>domain SID</strong>, and <strong>user ID</strong> for the person we want to impersonate, than is highly probable that is possible to recover the other information.</li>
+</ul>
+<p>The Golden ticket than can be used with the Pass-the-ticket attack.</p>
+<p>Some considerations:</p>
+<ul>
+<li>Since step 1 (AS_REQ) and 2 (AS_REP) in Kerberos authentication flow are bypassed, there's no need to know the password hash for the user to be impersonated.</li>
+<li>The user presented in step 3 will be validated by the KDC only if the timestamp presented along it is older than 20 minutes. This means that it can be a disabled, deleted, or non-existent account, and it will be valid as long as we ensure the timestamp is not older than 20 minutes.</li>
+<li>Since the policies and rules for tickets are set in the TGT itself, it's possible to overwrite the values pushed by the KDC, such as the ticket validity time.</li>
+<li>By default, the <strong>krbtgt</strong> account's password never changes, unless it is manually rotated,</li>
+<li>When rotating <strong>krbtgt</strong> account's password, it must be rotated twice, since <strong>the current and previous passwords</strong> are kept valid for the account. This is to ensure that accidental rotation of the password does not impact services.</li>
+<li>Generally, until the timestamp in the TGT is still valid, when rotating <strong>krbtgt</strong> account's password many services would stop working since not all of them are smart enough to release the TGT and request a new one that is signed with the new password.</li>
+<li>Golden tickets allow to bypass smart card authentication, since the smart card is verified by the DC before it creates the TGT.</li>
+<li>It's possible to generate a golden ticket on any machine, even one that is not domain-joined (such as the attacker machine), making it harder for the blue team to detect.</li>
+<li>Forge a Golden Ticket that it's compliant to the <strong>Kerberos Policy</strong> for a domain can reduce the chances to be detected.</li>
+</ul>
+<p><strong>Silver tickets</strong> are TGS tickets forged by using the <strong>machine account's password hash</strong> for the target service host. Whilst with a Golden ticket it's possible to access to every service, with a Silver ticket is possible to access only to a specific service host and to only impersonate users on that host itself.</p>
+<p>Some considerations:</p>
+<ul>
+<li>Since the TGS is forged, there is no associated TGT, meaning the DC was never contacted (i.e, starting from step AP_REQ). This makes the attack incredibly dangerous since the only available logs would be on the targeted server. So while the scope is more limited, it is significantly harder for the blue team to detect.</li>
+<li>Since permissions are determined through SIDs, it's possible to create a non-existing user for our silver ticket, as long as we ensure the ticket has the relevant SIDs that would place the user in the host's local administrators group.</li>
+<li>The machine account's password is usually rotated every 30 days, which would not be good for persistence. <ul>
+<li>It could be possible to use a forged TGS to access to the target host and alter the parameter in the registry that is responsible for the password rotation of the machine account. Thereby ensuring the machine account remains static and granting persistence on the machine.</li>
+</ul>
+</li>
+<li>Machine accounts can be used as normal AD accounts, allowing not only administrative access to the host but also the means to continue enumerating and exploiting AD as you would with an AD user account.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#golden-silver-tickets">Active Directory Cheatsheet - Golden &amp; Silver Tickets</a>.</p>
+<h3 id="skeleton-key">Skeleton Key</h3>
+<p>Skeleton key technique consists into patching a DC's <code>lsass</code> process so that it allows to access as any user with a single 'master' password.</p>
+<ul>
+<li>This technique requires <strong>domain admin</strong> privileges.</li>
+<li>This technique is <strong>NOT</strong> persistent across reboots.</li>
+<li>Users can still authenticate with their original password. <ul>
+<li>It makes detecting it hard to detect.</li>
+</ul>
+</li>
+<li>This attack currently supports NTLM and Kerberos (RC4 only) authentications. For more details, take a look <a href="https://www.thehacker.recipes/ad/persistence/skeleton-key/#theory">here</a>.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#skeleton-key">Active Directory Cheatsheet - Skeleton Key</a>.</p>
+<h3 id="directory-services-restore-mode-dsrm">Directory Services Restore Mode (DSRM)</h3>
+<p><strong>Directory Services Restore Mode</strong> (<strong>DSRM</strong>) allows to take the server offline for emergency maintenance, particularly restoring backups of AD objects. It similar to the <em>Safe Mode</em>.</p>
+<p>On every DC there's a local administrator account "Administrator" with a <strong>DSRM password</strong>.</p>
+<ul>
+<li>This password is required when a server is promoted to Domain Controller.</li>
+<li>Rarely it gets changed.</li>
+</ul>
+<p>Since Windows Server 2008, it's possible to enable the access with the DSRM password without necessarily reboot the DC in DSRM mode:</p>
+<ul>
+<li>Editing the <strong>DSRMAdminLogonBehavior</strong> registry under <code>HKLM\System\CurrentControlSet\Control\Lsa</code> and setting it with value <code>2</code>, allows to access with the DSRM account regardless AD service has been stopped or not.</li>
+<li>In this scenario, it's possible to use the NTLM hash of the DSRM user to access the DC.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#directory-services-restore-mode-dsrm">Active Directory Cheatsheet - Directory Services Restore Mode (DSRM)</a>.</p>
+<h3 id="security-support-provider-ssp">Security Support Provider (SSP)</h3>
+<h2 id="post-exploitation_1">Post Exploitation</h2>
+<p>A <strong>Security Support Provider (SSP)</strong> is a dynamic-link library (DLL) involved in security-related operations, including authentication. An SSP attack consists into injecting a malicious SSP DLL in order to, for example, obtain cleartext password from local accounts that authenticate to the compromised server.</p>
+<p>Mimikatz provides a custom SSP DLL - <code>mimilib.dll</code>:</p>
+<ul>
+<li>This SSP logs local logons, service account and machine account passwords in clear text on the target server.</li>
+</ul>
+<p>See <a href="http://localhost:8000/ad/cheatsheet.html#security-support-provider-ssp">Active Directory Cheatsheet - Security Support Provider (SSP)</a>.</p>
+<h2 id="evasion">Evasion</h2>
+<p>https://www.reddit.com/r/HowToHack/comments/16pxfl4/comment/k220pl8/?context=3</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:8000/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:8000",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:8000/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:8000/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:8000/theme/stork/stork.js"></script>
+
+</body>
+</html>

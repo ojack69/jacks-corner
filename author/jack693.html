@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:8000/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:8000/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:8000/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:8000/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:8000/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:8000/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <meta name="author" content="Jack69" />
+    <meta name="description" content="My personal notes on stuff I like, nothing special" />
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:type" content="blog"/>
+  <meta property="og:title" content="Jack's Corner"/>
+  <meta property="og:description" content="My personal notes on stuff I like, nothing special"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:8000"/>
+
+  <title>Jack's Corner &ndash; Posts by Jack69:</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:8000/">
+      <img src="http://localhost:8000/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:8000/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:8000/">Home</a>
+
+  <a href="http://localhost:8000/categories.html">Categories</a>
+  <a href="http://localhost:8000/category/cheatsheet.html">Cheatsheets</a>
+  <a href="http://localhost:8000/personal/goals.html">Goals</a>
+
+
+</nav>
+
+
+
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/rop-emporium/ret2win.html">ROP Emporium - ret2win</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>Run checksec against the binary:</p>
+<blockquote>
+<p>[*] ret2win<br/>
+    &nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
+    &nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO<br/>
+    &nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found<br/>
+    &nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled<br/>
+    &nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)</p>
+</blockquote>
+<p>List all symbols in the text (code) section:</p>
+<blockquote>
+<p>&gt; nm ret2win &nbsp;| grep '\st\s'<br/>
+00000000004005f0 t deregister_tm_clones  <br/>
+0000000000400660 t __do_global_dtors_aux  <br/>
+0000000000400690 t frame_dummy  <br/>
+00000000004006e8 t pwnme  <br/>
+0000000000400620 t register_tm_clones …</p></blockquote></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/rop-emporium/ret2win.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/ctf/mapna-2024/ninipwn.html">MAPNA CTF 2024 - ninipwn</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>Running checksec against the binary:</p>
+<blockquote>
+<p>&gt; checksec ./ninipwn<br/>
+[*] './ninipwn'<br/>
+    Arch:     amd64-64-little<br/>
+    RELRO:    Full RELRO<br/>
+    Stack:    <strong>Canary found</strong><br/>
+    NX:       NX enabled<br/>
+    PIE:      PIE enabled  </p>
+</blockquote>
+<p>the binary has all security settings enabled.</p>
+<p>Running the binary with gdb and listing available symbols*:</p>
+<blockquote>
+<p>&gt; gdb ./ninipwn<br/>
+&gt; info symbol // then TAB TAB</p>
+</blockquote>
+<p>Some interesting symbols are found …</p></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/ctf/mapna-2024/ninipwn.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/certifications/inesecurity/ejpt-concepts.html">eJPT-v2 Concepts</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h1 id="information-gathering">Information Gathering</h1>
+<p>Active: actively interacting with systems or individuals to obtain specific information
+Passive: find as much information about a target from public available information</p>
+<h2 id="passive-information-gathering">Passive Information Gathering</h2>
+<h3 id="whois">WHOIS</h3>
+<p>Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee</p>
+<p>when privacy options …</p></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/certifications/inesecurity/ejpt-concepts.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/one-byte.html">Heap Journey - One-Byte</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="remaindering">Remaindering</h2>
+<p>Remaindering refers to the process of splitting one free chunk down into two. This process involves the following steps:</p>
+<ol>
+<li>Unlink the chunk to be split and split it in order to satisfy the requested size</li>
+<li>The part of the split chunk satisfying the request is allocated</li>
+<li>The remaining part …</li></ol></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/one-byte.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/house-of-orange.html">Heap Journey - House of Orange</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="unsortedbin-attack">Unsortedbin Attack</h2>
+<p>Chunks from unsorted bins are moved to two particular bins through a process known as <strong>sorting</strong> occurring when calling malloc():</p>
+<ul>
+<li>smallbins: start right after the unsorted bins into memory layout</li>
+<li>largebins: start right after the smallbins into memory layout</li>
+</ul>
+<p><strong>Smallbins</strong> are a collection of double-linked circular lists; there …</p></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/house-of-orange.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/safe-unlink.html">Heap Journey - Safe Unlink</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="safe-unlink-technique">Safe Unlink Technique</h2>
+<p>The basic idea is the same as the unsafe unlink, i.e. leverage the unlinking process against itself to perform some mischievous actions. Anyway, there are two main factor to take into account:</p>
+<ul>
+<li>Being the NX enabled, it's not possible to execute shellcode stored into the heap …</li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/safe-unlink.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/unsafe-unlink.html">Heap Journey - Unsafe Unlink</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="unsorted-bin">Unsorted Bin</h2>
+<p>The unsorted bin is a unique bin present into each arena which consists into a double-linked circular list i.e. each free chunk in the bin has a fw_pointer and a bk_pointer respectively to the next and previous chunk. The unsorted bin, being only one, holds chunks of …</p></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/unsafe-unlink.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/extra.html">Heap Journey - Extra</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="glibc-mitigations-chatgpt">GLIBC Mitigations (ChatGPT)</h2>
+<h3 id="house-of-force">House of Force:</h3>
+<ul>
+<li><strong>glibc 2.27:</strong> Mitigation introduced to prevent the exploitation of House of Force through checks on top chunk size and alignment.</li>
+</ul>
+<h3 id="fastbin-duplication">Fastbin Duplication:</h3>
+<ul>
+<li><strong>glibc 2.26:</strong> Mitigation introduced to prevent consecutive small bin allocations, aiming to hinder fastbin duplication attacks.</li>
+<li><strong>glibc 2.32:</strong> Further …</li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/extra.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/fastbin-dup.html">Heap Journey - Fastbin Dup (Duplication)</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="fastbins">Fastbins</h2>
+<p><strong>Fastbins</strong> are used to hold small freed chunks; these are implemented as a small collection of singly linked non-circular lists. There are 10 fast bins, one for each 8 multiple from 0x10 (16 bytes) up to 0x58 (88 bytes).</p>
+<ul>
+<li><strong>Fastbin 1</strong>: 16 - 0x10 bytes</li>
+<li><strong>Fastbin 2</strong>: 24 - 0x18 bytes …</li></ul></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/fastbin-dup.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:8000/binary-exploitation/heap-journey/house-of-force.html">Heap Journey - House of Force</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="glibc-version-checking">GLIBC Version Checking</h2>
+<p>The house of force is an older exploitation technique that works on glibc 2.27 and lower.
+To get the correct version of glibc it is possible to run the libc file itself since it is an ELF shared object binary.</p>
+<blockquote>
+<p><strong>ldd $(which id)</strong><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;linux-vdso.so.1 …</p></blockquote></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:8000/binary-exploitation/heap-journey/house-of-force.html">
+          Continue reading
+        </a>
+  </div>
+</article>
+
+  <div class="pagination">
+    <a class="btn float-left" href="http://localhost:8000/author/jack694.html">
+      <i class="fa fa-angle-left"></i> Older Posts
+    </a>
+    <a class="btn float-right" href="http://localhost:8000/author/jack692.html">
+      Newer Posts <i class="fa fa-angle-right"></i>
+    </a>
+  </div>
+
+
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:8000/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:8000",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:8000/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:8000/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:8000/theme/stork/stork.js"></script>
+
+</body>
+</html>
