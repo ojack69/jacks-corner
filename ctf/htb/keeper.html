@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Keeper Keeper is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. &gt; sudo nmap -sV -sC -oN keeper.nmap 10.10.11.22 ... Nmap scan report for 10.10.11.227 Host is up (0.057s latency). Not shown: 998 closed …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Keeper"/>
+  <meta property="og:description" content="Keeper Keeper is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. &gt; sudo nmap -sV -sC -oN keeper.nmap 10.10.11.22 ... Nmap scan report for 10.10.11.227 Host is up (0.057s latency). Not shown: 998 closed …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/keeper.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-12-26 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Keeper</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/keeper">CTF: HackTheBox Keeper</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#keeper" title="Keeper">Keeper</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a></li><li><a class="toc-href" href="#use-of-default-credentials" title="Use of default credentials">Use of default credentials</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="keeper">Keeper</h2>
+<p>Keeper is an "Easy" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<p>The first step has been to enumerate active ports and associated services.</p>
+<blockquote>
+<p>&gt; sudo nmap -sV -sC -oN keeper.nmap 10.10.11.22<br/>
+...
+Nmap scan report for 10.10.11.227<br/>
+Host is up (0.057s latency).<br/>
+Not shown: 998 closed tcp ports (reset)<br/>
+PORT   STATE SERVICE VERSION<br/>
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.3 (Ubuntu Linux; protocol 2.0)<br/>
+...<br/>
+80/tcp open  http    nginx 1.18.0 (Ubuntu)<br/>
+...<br/>
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel </p>
+</blockquote>
+<p>Only ports 22 and 80 are open; after visiting the website, the "tickets.keeper.htb" domain is added to /etc/hosts.</p>
+<p><img alt="keeper-web-1.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/keeper-web-1.png"/></p>
+<h3 id="use-of-default-credentials">Use of default credentials</h3>
+<p>The application hosted by the webserver a the tickets.keeper.htb virtual host is "Request Tracker". It's fingerprint is visible in the login page itself.</p>
+<p><img alt="keeper-login.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/keeper-login.png"/></p>
+<p>The default credentials for this applications are:</p>
+<blockquote>
+<p>root:password</p>
+</blockquote>
+<p>which seems to work. </p>
+<p>Once logged in, this "Possible cross-site request forgery" warning will prevent the correct visualization of some pages.</p>
+<p><img alt="keeper-home.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/keeper-home.png"/></p>
+<p>The problem is that the application is configured expecting the hostname to be "keeper.htb" instead of "<em>tickets.keeper.htb</em>". To bypass this annoying message, it's enough to override the <strong>Referer</strong> header on every request, for example, with Burp "match and replace" function or using a browser extension like below (extension is ModHeader):</p>
+<p><img alt="referer-bypass.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/referer-bypass.png"/></p>
+<p>Navigating through the system, an interesting ticket about a KeePass dump is found:</p>
+<p><img alt="interesting-ticket.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/interesting-ticket.png"/></p>
+<p>After some more exploring, a username and a password are found in "Users" section:</p>
+<blockquote>
+<p>lnorgaard : Welcome2023!</p>
+</blockquote>
+<p><img alt="default-credentials.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/default-credentials.png"/></p>
+<p>These credentials seems to work when logging with ssh.</p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>After logging as lnorgaard, as anticipated in the ticket, a KeePass dump zipped together with the password database itself will be found in the user home directory:</p>
+<blockquote>
+<p>&gt; ls<br/>
+...<br/>
+RT30000.zip<br/>
+...
+<br/>
+&gt;unzip RT30000.zip &amp;&amp; ls
+...
+KeePassDumpFull.dmp<br/>
+passcodes.kdbx  </p>
+</blockquote>
+<p>From the dump it's possible to partially recover the master password, for example, using this <a href="https://github.com/matro7sh/keepass-dump-masterkey">script</a>:</p>
+<p><img alt="keepass-master-password-recovery.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/keepass-master-password-recovery.png"/></p>
+<p>After a quick <a href="https://www.google.com/search?q=dgr%E2%97%8Fd+med+fl%E2%97%8Fde">google search</a>, the password appears to be:</p>
+<blockquote>
+<p>r&oslash;dgr&oslash;d med fl&oslash;de</p>
+</blockquote>
+<p>Using  kpcli, the keystore contains an ssh private key in putty format:</p>
+<p><img alt="root-putty-private-key.png" src="http://localhost:1337/images/ctf/htb/machines/keeper/root-putty-private-key.png"/></p>
+<p>This private key can be used within Putty or converted to openssh format in order to access as root to the server.</p>
+<p>To convert the key to openssh format:</p>
+<blockquote>
+<p>&gt; puttygen putty.key -O private-openssh -o id_rsa</p>
+</blockquote>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

