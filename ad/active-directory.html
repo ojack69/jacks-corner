@@ -600,9 +600,10 @@ method by removing permission for Authenticated Users group.</p>
 <ul>
 <li><strong>Pass-the-password</strong>: This attack consists into passing around users credentials (previously obtained, for example, from a SAM dump). </li>
 <li><strong>Pass-the-hash</strong>: This attacks consists into passing around <strong>local accounts hashes</strong> to check if same credentials for one or more accounts have been used on other machines.</li>
-<li><strong>Overpass the hash</strong>: When attackers know the RC4 key (which is in fact the user's NT hash), and when the <em>RC4 etype</em> is not disabled, they can use it to obtain Kerberos tickets.</li>
+<li><strong>Overpass the hash</strong>: When attackers knows the RC4 key (which is in fact the user's NT hash), and when the <em>RC4 etype</em> is not disabled, they can use it to obtain Kerberos tickets.</li>
+<li><strong>Pass-the-ticket</strong>: This attack consists into passing around Kerberos tickets (TGT or TGS) in order to access services and resources as the compromised user without knowing its credentials.</li>
 </ul>
-<p>// TODO: Pass the key, pass the ticket, pass the cache</p>
+<p>// TODO: Pass the key, pass the cache</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#pass-the-attacks">Active Directory Cheatsheet - Pass-the-* attacks</a>.</p>
 <h4 id="mitigations_4">Mitigations</h4>
 <ul>
