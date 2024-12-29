@@ -23,6 +23,10 @@
     margin-right: 8px;
 }
 
+.toc li.highlighted {
+    border-radius: 3px;
+    padding: 5px;
+}
 
 .light-theme .toc li.highlighted{
     border: 1px solid #ff5a09;
