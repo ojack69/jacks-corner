@@ -1445,6 +1445,10 @@ lsadump::dcshadow<span class="w"> </span>/push
 <p>Execute DLL (useful for testing purposes):</p>
 <div class="highlight"><pre><span></span><code>rundll32.exe<span class="w"> </span>&lt;dll<span class="w"> </span>path&gt;,&lt;dll<span class="w"> </span>entry<span class="w"> </span>point&gt;
 </code></pre></div>
+<p>Get Windows Event object:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WinEvent</span> <span class="n">-FilterHashtable</span> <span class="p">@{</span><span class="n">Logname</span><span class="p">=&lt;</span><span class="n">event</span> <span class="n">type</span><span class="p">&gt;,</span><span class="n">ID</span><span class="p">=&lt;</span><span class="n">event</span> <span class="n">ID</span><span class="p">&gt;}</span> <span class="n">-MaxEvents</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="n">-Property</span> <span class="p">*</span>
+</code></pre></div>
+<p>Note: event type is generally 'Security'</p>
   </div>
   <div class="tag-cloud">
     <p>
