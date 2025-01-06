@@ -85,6 +85,7 @@ $(document).ready(() => {
     $('.collapse-all-toggle').click()
 
     $(document).on('keydown', function (e) {
+        if($('.stork-input:focus').length > 0) return;
         const isSideToc = $('.side-toc.fixed').length > 0;
         const toc = isSideToc ? $('.side-toc.fixed') : $('.toc');
         if (toc.length > 0) {
@@ -170,6 +171,7 @@ $(document).ready(() => {
     });
 
     $(document).on('keypress', function (e) {
+        if($('.stork-input:focus').length > 0) return;
         const isSideToc = $('.side-toc.fixed').length > 0;
         const toc = isSideToc > 0 ? $('.side-toc.fixed') : $('.toc');
         if (toc.length > 0) {
