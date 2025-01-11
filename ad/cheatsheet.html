@@ -1396,7 +1396,7 @@ lsadump::sam
 </ul>
 <h3 id="acls-attack">ACLs Attack</h3>
 <h4 id="permission-delegation">Permission Delegation</h4>
-<p>Abuse <code>AddMember</code> ACE to add a user to the target group:</p>
+<p>Abuse <code>AddMember</code> or  <code>GenericWrite</code> ACEs to add a user to the target group:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Add to the group</span>
 <span class="nb">Add-ADGroupMember</span> <span class="s2">"&lt;group&gt;"</span> <span class="n">-Members</span> <span class="s2">"&lt;user&gt;"</span>
 
