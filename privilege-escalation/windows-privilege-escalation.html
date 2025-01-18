@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#enumeration" title="Enumeration">Enumeration</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -161,52 +161,13 @@
 <li>The access to resources is regulated by <strong>Access Control Lists (ACLs)</strong> which define whether a user or a group can perform a read/write operation on an object.</li>
 <li>ACLS are composed by zero or more <strong>Access Control Entries (ACEs)</strong> which define the relationship between a principal (e.g. a user or a group) and a <em>access right</em>.</li>
 </ul>
-<h2 id="enumeration">Enumeration</h2>
-<p>Run automated checks with various tools:</p>
-<div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
-<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
-<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span><span class="p">&gt;</span>
-
-<span class="c"># winPeas - there are so</span>
-<span class="n">reg</span> <span class="n">add</span> <span class="n">HKCU</span><span class="p">\</span><span class="n">Console</span> <span class="p">/</span><span class="n">v</span> <span class="n">VirtualTerminalLevel</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_DWORD</span> <span class="p">/</span><span class="n">d</span> <span class="n">1</span>
-<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="n">fast</span> <span class="c"># Quick scan</span>
-<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span> <span class="n">category</span><span class="p">&gt;</span>
-
-<span class="c"># PowerUp</span>
-<span class="p">.</span> <span class="p">.\</span><span class="n">PowerUp</span><span class="p">.</span><span class="n">ps1</span>
-<span class="nb">Invoke-AllChecks</span> <span class="n">-Verbose</span> 
-
-<span class="c"># BeRoot</span>
-<span class="p">.\</span><span class="n">beRoot</span><span class="p">.</span><span class="n">exe</span>
-
-<span class="c"># Privesc</span>
-<span class="nb">Invoke-PrivEsc</span>
-
-<span class="c"># SharpUp</span>
-<span class="p">.\</span><span class="n">SharpUp</span><span class="p">.</span><span class="n">exe</span>
-</code></pre></div>
-<p><strong>Note</strong>: <code>Seatbelt</code> and <code>winPeas</code> do not actively hunt for privilege escalation misconfigurations but highlight them in the results, providing a better enumeration coverage than the other tools which are more vertical to specific misconfiguration categories.</p>
-<p>Tools references:</p>
+<h2 id="kernel-exploits">Kernel Exploits</h2>
+<p><strong>Kernel</strong>: layer between the application software and the computer hardware.</p>
 <ul>
-<li><a href="https://github.com/GhostPack/Seatbelt">Seatbelt</a> - <a href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Seatbelt.exe">Pre-Compiled Seatbelt</a></li>
-<li><a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS">winPEAS</a></li>
-<li><a href="https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc">PowerUp</a></li>
-<li><a href="https://github.com/AlessandroZ/BeRoot">BeRoot</a></li>
-<li><a href="https://github.com/enjoiz/Privesc">Privesc</a></li>
-<li><a href="https://github.com/GhostPack/SharpUp">SharpUp</a> - <a href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/SharpUp.exe">Pre-Compiled SharpUp</a></li>
+<li>Has complete control over the operating system.</li>
+<li>Exploiting a kernel vulnerability can result in executing command as SYSTEM user.</li>
 </ul>
-<h2 id="service-exploits">Service Exploits</h2>
-<p>Get services with unquoted paths and a space in their name:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_service</span> <span class="p">|</span> <span class="nb">select </span><span class="n">PathName</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-NotMatch</span> <span class="n">-Value</span> <span class="s1">'^["'']'</span>  <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-Match</span> <span class="n">-Value</span> <span class="s2">"\s.+\.(exe|com|bat|cmd|msi|msp|ps1|vbs|vbe|js|jse|wsf|wsc|scr|cpl|hta|dll|ocx|sys|pif|scf|gadget|lnk|url|drv|appref-ms|reg|inf|isp|pyd)"</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>cmd<span class="w"> </span>/c<span class="w"> </span>wmic<span class="w"> </span>service<span class="w"> </span>get<span class="w"> </span>name,displayname,pathname,startmode<span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"c:\windows\\"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"""</span>
-</code></pre></div>
-<p>Get services where the current user can write to its binary path or change arguments to the binary (<code>PowerUp</code>): </p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableServiceFile</span> <span class="n">-Verbose</span>
-</code></pre></div>
-<p>Get services whose current user can modify the current configuration (<code>PowerUp</code>):</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableService</span> <span class="n">-Verbose</span>
-</code></pre></div>
+<p><strong>Kernel exploits can often be unstable and may cause a system crash.</strong></p>
   </div>
   <div class="tag-cloud">
     <p>
