@@ -124,6 +124,47 @@
 
 <article>
   <header>
+    <h2><a href="http://localhost:1337/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>References:</p>
+<ul>
+<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
+</ul>
+<p>Useful Resources:</p>
+<ul>
+<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
+</ul>
+<p>List processes:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
+frida-ps<span class="w"> </span>-U
+
+//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Ua
+
+
+//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Uai
+</code></pre></div>
+<p>Connect to process:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
+frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
+
+//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:1337/mobile/frida-cheatsheet.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://localhost:1337/personal/goals.html">Goals</a></h2>
     <p>
 
@@ -138,8 +179,6 @@
 <hr/>
 <ul>
 <li goal-group="">Learning</li>
-<li goal-note="Completed: 80%">PentesterLabs - CRTP Course</li>
-<li>THM - Active Directory Modules</li>
 <li>Tib3rius - Privilege Escalation for OSCP and Beyond - Bundle</li>
 <li>CRTA Course</li>
 <li>Book: Operating Systems - Three Easy Pieces</li>
@@ -148,12 +187,14 @@
 <hr/>
 <ul>
 <li goal-group="">Certifications</li>
-<li goal-expire="02/03/2025">CRTA</li>
+<li goal-expire="01/03/2025">CRTA</li>
 <li goal-note="Preparation starts after CRTA">CAPen</li>
 </ul>
 <hr/>
 <ul>
 <li goal-group="">Completed</li>
+<li goal-completed="15/01/2025">THM - Active Directory Modules</li>
+<li goal-completed="07/01/2025">PentesterLabs - CRTP Course</li>
 <li goal-completed="06/10/2024">TCM Security Academy - Practical Ethical Hacking (Active Directory)</li>
 <li goal-completed="26/09/2024">Burp Academy …</li></ul></div>
         <br>

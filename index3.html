@@ -124,6 +124,45 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/split.html">ROP Emporium - split</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>Run checksec against the binary:</p>
+<blockquote>
+<p>&gt; [*] '/home/rick/Scrivania/WorkDir/ropemporium/split_challenge/split'<br/>
+    &nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little<br/>
+    &nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO<br/>
+    &nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found<br/>
+    &nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled<br/>
+    &nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)</p>
+</blockquote>
+<p>List all symbols:</p>
+<blockquote>
+<p>&gt; nm split<br/>
+0000000000601072 B __bss_start<br/>
+...<br/>
+0000000000400697 T main<br/>
+...<br/>
+00000000004006e8 t pwnme<br/>
+...<br/>
+0000000000400742 t usefulFunction <br/>
+0000000000601060 D usefulString </p>
+</blockquote>
+<p>Decompiling source …</p></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/split.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">ROP Emporium - ret2win</a></h2>
     <p>
 
@@ -344,29 +383,6 @@ Passive: find as much information about a target from public available informati
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/fastbin-dup.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">Heap Journey - House of Force</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="glibc-version-checking">GLIBC Version Checking</h2>
-<p>The house of force is an older exploitation technique that works on glibc 2.27 and lower.
-To get the correct version of glibc it is possible to run the libc file itself since it is an ELF shared object binary.</p>
-<blockquote>
-<p><strong>ldd $(which id)</strong><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;linux-vdso.so.1 …</p></blockquote></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">
           Continue reading
         </a>
   </div>

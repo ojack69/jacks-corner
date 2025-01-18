@@ -124,6 +124,29 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">Heap Journey - House of Force</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="glibc-version-checking">GLIBC Version Checking</h2>
+<p>The house of force is an older exploitation technique that works on glibc 2.27 and lower.
+To get the correct version of glibc it is possible to run the libc file itself since it is an ELF shared object binary.</p>
+<blockquote>
+<p><strong>ldd $(which id)</strong><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;linux-vdso.so.1 …</p></blockquote></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory Cheatsheet</a></h2>
     <p>
 
@@ -396,47 +419,6 @@ It uses as well SELinux.</p>
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>References:</p>
-<ul>
-<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
-</ul>
-<p>Useful Resources:</p>
-<ul>
-<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
-</ul>
-<p>List processes:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
-frida-ps<span class="w"> </span>-U
-
-//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Ua
-
-
-//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Uai
-</code></pre></div>
-<p>Connect to process:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
-frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
-
-//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
           Continue reading
         </a>
   </div>
