@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a><ul><li><a class="toc-href" href="#dll-hijacking" title="DLL Hijacking">DLL Hijacking</a></li></ul></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -168,6 +168,28 @@
 <li>Exploiting a kernel vulnerability can result in executing command as SYSTEM user.</li>
 </ul>
 <p><strong>Kernel exploits can often be unstable and may cause a system crash.</strong></p>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#kernel-exploits">Windows Privilege Escalation Cheatsheet - Kernel Exploits</a>.</p>
+<h2 id="service-exploits">Service Exploits</h2>
+<p><strong>Insecure Service Permissions</strong>: when the user has the <strong>SERVICE_CHANGE_CONFIG</strong> or <strong>SERVICE_ALL_ACCESS</strong> permissions on a the ACL for a service that runs as SYSTEM, it can modify the service configuration, setting the executable of the service to a malevolent one (generally, a reverse shell).</p>
+<p><strong>Unquoted Service Path</strong>:  Services that uses binaries with unquoted paths and a space in their name allow an attacker to drop an arbitrary binary to be executed by the service abusing the ambiguity in the service's binary path.</p>
+<p>Consider the following bin path:</p>
+<div class="highlight"><pre><span></span><code>c:\program files\sub dir\program name
+</code></pre></div>
+<p>The system tries to interpret the possible correct path in the following order:</p>
+<ol>
+<li>c:\program.exe </li>
+<li>c:\program files\sub.exe </li>
+<li>c:\program files\sub dir\program.exe</li>
+<li>c:\program files\sub dir\program name.exe</li>
+</ol>
+<h5 id="dll-hijacking">DLL Hijacking</h5>
+<p>TODO
+See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-directory-on-path</p>
+<p><strong>Note</strong>: In order to exploit any of the previous techniques, the service must be restarted:</p>
+<ul>
+<li>SERVICE_STOP and SERVICE_START privileges are required to restart a service. </li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-exploits">Windows Privilege Escalation Cheatsheet - Service Exploits</a>.</p>
   </div>
   <div class="tag-cloud">
     <p>

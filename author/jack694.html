@@ -147,31 +147,6 @@ To get the correct version of glibc it is possible to run the libc file itself s
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Related to: <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></p>
-<h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
-<h3 id="llmnrnbt-ns-poisoning">LLMNR/NBT-NS Poisoning</h3>
-<p>Setup various services listeners an respond with spoofed responses in order to perform poisoning:</p>
-<div class="highlight"><pre><span></span><code>responder<span class="w"> </span>-I<span class="w"> </span>&lt;interface&gt;<span class="w"> </span>-dw<span class="w"> </span>
-</code></pre></div>
-<h3 id="smb-relay">SMB Relay</h3>
-<p>1 - Maps the network of live hosts and saves a list of only the hosts that don't require SMB signing …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/glibc-appendix.html">Heap Journey - GLIBC Concepts Appendix</a></h2>
     <p>
 
@@ -419,6 +394,47 @@ It uses as well SELinux.</p>
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>References:</p>
+<ul>
+<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
+</ul>
+<p>Useful Resources:</p>
+<ul>
+<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
+</ul>
+<p>List processes:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
+frida-ps<span class="w"> </span>-U
+
+//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Ua
+
+
+//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Uai
+</code></pre></div>
+<p>Connect to process:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
+frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
+
+//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
           Continue reading
         </a>
   </div>

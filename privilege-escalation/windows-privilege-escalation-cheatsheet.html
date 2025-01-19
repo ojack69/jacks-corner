@@ -188,6 +188,12 @@
 </code></pre></div>
 <p>Some precompiled kernel exploits can be found <a href="https://github.com/SecWiki/windows-kernel-exploits">here</a>.</p>
 <h2 id="service-exploits">Service Exploits</h2>
+<p>Get current user permissions on a service using <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk">accesschk</a>:</p>
+<div class="highlight"><pre><span></span><code>accesschk.exe<span class="w"> </span>-uwcqv<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span>-accepteula
+</code></pre></div>
+<p>Check permissions on folders using  <code>accesschk</code>:</p>
+<div class="highlight"><pre><span></span><code>accesschk.exe<span class="w"> </span>/accepteula<span class="w"> </span>-uwdq<span class="w"> </span>&lt;path&gt;
+</code></pre></div>
 <p>Get services with unquoted paths and a space in their name:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_service</span> <span class="p">|</span> <span class="nb">select </span><span class="n">PathName</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-NotMatch</span> <span class="n">-Value</span> <span class="s1">'^["'']'</span>  <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-Match</span> <span class="n">-Value</span> <span class="s2">"\s.+\.(exe|com|bat|cmd|msi|msp|ps1|vbs|vbe|js|jse|wsf|wsc|scr|cpl|hta|dll|ocx|sys|pif|scf|gadget|lnk|url|drv|appref-ms|reg|inf|isp|pyd)"</span>
 </code></pre></div>
