@@ -188,23 +188,81 @@
 </code></pre></div>
 <p>Some precompiled kernel exploits can be found <a href="https://github.com/SecWiki/windows-kernel-exploits">here</a>.</p>
 <h2 id="service-exploits">Service Exploits</h2>
+<p>Enumerate vulnerable services:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>servicesinfo
+
+<span class="c1"># SeatBelt</span>
+.<span class="se">\S</span>eatbelt.exe<span class="w"> </span>NonstandardServices
+</code></pre></div>
+<p>List Services:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>query
+</code></pre></div>
+<p>Get current status of a service:</p>
+<div class="highlight"><pre><span></span><code>sc<span class="w"> </span>query<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
 <p>Get current user permissions on a service using <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk">accesschk</a>:</p>
 <div class="highlight"><pre><span></span><code>accesschk.exe<span class="w"> </span>-uwcqv<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span>-accepteula
 </code></pre></div>
-<p>Check permissions on folders using  <code>accesschk</code>:</p>
-<div class="highlight"><pre><span></span><code>accesschk.exe<span class="w"> </span>/accepteula<span class="w"> </span>-uwdq<span class="w"> </span>&lt;path&gt;
+<p>Check permissions on folders and files using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">accesschk</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">accepteula</span> <span class="n">-uwdq</span> <span class="p">&lt;</span><span class="n">path</span><span class="p">&gt;</span>
+
+<span class="c"># or</span>
+<span class="nb">Get-ACL</span> <span class="p">&lt;</span><span class="n">file</span> <span class="n">path</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">fl</span>
+</code></pre></div>
+<p>Change <code>binPath</code> of a service:</p>
+<div class="highlight"><pre><span></span><code>sc<span class="w"> </span>config<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span><span class="nv">binpath</span><span class="o">=</span><span class="w"> </span><span class="s2">"\"&lt;path to binary&gt;\""</span>
+</code></pre></div>
+<p>Stop and restart a service:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>stop<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+net<span class="w"> </span>start<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+
+<span class="c1"># or</span>
+
+sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>start<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>stop<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Create a service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span><span class="se">\\</span>&lt;target<span class="w"> </span>computer&gt;<span class="w"> </span>create<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span><span class="nv">binPath</span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;exe path&gt;"</span><span class="w"> </span><span class="nv">start</span><span class="o">=</span><span class="w"> </span>auto
+</code></pre></div>
+<p>Delete a service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>delete<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
 </code></pre></div>
 <p>Get services with unquoted paths and a space in their name:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_service</span> <span class="p">|</span> <span class="nb">select </span><span class="n">PathName</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-NotMatch</span> <span class="n">-Value</span> <span class="s1">'^["'']'</span>  <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-Match</span> <span class="n">-Value</span> <span class="s2">"\s.+\.(exe|com|bat|cmd|msi|msp|ps1|vbs|vbe|js|jse|wsf|wsc|scr|cpl|hta|dll|ocx|sys|pif|scf|gadget|lnk|url|drv|appref-ms|reg|inf|isp|pyd)"</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code>cmd<span class="w"> </span>/c<span class="w"> </span>wmic<span class="w"> </span>service<span class="w"> </span>get<span class="w"> </span>name,displayname,pathname,startmode<span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"c:\windows\\"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"""</span>
-</code></pre></div>
-<p>Get services where the current user can write to its binary path or change arguments to the binary (<code>PowerUp</code>): </p>
-<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableServiceFile</span> <span class="n">-Verbose</span>
+<div class="highlight"><pre><span></span><code>cmd<span class="w"> </span>/c<span class="w"> </span>wiwmic<span class="w"> </span>service<span class="w"> </span>get<span class="w"> </span>name,displayname,pathname,startmode<span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"c:\ndows\\"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"""</span>
 </code></pre></div>
 <p>Get services whose current user can modify the current configuration (<code>PowerUp</code>):</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableService</span> <span class="n">-Verbose</span>
 </code></pre></div>
+<p>Get services where the current user can write to its binary path or change arguments to the binary (<code>PowerUp</code>): </p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableServiceFile</span> <span class="n">-Verbose</span>
+</code></pre></div>
+<p>Get permissions on registry entries:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ACL</span> <span class="p">&lt;</span><span class="n">registry</span><span class="p">&gt;:&lt;</span><span class="n">registry</span> <span class="n">entry</span> <span class="n">path</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">fl</span>
+<span class="nb">Get-Acl</span> <span class="n">HKLM</span><span class="p">:\</span><span class="n">System</span><span class="p">\</span><span class="n">CurrentControlSet</span><span class="p">\</span><span class="n">Services</span><span class="p">\&lt;</span><span class="n">service</span> <span class="n">name</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Format-List</span>
+</code></pre></div>
+<p>Enumerate possibly misconfigured registry entries for services:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$InterestingPermissions</span> <span class="p">=</span> <span class="s2">"FullControl"</span>
+<span class="nv">$IgnoredIdentityReference</span> <span class="p">=</span> <span class="s2">"APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES"</span><span class="p">,</span> <span class="s2">"CREATOR OWNER"</span><span class="p">,</span> <span class="s2">"NT AUTHORITY\SYSTEM"</span><span class="p">,</span> <span class="s2">"BUILTIN\Administrators"</span><span class="p">,</span> <span class="s2">"NT SERVICE\TrustedInstaller"</span>
+<span class="nv">$AllServicesRegEntries</span> <span class="p">=</span> <span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="n">HKLM</span><span class="p">:\</span><span class="n">System</span><span class="p">\</span><span class="n">CurrentControlSet</span><span class="p">\</span><span class="n">Services</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span> 
+
+
+<span class="k">ForEach</span> <span class="p">(</span><span class="nv">$RegEntry</span> <span class="k">in</span> <span class="nv">$AllServicesRegEntries</span><span class="p">){</span>
+    <span class="nv">$FormattedRegPath</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$RegEntry</span><span class="p">.</span><span class="n">Name</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s1">'HKEY_LOCAL_MACHINE'</span><span class="p">,</span><span class="s1">'HKLM:'</span><span class="p">)</span>
+    <span class="nv">$acls</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-ACL</span> <span class="nv">$FormattedRegPath</span><span class="p">).</span><span class="n">Access</span>
+    <span class="k">ForEach</span> <span class="p">(</span><span class="nv">$acl</span> <span class="k">in</span> <span class="nv">$acls</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">((</span><span class="nv">$InterestingPermissions</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">RegistryRights</span><span class="p">))</span> <span class="o">-and</span> <span class="p">(!</span><span class="nv">$IgnoredIdentityReference</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">IdentityReference</span><span class="p">.</span><span class="n">Value</span><span class="p">))){</span>
+            <span class="nb">Write-Host</span> <span class="s2">"[!] Found: $FormattedRegPath - </span><span class="p">$(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">RegistryRights</span><span class="p">)</span><span class="s2"> for </span><span class="p">$(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">IdentityReference</span><span class="p">)</span><span class="s2">"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Edit service binary from registry:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>add<span class="w"> </span>&lt;service<span class="w"> </span>registry<span class="w"> </span>path&gt;<span class="w"> </span>/v<span class="w"> </span>ImagePath<span class="w"> </span>/t<span class="w"> </span>REG_EXPAND_SZ<span class="w"> </span>/d<span class="w"> </span>&lt;new<span class="w"> </span>binary<span class="w"> </span>path&gt;<span class="w"> </span>/f
+</code></pre></div>
+<p>Enumerate services which </p>
   </div>
   <div class="tag-cloud">
     <p>

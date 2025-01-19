@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a><ul><li><a class="toc-href" href="#dll-hijacking" title="DLL Hijacking">DLL Hijacking</a></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -182,12 +182,16 @@
 <li>c:\program files\sub dir\program.exe</li>
 <li>c:\program files\sub dir\program name.exe</li>
 </ol>
-<h5 id="dll-hijacking">DLL Hijacking</h5>
-<p>TODO
-See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-directory-on-path</p>
-<p><strong>Note</strong>: In order to exploit any of the previous techniques, the service must be restarted:</p>
+<p><strong>Weak Permissions Registry</strong>: For each service are store some entries, such as the binary path, in the Windows Registry. Misconfigured ACLs on these registry entries may allow an attacker to modify the service even though it has not direct permission on the service object.</p>
 <ul>
-<li>SERVICE_STOP and SERVICE_START privileges are required to restart a service. </li>
+<li>Service's registry entries are located at <code>HKLM\System\CurrentControlSet\Services</code></li>
+</ul>
+<p><strong>Insecure Service Executable</strong>: When permissions on a service's executable are misconfigured, an attacker could simply replace the legit binary with a mischievous one even though it not has privileges on the service.</p>
+<p><strong>DLL Hijacking</strong>: TODO</p>
+<p>See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-directory-on-path</p>
+<p><strong>Note</strong>: In order to exploit most of the previous techniques, the service must be restarted:</p>
+<ul>
+<li><strong>SERVICE_STOP</strong> and <strong>SERVICE_START</strong> privileges are required to restart a service. </li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-exploits">Windows Privilege Escalation Cheatsheet - Service Exploits</a>.</p>
   </div>
