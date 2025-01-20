@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -187,13 +187,36 @@
 <li>Service's registry entries are located at <code>HKLM\System\CurrentControlSet\Services</code></li>
 </ul>
 <p><strong>Insecure Service Executable</strong>: When permissions on a service's executable are misconfigured, an attacker could simply replace the legit binary with a mischievous one even though it not has privileges on the service.</p>
-<p><strong>DLL Hijacking</strong>: TODO</p>
-<p>See: https://github.com/AlessandroZ/BeRoot/tree/master/Windows#writable-directory-on-path</p>
-<p><strong>Note</strong>: In order to exploit most of the previous techniques, the service must be restarted:</p>
+<p><strong>DLL Hijacking</strong>: When a service's binary loads a DLL to execute some functionalities, these will run with the same privileges as the service. </p>
+<ul>
+<li>When the DLL is loaded with an absolute path, if it's writable by an attacker controlled user, it's possible for it to replace this DLL with a mischievous one.</li>
+<li>When the DLL is not loaded with an absolute path, if an attacker has write permissions on the location where the system would try to load this DLL, it can inject a mischievous DLL.</li>
+</ul>
+<p>When DLLs are loaded by a binary, Windows would try to locate it in the following order:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">Directory</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">located</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\
+<span class="o">-</span><span class="w"> </span><span class="n">Current</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">launched</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Directory</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">%</span><span class="n">PATH</span><span class="o">%</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="n">variable</span>
+</code></pre></div>
+<p>A good approach is to enumerate directories in the <code>%PATH%</code> environment variable and check if those are writable by the user.</p>
+<p><strong>Note</strong>: In order to exploit any of the previous techniques, the service must be restarted:</p>
 <ul>
 <li><strong>SERVICE_STOP</strong> and <strong>SERVICE_START</strong> privileges are required to restart a service. </li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-exploits">Windows Privilege Escalation Cheatsheet - Service Exploits</a>.</p>
+<h2 id="registry-exploits">Registry Exploits</h2>
+<p><strong>AutoRuns</strong>: Windows allows to run command at startup with elevated privileges by specifying the executable to "auto run". An attacker that can write on an AutoRun executable, might escalate privileges the moment the system gets restarted.</p>
+<ul>
+<li>AutoRun executables are located at <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code></li>
+<li><strong>On Windows 10, the executables runs with the privileges of the last logged on user!</strong></li>
+</ul>
+<p><strong>AlwaysInstallElevated</strong>: Normally MSI executables run with the permission of the user trying to install them. However, when the <code>AlwaysInstallElevated</code> registry is set to <code>1</code>, it's possible to run MSI files with elevated privileges even though the Administrator password is not known. <code>AlwaysInstallElevated</code> must be set to <code>1</code> for both current user and local machine in order to allow privilege escalation:</p>
+<ul>
+<li>Local Machine registry: <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
+<li>Current User registry: <code>HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
+</ul>
   </div>
   <div class="tag-cloud">
     <p>
