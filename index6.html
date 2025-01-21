@@ -179,7 +179,7 @@ frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span
 <hr/>
 <ul>
 <li goal-group="">Learning</li>
-<li>Tib3rius - Privilege Escalation for OSCP and Beyond - Bundle</li>
+<li goal-note="48% Completed">Tib3rius - Windows Privilege Escalation for OSCP and Beyond</li>
 <li>CRTA Course</li>
 <li>Book: Operating Systems - Three Easy Pieces</li>
 <li>Linux Heap Exploitation 2</li>
@@ -200,6 +200,32 @@ frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span
         <br>
         <a class="btn"
            href="http://localhost:1337/personal/goals.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:1337/privilege-escalation/windows-privilege-escalation-cheatsheet.html">Windows Privilege Escalation Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><h2 id="generic-enumeration">Generic Enumeration</h2>
+<p>Run automated checks with various tools:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span><span class="p">&gt;</span>
+
+<span class="c"># winPeas - there are also the PowerShell and BAT version</span>
+<span class="n">reg</span> <span class="n">add</span> <span class="n">HKCU</span><span class="p">\</span><span class="n">Console</span> <span class="p">/</span><span class="n">v</span> <span class="n">VirtualTerminalLevel</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_DWORD</span> <span class="p">/</span><span class="n">d</span> <span class="n">1</span> <span class="c"># Enables colors in terminal - not needed when running winPeas in a reverse shell</span>
+<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe …</span></code></pre></div></div>
+        <br>
+        <a class="btn"
+           href="http://localhost:1337/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
           Continue reading
         </a>
   </div>

