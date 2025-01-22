@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li></ul></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -169,7 +169,7 @@
 </ul>
 <p><strong>Kernel exploits can often be unstable and may cause a system crash.</strong></p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#kernel-exploits">Windows Privilege Escalation Cheatsheet - Kernel Exploits</a>.</p>
-<h2 id="service-exploits">Service Exploits</h2>
+<h2 id="service-and-tasks-exploits">Service and Tasks Exploits</h2>
 <p><strong>Insecure Service Permissions</strong>: when the user has the <strong>SERVICE_CHANGE_CONFIG</strong> or <strong>SERVICE_ALL_ACCESS</strong> permissions on a the ACL for a service that runs as SYSTEM, it can modify the service configuration, setting the executable of the service to a malevolent one (generally, a reverse shell).</p>
 <p><strong>Unquoted Service Path</strong>:  Services that uses binaries with unquoted paths and a space in their name allow an attacker to drop an arbitrary binary to be executed by the service abusing the ambiguity in the service's binary path.</p>
 <p>Consider the following bin path:</p>
@@ -205,7 +205,11 @@
 <ul>
 <li><strong>SERVICE_STOP</strong> and <strong>SERVICE_START</strong> privileges are required to restart a service. </li>
 </ul>
-<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-exploits">Windows Privilege Escalation Cheatsheet - Service Exploits</a>.</p>
+<p><strong>Scheduled Tasks</strong>: Windows allows to configure scheduled tasks that run periodically on when triggered by an event. Task generally run with the creator user's privileges; however, it's possible for administrator to configure the running user. An attacker is likely to target tasks running with SYSTEM privileges.</p>
+<ul>
+<li>If the attacker can write on the executable being run by the task, it can inject command to be executed with elevated privileges.</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-and-tasks-exploits">Windows Privilege Escalation Cheatsheet - Service and Tasks Exploits</a>.</p>
 <h2 id="registry-exploits">Registry Exploits</h2>
 <p><strong>AutoRuns</strong>: Windows allows to run command at startup with elevated privileges by specifying the executable to "auto run". An attacker that can write on an AutoRun executable, might escalate privileges the moment the system gets restarted.</p>
 <ul>
@@ -217,6 +221,56 @@
 <li>Local Machine registry: <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
 <li>Current User registry: <code>HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
 </ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#registry-exploits">Windows Privilege Escalation Cheatsheet - Registry Exploits</a>.</p>
+<h2 id="applications-exploits">Applications Exploits</h2>
+<p><strong>Insecure GUI Applications</strong>: On older version on Windows, users could be granted permissions to run GUI application with elevated privileges. An attacker could abuse some native Windows functionality such as the "file browse" to execute commands or even spawn an elevated command prompt.</p>
+<p><strong>Startup App</strong>: Windows allows to start some application when a user logs in. Moreover, generally for administrators, it's possible to add startup applications for all users. This is done by creating a shortcut to the target application in the following folders:</p>
+<ul>
+<li><strong>Current user startup folder</strong>: <code>C:\Users\Username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code></li>
+<li><strong>All users startup folder</strong>: <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code></li>
+</ul>
+<p>When the attacker can write in the last folder, it can setup a mischievious executable to be run the moment an admin logs in.</p>
+<h2 id="potatoes">Potatoes</h2>
+<p>General Reference: <a href="https://jlajara.gitlab.io/Potatoes_Windows_Privesc#hotPotato">Potatoes - Windows Privilege Escalation</a></p>
+<h3 id="hot-potato">Hot Potato</h3>
+<p>This attack uses a combination of <strong>NTLM relay</strong> and <strong>DNS spoofing</strong> to gain SYSTEM privileges.<br/>
+- This is done by mean of a <strong>NBNS Spoofer</strong> which will impersonate the name resolution and force the system to download and deploy a malicious WAPD configuration from a fake <strong>WPAD Proxy Server</strong> which will force the system to perform a NTLM authentication against an HTTP server.
+    - The NBS Spoofer can eventually force a DNS lookup by mean of a technique called <strong>Port Exhaustion</strong>: binding to every single UDP port (NBNS is a UDP protocol), when the system tries to perform a DNS lookup it will fail because there will be no available source port for the DNS reply to come to.
+- The NTLM credential gets then relayed to SMB (<strong>SMB Relay</strong>) in order to execute commands as SYSTEM.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Microsoft</span><span class="w"> </span><span class="n">patched</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="p">(</span><span class="n">MS16</span><span class="o">-</span><span class="mo">075</span><span class="p">)</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">disallowing</span><span class="w"> </span><span class="n">same</span><span class="o">-</span><span class="n">protocol</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="n">flight</span><span class="p">.</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">SMB</span><span class="o">-&gt;</span><span class="n">SMB</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="n">relay</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">itself</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">longer</span><span class="w"> </span><span class="n">work</span><span class="p">.</span><span class="w"> </span><span class="n">MS16</span><span class="o">-</span><span class="mo">077</span><span class="w"> </span><span class="n">WPAD</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="n">Resolution</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">NetBIOS</span><span class="w"> </span><span class="p">(</span><span class="n">CVE</span><span class="o">-</span><span class="mi">2016</span><span class="o">-</span><span class="mi">3213</span><span class="p">)</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="n">credential</span><span class="w"> </span><span class="kr">when</span><span class="w"> </span><span class="n">requesting</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">PAC</span><span class="w"> </span><span class="n">file</span><span class="p">(</span><span class="n">CVE</span><span class="o">-</span><span class="mi">2016</span><span class="o">-</span><span class="mi">3236</span><span class="p">).</span><span class="w"> </span><span class="n">WAPD</span><span class="w"> </span><span class="n">MITM</span><span class="w"> </span><span class="n">Attack</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">patched</span><span class="p">.</span>
+</code></pre></div>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows Server 2008 R2 and earlier</li>
+<li>Windows 8.x</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows server 2012 and 2012 R2</li>
+</ul>
+<p>Hot Potato reference: <a href="https://github.com/foxglovesec/Potato">https://github.com/foxglovesec/Potato</a></p>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="rotten-potato">Rotten Potato</h3>
+<p>Users with <code>SeImpersonate</code> and <code>SeAssignPrimaryToken</code> privileges can impersonate the access token of other users, including SYSTEM. </p>
+<ul>
+<li>Generally, service accounts are configured with these two privileges.</li>
+</ul>
+<p>The Rotten Potato attacks abuses this privileges in order to gain SYSTEM privileges. This attack is complex; please refer to <a href="https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/">this</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Trick</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">&ldquo;</span><span class="n">NT</span><span class="w"> </span><span class="n">AUTHORITY</span><span class="err">\</span><span class="kr">SYS</span><span class="n">TEM</span><span class="err">&rdquo;</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="nb">int</span><span class="n">o</span><span class="w"> </span><span class="n">authenticating</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">TCP</span><span class="w"> </span><span class="kr">end</span><span class="n">point</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="kr">cont</span><span class="n">rol</span><span class="mf">.</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Man</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">middle</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="p">(</span><span class="n">NTLM</span><span class="w"> </span><span class="n">relay</span><span class="p">)</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">locally</span><span class="w"> </span><span class="n">negotiate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="kr">to</span><span class="n">ken</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">&ldquo;</span><span class="n">NT</span><span class="w"> </span><span class="n">AUTHORITY</span><span class="err">\</span><span class="kr">SYS</span><span class="n">TEM</span><span class="err">&rdquo;</span><span class="w"> </span><span class="n">account</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">series</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="n">calls</span><span class="mf">.</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Impersonate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="kr">to</span><span class="n">ken</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">negotiated</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="kr">on</span><span class="n">ly</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attackers</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">privilege</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">impersonate</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="kr">to</span><span class="n">kens</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">usually</span><span class="w"> </span><span class="n">true</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">accounts</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">true</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">user</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">accounts</span><span class="mf">.</span>
+</code></pre></div>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows 8 and Windows 8.1</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows Server 2008 and 2008 R2</li>
+<li>Windows Server 2012 and 2012 R2</li>
+<li>Windows Server 2016 (early versions)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="juicy-potato">Juicy Potato</h3>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
   </div>
   <div class="tag-cloud">
     <p>

