@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -270,6 +270,76 @@
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
 <h3 id="juicy-potato">Juicy Potato</h3>
+<p>This attack works in the same way as Rotten Potato, extending it and bypassing some of its limits.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows 8 and Windows 8.1</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows Server 2008 and 2008 R2</li>
+<li>Windows Server 2012 and 2012 R2</li>
+<li>Windows Server 2016 (early versions)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="rogue-potato">Rogue Potato</h3>
+<p>Rogue Potato uses <strong>RPC over ALPC (Asynchronous Local Procedure Call)</strong> instead of traditional COM interfaces, bypassing restrictions that prevent Rotten/Juicy Potato attacks.</p>
+<p>This attack is complex; please refer to <a href="https://decoder.cloud/2020/05/11/no-more-juicypotato-old-story-welcome-roguepotato/">this</a>.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7</li>
+<li>Windows 8</li>
+<li>Windows 8.1</li>
+<li>Windows 10 before release 1709</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows Server 2016</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="print-spoofer">Print Spoofer</h3>
+<p>The <strong>PrintSpoofer</strong> attack is a Windows <strong>privilege escalation</strong> technique that exploits the <strong>Print Spooler service</strong> to impersonate privileged tokens (e.g., SYSTEM). It leverages the ability of authenticated users to interact with the Print Spooler to perform NTLM authentication redirection and token impersonation, granting SYSTEM-level access on the local machine.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7</li>
+<li>Windows 8</li>
+<li>Windows 8.1</li>
+<li>Windows 10 before release 20H2</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows Server 2016</li>
+<li>Windows Server 2019 (early builds)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.
+(yeah, it's not a potato but it's a similar attack)</p>
+<h3 id="local-potato">Local Potato</h3>
+<p>Reference: <a href="https://www.localpotato.com/localpotato_html/LocalPotato.html">LocalPotato - When Swapping The Context Leads You To SYSTEM</a></p>
+<p>The Local Potato attack is a Windows privilege escalation technique that exploits vulnerabilities in <code>SeImpersonatePrivilege</code> and NTLM authentication redirection. It allows attackers with low-privilege access to perform arbitrary file read/write and elevation of privileges.</p>
+<p>It works targeting two different scenarios:</p>
+<ul>
+<li>SMB Scenario: patched with <strong><a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21746">CVE-2023-21746</a></strong>. By abusing SMB, it's possible for an attacker to copy malicious DLL to any system path, enabling to elevate privileges by DLL Hijacking attacks.</li>
+<li>HTTP/WebDAV scenario: should still work on recent releases. By abusing the WebDAV, it's possible for an attacker to perform arbitrary file write to the WebDAV directory.</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="sweet-potato-generic-potato">Sweet Potato &amp; Generic Potato</h3>
+<p><strong>Sweet Potato</strong>: is a collection of various native Windows privilege escalation techniques from service accounts to SYSTEM. Reference <a href="https://github.com/CCob/SweetPotato">here</a>.</p>
+<p><strong>Generic Potato</strong>: modified version of SweetPotato  supporting impersonating authentication over HTTP and/or named pipes. This allows for local privilege escalation from SSRF and/or file writes. Reference <a href="https://github.com/micahvandeusen/GenericPotato">here</a>.</p>
+<p>Generic potato is useful when:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// https://jlajara.gitlab.io/Potatoes_Windows_Privesc#hotPotato</span>
+<span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="nb">system</span><span class="w"> </span><span class="n">doesn</span>&rsquo;<span class="n">t</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">print</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">prevents</span><span class="w"> </span><span class="n">SweetPotato</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">WinRM</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">preventing</span><span class="w"> </span><span class="n">RogueWinRM</span>
+<span class="o">-</span><span class="w"> </span><span class="n">You</span><span class="w"> </span><span class="n">don</span>&rsquo;<span class="n">t</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">outbound</span><span class="w"> </span><span class="n">RPC</span><span class="w"> </span><span class="n">allowed</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">machine</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="nb">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">BITS</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">disabled</span><span class="w"> </span><span class="n">preventing</span><span class="w"> </span><span class="n">RoguePotato</span><span class="p">.</span>
+</code></pre></div>
+<h3 id="god-potato">God Potato</h3>
+<p>Reference: <a href="https://medium.com/@iamkumarraj/godpotato-empowering-windows-privilege-escalation-techniques-400b88403a71">GodPotato: Empowering Windows Privilege Escalation Techniques</a></p>
+<p>Not so much information available.</p>
+<p>Vulnerable Windows Versions:</p>
+<ul>
+<li>from Windows Server 2012 to Windows Server 2022 </li>
+<li>from Windows8 to Windows 11</li>
+</ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
   </div>
   <div class="tag-cloud">

