@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li><li><a class="toc-href" href="#meterpreter-getsystem_1" title="Meterpreter getsystem">Meterpreter getsystem</a></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -160,6 +160,35 @@
 <ul>
 <li>The access to resources is regulated by <strong>Access Control Lists (ACLs)</strong> which define whether a user or a group can perform a read/write operation on an object.</li>
 <li>ACLS are composed by zero or more <strong>Access Control Entries (ACEs)</strong> which define the relationship between a principal (e.g. a user or a group) and a <em>access right</em>.</li>
+</ul>
+<p><strong>Access Tokens</strong>: are special object that store a user's identity and privileges, defining the <strong>security context</strong> of the user's processes and thread. There are two type of access tokens:</p>
+<ul>
+<li><strong>Primary Access Tokens</strong>: created when the user logs in, bound to the current user session. When the user starts a new process, the primary access token gets copied to the new process.</li>
+<li><strong>Impersonation Access Token</strong>: created when a process or thread need to temporarily run with  the security context of another user.</li>
+</ul>
+<p><strong>Token Duplication</strong>: processes and threads can duplicate their access tokens. This way, an impersonation access token can be duplicated into a primary access token. </p>
+<ul>
+<li>An attacker can inject into a running process if it has the <code>SeDebugPrivilege</code>.</li>
+<li>Having this capabilities, it's possible for it to duplicate the access token of the process and spawn a separate process with the same privileges.</li>
+</ul>
+<p><strong>Named Pipes</strong>: a named pipe is an extension of traditional pipe concept typical in Unix systems. While a traditional pipe is "unnamed" and lasts as long as the process, a named pipe lasts as long as the system is up. </p>
+<ul>
+<li>A process <code>A</code> creates a named pipe.</li>
+<li>Other processes <code>X</code> can open this named pipe in order to perform read/write operations.</li>
+<li>The process <code>A</code> <strong>can impersonate the security context</strong> of the process <code>Xi</code> which connects to its named pipe.</li>
+</ul>
+<p><strong>User Privileges</strong>:</p>
+<ul>
+<li><code>SeImpersonatePrivilege</code>: grants the ability to impersonate any access token.</li>
+<li><code>SeAssignPrimaryPrivilege</code>: grants the ability to assign an access token to a new process</li>
+<li><code>SeBackupPrivilege</code>: grants read access to all objects on the system, regardless of their ACL. Abusing this privilege, an attacker could gain access to sensitive file, extract hashes from the registry to be cracked or passed around, etc.</li>
+<li><code>SeRestorePrivilege</code>: grants write access to all objects on the system, regardless of their ACL. Abusing this privilege, an attacker could modify services binaries, overwrite DLLs, modify registry settings, etc.</li>
+<li><code>SeTakeOwnershipPrivilege</code>: grants the ability to take ownership over an object.</li>
+<li><code>SeTcbPrivilege</code>: grants the ability to act as part of the operating system, allowing the process to authenticate as any user. Often required by system services that impersonate clients.</li>
+<li><code>SeCreateTokenPrivilege</code>: allows the creation of security tokens, enabling the process to create and assign new access tokens. This is highly sensitive and typically reserved for system-level operations.</li>
+<li><code>SeLoadDriverPrivilege</code>: permits the loading and unloading of device drivers. This privilege is critical for kernel-mode code execution and can impact system stability and security.</li>
+<li><code>SeDebugPrivilege</code>: enables the process to debug and access the memory of any process, including system processes. Essential for developers and troubleshooting but a significant security risk if misused.</li>
+<li><a href="https://github.com/hatRiot/token-priv">Detailed reference</a></li>
 </ul>
 <h2 id="kernel-exploits">Kernel Exploits</h2>
 <p><strong>Kernel</strong>: layer between the application software and the computer hardware.</p>
@@ -341,6 +370,13 @@
 <li>from Windows8 to Windows 11</li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h2 id="meterpreter-getsystem_1">Meterpreter getsystem</h2>
+<p>Meterpreter's <code>getsystem</code> command allows a local admin user to escalate to SYSTEM. It tries three different attacks in cascade:</p>
+<ul>
+<li><strong>Named Pipe Impersonation (In Memory/Admin)</strong>: Creates a <strong>named pipe</strong> controlled by Meterpreter and a service running as SYSTEM (<strong>therefore, local admin privileges are required</strong>) which will connect to the named pipe. This way, it can impersonate the connected process' security context and copies it's <strong>impersonation token</strong> to all subsequent threads which will run as SYSTEM.</li>
+<li><strong>Named Pipe Impersonation (Dropper/Admin)</strong>: similar to previous technique; a DLL gets written on the disk and a service is created to run as SYSTEM, executing the DLL which connects to the named pipe.</li>
+<li><strong>Token Duplication (In Memory/Admin)</strong>: requires the <code>SeDebugPrivilege</code>. It injects into a service process running as SYSTEM. In this process, it injects a DLL which <strong>duplicates the access token</strong> of the service and assigns it to Meterpreter. This technique only works on x86 architectures, therefore is almost completely deprecated.</li>
+</ul>
   </div>
   <div class="tag-cloud">
     <p>

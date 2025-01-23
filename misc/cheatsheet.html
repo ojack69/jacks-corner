@@ -503,6 +503,7 @@ nohup socat TCP4-LISTEN:22,fork,su=nobody TCP6:[2a01:198:79d:1::8]:22 &amp;
 <p>Start a SOCKS proxy:</p>
 <div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>&lt;user&gt;@&lt;host&gt;<span class="w"> </span>-R<span class="w"> </span>&lt;port&gt;<span class="w"> </span>-N
 </code></pre></div>
+<p>In Windows, use <a href="https://www.cog-genomics.org/plink/">plink</a> which wraps SSH to create connection to remote hosts. Syntax is mostly similar. </p>
 <h3 id="proxychains">Proxychains</h3>
 <p>Setup SOCKS proxy port in <code>/etc/proxychains.conf</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="k">[ProxyList]</span>
