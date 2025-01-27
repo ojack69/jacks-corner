@@ -441,7 +441,7 @@ It will answer to specific NBT-NS (NetBIOS Name Service) queries based on their 
 </li>
 </ul>
 <h3 id="dns-takeover-via-ipv6_1">DNS takeover via IPv6</h3>
-<p>Usually IPv6 is enable but no DNS service is generally configured to respond to IPv6. IPv6 attacks abuses the default IPv6 configuration in Windows networks to spoof DNS replies by acting as a malicious DNS server and redirect traffic to an attacker specified endpoint.
+<p>Usually IPv6 is enabled but no DNS service is generally configured to respond to IPv6. IPv6 attacks abuses the default IPv6 configuration in Windows networks to spoof DNS replies by acting as a malicious DNS server and redirect traffic to an attacker specified endpoint.
 IPv6 is enabled and preferred over IPv4 from Windows Vista and on.</p>
 <p>By spoofing DNS, credentials get sent to the fake DNS server which will relay them to the target; when targeting a DC, it's possible to abuse this mechanism to obtain all the information stored int the DC and create evil accounts/policies to gain access to it or even new domain machines. This is possible when the relayed credentials belongs to an administrator.
 In order to work, SMB (without signing - SMB Relay attack), LDAPS or any service to which relay the credentials should be enabled on the DC.</p>
@@ -529,7 +529,7 @@ The owner of an object, inherited from the class &ldquo;computer&rdquo;, has by 
 <p><strong>Note</strong>: often a dedicated service account is used to join machines to domain; if LAPS is broadly used across various workstations with the same service account used to join to the domain, compromising this service accounts can compromise all the workstations's local Administrators.</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#workstation-takeover-with-laps">Active Directory Cheatsheet - Workstation takeover with LAPS</a>.</p>
 <h3 id="mssql-ntlm-hash-dump">MSSQL NTLM hash dump</h3>
-<p>Having access to a MSSQL session, if the current service account can use <code>xp_dirtree</code>, <code></code>xp_fileexist<code>or</code>xp_subdirs<code>stored procedures, it could be possible to capture the MSSQL service account's NTLM hash by setting up an SMB share using Impacket's</code>smbserver`. </p>
+<p>Having access to a MSSQL session, if the current service account can use <code>xp_dirtree</code>, <code>xp_fileexist</code> or <code>xp_subdirs</code> stored procedures, it could be possible to capture the MSSQL service account's NTLM hash by setting up an SMB share using Impacket's <code>smbserver</code>. </p>
 <ul>
 <li>These stored procedures are used to list files and directories in a folder. By setting this target folder to the Impacket's <code>smbserver</code>, the NTLM hash will be passed to it.</li>
 </ul>
@@ -641,9 +641,11 @@ method by removing permission for Authenticated Users group.</p>
 </ul>
 <h3 id="token-impersonation_1">Token Impersonation</h3>
 <p><strong>Tokens</strong> in Windows are temporary keys that allow you access to a system/network without having to provide credentials each time you access a file, like "cookies" for computers.</p>
-<p>There are two type of tokens:
-- <strong>Delegation Token</strong>: created when users interactively login into a system using their credentials, also remotely (RDP or VNC). 
-- <strong>Impersonation Token</strong>: created when users non-interactively login into a system, like accessing a shared drive on the network.</p>
+<p>There are two type of tokens:</p>
+<ul>
+<li><strong>Delegation Token</strong>: created when users interactively login into a system using their credentials, also remotely (RDP or VNC). </li>
+<li><strong>Impersonation Token</strong>: created when users non-interactively login into a system, like accessing a shared drive on the network.</li>
+</ul>
 <p><strong>Token impersonation</strong> is a Windows post-exploitation technique that allows an attacker to steal the access token of a logged-on user on the system without knowing their credentials and impersonate them to perform operations with their privileges.</p>
 <ul>
 <li>The impersonation technique requires the attacker to gain local admin privileges on the compromised machine to steal its tokens.</li>

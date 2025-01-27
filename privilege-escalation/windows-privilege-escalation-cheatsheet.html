@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a></li></ul></div>
         </div>
     <h2 id="generic-enumeration">Generic Enumeration</h2>
 <p>Run automated checks with various tools:</p>
@@ -427,6 +427,10 @@ LocalPotato.exe -r 127.0.0.1 -u /webdavshare/potato.local
 </ul>
 <p>Run a <strong>God Potato</strong> attack from an account with token impersonation privileges shell  (binary <a href="https://github.com/BeichenDream/GodPotato">here</a>):</p>
 <div class="highlight"><pre><span></span><code>.<span class="se">\G</span>odPotato<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to run&gt;"</span>
+</code></pre></div>
+<h2 id="misc">Misc</h2>
+<p>Add user to local Administrators group:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>localgroup<span class="w"> </span>administrators<span class="w"> </span>&lt;user&gt;<span class="w"> </span>/add
 </code></pre></div>
   </div>
   <div class="tag-cloud">
