@@ -1080,7 +1080,7 @@ https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#group-nesting">Active Directory Cheatsheet - Group Nesting|</a>.</p>
 <h3 id="dcshadow">DCShadow</h3>
-<p>This technique consists into temporarily registering a new DC in the target domain; this DC will then be used change the Active Directory environment, for example, by changing attributes such as SIDHistory, primaryGroupID and SPN on specified objects, like users or the AdminSDHolder, in order to achieve privilege escalation or creating backdoor.</p>
+<p>This technique consists into temporarily registering a new DC in the target domain; this DC will then be used to alter the Active Directory environment, for example, by changing attributes such as <strong>SIDHistory</strong>, <strong>primaryGroupID</strong> and <strong>SPN</strong> on specified objects, like users or the <strong>AdminSDHolder</strong>, in order to achieve privilege escalation or creating backdoor.</p>
 <ul>
 <li>It's generally hard to detect these changes to the AD environment via event logs since they come from a DC and thus not logged.</li>
 </ul>
@@ -1136,7 +1136,7 @@ https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
 </table>
 <p>Anyway, setting these permissions involves the generation of change logs since these changes are not coming from a DC:</p>
 <ul>
-<li>An interesting strategy would be to used DCShadow to set this permissions in order to avoid logs generation  (Domain admin privileges or equivalent will then be necessary). This can be done by setting the correct ACEs in the <code>ntSecurityDescriptor</code> attribute on the objects listed in the previous table.</li>
+<li>An interesting strategy would be to use <strong>DCShadow</strong> to set this permissions in order to avoid logs generation  (Domain admin privileges or equivalent will then be necessary). This can be done by setting the correct ACEs in the <code>ntSecurityDescriptor</code> attribute on the objects listed in the previous table.</li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#dcshadow">Active Directory Cheatsheet - DCShadow</a>.</p>
 <h3 id="backdoors">Backdoors</h3>
