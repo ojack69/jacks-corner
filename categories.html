@@ -124,38 +124,57 @@
   <header>
     <h1 id="categories">Categories</h1>
   </header>
-  <div>
-    <ul class="list">
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/active-directory.html">Active Directory</a> (2)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/binary-exploitation.html">Binary Exploitation</a> (19)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/books.html">Books</a> (1)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/certifications.html">Certifications</a> (3)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheet</a> (13)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/ctf.html">CTF</a> (1)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/mobile.html">Mobile</a> (7)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/personal.html">Personal</a> (1)
-      </li>
-      <li>
-        <a href="https://ojack69.github.io/jacks-corner/category/privilege-escalation.html">Privilege Escalation</a> (1)
-      </li>
-    </ul>
+  <br>
+  <div class="categories-container">
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/active-directory.html">
+      <b>Active Directory</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/binary-exploitation.html">
+      <b>Binary Exploitation</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/books.html">
+      <b>Books</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/certifications.html">
+      <b>Certifications</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">
+      <b>Cheatsheet</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/ctf.html">
+      <b>CTF</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/mobile.html">
+      <b>Mobile</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/personal.html">
+      <b>Personal</b>
+    </a>
+    <a class="category-item" href="https://ojack69.github.io/jacks-corner/category/privilege-escalation.html">
+      <b>Privilege Escalation</b>
+    </a>
   </div>
 </article>
+<style>
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    flex: 1 0 21%;
+    margin: 5px;
+    height: 100px;
+    color: #d9411e;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    align-content: center;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 1px 1px 3px 1px #000000;
+  }
+</style>
 
 <footer>
 <p>&copy; Jack69 - 2025 </p>

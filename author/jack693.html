@@ -124,271 +124,258 @@
 
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/buffer-overflow/rop-gadget-leak.html">ROP Gadget - LIBC Leak</a></h2>
+    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">Mobile Cheatsheet</a></h2>
     <p>
 
 
     </p>
   </header>
   <div>
-      <div><p>By using a ROP <code>pop rdi ; ret</code> gadget it's possible to obtain the LIBC base address by leaking <code>puts@GOT</code> entry via <code>puts@PLT</code>.
-This is done by passing the <code>puts@GOT</code> as parameter to <code>puts@PLT</code>. Having the puts address, the libc address is calculated as <code>puts @</code> - <code>puts offset …</code></p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/buffer-overflow/rop-gadget-leak.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/split.html">ROP Emporium - split</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Run checksec against the binary:</p>
-<blockquote>
-<p>&gt; [*] '/home/rick/Scrivania/WorkDir/ropemporium/split_challenge/split'<br/>
-    &nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little<br/>
-    &nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO<br/>
-    &nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found<br/>
-    &nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled<br/>
-    &nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)</p>
-</blockquote>
-<p>List all symbols:</p>
-<blockquote>
-<p>&gt; nm split<br/>
-0000000000601072 B __bss_start<br/>
-...<br/>
-0000000000400697 T main<br/>
-...<br/>
-00000000004006e8 t pwnme<br/>
-...<br/>
-0000000000400742 t usefulFunction <br/>
-0000000000601060 D usefulString </p>
-</blockquote>
-<p>Decompiling source …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/split.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">ROP Emporium - ret2win</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Run checksec against the binary:</p>
-<blockquote>
-<p>[*] ret2win<br/>
-    &nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
-    &nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO<br/>
-    &nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found<br/>
-    &nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled<br/>
-    &nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)</p>
-</blockquote>
-<p>List all symbols in the text (code) section:</p>
-<blockquote>
-<p>&gt; nm ret2win &nbsp;| grep '\st\s'<br/>
-00000000004005f0 t deregister_tm_clones  <br/>
-0000000000400660 t __do_global_dtors_aux  <br/>
-0000000000400690 t frame_dummy  <br/>
-00000000004006e8 t pwnme  <br/>
-0000000000400620 t register_tm_clones …</p></blockquote></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2win.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">MAPNA CTF 2024 - ninipwn</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>Running checksec against the binary:</p>
-<blockquote>
-<p>&gt; checksec ./ninipwn<br/>
-[*] './ninipwn'<br/>
-    Arch:     amd64-64-little<br/>
-    RELRO:    Full RELRO<br/>
-    Stack:    <strong>Canary found</strong><br/>
-    NX:       NX enabled<br/>
-    PIE:      PIE enabled  </p>
-</blockquote>
-<p>the binary has all security settings enabled.</p>
-<p>Running the binary with gdb and listing available symbols*:</p>
-<blockquote>
-<p>&gt; gdb ./ninipwn<br/>
-&gt; info symbol // then TAB TAB</p>
-</blockquote>
-<p>Some interesting symbols are found …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ctf/mapna-2024/ninipwn.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html">eJPT-v2 Concepts</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h1 id="information-gathering">Information Gathering</h1>
-<p>Active: actively interacting with systems or individuals to obtain specific information
-Passive: find as much information about a target from public available information</p>
-<h2 id="passive-information-gathering">Passive Information Gathering</h2>
-<h3 id="whois">WHOIS</h3>
-<p>Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee</p>
-<p>when privacy options …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/one-byte.html">Heap Journey - One-Byte</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="remaindering">Remaindering</h2>
-<p>Remaindering refers to the process of splitting one free chunk down into two. This process involves the following steps:</p>
-<ol>
-<li>Unlink the chunk to be split and split it in order to satisfy the requested size</li>
-<li>The part of the split chunk satisfying the request is allocated</li>
-<li>The remaining part …</li></ol></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/one-byte.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-orange.html">Heap Journey - House of Orange</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="unsortedbin-attack">Unsortedbin Attack</h2>
-<p>Chunks from unsorted bins are moved to two particular bins through a process known as <strong>sorting</strong> occurring when calling malloc():</p>
+    <div><h2 id="android">Android</h2>
+<h3 id="architecture">Architecture</h3>
+<p><img alt="android-framework.png" src="https://ojack69.github.io/jacks-corner/images/mobile/cheatsheet/android-framework.png"/></p>
+<p><strong>Kernel</strong>: it's a Linux Kernel. It's the most privileged as well as the hardest to reach. Some of the classic Linux kernel exploits are still applicable.
+It uses as well SELinux.</p>
+<p>It's responsible of the basic systems services:</p>
 <ul>
-<li>smallbins: start right after the unsorted bins into memory layout</li>
-<li>largebins: start right after the smallbins into memory layout</li>
+<li>Memory Management</li>
+<li>Process Management</li>
+<li>Network Stack</li>
+<li>Devices Drivers</li>
 </ul>
-<p><strong>Smallbins</strong> are a collection of double-linked circular lists; there …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-orange.html">
-          Continue reading
-        </a>
+<p><strong>Hardware Abstraction …</strong></p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
+      Continue reading
+    </a>
   </div>
   <hr />
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/safe-unlink.html">Heap Journey - Safe Unlink</a></h2>
+    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
     <p>
 
 
     </p>
   </header>
   <div>
-      <div><h2 id="safe-unlink-technique">Safe Unlink Technique</h2>
-<p>The basic idea is the same as the unsafe unlink, i.e. leverage the unlinking process against itself to perform some mischievous actions. Anyway, there are two main factor to take into account:</p>
+    <div><p>References:</p>
 <ul>
-<li>Being the NX enabled, it's not possible to execute shellcode stored into the heap …</li></ul></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/safe-unlink.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/unsafe-unlink.html">Heap Journey - Unsafe Unlink</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="unsorted-bin">Unsorted Bin</h2>
-<p>The unsorted bin is a unique bin present into each arena which consists into a double-linked circular list i.e. each free chunk in the bin has a fw_pointer and a bk_pointer respectively to the next and previous chunk. The unsorted bin, being only one, holds chunks of …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/unsafe-unlink.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/extra.html">Heap Journey - Extra</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="glibc-mitigations-chatgpt">GLIBC Mitigations (ChatGPT)</h2>
-<h3 id="house-of-force">House of Force:</h3>
-<ul>
-<li><strong>glibc 2.27:</strong> Mitigation introduced to prevent the exploitation of House of Force through checks on top chunk size and alignment.</li>
+<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
 </ul>
-<h3 id="fastbin-duplication">Fastbin Duplication:</h3>
+<p>Useful Resources:</p>
 <ul>
-<li><strong>glibc 2.26:</strong> Mitigation introduced to prevent consecutive small bin allocations, aiming to hinder fastbin duplication attacks.</li>
-<li><strong>glibc 2.32:</strong> Further …</li></ul></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/extra.html">
-          Continue reading
-        </a>
+<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
+</ul>
+<p>List processes:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
+frida-ps<span class="w"> </span>-U
+
+//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Ua
+
+
+//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Uai
+</code></pre></div>
+<p>Connect to process:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
+frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
+
+//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><ul>
+<li goal-group="">Practice</li>
+<li goal-note="Completion 35%">Game of Active Directory Full Lab (GOAD)</li>
+</ul>
+<hr/>
+<ul>
+<li goal-group="">Learning</li>
+<li>Book: Operating Systems - Three Easy Pieces</li>
+<li>Linux Heap Exploitation 2</li>
+</ul>
+<hr/>
+<ul>
+<li goal-group="">Certifications</li>
+<li goal-expire="01/03/2025">CRTA</li>
+<li goal-note="Preparation starts after CRTA">CAPen</li>
+</ul>
+<hr/>
+<ul>
+<li goal-group="">Completed</li>
+<li goal-completed="27/01/2025">CRTA Course</li>
+<li goal-completed="23/01/2025">Tib3rius - Windows Privilege Escalation for OSCP and Beyond</li>
+<li goal-completed="15/01/2025">THM - Active Directory Modules</li>
+<li goal-completed="07/01/2025">PentesterLabs - CRTP Course</li>
+<li goal-completed="06/10/2024">TCM Security Academy - Practical Ethical Hacking (Active Directory)</li>
+<li goal-completed="26/09/2024">Burp Academy …</li></ul></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/personal/goals.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">Windows Privilege Escalation Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="generic-enumeration">Generic Enumeration</h2>
+<p>Run automated checks with various tools:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span><span class="p">&gt;</span>
+
+<span class="c"># winPeas - there are also the PowerShell and BAT version</span>
+<span class="n">reg</span> <span class="n">add</span> <span class="n">HKCU</span><span class="p">\</span><span class="n">Console</span> <span class="p">/</span><span class="n">v</span> <span class="n">VirtualTerminalLevel</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_DWORD</span> <span class="p">/</span><span class="n">d</span> <span class="n">1</span> <span class="c"># Enables colors in terminal - not needed when running winPeas in a reverse shell</span>
+<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe …</span></code></pre></div></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">IDA Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><table>
+<thead>
+<tr>
+<th><strong>Shortcut</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Navigating</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>space</td>
+<td>Toggle between graph view and linear view</td>
+</tr>
+<tr>
+<td>enter (or click)</td>
+<td>Enter a function</td>
+</tr>
+<tr>
+<td>esc</td>
+<td>Return from function, or, back back in navigation history</td>
+</tr>
+<tr>
+<td>ctrl + enter</td>
+<td>Go forwards in navigation history</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Find x-reference</td>
+</tr>
+<tr>
+<td>shift + f12</td>
+<td>Open string window</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Go to address</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Restore zooming (in …</td></tr></tbody></table></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html">Reverse Engineering Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="reverse-engineering-common-strategies">Reverse Engineering Common Strategies</h2>
+<ul>
+<li>Patching assembly</li>
+<li>Tampering registers</li>
+<li>Delete instructions replacing them with a number of <code>nop</code> instructions equal to the size of the deleted instruction in term of bytes.</li>
+</ul>
+<h2 id="fundamentals">Fundamentals</h2>
+<h2 id="data-sizes">Data sizes</h2>
+<p><strong>In x86 terminology/documentation, a "word" is 16 bits</strong> because x86 evolved out of 16-bit 8086.</p>
+<table>
+<thead>
+<tr>
+<th>Term …</th></tr></thead></table></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/web/cheatsheet.html">Web Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="api-testing">API Testing</h2>
+<p>Interesting endpoints: </p>
+<div class="highlight"><pre><span></span><code>/api
+/swagger/index.html
+/openapi.json
+/api/swagger/v1
+/api/swagger
+/openapi/ui/
+</code></pre></div>
+<p>When fuzzing API endpoint via <strong>SSRF</strong> or <strong>Server-Side Parameter Pollution</strong>, it's worth trying to append a <code>%23</code> (URL-Encoded #) to break the URL parsing when the server is appending some stuff AFTER the injected …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/web/cheatsheet.html">
+      Continue reading
+    </a>
   </div>
 </article>
 
   <div class="pagination">
-    <a class="btn float-left" href="https://ojack69.github.io/jacks-corner/author/jack694.html">
-      <i class="fa fa-angle-left"></i> Older Posts
-    </a>
     <a class="btn float-right" href="https://ojack69.github.io/jacks-corner/author/jack692.html">
       Newer Posts <i class="fa fa-angle-right"></i>
     </a>

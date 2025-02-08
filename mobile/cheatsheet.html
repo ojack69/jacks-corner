@@ -675,13 +675,11 @@ adb<span class="w"> </span>shell<span class="w"> </span><span class="s2">"reboot
 <li>https://github.com/ptswarm/reFlutter</li>
 </ul>
 <h4 id="ssl-pinning-bypass">SSL Pinning Bypass</h4>
-<p>Usually with <em>frida</em> you can bypass the SSL pinning using the js
-scripts, but with Flutter is dirrerent.</p>
-<p>You need to load the base address of the .so library and then
-apply your script.</p>
-<p>Pay attention if the app is in Realease or Debug mode. Because
-the name of the .so library is different and will not be found by
-common tools like <em>reflutter</em>.</p>
+<p>Usually with <em>frida</em> you can bypass the SSL pinning using the js scripts, but with Flutter is different.</p>
+<ul>
+<li>You need to load the base address of the .so library and then apply your script.</li>
+</ul>
+<p>Pay attention if the app is in Release or Debug mode. Because the name of the .so library is different and will not be found by common tools like <em>reflutter</em>.</p>
 <div class="highlight"><pre><span></span><code><span class="nd">@override</span>
 <span class="n">HttpClient</span><span class="w"> </span><span class="nf">createHttpClient</span><span class="p">(</span><span class="n">SecurityContext</span><span class="o">?</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kd">super</span><span class="p">.</span><span class="na">createHttpClient</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>

@@ -122,369 +122,84 @@
 
 
 
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
+    <h1 id="categories">Cheatsheets</h1>
   </header>
-  <div>
-      <div><p>Related to: <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></p>
-<h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
-<h3 id="password-spraying">Password Spraying</h3>
-<p>Password spraying remotely with <code>netexec</code>:</p>
-<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;users<span class="w"> </span>list&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password<span class="p">|</span>password<span class="w"> </span>list&gt;<span class="w"> </span>--no-bruteforce
-</code></pre></div>
-<p>Password spraying with <a href="https://github.com/dafthack/DomainPasswordSpray">DomainPasswordSpray</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="c"># On the whole domain</span>
-<span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span>
-
-<span class="c"># Generate a list of users not disabled and not potentially lockable</span>
-<span class="nb">Get-DomainUserList</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain …</span></code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html">eJPT-v2 Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h1 id="information-gathering">Information Gathering</h1>
-<h2 id="website-recon-footprinting">Website Recon &amp; Footprinting</h2>
-<ul>
-<li>IP addresses: <ul>
-<li>DNS: host, dig, nslookup, ping, <a href="https://www.kali.org/tools/dnsrecon/">dnsrecon</a>,<a href="https://dnsdumpster.com">dnsdumpster</a></li>
-<li>whois</li>
-<li>Google Dorks</li>
-</ul>
-</li>
-<li>Network Information:<ul>
-<li>Domains: <a href="https://github.com/aboul3la/Sublist3r">sublist3r</a></li>
-<li>WAF: <a href="https://github.com/EnableSecurity/wafw00f">wafw00f</a></li>
-</ul>
-</li>
-<li>Hidden directories:<ul>
-<li>robots.txt</li>
-<li>sitemap.xml or sitemaps.xml</li>
-<li>Google Dorks</li>
-</ul>
-</li>
-<li>Names:<ul>
-<li>whois</li>
-</ul>
-</li>
-<li>Emails:<ul>
-<li>whois, (theHarvester)[https://github.com/laramies/theHarvester]</li>
-</ul>
-</li>
-<li>Phone numbers:<ul>
-<li>whois</li>
-</ul>
-</li>
-<li>Physical Addresses:<ul>
-<li>whois …</li></ul></li></ul></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">Binary Exploitation Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="enumeration">Enumeration</h2>
-<p>When dealing with shared libraries, use the <code>dynamic</code> flag for <code>nm</code>:</p>
-<div class="highlight"><pre><span></span><code>nm<span class="w"> </span>--dynamic<span class="w"> </span>&lt;shared<span class="w"> </span>lib&gt;
-</code></pre></div>
-<h2 id="mona-script-immunity">Mona Script - Immunity</h2>
-<p>Initialize Mona working folder:</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona config -set workingfolder c:\mona\%p</span>
-</code></pre></div>
-<p>Search the distance of a register from specified cyclic pattern:</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona findmsp -distance &lt;lenght of fuzzed oveflow length&gt;</span>
-</code></pre></div>
-<p>Generate bytearray …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">Misc Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="cracking">Cracking</h2>
-<p>Crack salted SHA512 hash with john the ripper:</p>
-<div class="highlight"><pre><span></span><code>john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt --format='dynamic=sha512($p.$s)'
-</code></pre></div>
-<p>Note: hashes need to be formatted as follow: </p>
-<blockquote>
-<p>hash$salt</p>
-</blockquote>
-<p>Crack a zip archive:</p>
-<div class="highlight"><pre><span></span><code>fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip
-</code></pre></div>
-<h2 id="fingerprinting">Fingerprinting</h2>
-<h3 id="wordpress">Wordpress …</h3></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">PowerShell Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="common">Common</h2>
-<p>PowerShell Execution Policy bypass:</p>
-<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">ExecutionPolicy</span> <span class="n">bypass</span>
-<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">c</span> <span class="p">&lt;</span><span class="n">cmd</span><span class="p">&gt;</span>
-<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">encodedcommand</span>
-<span class="nv">$env:PSExecutionPolicyPreference</span><span class="p">=</span><span class="s2">"bypass"</span>
-</code></pre></div>
-<p>*Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts.</p>
-<p>Check <code>LanguageMode</code> in current <code>ExecutionContenxt</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">LanguageMode</span>
-</code></pre></div>
-<p>Import a module:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">&lt;</span><span class="n">modulepath</span><span class="p">&gt;</span>
-</code></pre></div>
-<p>List commands in a …</p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">ADB Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="activities-services-content-providers-broadcast-receivers">Activities, Services, Content Providers, Broadcast Receivers</h2>
-<p>Start Activity by name:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="w"> </span>-n<span class="w"> </span>com.android.insecurebankv2/.WrongLogin
-</code></pre></div>
-<p>Start Activity by deeplink:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="w"> </span>-W<span class="w"> </span><span class="s2">"[schema]://[host]/[path][?queryParams]"</span>
-</code></pre></div>
-<p>Start Activity Intent:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="p">|</span>startservice<span class="p">|</span>broadcast<span class="w"> </span>&lt;INTENT&gt;<span class="o">[</span>&lt;COMPONENT&gt;<span class="o">]</span>
--a<span class="w"> </span>&lt;ACTION&gt;<span class="w"> </span>e.g.<span class="w"> </span>android.intent.action …</code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">Mobile Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="android">Android</h2>
-<h3 id="architecture">Architecture</h3>
-<p><img alt="android-framework.png" src="https://ojack69.github.io/jacks-corner/images/mobile/cheatsheet/android-framework.png"/></p>
-<p><strong>Kernel</strong>: it's a Linux Kernel. It's the most privileged as well as the hardest to reach. Some of the classic Linux kernel exploits are still applicable.
-It uses as well SELinux.</p>
-<p>It's responsible of the basic systems services:</p>
-<ul>
-<li>Memory Management</li>
-<li>Process Management</li>
-<li>Network Stack</li>
-<li>Devices Drivers</li>
-</ul>
-<p><strong>Hardware Abstraction …</strong></p></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><p>References:</p>
-<ul>
-<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
-</ul>
-<p>Useful Resources:</p>
-<ul>
-<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
-</ul>
-<p>List processes:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
-frida-ps<span class="w"> </span>-U
-
-//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Ua
-
-
-//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Uai
-</code></pre></div>
-<p>Connect to process:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
-frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
-
-//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">Windows Privilege Escalation Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><h2 id="generic-enumeration">Generic Enumeration</h2>
-<p>Run automated checks with various tools:</p>
-<div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
-<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
-<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span><span class="p">&gt;</span>
-
-<span class="c"># winPeas - there are also the PowerShell and BAT version</span>
-<span class="n">reg</span> <span class="n">add</span> <span class="n">HKCU</span><span class="p">\</span><span class="n">Console</span> <span class="p">/</span><span class="n">v</span> <span class="n">VirtualTerminalLevel</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_DWORD</span> <span class="p">/</span><span class="n">d</span> <span class="n">1</span> <span class="c"># Enables colors in terminal - not needed when running winPeas in a reverse shell</span>
-<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe …</span></code></pre></div></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
-          Continue reading
-        </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">IDA Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-      <div><table>
-<thead>
-<tr>
-<th><strong>Shortcut</strong></th>
-<th><strong>Description</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>Navigating</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>space</td>
-<td>Toggle between graph view and linear view</td>
-</tr>
-<tr>
-<td>enter (or click)</td>
-<td>Enter a function</td>
-</tr>
-<tr>
-<td>esc</td>
-<td>Return from function, or, back back in navigation history</td>
-</tr>
-<tr>
-<td>ctrl + enter</td>
-<td>Go forwards in navigation history</td>
-</tr>
-<tr>
-<td>x</td>
-<td>Find x-reference</td>
-</tr>
-<tr>
-<td>shift + f12</td>
-<td>Open string window</td>
-</tr>
-<tr>
-<td>g</td>
-<td>Go to address</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Restore zooming (in …</td></tr></tbody></table></div>
-        <br>
-        <a class="btn"
-           href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">
-          Continue reading
-        </a>
+  <br>
+  <div class="categories-container">
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
+      <b>Active Directory Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html">
+      <b>eJPT-v2 Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
+      <b>Binary Exploitation Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">
+      <b>Misc Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">
+      <b>PowerShell Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">
+      <b>ADB Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
+      <b>Mobile Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
+      <b>Frida & Objection Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
+      <b>Windows Privilege Escalation Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">
+      <b>IDA Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html">
+      <b>Reverse Engineering Cheatsheet</b>
+    </a>
+    <a class="category-item"
+      href="https://ojack69.github.io/jacks-corner/web/cheatsheet.html">
+      <b>Web Cheatsheet</b>
+    </a>
   </div>
 </article>
+<style>
+  .categories-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .category-item {
+    flex: 1 0 21%;
+    margin: 5px;
+    height: 100px;
+    color: #d9411e;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    text-align: center;
+    align-content: center;
+    -webkit-box-shadow: 5px 5px 15px 5px #000000;
+    box-shadow: 1px 1px 3px 1px #000000;
+  }
+</style>
 
   <div class="pagination">
-    <a class="btn float-left" href="https://ojack69.github.io/jacks-corner/category/cheatsheet2.html">
-      <i class="fa fa-angle-left"></i> Older Posts
-    </a>
   </div>
 
 
