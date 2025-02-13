@@ -923,7 +923,7 @@ https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
 <p>Some considerations:</p>
 <ul>
 <li>Since step 1 (AS_REQ) and 2 (AS_REP) in Kerberos authentication flow are bypassed, there's no need to know the password hash for the user to be impersonated.</li>
-<li>The user presented in step 3 will be validated by the KDC only if the timestamp presented along it is older than 20 minutes. This means that it can be a disabled, deleted, or non-existent account, and it will be valid as long as we ensure the timestamp is not older than 20 minutes.</li>
+<li>The user presented in step 3 will be validated by the KDC only if the timestamp presented along it is older than 20 minutes. This means that it can be a disabled, deleted, or non-existent* account, and it will be valid as long as we ensure the timestamp is not older than 20 minutes.</li>
 <li>Since the policies and rules for tickets are set in the TGT itself, it's possible to overwrite the values pushed by the KDC, such as the ticket validity time.</li>
 <li>By default, the <strong>krbtgt</strong> account's password never changes, unless it is manually rotated,</li>
 <li>When rotating <strong>krbtgt</strong> account's password, it must be rotated twice, since <strong>the current and previous passwords</strong> are kept valid for the account. This is to ensure that accidental rotation of the password does not impact services.</li>
@@ -936,7 +936,7 @@ https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
 <p>Some considerations:</p>
 <ul>
 <li>Since the TGS is forged, there is no associated TGT, meaning the DC was never contacted (i.e, starting from step AP_REQ). This makes the attack incredibly dangerous since the only available logs would be on the targeted server. So while the scope is more limited, it is significantly harder for the blue team to detect.</li>
-<li>Since permissions are determined through SIDs, it's possible to create a non-existing user for our silver ticket, as long as we ensure the ticket has the relevant SIDs that would place the user in the host's local administrators group.</li>
+<li>Since permissions are determined through SIDs, it's possible to create a non-existing user * for our silver ticket, as long as we ensure the ticket has the relevant SIDs that would place the user in the host's local administrators group.</li>
 <li>The machine account's password is usually rotated every 30 days, which would not be good for persistence. <ul>
 <li>It could be possible to use a forged TGS to access to the target host and alter the parameter in the registry that is responsible for the password rotation of the machine account. Thereby ensuring the machine account remains static and granting persistence on the machine.</li>
 </ul>
@@ -944,6 +944,8 @@ https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
 <li>Machine accounts can be used as normal AD accounts, allowing not only administrative access to the host but also the means to continue enumerating and exploiting AD as you would with an AD user account.</li>
 </ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#golden-silver-tickets">Active Directory Cheatsheet - Golden &amp; Silver Tickets</a>.</p>
+<p>*Note: When forging tickets, before November 2021 updates, the username supplied was mostly useless. As of Nov. 2021 updates, if the username supplied doesn't exist in Active Directory, the ticket gets rejected. This applies to Golden &amp; Silver Tickets.</p>
+<p>TODO: Diamond tickets &amp; Sapphire Tickets</p>
 <h3 id="dc-sync">DC Sync</h3>
 <p>A large organization can require multiple Domain Controllers:</p>
 <ul>

