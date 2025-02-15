@@ -759,8 +759,7 @@ method by removing permission for Authenticated Users group.</p>
 </ul>
 <p><strong>Note</strong>: Microsoft has released a patch for PetitPotam (CVE-2021-36942), but only for two of the methods <code>EfsRpcOpenFileRaw</code> and <code>EfsRpcEncryptFileSrv</code>.</p>
 <p><strong>PrivExchange</strong>: Exchange can be tricked into authenticating to an attacker-controlled machine via NTLM, which can then be relayed to escalate privileges. This is done by simply loggin in on Exchange Web Services and subscribe to push notifications. This will make Exchange connect back to the attacker machine and authenticate as system.</p>
-<p>These flaws can be abused in combination with Unconstrained Delegation in order to dump the machine account TGT and use it in a pass-the-ticket attack.
-See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberos-delegation">Active Directory Cheatsheet - Kerberos Delegation</a>.</p>
+<p>These flaws can be abused in combination with Unconstrained Delegation in order to dump the machine account TGT and use it in a pass-the-ticket attack.</p>
 <h4 id="constrained-delegation_1">Constrained Delegation</h4>
 <p>In the <strong>Constrained Delegation</strong>, the service can only impersonate the user to specific services that are explicitly defined, limiting the scope of delegation. </p>
 <p>Even though the user is not using Kerberos Authentication for the SS1, it could be possible to transition the request to Kerberos by the mean of a <strong>Protocol Transition</strong> process.</p>
@@ -793,6 +792,7 @@ See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberos-
 <h4 id="resource-based-constrained-delegation">Resource-Based Constrained Delegation</h4>
 <p>TODO
 https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
+<p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberos-delegation">Active Directory Cheatsheet - Kerberos Delegation</a>.</p>
 <h4 id="mitigations_7">Mitigations</h4>
 <ul>
 <li>Limit Domain Admin and Administrator logins to non DC servers or to specific servers.</li>
