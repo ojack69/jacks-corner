@@ -798,6 +798,7 @@ method by removing permission for Authenticated Users group.</p>
 <ul>
 <li>If the attacker wants to impersonate a different user, he can't use <strong>S4USelf</strong> since it will produce a <strong>non-forwardable TGS</strong>.</li>
 <li><strong>Resource-Based Constrained Delegation</strong> can be used to obtain a forwardable TGS.</li>
+<li><strong>CVE-2020-17049</strong> (Bronze bit) can be used to force the <code>forwardable</code> flag of a ticket to true.</li>
 </ul>
 <h4 id="resource-based-constrained-delegation-rbcd">Resource-Based Constrained Delegation (RBCD)</h4>
 <p>Resource-Based Constrained Delegation (RBCD) was introduced with Windows Server 2012 R2; it adds more flexibility and granular control on the permission delegation by mean of the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code>.</p>
@@ -818,6 +819,7 @@ method by removing permission for Authenticated Users group.</p>
 <li>The attacker uses the TGS to authenticate against the target host as Administrator.</li>
 </ol>
 <p><strong>Note</strong>: RBCD works <strong>across domain trusts</strong>!</p>
+<p>After patching CVE-2020-17049 and CVE-2020-16996, members of Protected Users group are not vulnerable to delegation even though the "sensitive and cannot be delegated" flag is disabled. However, the native <code>Administrator</code> account (RID 500) doesn't seem to benefit from that restriction, even if it's added to the Protected Users group!</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberos-delegation">Active Directory Cheatsheet - Kerberos Delegation</a>.</p>
 <h4 id="mitigations_7">Mitigations</h4>
 <ul>
