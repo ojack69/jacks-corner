@@ -766,6 +766,7 @@ method by removing permission for Authenticated Users group.</p>
 <ul>
 <li><strong>The attack</strong>: By compromising the service account or, even better a machine account. with constrained delegation enabled, it's possible for an attacker to authenticate against allowed services as <strong>any user</strong>!</li>
 </ul>
+<p><strong>Note</strong>: Constrained Delegation only works within the same domain (cannot delegate across domain trusts). Moreover, it needs Domain Admin privileges to be set.</p>
 <p>To allow <strong>constrained delegation</strong>, the Kerberos' extensions <strong>Service for User to Proxy (S4U2proxy)</strong> and <strong>Service for User to Self (S4U2self)</strong>, collectively known as Service for User (S4U), were introduced from Windows Server 2012. </p>
 <ul>
 <li><strong>Service for User to Self (S4U2self)</strong>: allows a service to obtain a TGS to itself on behalf of a user without the need of supplying any password. The service account must have the <code>TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION &ndash; T2A4D UserAccountControl</code> attribute. This extension allows to perform the <strong>protocol transition</strong>.</li>
@@ -799,8 +800,24 @@ method by removing permission for Authenticated Users group.</p>
 <li><strong>Resource-Based Constrained Delegation</strong> can be used to obtain a forwardable TGS.</li>
 </ul>
 <h4 id="resource-based-constrained-delegation-rbcd">Resource-Based Constrained Delegation (RBCD)</h4>
-<p>TODO
-https://stealthbits.com/blog/resource-based-constrained-delegation-abuse/</p>
+<p>Resource-Based Constrained Delegation (RBCD) was introduced with Windows Server 2012 R2; it adds more flexibility and granular control on the permission delegation by mean of the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code>.</p>
+<ul>
+<li>Differently from Constrained Delegation's <code>msDS-AllowedToDelegateTo</code>, which is set on the <strong>delegating service account</strong>, the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> <strong>is set on the target service</strong>.</li>
+<li><code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> it's a security descriptor that controls which front-end service can use <strong>S4U2Proxy</strong> to request tickets for users to access the target service.</li>
+<li>Unlike traditional <strong>Constrained Delegation</strong>, this does not require Domain Admin rights&mdash;it <strong>can be modified by the owner of the target service</strong>.</li>
+<li>If <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> is set on a <strong>computer account</strong>, delegation is allowed to any service running on that machine. If it is set on a <strong>service account</strong>, only that specific service can receive the delegated authentication.</li>
+</ul>
+<p><strong>The attack</strong>: Since no Domain Admins privileges are required, when a user has GenericWrite or WriteAccountRestrictions permissions (or is the owner) of a target service/machine account, it&rsquo;s possible to modify its <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute so that it contains another attacker controlled computer object.</p>
+<p>Attacking a <strong>machine account</strong>:</p>
+<ol>
+<li>An attacker compromises a domain user with enough privileges for the target host.</li>
+<li>The attacker creates his own machine account (or compromises an existing one). When doing this, consider the <code>msDS-MachineAccountQuota</code> on the domain object; this defines the max number of machine account that is possible to add to a domain.</li>
+<li>The attacker modifies the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute on the targeted machine account adding his newly created machine account.</li>
+<li>The attacker requests a <strong>forwardable TGS</strong> for an administrative user, by utilizing the controlled machine account.</li>
+<li>The attacker requests a TGS for an administrative user on the target host through <code>S4UProxy</code>.</li>
+<li>The attacker uses the TGS to authenticate against the target host as Administrator.</li>
+</ol>
+<p><strong>Note</strong>: RBCD works <strong>across domain trusts</strong>!</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberos-delegation">Active Directory Cheatsheet - Kerberos Delegation</a>.</p>
 <h4 id="mitigations_7">Mitigations</h4>
 <ul>
