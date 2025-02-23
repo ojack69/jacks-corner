@@ -1257,6 +1257,7 @@ method by removing permission for Authenticated Users group.</p>
 <p><strong>Requirements</strong>:
 - <strong>REQ1</strong>: If <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code> is set on the CA, any request can have user defined values in the subject alternative name. </p>
 <p><strong>The attack</strong>: This means that an attacker can enroll in ANY template configured for domain authentication (eg. the default <strong>User</strong> template) and obtain a certificate that allows authenticating as any other user.</p>
+<p><strong>Note</strong>: this attack is not working anymore since May 2022 due the patch for <strong>CVE-2022&ndash;26923</strong>.</p>
 <h4 id="vulnerable-certificate-authority-access-control-esc7">Vulnerable Certificate Authority Access Control - ESC7</h4>
 <p><strong>Requirements</strong>:</p>
 <ul>
