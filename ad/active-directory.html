@@ -1229,7 +1229,7 @@ method by removing permission for Authenticated Users group.</p>
 <li><strong>CONDITION2</strong>: another template permits a low privileged user to use the enrollment agent certificate to request a certificate on behalf of another user, and the template defines an EKU that allows for <strong>domain authentication</strong>.<ul>
 <li><strong>REQ1-2</strong>: same as for <strong>ESC1</strong>.</li>
 <li><strong>REQ3</strong>: the template schema version is <strong>1</strong> or is <strong>greater than 2</strong> .</li>
-<li><strong>REQ4</strong>: the Application Policy for this template requires the <code>Certificate Request Agent</code> EKU</li>
+<li><strong>REQ4</strong>: the <strong>Application Policy</strong> for this template requires the <code>Certificate Request Agent</code> EKU </li>
 <li><strong>REQ5</strong>: same as for ESC1 -  has EKUs that enable domain authentication.</li>
 <li><strong>REQ6</strong>: Enrollment agent restrictions on the CA is set to <code>Do not restrict enrollment agents</code> or to <code>Restrict enrollment agent</code> but with the default configuration (allows <em>Everyone</em>).<ul>
 <li><code>certsrc.msc snap-in &rarr; right clicking on the &rarr; clicking Properties &rarr; navigating to the &ldquo;Enrollment Agents&rdquo; tab</code></li>
@@ -1239,6 +1239,7 @@ method by removing permission for Authenticated Users group.</p>
 </li>
 </ul>
 <p><strong>The attack</strong>: request an enrollment agent certificate (CONDITION1) &rarr; use the enrollment agent certificate to issue a certificate request on behalf of another to a template that allow for domain authentication (CONDITION2) &rarr; use the resulting certificate to request a TGT.</p>
+<p><strong>Note</strong>: a certificate vulnerable to <strong>ESC2</strong> is also suitable for <strong>CONDITION1</strong> if it's enabled as enrollment agent!</p>
 <h4 id="vulnerable-certificate-template-access-control-esc4">Vulnerable Certificate Template Access Control - ESC4</h4>
 <p>A certificate template is misconfigured at the access control level if it has ACEs that allow unintended, or otherwise unprivileged, AD principals to edit sensitive security settings in the template.</p>
 <p><strong>Requirements</strong>:</p>
@@ -1268,7 +1269,8 @@ method by removing permission for Authenticated Users group.</p>
 </ul>
 </li>
 </ul>
-<p><strong>The attack</strong>: when <strong>REQ1</strong> is satisfied, the user can enable the <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code> flag i.e. enable the <strong>ESC6</strong>. Moreover, when the <strong>REQ2</strong> is satisfied, the user has the ability to remotely approve pending certificate requests; this allows an attacker to <strong>subvert the "CA certificate manager approval" protection</strong>.</p>
+<p><strong>The attack</strong>: when <strong>REQ1</strong> is satisfied, the user can enable the <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code> flag i.e. enable the <strong>ESC6</strong>. Moreover, when the <strong>REQ2</strong> is satisfied, the user has the ability to remotely approve pending certificate requests; this allows an attacker to <strong>subvert the "CA certificate manager approval" protection</strong>.
+Moreover, a user with <code>Manage CA</code> access right, can grant itself the <code>Manage Certificates</code> access right.</p>
 <h4 id="ntlm-relay-to-ad-cs-http-endpoints-esc8">NTLM Relay to AD CS HTTP Endpoints &ndash; ESC8</h4>
 <p>AD CS supports several HTTP-based enrollment methods via additional AD CS server roles that administrators can install. Using NTLM relay, an attacker could access these web interfaces and request a client authentication certificate based on the User or Machine certificate templates.</p>
 <p>This is possible since these endpoints do not have nay NTLM relay protections enabled:</p>
@@ -1280,7 +1282,7 @@ method by removing permission for Authenticated Users group.</p>
 </li>
 <li>It's possible to use common <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html#coerced-authentications">Coreced Authentications</a> methods to request a certificate from a template with <strong>domain computer enrollment</strong> and <strong>client authentication</strong> such as the default <strong>Machine</strong> template to compromised <strong>any computer</strong> coerced.</li>
 </ul>
-<p>TODO: persistence techniques</p>
+<p>TODO: persistence techniques, CVE-2022&ndash;26923, ESC9, ESC10, ESC11, shadow credentials, golden certificate</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#active-directory-certificate-services-ad-cs">Active Directory Cheatsheet - Active Directory Certificate Services (AD CS)</a>.</p>
 <h3 id="group-nesting_1">Group Nesting</h3>
 <p><strong>Group Nesting</strong> is used to create a more organised structure in AD by mean of <strong>recursive groups</strong>. A recursive group is a group that is a member of another group. </p>
