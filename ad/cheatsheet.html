@@ -408,7 +408,6 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w">
 <li>Click on <strong>View</strong> -&gt; <strong>Advanced Features</strong></li>
 </ol>
 <h3 id="ldap">LDAP</h3>
-<p>Refer to <a href="https://podalirius.net/en/articles/useful-ldap-queries-for-windows-active-directory-pentesting/">this</a> for common LDAP queries for Active Directory Pentesting.</p>
 <p>Use <code>ldapsearch</code> to run queries against a DC:</p>
 <div class="highlight"><pre><span></span><code>ldapsearch<span class="w"> </span>-H<span class="w"> </span>ldap://&lt;dc<span class="w"> </span>ip&gt;<span class="w"> </span>-D<span class="w"> </span><span class="s2">"&lt;user&gt;@&lt;domain FQDN&gt;"</span><span class="w"> </span>-w<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-b<span class="w"> </span><span class="s1">'&lt;base DN&gt;'</span><span class="w"> </span><span class="s1">'&lt;query&gt;'</span>
 </code></pre></div>
@@ -417,6 +416,55 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w">
 <div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--query<span class="w"> </span>&lt;query&gt;<span class="w"> </span>&lt;filter&gt;
 </code></pre></div>
 <p><strong>Note</strong>: <code>&lt;filter&gt;</code> is the list of attributes to retrieve; empty for all.</p>
+<p>Common LDAP queries for Active Directory Pentesting (source <a href="https://podalirius.net/en/articles/useful-ldap-queries-for-windows-active-directory-pentesting/">here - no more accessible</a> ):</p>
+<div class="highlight"><pre><span></span><code><span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nf">users</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">person</span><span class="p">)(</span><span class="nv">objectClass</span><span class="o">=</span><span class="nv">user</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">kerberoastables</span><span class="w"> </span><span class="nf">users</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectClass</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="nv">servicePrincipalName</span><span class="o">=*</span><span class="p">)(</span><span class="o">!</span><span class="p">(</span><span class="nv">cn</span><span class="o">=</span><span class="nv">krbtgt</span><span class="p">))(</span><span class="o">!</span><span class="p">(</span><span class="nv">userAccountControl</span><span class="o">:</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">840.113556</span><span class="o">.</span><span class="mf">1.4</span><span class="o">.</span><span class="mi">803</span><span class="o">:=</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">asrep</span><span class="o">-</span><span class="nv">roastables</span><span class="w"> </span><span class="nf">users</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectClass</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="nv">userAccountControl</span><span class="o">:</span><span class="mf">1.2</span><span class="o">.</span><span class="mf">840.113556</span><span class="o">.</span><span class="mf">1.4</span><span class="o">.</span><span class="mi">803</span><span class="o">:=</span><span class="mi">4194304</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">Find</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">Users</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">need</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nv">change</span><span class="w"> </span><span class="nv">password</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">next</span><span class="w"> </span><span class="nf">login</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="nv">pwdLastSet</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">Find</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">Users</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">are</span><span class="w"> </span><span class="nv">almost</span><span class="w"> </span><span class="nv">Locked</span><span class="o">-</span><span class="nf">Out</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="nv">badPwdCount</span><span class="o">&gt;=</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">Find</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">Users</span><span class="w"> </span><span class="nv">with</span><span class="w"> </span><span class="o">*</span><span class="nv">pass</span><span class="o">*</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="o">*</span><span class="nv">pwd</span><span class="o">*</span><span class="w"> </span><span class="nv">in</span><span class="w"> </span><span class="nv">their</span><span class="w"> </span><span class="nf">description</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="o">|</span><span class="p">(</span><span class="nv">description</span><span class="o">=*</span><span class="nv">pass</span><span class="o">*</span><span class="p">)(</span><span class="nv">description</span><span class="o">=*</span><span class="nv">pwd</span><span class="o">*</span><span class="p">)))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">users</span><span class="w"> </span><span class="nv">protected</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nf">adminCount</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">user</span><span class="p">)(</span><span class="nv">adminCount</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nf">groups</span>
+<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">group</span><span class="p">)</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">List</span><span class="w"> </span><span class="nv">of</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nv">groups</span><span class="w"> </span><span class="nv">protected</span><span class="w"> </span><span class="nv">by</span><span class="w"> </span><span class="nf">adminCount</span>
+<span class="p">(</span>&amp;<span class="p">(</span><span class="nv">objectCategory</span><span class="o">=</span><span class="nv">group</span><span class="p">)(</span><span class="nv">adminCount</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">Listing</span><span class="w"> </span><span class="nv">all</span><span class="w"> </span><span class="nf">servicePrincipalName</span>
+<span class="p">(</span><span class="nv">servicePrincipalName</span><span class="o">=*</span><span class="p">)</span>
+
+<span class="o">#</span><span class="w"> </span><span class="nv">Listing</span><span class="w"> </span><span class="nv">specific</span><span class="w"> </span><span class="nv">services</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="nv">their</span><span class="w"> </span><span class="nf">servicePrincipalName</span>
+<span class="p">(</span><span class="nv">servicePrincipalName</span><span class="o">=</span><span class="nv">http</span><span class="cm">/*)</span>
+<span class="cm">(servicePrincipalName=ldap/*)</span>
+<span class="cm">(servicePrincipalName=kadmin/*)</span>
+<span class="cm">(servicePrincipalName=mssqlsvc/*)</span>
+
+<span class="cm"># Listing all computers with a given Operating System</span>
+<span class="cm">(&amp;(objectCategory=Computer)(operatingSystem=&lt;OS version&gt;*))</span>
+
+<span class="cm"># Find all Workstations</span>
+<span class="cm">(sAMAccountType=805306369)</span>
+
+<span class="cm"># Find all computers having a KeyCredentialLink</span>
+<span class="cm">(&amp;(objectClass=computer)(msDS-KeyCredentialLink=*))</span>
+
+<span class="cm"># Find all computers having an Obsolete OS</span>
+<span class="cm">(&amp;(objectCategory=Computer)(|(operatingSystem=Windows 2000*)(operatingSystem=Windows Vista*)(operatingSystem=Windows XP*)(operatingSystem=Windows 7*)(operatingSystem=Windows 8*)(operatingSystem=Windows Server 200*)(operatingSystem=Windows Server 2012*)))</span>
+</code></pre></div>
 <h3 id="command-line-enumeration">Command Line Enumeration</h3>
 <p>List all registered SPNs in a DC:</p>
 <div class="highlight"><pre><span></span><code>setspn<span class="w"> </span>-T<span class="w"> </span>&lt;domain&gt;<span class="w"> </span>-Q<span class="w"> </span>*/*
