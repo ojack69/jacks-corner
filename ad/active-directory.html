@@ -723,7 +723,10 @@ method by removing permission for Authenticated Users group.</p>
 <li>The SPN set can be anything - does not to have sense at all. <strong>It must just be unique in the domain</strong>!</li>
 </ul>
 <h4 id="targeted-kerberoasting">Targeted Kerberoasting</h4>
-<p>TODO</p>
+<p>When a user  has a <code>GenericAll</code>, <code>GenericWrite</code>, <code>WriteProperty</code> or <code>Validated-SPN</code> over a target user, it's possible to abuse these rights on the target user by making it vulnerable to Kerberoasting.</p>
+<ul>
+<li>This is simply done by adding a temporary SPN, perform a classic Kerberoasting attack  and then remove the SPN.</li>
+</ul>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#kerberoasting">Active Directory Cheatsheet - Kerberoasting</a>.</p>
 <h4 id="mitigations_6">Mitigations</h4>
 <ul>
