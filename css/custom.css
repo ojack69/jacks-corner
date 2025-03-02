@@ -44,6 +44,20 @@ table, td, th
     border: 1px solid;
 }
 
+nav.fixed{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.light-theme nav.fixed {
+    background-color: white;
+}
+
+.dark-theme nav.fixed {
+    background-color: #333;
+}
+
 @media (max-width: 399px) {
     main article{
         padding: 2%;
