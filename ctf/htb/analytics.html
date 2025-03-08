@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Analytics Analytics is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: nmap -sC -sV -oN analytics.nmap 10.10.11.233 Nmap scan report for 10.10.11.233 Host is up (0.046s latency …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Analytics"/>
+  <meta property="og:description" content="Analytics Analytics is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting The first step has been to enumerate active ports and associated services. Enumerate all opened (TCP) ports: nmap -sC -sV -oN analytics.nmap 10.10.11.233 Nmap scan report for 10.10.11.233 Host is up (0.046s latency …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/analytics.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-01-10 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Analytics</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/analytics">CTF: HackTheBox Analytics</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#analytics" title="Analytics">Analytics</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a></li><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="analytics">Analytics</h2>
+<p>Analytics is an "Easy" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<p>The first step has been to enumerate active ports and associated services.</p>
+<p>Enumerate all opened (TCP) ports:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">nmap</span><span class="w"> </span><span class="nt">-sC</span><span class="w"> </span><span class="nt">-sV</span><span class="w"> </span><span class="nt">-oN</span><span class="w"> </span><span class="nt">analytics</span><span class="p">.</span><span class="nc">nmap</span><span class="w"> </span><span class="nt">10</span><span class="p">.</span><span class="nc">10</span><span class="p">.</span><span class="nc">11</span><span class="p">.</span><span class="nc">233</span><span class="w">  </span>
+
+<span class="nt">Nmap</span><span class="w"> </span><span class="nt">scan</span><span class="w"> </span><span class="nt">report</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nt">10</span><span class="p">.</span><span class="nc">10</span><span class="p">.</span><span class="nc">11</span><span class="p">.</span><span class="nc">233</span><span class="w">  </span>
+<span class="nt">Host</span><span class="w"> </span><span class="nt">is</span><span class="w"> </span><span class="nt">up</span><span class="w"> </span><span class="o">(</span><span class="nt">0</span><span class="p">.</span><span class="nc">046s</span><span class="w"> </span><span class="nt">latency</span><span class="o">).</span><span class="w">  </span>
+<span class="nt">Not</span><span class="w"> </span><span class="nt">shown</span><span class="o">:</span><span class="w"> </span><span class="nt">998</span><span class="w"> </span><span class="nt">closed</span><span class="w"> </span><span class="nt">tcp</span><span class="w"> </span><span class="nt">ports</span><span class="w"> </span><span class="o">(</span><span class="nt">reset</span><span class="o">)</span><span class="w">  </span>
+<span class="nt">PORT</span><span class="w">   </span><span class="nt">STATE</span><span class="w"> </span><span class="nt">SERVICE</span><span class="w"> </span><span class="nt">VERSION</span><span class="w">  </span>
+<span class="nt">22</span><span class="o">/</span><span class="nt">tcp</span><span class="w"> </span><span class="nt">open</span><span class="w">  </span><span class="nt">ssh</span><span class="w">     </span><span class="nt">OpenSSH</span><span class="w"> </span><span class="nt">8</span><span class="p">.</span><span class="nc">9p1</span><span class="w"> </span><span class="nt">Ubuntu</span><span class="w"> </span><span class="nt">3ubuntu0</span><span class="p">.</span><span class="nc">4</span><span class="w"> </span><span class="o">(</span><span class="nt">Ubuntu</span><span class="w"> </span><span class="nt">Linux</span><span class="o">;</span><span class="w"> </span><span class="nt">protocol</span><span class="w"> </span><span class="nt">2</span><span class="p">.</span><span class="nc">0</span><span class="o">)</span><span class="w">  </span>
+<span class="o">...</span><span class="w">  </span>
+<span class="nt">80</span><span class="o">/</span><span class="nt">tcp</span><span class="w"> </span><span class="nt">open</span><span class="w">  </span><span class="nt">http</span><span class="w">    </span><span class="nt">nginx</span><span class="w"> </span><span class="nt">1</span><span class="p">.</span><span class="nc">18</span><span class="p">.</span><span class="nc">0</span><span class="w"> </span><span class="o">(</span><span class="nt">Ubuntu</span><span class="o">)</span><span class="w">  </span>
+<span class="o">|</span><span class="nt">_http-title</span><span class="o">:</span><span class="w"> </span><span class="nt">Did</span><span class="w"> </span><span class="nt">not</span><span class="w"> </span><span class="nt">follow</span><span class="w"> </span><span class="nt">redirect</span><span class="w"> </span><span class="nt">to</span><span class="w"> </span><span class="nt">http</span><span class="o">://</span><span class="nt">analytical</span><span class="p">.</span><span class="nc">htb</span><span class="o">/</span><span class="w">  </span>
+<span class="o">|</span><span class="nt">_http-server-header</span><span class="o">:</span><span class="w"> </span><span class="nt">nginx</span><span class="o">/</span><span class="nt">1</span><span class="p">.</span><span class="nc">18</span><span class="p">.</span><span class="nc">0</span><span class="w"> </span><span class="o">(</span><span class="nt">Ubuntu</span><span class="o">)</span><span class="w">  </span>
+<span class="nt">Service</span><span class="w"> </span><span class="nt">Info</span><span class="o">:</span><span class="w"> </span><span class="nt">OS</span><span class="o">:</span><span class="w"> </span><span class="nt">Linux</span><span class="o">;</span><span class="w"> </span><span class="nt">CPE</span><span class="o">:</span><span class="w"> </span><span class="nt">cpe</span><span class="o">:/</span><span class="nt">o</span><span class="p">:</span><span class="nd">linux</span><span class="p">:</span><span class="nd">linux_kernel</span><span class="w">  </span>
+
+<span class="nt">Ports</span><span class="w"> </span><span class="nt">open</span><span class="w"> </span><span class="nt">are</span><span class="w"> </span><span class="nt">22</span><span class="w"> </span><span class="nt">and</span><span class="w"> </span><span class="nt">80</span><span class="w"> </span><span class="o">;</span><span class="w"> </span><span class="nt">the</span><span class="w"> </span><span class="s2">"analytical.htb"</span><span class="w"> </span><span class="nt">domain</span><span class="w"> </span><span class="nt">is</span><span class="w"> </span><span class="nt">added</span><span class="w"> </span><span class="nt">to</span><span class="w"> </span><span class="o">/</span><span class="nt">etc</span><span class="o">/</span><span class="nt">hosts</span><span class="o">.</span>
+</code></pre></div>
+<p>A corporate landing page is presented:</p>
+<p><img alt="analytical-home.png" src="http://localhost:1337/images/ctf/htb/machines/analytics/analytical-home.png"/></p>
+<p>The login menu link redirects to a subdomain:</p>
+<blockquote>
+<p>data.analytical.htb</p>
+</blockquote>
+<p>which is added to /etc/hosts.</p>
+<h3 id="foothold">Foothold</h3>
+<p>On this subdomain, a "Metabase" instance is hosted:</p>
+<p><img alt="metabase-login.png" src="http://localhost:1337/images/ctf/htb/machines/analytics/metabase-login.png"/></p>
+<p>There are <a href="https://www.cvedetails.com/vulnerability-list/vendor_id-19475/product_id-51231/Metabase-Metabase.html">multiple CVE</a> affecting this application, allowing an attacker to perform remote command execution.</p>
+<p>A metasploit module for CVE 2023-38646 is available:</p>
+<p><img alt="metabase-msf-exploit.png" src="http://localhost:1337/images/ctf/htb/machines/analytics/metabase-msf-exploit.png"/></p>
+<p>A reverse shell to a docker instance instance is obtained; after some basic enumeration, some credentials are found in user environment:</p>
+<p><img alt="metalitics-docker-env.png" src="http://localhost:1337/images/ctf/htb/machines/analytics/metalitics-docker-env.png"/></p>
+<blockquote>
+<p>metalytics : An4lytics_ds20223#</p>
+</blockquote>
+<p>These credentials are used to ssh as "metalytics" user:</p>
+<p><img alt="metalytical-ssh.png" src="http://localhost:1337/images/ctf/htb/machines/analytics/metalytical-ssh.png"/></p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>After some enumeration, no privilege escalation vector is found by linpeas, LinEnum and manual checks so known vulnerabilities specific for the host OS version are searched:</p>
+<blockquote>
+<p>&gt; uname -a <br/>
+Linux analytics 6.2.0-25-generic #25~22.04.2-Ubuntu SMP PREEMPT_DYNAMIC Wed Jun 28 09:55:23 UTC 2 x86_64 x86_64 x86_64 GNU/Linux</p>
+</blockquote>
+<p>This OS seems to be vulnerable to <a href="https://www.wiz.io/blog/ubuntu-overlayfs-vulnerability">GameOver(lay)</a> vulnerability.</p>
+<p>An exploit is present <a href="https://github.com/g1vi/CVE-2023-2640-CVE-2023-32629/blob/main/exploit.sh">there</a>.</p>
+<p>Root is gained.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

