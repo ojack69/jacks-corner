@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Shortcut Description Navigating space Toggle between graph view and linear view enter (or click) Enter a function esc Return from function, or, back back in navigation history ctrl + enter Go forwards in navigation history x Find x-reference shift + f12 Open string window g Go to address 1 Restore zooming (in …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="IDA Cheatsheet"/>
+  <meta property="og:description" content="Shortcut Description Navigating space Toggle between graph view and linear view enter (or click) Enter a function esc Return from function, or, back back in navigation history ctrl + enter Go forwards in navigation history x Find x-reference shift + f12 Open string window g Go to address 1 Restore zooming (in …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; IDA Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="reversing/ida-cheatsheet">IDA Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+    <table>
+<thead>
+<tr>
+<th><strong>Shortcut</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Navigating</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>space</td>
+<td>Toggle between graph view and linear view</td>
+</tr>
+<tr>
+<td>enter (or click)</td>
+<td>Enter a function</td>
+</tr>
+<tr>
+<td>esc</td>
+<td>Return from function, or, back back in navigation history</td>
+</tr>
+<tr>
+<td>ctrl + enter</td>
+<td>Go forwards in navigation history</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Find x-reference</td>
+</tr>
+<tr>
+<td>shift + f12</td>
+<td>Open string window</td>
+</tr>
+<tr>
+<td>g</td>
+<td>Go to address</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Restore zooming (in graph view)</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Exploring</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>a</td>
+<td>Convert to string</td>
+</tr>
+<tr>
+<td>u</td>
+<td>Undefine data</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Group bytes to word to dword to qword</td>
+</tr>
+<tr>
+<td>h</td>
+<td>Convert to hex</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Convert to binary</td>
+</tr>
+<tr>
+<td>r</td>
+<td>Convert to character</td>
+</tr>
+<tr>
+<td>c</td>
+<td>Convert to code</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Make function</td>
+</tr>
+<tr>
+<td>ins</td>
+<td>Create struct in structures view</td>
+</tr>
+<tr>
+<td>d</td>
+<td>Add Field to struct in structures view</td>
+</tr>
+<tr>
+<td>t</td>
+<td>Use struct in linear or graph view</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Use struct in decompiler view</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Commenting</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>n</td>
+<td>Rename label/function</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Re-type variable in pseudocode view</td>
+</tr>
+<tr>
+<td>ins</td>
+<td>Insert anterior comment</td>
+</tr>
+<tr>
+<td>shift + ins</td>
+<td>Insert posterior comment</td>
+</tr>
+<tr>
+<td>:</td>
+<td>Insert inline comment</td>
+</tr>
+<tr>
+<td>;</td>
+<td>Insert repeatable comment</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Searching</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>alt+b</td>
+<td>Byte search or &ldquo;string&rdquo; search</td>
+</tr>
+<tr>
+<td>alt+t</td>
+<td>Text search</td>
+</tr>
+<tr>
+<td>alt+i</td>
+<td>Operand search</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Debugging</strong></td>
+<td></td>
+</tr>
+<tr>
+<td>F2</td>
+<td>Set and Unset Breakpoint</td>
+</tr>
+<tr>
+<td>F9</td>
+<td>Run</td>
+</tr>
+<tr>
+<td>F8</td>
+<td>Step Over an Instruction/Function</td>
+</tr>
+<tr>
+<td>F7</td>
+<td>Step Into a Function</td>
+</tr>
+<tr>
+<td>ctrl + F7</td>
+<td>Run until Return</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Decompiling</td>
+<td></td>
+</tr>
+<tr>
+<td>F5</td>
+<td>Decompile to C source code</td>
+</tr>
+</tbody>
+</table>
+<p>Based on the template provided by <a href="https://crackinglessons.com/">https://crackinglessons.com</a></p>
+<p>Other available actions:</p>
+<ul>
+<li>In graph view:<ul>
+<li><strong>Green Arrows</strong>: indicates the code flow after a jump condition when ZF=1 </li>
+<li><strong>RedArrows</strong>: indicates the code flow after a jump condition when ZF</li>
+<li><strong>Blue arrow</strong>: indicates the code flow after an unconditional jmp instruction</li>
+</ul>
+</li>
+<li>To view opcodes (hex bytes): <ul>
+<li>Options &gt; General &gt; Number of opcodes bytes (non-graph) - generally set to 6 or 8</li>
+</ul>
+</li>
+<li>Patch program: <ul>
+<li>select line &gt; Edit &gt; Patch Program &gt; Assemble Instruction</li>
+</ul>
+</li>
+<li>Make permanents the patching: <ul>
+<li>Edit &gt; Patch Program &gt; Apply Patches to input file</li>
+</ul>
+</li>
+<li>Double click on a register to tamper its value</li>
+<li>Replace instruction: <ul>
+<li>select line &gt; Edit &gt; Patch Program &gt; Change byte (show opcodes to see what to replace)</li>
+</ul>
+</li>
+<li>Sync pseudocode view with assembly linear or graph view (when side-docked): <ul>
+<li>right click &gt; Syncronize With</li>
+</ul>
+</li>
+</ul>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

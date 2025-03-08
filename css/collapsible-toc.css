@@ -1,0 +1,162 @@
+.toc {
+    width: fit-content;
+}
+
+.toc ul{
+    min-width: 250px;
+}
+
+.toc ul.collapsed-item {
+    display: none;
+}
+
+.toc li:not(.collapsible){
+    padding-left: 16px;
+}
+
+.toc .collapse-toggle {
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.toc .collapse-toggle.collapsed {
+    margin-right: 8px;
+}
+
+.toc li.highlighted {
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.light-theme .toc li.highlighted{
+    border: 1px solid #ff5a09;
+}
+
+.dark-theme .toc li.highlighted{
+    border: 1px solid white;
+}
+
+.side-toc {
+    transition: opacity 1s;
+    -webkit-transition: opacity 1s;
+    -moz-transition: opacity 1s;
+    opacity: 1;
+}
+
+.side-toc:not(.fixed) {
+    opacity: 0;
+}
+
+.toc.fixed .scrolltop{
+    border-radius: 50%;
+    text-align: center;
+    display: none;
+    cursor: pointer;
+}
+
+.light-theme .toc.fixed .scrolltop{
+    border: 1px solid #ff5a09;
+    color: #ff5a09;
+}
+
+.dark-theme .toc.fixed .scrolltop{
+    border: 1px solid white;
+}
+
+.toc.fixed .handle {
+    cursor: pointer;
+    margin-left: -45px;
+    border-radius: 50%;
+    text-align: center;
+    padding: 10px;
+}
+
+.light-theme .toc.fixed .handle {
+    border: 1px solid #ff5a09;
+    color: #ff5a09;
+}
+
+.dark-theme .toc.fixed .handle {
+    border: 1px solid white;
+}
+
+.toc.fixed.active .handle
+{
+    margin: 5px 5px 0 5px;
+    padding: 5px;
+}
+
+.toc.fixed.active .scrolltop
+{
+    margin: 5px 5px 0 5px;
+    padding: 5px 8px;
+}
+
+.toc.fixed.active .scrolltop{
+    display: unset;
+}
+
+.toc.fixed {
+    transition:width 0.25s, opacity 0.25s;
+    -webkit-transition:width .25s, opacity 0.25s;
+    -moz-transition: width 0.25s, opacity 0.25s;
+    width: 15px;
+    height: 20px;
+    position: fixed;
+    right: -15px;
+    top: 25%;
+    opacity: 0.25;
+}
+
+.light-theme .toc.fixed {
+    background-color: white;
+}
+
+.dark-theme .toc.fixed {
+    background-color: #333;
+}
+
+.toc.fixed.active {
+    opacity: 1;
+    height: 50%;
+    right: 15px;
+    overflow: auto;
+    padding-right: 15px;
+    border-radius: 5px;
+}
+
+.light-theme .toc.fixed.active {
+    border: 0.5px solid #ff5a09;
+}
+
+.dark-theme .toc.fixed.active {
+    border: 0.5px solid white;
+}
+
+
+/*.toc li:not(.collapsible) a::before{*/
+.toc li a::before{
+    content: '├ ';
+}
+
+.toc li:not(.collapsible):last-child > a::before{
+    content: '└ ';
+}
+
+@media (min-width: 768px) {
+    .toc.fixed.active {
+        width: 30%;
+        max-width: fit-content;
+    }
+}
+
+@media (max-width: 768px) {
+    .toc.fixed.active {
+        width: 90%;
+    }
+
+    .toc.fixed{
+        top: 15px;
+    }
+
+}
