@@ -125,6 +125,37 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/web/flaws.cloud.html">flaws.cloud Challenges</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="level-1">Level 1</h2>
+<p>Location: <a href="http://flaws.cloud/">http://flaws.cloud/</a></p>
+<p>Check that the site is hosted on AWS:</p>
+<div class="highlight"><pre><span></span><code>dig<span class="w"> </span>flaws.cloud<span class="w"> </span>+short
+</code></pre></div>
+<p><img alt="dig-flaws-cloud.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/dig-flaws-cloud.png"/></p>
+<p>Confirm that flaws.cloud is a S3 bucket and get it's region by:</p>
+<div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span><span class="m">52</span>.92.148.3
+</code></pre></div>
+<p><img alt="nslookup-flaws-cloud-ip.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/nslookup-flaws-cloud-ip.png"/></p>
+<p>List bucket content with:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://flaws.cloud/<span class="w"> </span>--no-sign-request<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level1-ls-bucket.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level1-ls-bucket.png"/></p>
+<p>Level …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/web/flaws.cloud.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/ad/goad.html">Game of Active Directory Notes</a></h2>
     <p>
 
@@ -676,24 +707,6 @@ Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/callme.html">
       Continue reading
     </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ewpt-useful-resources.html">eWPT-v2 Useful Resources</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><h2 id="owasp-web-security-testing-guide">OWASP Web Security Testing Guide</h2>
-<p>https://github.com/tanprathan/OWASP-Testing-Checklist</p>
-<h2 id="xss">XSS</h2>
-<p>https://github.com/epsylon/xsser</p>
-<h2 id="file-upload">File Upload</h2>
-<p>https://github.com/epinna/weevely3</p></div>
   </div>
 </article>
 

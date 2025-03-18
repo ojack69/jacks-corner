@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "web/flaws.cloud/flaws.cloud.md"
+url = "/web/flaws.cloud.html"
+title = "flaws.cloud Challenges"
+
+[[input.files]]
 path = "ad/goad/game-of-active-directory-notes.md"
 url = "/ad/goad.html"
 title = "Game of Active Directory Notes"

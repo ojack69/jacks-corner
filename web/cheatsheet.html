@@ -242,7 +242,7 @@ aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>s
 <span class="c1"># From local to bucket</span>
 aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>&lt;file<span class="w"> </span>path&gt;<span class="w"> </span>s3://&lt;bucket<span class="w"> </span>name&gt;/&lt;destination<span class="w"> </span>path&gt;
 </code></pre></div>
-<p><strong>Note</strong>: To run commands without credentials set, append <code>--no-sign-request</code> to AWS cli commands.</p>
+<p><strong>Note</strong>: If getting <code>Access Denined</code> try appending <code>--no-sign-request</code> to AWS cli commands.</p>
 <p>Enumerate AWS bucket ACLs:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-acl<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;
 </code></pre></div>
