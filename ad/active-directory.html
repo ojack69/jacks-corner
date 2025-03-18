@@ -740,7 +740,7 @@ method by removing permission for Authenticated Users group.</p>
 <li>The returned response, the <strong>AS-REP</strong> will contain a part which is encrypted with the requesting user hash (see <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html#kerberos-authentication">Kerberos Authentication</a>). </li>
 <li>The <strong>AS-REP Roasting</strong> attack consists into brute-forcing offline this encrypted part in order to obtain the targeted user password.</li>
 </ul>
-<p>Having <code>GenericAll</code> or<code>GenericWrite</code> permission a user, allows to forcibly disable the Kerberos pre-authentication for this user.</p>
+<p>Having <code>GenericAll</code> or <code>GenericWrite</code> permission a user, allows to forcibly disable the Kerberos pre-authentication for this user.</p>
 <p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#as-rep-roasting">Active Directory Cheatsheet - AS-REP Roasting</a>.</p>
 <h3 id="dumping-credentials">Dumping Credentials</h3>
 <p>Mimikatz is a tool used to extract plaintexts passwords, hash, PIN code and kerberos tickets from memory. It can also perform pass-the-hash, pass-the-ticket, build Golden tickets, Silver Ticket, etc.</p>
@@ -775,12 +775,13 @@ method by removing permission for Authenticated Users group.</p>
 <h3 id="kerberos-delegation">Kerberos Delegation</h3>
 <p><strong>Kerberos Delegation</strong> consists into reusing the end-user credentials, <strong>delegating</strong> to a service the ability to act on behalf of this user when accessing services (e.g., web servers) and resources (e.g., databases) hosted elsewhere, without the need for the user to re-authenticate.</p>
 <ul>
-<li>Kerberos delegation is often used in scenarios where multiple services work together, such as in multi-tier applications. For example, a user authenticates to a web server; the web server then makes requests to a database server. The GenericWriteweb server may be delegated by the user to access some resources (depending on the type of the delegation) acting as the user itself and not as the web server's service account.</li>
+<li>Kerberos delegation is often used in scenarios where multiple services work together, such as in multi-tier applications. For example, a user authenticates to a web server; the web server then makes requests to a database server. The web server may be delegated by the user to access some resources (depending on the type of the delegation) acting as the user itself and not as the web server's service account.</li>
 </ul>
-<p>There are two types of Kerberos Delegation:</p>
+<p>There are three types of Kerberos Delegation:</p>
 <ul>
 <li><strong>Unconstrained Delegation</strong></li>
 <li><strong>Constrained Delegation</strong></li>
+<li><strong>Resource-based Constrained Delegation (RBCD)</strong></li>
 </ul>
 <h4 id="unconstrained-delegation">Unconstrained Delegation</h4>
 <p>In the <strong>Unconstrained Delegation</strong>, the delegated service can impersonate the user to any service in the domain.</p>
@@ -857,7 +858,7 @@ method by removing permission for Authenticated Users group.</p>
 <li>Unlike traditional <strong>Constrained Delegation</strong>, this does not require Domain Admin rights&mdash;it <strong>can be modified by the owner of the target service</strong>.</li>
 <li>If <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> is set on a <strong>computer account</strong>, delegation is allowed to any service running on that machine. If it is set on a <strong>service account</strong>, only that specific service can receive the delegated authentication.</li>
 </ul>
-<p><strong>The attack</strong>: Since no Domain Admins privileges are required, when a user has GenericWrite or WriteAccountRestrictions permissions (or is the owner) of a target service/machine account, it&rsquo;s possible to modify its <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute so that it contains another attacker controlled computer object.</p>
+<p><strong>The attack</strong>: Since no Domain Admins privileges are required, when a user has <code>GenericWrite</code> or <code>WriteAccountRestrictions</code> permissions (or is the owner) of a target service/machine account, it&rsquo;s possible to modify its <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute so that it contains another attacker controlled computer object.</p>
 <p>Attacking a <strong>machine account</strong>:</p>
 <ol>
 <li>An attacker compromises a domain user with enough privileges for the target host.</li>
