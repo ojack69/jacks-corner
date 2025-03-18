@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#level-1" title="Level 1">Level 1</a></li><li><a class="toc-href" href="#level-2" title="Level 2">Level 2</a></li><li><a class="toc-href" href="#level-3" title="Level 3">Level 3</a></li><li><a class="toc-href" href="#level-4" title="Level 4">Level 4</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#level-1" title="Level 1">Level 1</a></li><li><a class="toc-href" href="#level-2" title="Level 2">Level 2</a></li><li><a class="toc-href" href="#level-3" title="Level 3">Level 3</a></li><li><a class="toc-href" href="#level-4" title="Level 4">Level 4</a></li><li><a class="toc-href" href="#level-5" title="Level 5">Level 5</a></li></ul></div>
         </div>
     <h2 id="level-1">Level 1</h2>
 <p>Location: <a href="http://flaws.cloud/">http://flaws.cloud/</a></p>
@@ -195,8 +195,43 @@
 <p>Complete Level 3 navigating to: <code>http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud</code></p>
 <h2 id="level-4">Level 4</h2>
 <p>Location: <a href="http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud">http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud</a></p>
+<p>This level goal is to access the web page running on <a href="http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/">http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/</a></p>
+<p><img alt="level4-goal.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-goal.png"/></p>
+<p>This web page asks for a basic authentication:</p>
+<p><img alt="level4-basic-auth.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-basic-auth.png"/></p>
+<p>Using previous level credentials, it's not possible to list any content on the bucket but it's possible to list existing snapshots (filtering by "Tags not null" in order to filter out automatic snapshots): </p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--query<span class="w"> </span><span class="s1">'Snapshots[?Tags!=null]'</span><span class="w"> </span>--profile<span class="w"> </span>flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level4-enum-snapshots.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-enum-snapshots.png"/></p>
+<p>Having the snapshot id, it's possible to create a volume from this snapshot <strong>on the attacker</strong> EC2 service on the same region:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span>--availability-zone<span class="w"> </span>us-west-2a<span class="w"> </span>--snapshot-id<span class="w"> </span>snap-0b49342abd1bdcb89<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
 <p><img alt="level4-create-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-volume.png"/></p>
+<p>Check that the volume has been created on the console:</p>
 <p><img alt="level4-created-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-created-volume.png"/></p>
+<p>Create a snapshot from the created volume:</p>
+<p><img alt="level4-create-snapshot.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-snapshot.png"/></p>
+<p>Create a new instance adding a second storage volume and specifying the previously created snapshot:</p>
+<p><img alt="level4-create-instance.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-instance.png"/></p>
+<p>After launching it, connect to the instance (via SSH or from the console) and mount the disk as follows:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>/media/level4
+lsblk
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/xvdb1<span class="w"> </span>/media/level4/
+ls<span class="w"> </span>-l
+</code></pre></div>
+<p><img alt="level4-mount-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-mount-volume.png"/></p>
+<p>Following the nginx configuration:</p>
+<p><img alt="level4-nginx-configuration.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-nginx-configuration.png"/></p>
+<p>Generally, it could be worth trying cracking those hashes but this it's not the case.</p>
+<p>After some more enumeration, a cleartext password it's found:</p>
+<p><img alt="level4-credentials-leak.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-credentials-leak.png"/></p>
+<p>Password is: <code>nCP8xigdjpjyiXgJ7nJu7rw5Ro68iE8M</code>.</p>
+<p>Using found credentials, it's possible to login to the web page:</p>
+<p><img alt="level4-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-win.png"/></p>
+<p>Note that, having the whole volume mounted, it was enough to simple access the web page html file located at <code>/media/level4/var/www/html/index.html</code>.</p>
+<h2 id="level-5">Level 5</h2>
+<p>Todo
+http://level5-d2891f604d2061b6977c2481b0c8333e.flaws.cloud/243f422c/</p>
   </div>
   <div class="tag-cloud">
     <p>
