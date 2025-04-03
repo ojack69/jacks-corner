@@ -125,6 +125,35 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/web/flaws2.cloud.html">flaws2.cloud Challenges</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="level-1">Level 1</h2>
+<p><img alt="level1-home.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws2.cloud/level1-home.png"/></p>
+<p>Query DNS for <code>level1.flaws2.cloud</code>:</p>
+<div class="highlight"><pre><span></span><code>dig<span class="w"> </span>level1.flaws2.cloud<span class="w"> </span>
+</code></pre></div>
+<p><img alt="level1-dig-domain.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws2.cloud/level1-dig-domain.png"/></p>
+<p>Reverse lookup the first IP from previous query:</p>
+<div class="highlight"><pre><span></span><code>dig -x 52.217.112.197
+</code></pre></div>
+<p><img alt="level1-reverse-lookup.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws2.cloud/level1-reverse-lookup.png"/></p>
+<p>When submitting the form, an HTTP request is made to an AWS API:</p>
+<p><img alt="level1-http-request-web.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws2.cloud/level1-http-request-web.png"/></p>
+<p>Perform the request without passing the <code>code</code> value in order to …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/web/flaws2.cloud.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/web/flaws.cloud.html">flaws.cloud Challenges</a></h2>
     <p>
 

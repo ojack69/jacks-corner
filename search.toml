@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "web/flaws2.cloud/flaws2.cloud.md"
+url = "/web/flaws2.cloud.html"
+title = "flaws2.cloud Challenges"
+
+[[input.files]]
 path = "web/flaws.cloud/flaws.cloud.md"
 url = "/web/flaws.cloud.html"
 title = "flaws.cloud Challenges"
@@ -17,11 +22,6 @@ title = "Game of Active Directory Notes"
 path = "privilege-escalation/windows-privilege-escalation.md"
 url = "/privilege-escalation/windows-privilege-escalation.html"
 title = "Windows Privilege Escalation"
-
-[[input.files]]
-path = "certifications/secops/capen.md"
-url = "/certifications/secops/capen-peparation.html"
-title = "CAPen Preparation"
 
 [[input.files]]
 path = "ad/active-directory.md"
