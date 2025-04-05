@@ -272,6 +272,13 @@ aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> <
 <p>Get bucket region:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-Is<span class="w"> </span>https://&lt;bucket<span class="w"> </span>URL&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'x-amz-bucket-region'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="s1">'{print $2}'</span>
 </code></pre></div>
+<p>From browser, if the root of a bucket it's not accessible, try appending <code>?prefix=&amp;delimiter=/</code>. By default, AWS cli includes this parameters automatically:</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">Not</span><span class="w"> </span><span class="n">accessible</span><span class="o">!</span>
+<span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">Accessible</span><span class="o">!</span>
+<span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/?prefix=&amp;delimiter=/</span>
+</code></pre></div>
 <p>List all buckets that current user can access:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls
 </code></pre></div>
