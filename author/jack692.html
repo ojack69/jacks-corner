@@ -636,10 +636,10 @@ To get the correct version of glibc it is possible to run the libc file itself s
   <div>
     <div><h2 id="firewall">Firewall</h2>
 <p>Redirect all requests on loopback interface (lo) port 80 to port 8080:</p>
-<div class="highlight"><pre><span></span><code>sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>lo<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>REDIRECT<span class="w"> </span>--to-port<span class="w"> </span><span class="m">8080</span>
 </code></pre></div>
 <p>Create a Windows firewall rule:</p>
-<div class="highlight"><pre><span></span><code>netsh<span class="w"> </span>advfirewall<span class="w"> </span>firewall<span class="w"> </span>add<span class="w"> </span>rule<span class="w"> </span><span class="nv">name</span><span class="o">=</span><span class="s2">"&lt;rule name&gt;"</span><span class="w"> </span><span class="nv">dir</span><span class="o">=</span>&lt;<span class="k">in</span><span class="p">|</span>out&gt;<span class="w"> </span><span class="nv">action</span><span class="o">=</span>&lt;allow<span class="p">|</span>deny&gt;<span class="w"> </span><span class="nv">protocol</span><span class="o">=</span>&lt;protocol …</code></pre></div></div>
+<div class="highlight"><pre><span></span><code>netsh advfirewall firewall add rule name="&lt;rule name&gt;" dir=&lt;in|out&gt; action=&lt;allow|deny&gt; protocol=&lt;protocol …</code></pre></div></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/network.html">
       Continue reading
