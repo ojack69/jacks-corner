@@ -199,6 +199,11 @@ url = "/misc/cheatsheet.html"
 title = "Misc Cheatsheet"
 
 [[input.files]]
+path = "misc/network-cheatsheet.md"
+url = "/misc/network.html"
+title = "Network Cheatsheet"
+
+[[input.files]]
 path = "misc/powershell-cheatsheet.md"
 url = "/misc/powershell-cheatsheet.html"
 title = "PowerShell Cheatsheet"

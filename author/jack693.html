@@ -125,6 +125,37 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">PowerShell Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="common">Common</h2>
+<p>PowerShell Execution Policy bypass:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">ExecutionPolicy</span> <span class="n">bypass</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">c</span> <span class="p">&lt;</span><span class="n">cmd</span><span class="p">&gt;</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">encodedcommand</span>
+<span class="nv">$env:PSExecutionPolicyPreference</span><span class="p">=</span><span class="s2">"bypass"</span>
+</code></pre></div>
+<p>*Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts.</p>
+<p>Check <code>LanguageMode</code> in current <code>ExecutionContenxt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">LanguageMode</span>
+</code></pre></div>
+<p>Import a module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">&lt;</span><span class="n">modulepath</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>List commands in a …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">ADB Cheatsheet</a></h2>
     <p>
 
