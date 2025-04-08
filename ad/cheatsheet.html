@@ -397,6 +397,9 @@ nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w">
 <span class="c1"># NetExec - authenticated</span>
 nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--shares
 </code></pre></div>
+<p>Enumerate ADCS:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;DC&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-M<span class="w"> </span>adcs
+</code></pre></div>
 <p>Enumerate Domain SID:</p>
 <div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span>&lt;target<span class="w"> </span>host/network&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;username&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--get-sid
 </code></pre></div>
