@@ -30,7 +30,6 @@ BLOODHOUND_USERNAME=$2
 PASSWORD=$3
 TARGET_ZIP_FILE=$(readlink -f $4)
 
-exit 0
 echo -e "\e[32m[!] Uploading collected data $TARGET_ZIP_FILE to $BLOODHOUND_SERVER...\e[39m"
 
 login_response=$(curl -s -X 'POST' "$BLOODHOUND_SERVER/api/v2/login" -H 'accept: application/json' -H 'Prefer: 0' -H 'Content-Type: application/json' -d "{\"username\": \"$BLOODHOUND_USERNAME\", \"secret\":\"$PASSWORD\", \"login_method\": \"secret\"}")
