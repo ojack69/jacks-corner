@@ -125,6 +125,35 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/ctf/vulnlab/chains/hybrid.html">Hybrid</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><p>Hybrid is an easy VulnLab chain.</p>
+<iframe height="620" src="https://api.vulnlab.com/api/v1/share?id=3120196c-f4ff-4cf5-82ee-a624130a1d68" width="536"></iframe>
+<p>Target is:</p>
+<ul>
+<li>10.10.246.197</li>
+<li>10.10.246.198</li>
+</ul>
+<h2 id="enumeration">Enumeration</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nmap<span class="w"> </span>-sC<span class="w"> </span>-sV<span class="w"> </span>-iL<span class="w"> </span>targets.txt<span class="w"> </span>-oN<span class="w"> </span>nmap.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nx">Starting</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.95</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//nmap.org ) at 2025-04-05 11:00 CEST</span>
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.10.246.197</span>
+<span class="nx">Host</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">up …</span></code></pre></div></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/ctf/vulnlab/chains/hybrid.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/web/flaws2.cloud.html">flaws2.cloud Challenges</a></h2>
     <p>
 
@@ -656,46 +685,6 @@ Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
 00000000000008aa …</p></blockquote></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/write4.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/callme.html">ROP Emporium - callme</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><p>Running checksec:</p>
-<blockquote>
-<p>&gt; checksec callme <br/>
-... <br/>
-&nbsp;&nbsp;&nbsp;Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
-&nbsp;&nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO  <br/>
-&nbsp;&nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found  <br/>
-&nbsp;&nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled  <br/>
-&nbsp;&nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000) <br/>
-&nbsp;&nbsp;&nbsp;RUNPATH: &nbsp;b'.'  </p>
-</blockquote>
-<p>List all symbols:</p>
-<blockquote>
-<p>&gt; nm callme  <br/>
-0000000000601070 B __bss_start  <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U callme_one  &lt;-- dynamically linked from imported library libcallme.so<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U callme_three   <br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U callme_two <br/>
-...<br/>
-0000000000400847 T main  <br/>
-...<br/>
-0000000000400898 t pwnme  <br/>
-...<br/>
-00000000004008f2 …</p></blockquote></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/callme.html">
       Continue reading
     </a>
   </div>
