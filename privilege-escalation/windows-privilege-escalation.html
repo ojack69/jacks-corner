@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li><li><a class="toc-href" href="#meterpreter-getsystem_1" title="Meterpreter getsystem">Meterpreter getsystem</a></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li><li><a class="toc-href" href="#meterpreter-getsystem_1" title="Meterpreter getsystem">Meterpreter getsystem</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a><ul><li><a class="toc-href" href="#efs-encryption" title="EFS Encryption">EFS Encryption</a></li></ul></li></ul></div>
         </div>
     <h2 id="concepts">Concepts</h2>
 <p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
@@ -378,6 +378,21 @@
 <li><strong>Named Pipe Impersonation (Dropper/Admin)</strong>: similar to previous technique; a DLL gets written on the disk and a service is created to run as SYSTEM, executing the DLL which connects to the named pipe.</li>
 <li><strong>Token Duplication (In Memory/Admin)</strong>: requires the <code>SeDebugPrivilege</code>. It injects into a service process running as SYSTEM. In this process, it injects a DLL which <strong>duplicates the access token</strong> of the service and assigns it to Meterpreter. This technique only works on x86 architectures, therefore is almost completely deprecated.</li>
 </ul>
+<h2 id="misc">Misc</h2>
+<h3 id="efs-encryption">EFS Encryption</h3>
+<p>To decrypt a file that&rsquo;s been encrypted using <strong>Encrypting File System (EFS)</strong> on Windows, you need to do it as the user who originally encrypted the file <strong>or</strong> a user who has access to the encryption certificate (i.e., has the private key).</p>
+<p>There are different ways to decrypt an EFS-encrypted file:</p>
+<ul>
+<li>Using file explorer as the user that encrypted the file. It also works with RDP sessions.</li>
+<li>From command line when <strong>user profile is fully loaded</strong>:  EFS decryption only works when the correct user profile is fully loaded since the EFS certificate and keys lives in the user's certificate store (<code>Cert:\CurrentUser\My</code>) and registry (<code>HKEY_CURRENT_USER</code>). For this reason, <code>psexec</code> or <code>wmiexec</code> (or similar) won't work since these methods do not load a full user profile. Using instead <code>runas</code> (or <code>RunasCs</code>) will work.</li>
+<li>Import the user certificate under <strong>"Personal" Certificates</strong> when using a different user. Requires the certificate <code>.pfx</code> and the private key.</li>
+</ul>
+<p>User's EFS certificate are located at:</p>
+<ul>
+<li><code>AppData\Roaming\Microsoft\SystemCertificates\My\Certificates</code></li>
+<li><code>AppData\Roaming\Microsoft\SystemCertificates\My\Keys</code></li>
+</ul>
+<p>It's also possible to export EFS certificates with <code>certmgr.msc</code>.</p>
   </div>
   <div class="tag-cloud">
     <p>

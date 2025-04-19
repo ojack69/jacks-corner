@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "ctf/vulnlab/chains/trusted.md"
+url = "/ctf/vulnlab/chains/trusted.html"
+title = "Trusted"
+
+[[input.files]]
 path = "ctf/vulnlab/chains/hybrid.md"
 url = "/ctf/vulnlab/chains/hybrid.html"
 title = "Hybrid"

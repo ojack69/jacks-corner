@@ -290,6 +290,32 @@ aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> <
 <p>Get bucket region:</p>
 <div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-Is<span class="w"> </span>https://&lt;bucket<span class="w"> </span>URL&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'x-amz-bucket-region'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="s1">'{print $2}'</span>
 </code></pre></div>
+<p>Regions wordlist:</p>
+<div class="highlight"><pre><span></span><code>us-west-1
+us-west-2
+us-east-1
+us-east-2
+cn-north-1
+cn-northwest-1
+eu-central-1
+eu-north-1
+eu-west-1
+eu-west-2
+eu-west-3
+ap-northeast-1
+ap-northeast-2
+ap-northeast-3
+ap-south-1
+ap-southeast-1
+ap-southeast-2
+ca-central-1
+me-south-1
+sa-east-1
+us-gov-east-1
+us-gov-west-1
+ap-east-1
+</code></pre></div>
+<p>Most common s3 bucket names: <a href="aws-s3-bucket-wordlist">https://github.com/koaj/aws-s3-bucket-wordlist</a></p>
 <p>From browser, if the root of a bucket it's not accessible, try appending <code>?prefix=&amp;delimiter=/</code>. By default, AWS cli includes this parameters automatically:</p>
 <div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">Not</span><span class="w"> </span><span class="n">accessible</span><span class="o">!</span>
 <span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/</span>
