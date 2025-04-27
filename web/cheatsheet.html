@@ -292,6 +292,12 @@ aws-enumerator<span class="w"> </span>enum<span class="w"> </span>--services<spa
 <span class="c1"># Get permissions for each found service</span>
 aws-enumerator<span class="w"> </span>dump<span class="w"> </span>--services<span class="w"> </span>&lt;services<span class="w"> </span>list&gt;
 </code></pre></div>
+<p>Predefined groups:</p>
+<ul>
+<li><strong>Authenticated Users</strong> - <code>http://acs.amazonaws.com/groups/global/AuthenticatedUsers</code> - All existing and authenticated AWS accounts.</li>
+<li><strong>All Users</strong> - <code>http://acs.amazonaws.com/groups/global/AllUsers</code> - worldwide access to the resource (no authentication).</li>
+<li><strong>Log Delivery</strong> - <code>http://acs.amazonaws.com/groups/s3/LogDelivery</code> - write access to the bucket to write server access logs.</li>
+</ul>
 <h4 id="simple-storage-service-s3">Simple Storage Service - S3</h4>
 <p>AWS Buckets' resources location:</p>
 <div class="highlight"><pre><span></span><code><span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/&lt;resource name&gt;</span>
@@ -346,15 +352,13 @@ aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>s
 <span class="c1"># From local to bucket</span>
 aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>&lt;file<span class="w"> </span>path&gt;<span class="w"> </span>s3://&lt;bucket<span class="w"> </span>name&gt;/&lt;destination<span class="w"> </span>path&gt;
 </code></pre></div>
-<p>Enumerate AWS bucket ACLs:</p>
+<p>Enumerate bucket's policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-policy<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Enumerate bucket's ACLs:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-acl<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;
 </code></pre></div>
-<p>Predefined groups:</p>
-<ul>
-<li><strong>Authenticated Users</strong> - <code>http://acs.amazonaws.com/groups/global/AuthenticatedUsers</code> - All existing and authenticated AWS accounts.</li>
-<li><strong>All Users</strong> - <code>http://acs.amazonaws.com/groups/global/AllUsers</code> - worldwide access to the resource (no authentication).</li>
-<li><strong>Log Delivery</strong> - <code>http://acs.amazonaws.com/groups/s3/LogDelivery</code> - write access to the bucket to write server access logs.</li>
-</ul>
+<p><strong>Note</strong>: Even though no particular privileges are found on current profile, <strong>it's always worth trying the previous two commands</strong>!</p>
 <p><strong>Note</strong>: If getting <code>Access Denined</code> try appending <code>--no-sign-request</code> to AWS cli commands.</p>
 <p>Find the Account ID to which a S3 bucket belongs to using <a href="https://github.com/WeAreCloudar/s3-account-search">s3-account-search</a>:</p>
 <div class="highlight"><pre><span></span><code>s3-account-search<span class="w"> </span>--profile<span class="w"> </span><span class="o">[</span>&lt;profile&gt;<span class="w"> </span><span class="o">]</span><span class="w"> </span>&lt;known<span class="w"> </span>role&gt;<span class="w"> </span>s3://&lt;bucket&gt;
