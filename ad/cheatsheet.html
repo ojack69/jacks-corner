@@ -494,7 +494,6 @@ ntlmrelayx.py<span class="w"> </span>-tf<span class="w"> </span>targets.txt<span
 <li><strong>Windows Server 2016</strong></li>
 <li><strong>Windows Server 2019</strong> (before June 2019 patches)</li>
 </ul>
-<p>See <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#relay-attacks">Active Directory - Relay Attacks</a>.</p>
 <h4 id="mitigations_1">Mitigations</h4>
 <ul>
 <li><strong>SMB and LDAP Session Signing</strong> <ul>
@@ -1436,7 +1435,7 @@ method by removing permission for Authenticated Users group.</p>
 <p><strong>SAMRi10</strong> hardens Windows 10 and Server 2016 against enumeration using <strong>SAM Remote (SAMR)</strong> protocol, generally used by <code>net.exe</code>.</p>
 <h2 id="lateral-movements_1">Lateral Movements</h2>
 <h3 id="pivoting">Pivoting</h3>
-<p><strong>Take also a look to <a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html#pivoting">Misc Cheatsheet - Pivoting</a>!</strong></p>
+<p><strong>Take also a look to <a href="https://ojack69.github.io/jacks-corner/misc/network.html#pivoting">Network Cheatsheet - Pivoting</a>!</strong></p>
 <p>After opening a socks proxy with impacket's <code>ntlmrealyx</code> (<code>-socks</code> option), every relayed NTLM hash is made available:</p>
 <div class="highlight"><pre><span></span><code># List releyable credentials
 &gt; socks
