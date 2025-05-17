@@ -19,6 +19,11 @@ url = "/web/flaws2.cloud.html"
 title = "flaws2.cloud Challenges"
 
 [[input.files]]
+path = "web/pwnedlabs/pwnedlabs.md"
+url = "/web/pwnedlabs.html"
+title = "pwnedlabs Challenges"
+
+[[input.files]]
 path = "web/flaws.cloud/flaws.cloud.md"
 url = "/web/flaws.cloud.html"
 title = "flaws.cloud Challenges"
@@ -32,11 +37,6 @@ title = "Game of Active Directory Notes"
 path = "privilege-escalation/windows-privilege-escalation.md"
 url = "/privilege-escalation/windows-privilege-escalation.html"
 title = "Windows Privilege Escalation"
-
-[[input.files]]
-path = "ad/active-directory.md"
-url = "/ad/active-directory.html"
-title = "Active Directory"
 
 [[input.files]]
 path = "mobile/mobilehackinglab/note-keeper.md"
@@ -179,9 +179,9 @@ url = "/binary-exploitation/heap-journey/house-of-force.html"
 title = "Heap Journey - House of Force"
 
 [[input.files]]
-path = "ad/active-directory-cheatsheet.md"
+path = "ad/active-directory.md"
 url = "/ad/cheatsheet.html"
-title = "Active Directory Cheatsheet"
+title = "Active Directory"
 
 [[input.files]]
 path = "binary-exploitation/heap-journey/glibc-appendix.md"

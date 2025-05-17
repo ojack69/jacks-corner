@@ -59,16 +59,24 @@
 
  
 
-    <meta name="author" content="Jack69" />
-    <meta name="description" content="My personal notes on stuff I like, nothing special" />
-  <meta property="og:site_name" content="Jack's Corner"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="Jack's Corner"/>
-  <meta property="og:description" content="My personal notes on stuff I like, nothing special"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://ojack69.github.io/jacks-corner"/>
+<meta name="author" content="Jack69" />
+<meta name="description" content="Identify the AWS Account ID from a Public S3 Bucket Target IP: 54.204.171.32 Goal: Identify the Account ID of the target bucket owner. Info: Lab provided credentials that where set with the profile pwnedlabs. Moreover, the role ARN arn:aws:iam::427648302155:role/LeakyBucket was provided as …" />
+<meta name="keywords" content="">
 
-  <title>Jack's Corner &ndash; Category Cheatsheet</title>
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="pwnedlabs Challenges"/>
+  <meta property="og:description" content="Identify the AWS Account ID from a Public S3 Bucket Target IP: 54.204.171.32 Goal: Identify the Account ID of the target bucket owner. Info: Lab provided credentials that where set with the profile pwnedlabs. Moreover, the role ARN arn:aws:iam::427648302155:role/LeakyBucket was provided as …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/web/pwnedlabs.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-04-01 00:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Web"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; pwnedlabs Challenges</title>
 
 
 </head>
@@ -121,93 +129,57 @@
 
 </nav>
 
-
-
 <article class="single">
   <header>
-    <h1 id="categories">Cheatsheets</h1>
+      
+    <h1 id="web/pwnedlabs">pwnedlabs Challenges</h1>
+    <p>
+
+    </p>
   </header>
-  <br>
-  <div class="categories-container">
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
-      <b>Active Directory</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html">
-      <b>eJPT-v2 Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
-      <b>Binary Exploitation Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">
-      <b>Misc Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/misc/network.html">
-      <b>Network Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html">
-      <b>PowerShell Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">
-      <b>ADB Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
-      <b>Mobile Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
-      <b>Frida & Objection Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
-      <b>Windows Privilege Escalation Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/reversing/ida-cheatsheet.html">
-      <b>IDA Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html">
-      <b>Reverse Engineering Cheatsheet</b>
-    </a>
-    <a class="category-item"
-      href="https://ojack69.github.io/jacks-corner/web/cheatsheet.html">
-      <b>Web Cheatsheet</b>
-    </a>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#identify-the-aws-account-id-from-a-public-s3-bucket" title="Identify the AWS Account ID from a Public S3 Bucket">Identify the AWS Account ID from a Public S3 Bucket</a></li></ul></div>
+        </div>
+    <h2 id="identify-the-aws-account-id-from-a-public-s3-bucket">Identify the AWS Account ID from a Public S3 Bucket</h2>
+<p><strong>Target IP</strong>: <code>54.204.171.32</code>
+<strong>Goal</strong>: Identify the Account ID of the target bucket owner.
+<strong>Info</strong>: Lab provided credentials that where set with the profile <code>pwnedlabs</code>.
+Moreover, the role ARN <code>arn:aws:iam::427648302155:role/LeakyBucket</code> was provided as additional info.</p>
+<p>Retrieve the bucket name from the resources used in the target website:</p>
+<p><img alt="web-site-s3-bucket.png" src="https://ojack69.github.io/jacks-corner/images/web/pwnedlabs/identify-aws-account-id/web-site-s3-bucket.png"/></p>
+<p>Bucket is: <code>mega-big-tech</code>.</p>
+<p>Try listing bucket content with <code>pwnedlabs</code> profile:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://mega-big-tech<span class="w"> </span>--recursive<span class="w"> </span>--profile<span class="w"> </span>pwnedlabs<span class="w"> </span>
+</code></pre></div>
+<p><img alt="list-bucket-content-with-provided-cred.png" src="https://ojack69.github.io/jacks-corner/images/web/pwnedlabs/identify-aws-account-id/list-bucket-content-with-provided-cred.png"/></p>
+<p>Try assuming the provided role with <code>pwnedlabs</code> profile:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span>--role-arn<span class="w"> </span>arn:aws:iam::427648302155:role/LeakyBucket<span class="w"> </span>--role-session-name<span class="w"> </span>pwnedlabs<span class="w"> </span>--profile<span class="w"> </span>pwnedlabs
+</code></pre></div>
+<p><img alt="assume-role.png" src="https://ojack69.github.io/jacks-corner/images/web/pwnedlabs/identify-aws-account-id/assume-role.png"/></p>
+<p>Check the role has at least one between <code>s3:getObject</code> and <code>s3:ListBucket</code>; following to check if the latter permission is granted using temporary credentials from previous command:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://mega-big-tech/<span class="w"> </span>--recursive<span class="w"> </span>--profile<span class="w"> </span>tmpcreds
+</code></pre></div>
+<p><img alt="list-bucket-content-with-tmp-cred.png" src="https://ojack69.github.io/jacks-corner/images/web/pwnedlabs/identify-aws-account-id/list-bucket-content-with-tmp-cred.png"/></p>
+<p>Having the possibility to assume the role <code>arn:aws:iam::427648302155:role/LeakyBucket</code> that has <code>s3:ListBucket</code> permissions, it's possible to recover the Account ID of the owner of the bucket:</p>
+<div class="highlight"><pre><span></span><code>s3-account-search<span class="w"> </span>--profile<span class="w"> </span>pwnedlabs<span class="w"> </span>arn:aws:iam::427648302155:role/LeakyBucket<span class="w"> </span>s3://mega-big-tech
+</code></pre></div>
+<p><img alt="retrieve-account-id.png" src="https://ojack69.github.io/jacks-corner/images/web/pwnedlabs/identify-aws-account-id/retrieve-account-id.png"/></p>
+<p>Account ID is: <code>107513503799</code>. </p>
   </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
 </article>
-<style>
-  .categories-container {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .category-item {
-    flex: 1 0 21%;
-    margin: 5px;
-    height: 100px;
-    color: #d9411e;
-    background-color: white;
-    border-radius: 10px;
-    border: 1px solid black;
-    text-align: center;
-    align-content: center;
-    -webkit-box-shadow: 5px 5px 15px 5px #000000;
-    box-shadow: 1px 1px 3px 1px #000000;
-  }
-</style>
-
-  <div class="pagination">
-  </div>
-
-
 
 <footer>
 <p>&copy; Jack69 - 2025 </p>
