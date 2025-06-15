@@ -238,6 +238,12 @@ home/000~ROOT~000 # https://github.com/stefanpejcic/wordpress-malware/blob/9b74d
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
 aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> </span><span class="o">[</span>--user-name<span class="w"> </span>&lt;user&gt;<span class="o">]</span>
 </code></pre></div>
+<p>When <code>sts get-caller-identity</code> is disabled or the main goal is to remain stealthy, an alternative method to obtain the principal name associate to current keys is to trigger some errors for particular services; AWS leaks the calling role and the account ID in those errors:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
+aws<span class="w"> </span>pinpoint-sms-voice<span class="w"> </span>send-voice-message
+aws<span class="w"> </span>timestream-query<span class="w"> </span>describe-endpoints
+</code></pre></div>
+<p><strong>Note</strong>: these services <strong>are not logged in CloudTrail</strong>!</p>
 <p>Get <strong>inline</strong> user policies (policies specifically written for that user):</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-user-policies<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
 </code></pre></div>
@@ -381,6 +387,12 @@ aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>&
 <p>List images owned by current user:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-images<span class="w"> </span>--owners<span class="w"> </span>self
 </code></pre></div>
+<p>List instances for current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List volumes for current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-volumes<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
 <p>List snapshots owned by current user:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--owner-ids<span class="w"> </span>self
 </code></pre></div>
@@ -393,7 +405,7 @@ aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>&
 <p>List available Availability Zone for specified region:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-availability-zones<span class="w"> </span>--query<span class="w"> </span><span class="s1">'AvailabilityZones[].ZoneName'</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
-<p>Having the volume, it's possible to create an EC2 instance from the AWS Console.</p>
+<p>Having the volume, it's possible to create an EC2 instance from the AWS Console and then attach the volume. <strong>Note that the instance must be in the same availability zone as the volume!</strong> It should also be possible to attach the volume directly in the instance creation wizard.</p>
 <p><strong>Loot Public EBS Snapshot</strong> - A possible attack path is:</p>
 <ol>
 <li>Find a misconfigured snapshot or abuse dumped credentials</li>
