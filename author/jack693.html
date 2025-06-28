@@ -125,6 +125,34 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">Binary Exploitation Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="enumeration">Enumeration</h2>
+<p>When dealing with shared libraries, use the <code>dynamic</code> flag for <code>nm</code>:</p>
+<div class="highlight"><pre><span></span><code>nm<span class="w"> </span>--dynamic<span class="w"> </span>&lt;shared<span class="w"> </span>lib&gt;
+</code></pre></div>
+<h2 id="mona-script-immunity">Mona Script - Immunity</h2>
+<p>Initialize Mona working folder:</p>
+<div class="highlight"><pre><span></span><code><span class="sx">!mona config -set workingfolder c:\mona\%p</span>
+</code></pre></div>
+<p>Search the distance of a register from specified cyclic pattern:</p>
+<div class="highlight"><pre><span></span><code><span class="sx">!mona findmsp -distance &lt;lenght of fuzzed oveflow length&gt;</span>
+</code></pre></div>
+<p>Generate bytearray …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">Misc Cheatsheet</a></h2>
     <p>
 
@@ -324,12 +352,12 @@ frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span
 <hr/>
 <ul>
 <li goal-group="">Certifications</li>
-<li goal-expire="30/06/2025" goal-note="Scheduled for mid june">eWPTX</li>
 <li>OSWE</li>
 </ul>
 <hr/>
 <ul>
 <li goal-group="">Completed</li>
+<li goal-completed="07/06/2025">eWPTX</li>
 <li goal-completed="23/03/2025">CAPen</li>
 <li goal-completed="17/03/2025">Game of Active Directory Full Lab (GOAD)</li>
 <li goal-completed="03/03/2025">CRTA</li>

@@ -14,18 +14,18 @@ url = "/ctf/vulnlab/chains/hybrid.html"
 title = "Hybrid"
 
 [[input.files]]
-path = "web/flaws2.cloud/flaws2.cloud.md"
-url = "/web/flaws2.cloud.html"
+path = "cloud/flaws2.cloud/flaws2.cloud.md"
+url = "/cloud/aws/flaws2.cloud.html"
 title = "flaws2.cloud Challenges"
 
 [[input.files]]
-path = "web/pwnedlabs/pwnedlabs.md"
-url = "/web/pwnedlabs.html"
+path = "cloud/pwnedlabs/pwnedlabs.md"
+url = "/cloud/aws/pwnedlabs.html"
 title = "pwnedlabs Challenges"
 
 [[input.files]]
-path = "web/flaws.cloud/flaws.cloud.md"
-url = "/web/flaws.cloud.html"
+path = "cloud/flaws.cloud/flaws.cloud.md"
+url = "/cloud/aws/flaws.cloud.html"
 title = "flaws.cloud Challenges"
 
 [[input.files]]
@@ -197,6 +197,11 @@ title = "Attacking and Exploiting Modern Web Applications - S.Onofri | D.Onofri"
 path = "certifications/inesecurity/ejpt-cheatsheet.md"
 url = "/certifications/inesecurity/ejpt-cheatsheet.html"
 title = "eJPT-v2 Cheatsheet"
+
+[[input.files]]
+path = "cloud/cloud-cheatsheet.md"
+url = "/cloud/cheatsheet.html"
+title = "Cloud Cheatsheet"
 
 [[input.files]]
 path = "binary-exploitation/binary-exploitation-cheatsheet.md"

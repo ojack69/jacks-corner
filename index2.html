@@ -648,27 +648,24 @@ To get the correct version of glibc it is possible to run the libc file itself s
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">Binary Exploitation Cheatsheet</a></h2>
+    <h2><a href="https://ojack69.github.io/jacks-corner/cloud/cheatsheet.html">Cloud Cheatsheet</a></h2>
     <p>
 
 
     </p>
   </header>
   <div>
-    <div><h2 id="enumeration">Enumeration</h2>
-<p>When dealing with shared libraries, use the <code>dynamic</code> flag for <code>nm</code>:</p>
-<div class="highlight"><pre><span></span><code>nm<span class="w"> </span>--dynamic<span class="w"> </span>&lt;shared<span class="w"> </span>lib&gt;
+    <div><p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
+<h2 id="aws">AWS</h2>
+<p>Setup AWS CLI client configuring credentials, region, etc:</p>
+<div class="highlight"><pre><span></span><code>aws configure [--profile &lt;profile name&gt;]
 </code></pre></div>
-<h2 id="mona-script-immunity">Mona Script - Immunity</h2>
-<p>Initialize Mona working folder:</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona config -set workingfolder c:\mona\%p</span>
-</code></pre></div>
-<p>Search the distance of a register from specified cyclic pattern:</p>
-<div class="highlight"><pre><span></span><code><span class="sx">!mona findmsp -distance &lt;lenght of fuzzed oveflow length&gt;</span>
-</code></pre></div>
-<p>Generate bytearray …</p></div>
+<p>ARN format - <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html">reference</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
+<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">/</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
+<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id …</span></code></pre></div></div>
     <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/cloud/cheatsheet.html">
       Continue reading
     </a>
   </div>
