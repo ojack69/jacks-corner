@@ -161,6 +161,9 @@
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
 aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> </span><span class="o">[</span>--user-name<span class="w"> </span>&lt;user&gt;<span class="o">]</span>
 </code></pre></div>
+<p>Get account id from an access key id:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-access-key-info<span class="w"> </span>--access-key-id<span class="o">=</span>&lt;access<span class="w"> </span>key&gt;
+</code></pre></div>
 <p>When <code>sts get-caller-identity</code> is disabled or the main goal is to remain stealthy, an alternative method to obtain the principal name associate to current keys is to trigger some errors for particular services; AWS leaks the calling role and the account ID in those errors:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
 aws<span class="w"> </span>pinpoint-sms-voice<span class="w"> </span>send-voice-message
@@ -204,13 +207,13 @@ aws<span class="w"> </span>timestream-query<span class="w"> </span>describe-endp
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-role-policies<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
 </code></pre></div>
 <p>List role attached policies:</p>
-<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-role-policies<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-role-policies<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
 </code></pre></div>
 <p>Get details for policy attached to role:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-role-policy<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;<span class="w"> </span>--policy-name<span class="w"> </span>&lt;policy<span class="w"> </span>name&gt;
 </code></pre></div>
-<p>Request temporary credentials to access AWS resources with a particular role:</p>
-<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span>--role-arn<span class="w"> </span>&lt;role<span class="w"> </span>ARN&gt;<span class="w"> </span>--role-session-name<span class="w"> </span>&lt;any<span class="w"> </span>session<span class="w"> </span>name&gt;
+<p>Request temporary credentials (<strong>assume role</strong>) to access AWS resources with a particular role:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span>--role-arn<span class="w"> </span>&lt;role<span class="w"> </span>ARN&gt;<span class="w"> </span>--role-session-name<span class="w"> </span>&lt;any<span class="w"> </span>session<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--external-id<span class="w"> </span>&lt;external<span class="w"> </span>id&gt;<span class="o">]</span>
 </code></pre></div>
 <p>Enumerate all user permissions with <a href="https://github.com/shabarkin/aws-enumerator">aws-enumerator</a>:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Setup credentials</span>
@@ -447,11 +450,13 @@ aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapsh
 
 aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapshots<span class="w"> </span><span class="o">[</span>--include-public<span class="w"> </span>--snapshot-type<span class="w"> </span>public<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span>--db-cluster-snapshot-identifier<span class="w"> </span>&lt;snapshot<span class="w"> </span>identifier&gt;
 </code></pre></div>
-<p><strong>Plunder Public RDS Snapshots</strong>: 
-1. From the AWS console, restore the public snapshot 
-2. If restoring as private DB, create a connected EC2 instance and associate it
-3. Change the root password (if not known the original)
-4. Access the content via the EC2 instance (if private) or directly if restored as public RDS instance.</p>
+<p><strong>Plunder Public RDS Snapshots</strong>: </p>
+<ol>
+<li>From the AWS console, restore the public snapshot </li>
+<li>If restoring as private DB, create a connected EC2 instance and associate it</li>
+<li>Change the root password (if not known the original)</li>
+<li>Access the content via the EC2 instance (if private) or directly if restored as public RDS instance.</li>
+</ol>
 <h3 id="simple-queue-service-sqs">Simple Queue Service - SQS</h3>
 <p>List queues:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
