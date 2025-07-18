@@ -19,11 +19,6 @@ url = "/cloud/aws/flaws2.cloud.html"
 title = "flaws2.cloud Challenges"
 
 [[input.files]]
-path = "cloud/pwnedlabs/pwnedlabs.md"
-url = "/cloud/aws/pwnedlabs.html"
-title = "pwnedlabs Challenges"
-
-[[input.files]]
 path = "cloud/flaws.cloud/flaws.cloud.md"
 url = "/cloud/aws/flaws.cloud.html"
 title = "flaws.cloud Challenges"
