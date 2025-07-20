@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#user-permissions" title="User &amp; Permissions">User &amp; Permissions</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li></ul></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#user-permissions" title="User &amp; Permissions">User &amp; Permissions</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li></ul></li></ul></li></ul></div>
         </div>
     <p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
 <h2 id="aws">AWS</h2>
@@ -487,6 +487,64 @@ aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapsh
 </code></pre></div>
 <p>List available backups:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>list-backups<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<h3 id="codecommit">CodeCommit</h3>
+<p>List repositories:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>list-repositories<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get repository details:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-repository<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get repository credentials:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"protocol=https\npath=&lt;repository path&gt;\nhost=&lt;repository host&gt;"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>aws<span class="w"> </span>codecommit<span class="w"> </span>credential-helper<span class="w"> </span>get
+</code></pre></div>
+<p>List repository branches:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>list-branches<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get branch last commit:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-branch<span class="w"> </span>--branch-name<span class="w"> </span>&lt;branch<span class="w"> </span>name&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get commit:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-commit<span class="w"> </span>--commit-id<span class="w"> </span>&lt;commit<span class="w"> </span>id&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get differences between two or more commits:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-differences<span class="w"> </span>--before-commit-specifier<span class="w"> </span>&lt;older<span class="w"> </span>commit&gt;<span class="w"> </span>--after-commit-specifier<span class="w"> </span>&lt;later<span class="w"> </span>commit&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get file content:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-file<span class="w"> </span>--file-path<span class="w"> </span><span class="s2">"&lt;file path&gt;"</span><span class="w"> </span>--commit-specifier<span class="w"> </span>&lt;commit<span class="w"> </span>id&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w">  </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.fileContent<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
+</code></pre></div>
+<h3 id="cognito">Cognito</h3>
+<p><img alt="aws-cognito-auth-flow.png" src="https://ojack69.github.io/jacks-corner/images/cloud/cloud-cheatsheet/aws-cognito-auth-flow.png"/></p>
+<p>*Note: Cognito could be configured to allow anonymous users. In that case step 1 and 2 are skipped.</p>
+<p>Get an Identity from an identity pool (step 3.1) - Anonymously:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-id<span class="w"> </span>--identity-pool-id<span class="w"> </span>&lt;user<span class="w"> </span>pool&gt;<span class="w"> </span><span class="o">[</span>--no-sign-request<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get temporary AWS credentials (step 3.2) - Anonymously:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-credentials-for-identity<span class="w"> </span>--identity-id<span class="w"> </span>&lt;identity<span class="w"> </span>id&gt;<span class="w"> </span>--no-sign-request<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Signup to a user pool (step 0):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--password<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>*Note: it's possible to perform username enumeration with this command since "User already exists" is returned when signing up with an existing username.</p>
+<p>Get Access and ID JWTs (step 1-2):</p>
+<div class="highlight"><pre><span></span><code>cognito-idp.us-east-1.amazonaws.com/us-east-1_8rcK7abtz
+</code></pre></div>
+<p>*Notes: </p>
+<ul>
+<li>Auth flow may vary depending on the authentication scheme configured for the user pool.</li>
+<li>The user pool id is contained in the <code>iss</code> claim of the issued JWT access token.</li>
+</ul>
+<p>If getting <code>UserNotConfirmedException</code>, signup specifying the email to which receive the confirmation code ("Allow Cognito to automatically send messages to verify and confirm" setting should be enabled - this is generally true):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--password<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--user-attributes<span class="w"> </span><span class="nv">Name</span><span class="o">=</span><span class="s2">"email"</span>,Value<span class="o">=</span><span class="s2">"&lt;email&gt;"</span><span class="w"> </span><span class="nv">Name</span><span class="o">=</span><span class="s2">"name"</span>,Value<span class="o">=</span><span class="s2">"&lt;name&gt;"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Confirm the signup with the code received on the email:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>confirm-sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--confirmation-code<span class="w"> </span>&lt;confirmation<span class="w"> </span>code&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get an Identity from an identity pool (step 3.1):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-id<span class="w"> </span>--identity-pool-id<span class="w"> </span>&lt;identity<span class="w"> </span>pool<span class="w"> </span>id&gt;<span class="w"> </span>--logins<span class="w"> </span><span class="s2">"{ \"&lt;access token iss claim content without https://&gt;\": \"&lt;id token&gt;\" }"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get temporary AWS credentials (step 3.2):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-credentials-for-identity<span class="w"> </span>--identity-id<span class="w"> </span>&lt;identity<span class="w"> </span>id&gt;<span class="w"> </span>--logins<span class="w"> </span><span class="s2">"{ \"&lt;access token iss claim content without https://&gt;\": \"&lt;id token&gt;\" }"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
 <h3 id="meta-data">Meta Data</h3>
 <p>When dumping API keys from metadata, set also the <code>api_session_token</code> in the AWS CLI config.</p>
