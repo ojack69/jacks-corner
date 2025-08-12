@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#user-permissions" title="User &amp; Permissions">User &amp; Permissions</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li></ul></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#user-permissions" title="User &amp; Permissions">User &amp; Permissions</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li></ul></li><li><a class="toc-href" href="#pacu_1" title="PACU">PACU</a></li></ul></li></ul></div>
         </div>
     <p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
 <h2 id="aws">AWS</h2>
@@ -614,6 +614,17 @@ http://169.254.170.2/v4/&lt;container id&gt;
 <div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--services<span class="w"> </span>&lt;services<span class="w"> </span>list&gt;
 </code></pre></div>
 <p><strong>Note</strong>: previous three command can be combined.</p>
+<h3 id="pacu_1">PACU</h3>
+<p>Set up keys for current session:</p>
+<div class="highlight"><pre><span></span><code>&gt; 
+</code></pre></div>
+<p>List available modules:</p>
+<div class="highlight"><pre><span></span><code>&gt; ls
+</code></pre></div>
+<p>Run module:</p>
+<div class="highlight"><pre><span></span><code>&gt; run &lt;module name&gt; 
+</code></pre></div>
+<p>Show enumerated data:</p>
 <p>TODO: https://github.com/RhinoSecurityLabs/pacu</p>
   </div>
   <div class="tag-cloud">
