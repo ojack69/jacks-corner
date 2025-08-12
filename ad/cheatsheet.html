@@ -2502,6 +2502,13 @@ sc<span class="w"> </span><span class="se">\\</span>&lt;target<span class="w"> <
 sudo<span class="w"> </span>pwsh<span class="w"> </span>-Command<span class="w"> </span><span class="s1">'Install-WSMan'</span>
 sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gss-ntlmssp
 </code></pre></div>
+<p>If receiving the following error when running <code>Enter-PSSession</code> or similar:</p>
+<div class="highlight"><pre><span></span><code>The WinRM client  cannot process the request. If the authentication scheme is different from Kerberos, or if the client computer is not   joined to a domain, then HTTPS transport must be used or the destination machine must be added to the TrustedHosts      configuration setting. Use winrm.cmd to configure TrustedHosts. Note that computers in the TrustedHosts list might not  be authenticated. You can get more information about that by running the following command: winrm help config. For      more information, see the about_Remote_Troubleshooting Help topic. 
+</code></pre></div>
+<p>Add the the target host to the TrustedHosts as follows:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Enable-PSRemoting</span> <span class="n">-SkipNetworkProfileCheck</span>
+<span class="nb">Set-Item</span> <span class="n">WSMan</span><span class="p">:\</span><span class="n">localhost</span><span class="p">\</span><span class="n">Client</span><span class="p">\</span><span class="n">TrustedHosts</span> <span class="n">-Value</span> <span class="s2">"&lt;target host&gt;"</span> <span class="n">-Concatenate</span>
+</code></pre></div>
 <p>Useful Resources:</p>
 <ul>
 <li><a href="https://thomask.sdf.org/blog/2019/12/15/linux-windows-powershell-remoting-troubleshooting.html">PSRemoting - Linux to Windows</a></li>

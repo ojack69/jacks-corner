@@ -141,7 +141,7 @@
 
   <div>
         <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#user-permissions" title="User &amp; Permissions">User &amp; Permissions</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li></ul></li><li><a class="toc-href" href="#pacu_1" title="PACU">PACU</a></li></ul></li></ul></div>
+            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#users-permissions-iam" title="Users &amp; Permissions - IAM">Users &amp; Permissions - IAM</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li><li><a class="toc-href" href="#pacu" title="PACU">PACU</a></li></ul></li></ul></li></ul></div>
         </div>
     <p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
 <h2 id="aws">AWS</h2>
@@ -153,7 +153,7 @@
 <span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">/</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
 <span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
 </code></pre></div>
-<h3 id="user-permissions">User &amp; Permissions</h3>
+<h3 id="users-permissions-iam">Users &amp; Permissions - IAM</h3>
 <p>User credentials file path:</p>
 <div class="highlight"><pre><span></span><code>&lt;user&gt;/.aws/credentials
 </code></pre></div>
@@ -164,12 +164,28 @@ aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> <
 <p>Get account id from an access key id:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-access-key-info<span class="w"> </span>--access-key-id<span class="o">=</span>&lt;access<span class="w"> </span>key&gt;
 </code></pre></div>
+<p>Get account id from an access key id with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> Current Profile
+<span class="k">&gt; </span><span class="ge">run iam__decode_accesskey_id</span>
+
+<span class="gh">#</span> Specified Access Key
+<span class="k">&gt; </span><span class="ge">run iam__decode_accesskey_id &lt;access key&gt;</span>
+</code></pre></div>
 <p>When <code>sts get-caller-identity</code> is disabled or the main goal is to remain stealthy, an alternative method to obtain the principal name associate to current keys is to trigger some errors for particular services; AWS leaks the calling role and the account ID in those errors:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
 aws<span class="w"> </span>pinpoint-sms-voice<span class="w"> </span>send-voice-message
 aws<span class="w"> </span>timestream-query<span class="w"> </span>describe-endpoints
 </code></pre></div>
 <p><strong>Note</strong>: these services <strong>are not logged in CloudTrail</strong>!</p>
+<p>Enumerate user's permissions with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__enum_permissions</span>
+<span class="c1"># OR, when no IAM privileges are grante - should be similar to aws-enumerator - more noisy</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__bruteforce_permissions</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">whoami</span>
+</code></pre></div>
+<p>Enumerate users, roles, policies and groups with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__enum_users_roles_policies_groups</span>
+</code></pre></div>
 <p>Get <strong>inline</strong> user policies (policies specifically written for that user):</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-user-policies<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
 </code></pre></div>
@@ -329,6 +345,9 @@ aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<sp
 </ul>
 <p><strong>Note</strong>: current account must have the <code>sts:AssumeRole</code> permission on the <code>&lt;known role&gt;</code></p>
 <h3 id="secrets-manager">Secrets Manager</h3>
+<p>Enumerate Secret Manager with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">secrets__enum</span>
+</code></pre></div>
 <p>List secrets:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>secretsmanager<span class="w"> </span>list-secrets<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
@@ -336,6 +355,9 @@ aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<sp
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>secretsmanager<span class="w"> </span>get-secret-value<span class="w"> </span>--secret-id<span class="w"> </span>&lt;secret<span class="w"> </span>id&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
 <h3 id="elastic-compute-cloud-ec2">Elastic Compute Cloud -  EC2</h3>
+<p>Enumerate EC2 with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">ec2__enum</span>
+</code></pre></div>
 <p>List images owned by current user:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-images<span class="w"> </span>--owners<span class="w"> </span>self
 </code></pre></div>
@@ -350,6 +372,9 @@ aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<sp
 </code></pre></div>
 <p>List snapshots with tags (useful to filter out automatic snapshots):</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--query<span class="w"> </span><span class="s1">'Snapshots[?Tags!=null]'</span>
+</code></pre></div>
+<p>Enumerate EBS snapshots with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">ebs__enum_volumes_snapshots</span>
 </code></pre></div>
 <p>Create a volume from the specified snapshot - see <a href="https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-availability-zones.htm">AWS Availability Zones</a>:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span>--availability-zone<span class="w"> </span>&lt;target<span class="w"> </span>availability<span class="w"> </span>zone&gt;<span class="w"> </span>--snapshot-id<span class="w">  </span>&lt;snapshot<span class="w"> </span>id&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
@@ -372,7 +397,13 @@ aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<sp
 <p>Get launch template details:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-launch-template-versions<span class="w"> </span>--launch-template-id<span class="w"> </span>&lt;launch<span class="w"> </span>template<span class="w"> </span>id&gt;
 </code></pre></div>
+<p>Get admin password for an instance - please note that the private key is required in order to obtain the cleartext password:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>get-password-data<span class="w"> </span>--instance-id<span class="w"> </span>&lt;instance<span class="w"> </span>id&gt;<span class="w"> </span>--priv-launch-key<span class="w"> </span>&lt;private<span class="w"> </span>key&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
 <h3 id="lambda-api">Lambda &amp; API</h3>
+<p>Enumerate Lambda with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">lambda__enum</span>
+</code></pre></div>
 <p>List available rest API:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-rest-apis
 </code></pre></div>
@@ -401,6 +432,9 @@ Refer to <a href="https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-invoca
 </code></pre></div>
 <p>Useful resource: <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html">Tutorial: Create a REST API with a Lambda proxy integration</a></p>
 <h3 id="elastic-container-registry-ecr">Elastic Container Registry - ECR</h3>
+<p>Enumerate ECR with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">ecr__enum</span>
+</code></pre></div>
 <p>Describe registry:</p>
 <div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="w"> </span><span class="n">ecr</span><span class="w"> </span><span class="n">describe</span><span class="o">-</span><span class="n">registry</span>
 </code></pre></div>
@@ -430,6 +464,10 @@ docker<span class="w"> </span>pull<span class="w"> </span>&lt;registry&gt;/&lt;r
 <div class="highlight"><pre><span></span><code>docker history &lt;image id or name&gt;
 </code></pre></div>
 <h3 id="relational-database-service-rds">Relational Database Service - RDS</h3>
+<p>Enumerate RDS with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">rds__enum</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">rds__enum_snapshots</span>
+</code></pre></div>
 <p>List current user DB and DB clusters:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 aws<span class="w"> </span>rds<span class="w"> </span>describe-db-clusters<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
@@ -469,6 +507,9 @@ aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapsh
 </code></pre></div>
 <p>Refer to <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">SQS Message Attributes</a>.</p>
 <h3 id="dynamodb">DynamoDB</h3>
+<p>Enumerate DynamoDB with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">dynamodb__enum</span>
+</code></pre></div>
 <p>List available endpoints:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>describe-endpoints<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
@@ -516,6 +557,9 @@ aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapsh
 <h3 id="cognito">Cognito</h3>
 <p><img alt="aws-cognito-auth-flow.png" src="https://ojack69.github.io/jacks-corner/images/cloud/cloud-cheatsheet/aws-cognito-auth-flow.png"/></p>
 <p>*Note: Cognito could be configured to allow anonymous users. In that case step 1 and 2 are skipped.</p>
+<p>Enumerate Cognito with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">cognito__enum</span>
+</code></pre></div>
 <p>Get an Identity from an identity pool (step 3.1) - Anonymously:</p>
 <div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-id<span class="w"> </span>--identity-pool-id<span class="w"> </span>&lt;user<span class="w"> </span>pool&gt;<span class="w"> </span><span class="o">[</span>--no-sign-request<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
 </code></pre></div>
@@ -614,9 +658,9 @@ http://169.254.170.2/v4/&lt;container id&gt;
 <div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--services<span class="w"> </span>&lt;services<span class="w"> </span>list&gt;
 </code></pre></div>
 <p><strong>Note</strong>: previous three command can be combined.</p>
-<h3 id="pacu_1">PACU</h3>
+<h4 id="pacu">PACU</h4>
 <p>Set up keys for current session:</p>
-<div class="highlight"><pre><span></span><code>&gt; 
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">set_keys</span>
 </code></pre></div>
 <p>List available modules:</p>
 <div class="highlight"><pre><span></span><code>&gt; ls
@@ -625,7 +669,16 @@ http://169.254.170.2/v4/&lt;container id&gt;
 <div class="highlight"><pre><span></span><code>&gt; run &lt;module name&gt; 
 </code></pre></div>
 <p>Show enumerated data:</p>
-<p>TODO: https://github.com/RhinoSecurityLabs/pacu</p>
+<div class="highlight"><pre><span></span><code>&gt; data
+</code></pre></div>
+<p>Query data with <code>jq</code>:</p>
+<div class="highlight"><pre><span></span><code>&gt; jq &lt;query&gt; &lt;service&gt;
+</code></pre></div>
+<p>List of useful queries:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get enumerated EC2 instances' names</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">jq</span><span class="w"> </span><span class="o">.</span><span class="n">Instances</span><span class="o">.</span><span class="p">[]</span><span class="o">|</span><span class="p">{</span><span class="n">KeyName</span><span class="p">:</span><span class="o">.</span><span class="n">KeyName</span><span class="p">,</span><span class="n">InstanceId</span><span class="p">:</span><span class="o">.</span><span class="n">InstanceId</span><span class="p">,</span><span class="n">ImageId</span><span class="p">:</span><span class="o">.</span><span class="n">ImageId</span><span class="p">,</span><span class="n">Region</span><span class="p">:</span><span class="o">.</span><span class="n">Region</span><span class="p">,</span><span class="n">Tags</span><span class="p">:</span><span class="o">.</span><span class="n">Tags</span><span class="p">,</span><span class="n">PrivateIpAddress</span><span class="p">:</span><span class="o">.</span><span class="n">PrivateIpAddress</span><span class="p">,</span><span class="n">PublicIpAddress</span><span class="p">:</span><span class="o">.</span><span class="n">PublicI</span><span class="w">  </span>
+<span class="n">pAddress</span><span class="p">}</span><span class="w"> </span><span class="n">EC2</span>
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
