@@ -109,11 +109,6 @@ url = "/binary-exploitation/rop-emporium/callme.html"
 title = "ROP Emporium - callme"
 
 [[input.files]]
-path = "certifications/inesecurity/ewpt-useful-resources.md"
-url = "/certifications/inesecurity/ewpt-useful-resources.html"
-title = "eWPT-v2 Useful Resources"
-
-[[input.files]]
 path = "binary-exploitation/buffer-overflow/rop-gadget-leak.md"
 url = "/binary-exploitation/buffer-overflow/rop-gadget-leak.html"
 title = "ROP Gadget - LIBC Leak"
@@ -174,9 +169,9 @@ url = "/binary-exploitation/heap-journey/house-of-force.html"
 title = "Heap Journey - House of Force"
 
 [[input.files]]
-path = "ad/active-directory.md"
+path = "ad/active-directory-cheatsheet.md"
 url = "/ad/cheatsheet.html"
-title = "Active Directory"
+title = "Active Directory Cheatsheet"
 
 [[input.files]]
 path = "binary-exploitation/heap-journey/glibc-appendix.md"
@@ -219,19 +214,9 @@ url = "/misc/powershell-cheatsheet.html"
 title = "PowerShell Cheatsheet"
 
 [[input.files]]
-path = "mobile/adb-cheatsheet.md"
-url = "/mobile/adb-cheatsheet.html"
-title = "ADB Cheatsheet"
-
-[[input.files]]
 path = "mobile/mobile-cheatsheet.md"
 url = "/mobile/cheatsheet.html"
 title = "Mobile Cheatsheet"
-
-[[input.files]]
-path = "mobile/frida-objection-cheatsheet.md"
-url = "/mobile/frida-cheatsheet.html"
-title = "Frida & Objection Cheatsheet"
 
 [[input.files]]
 path = "personal/goals.md"

@@ -165,24 +165,6 @@
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ewpt-useful-resources.html">eWPT-v2 Useful Resources</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><h2 id="owasp-web-security-testing-guide">OWASP Web Security Testing Guide</h2>
-<p>https://github.com/tanprathan/OWASP-Testing-Checklist</p>
-<h2 id="xss">XSS</h2>
-<p>https://github.com/epsylon/xsser</p>
-<h2 id="file-upload">File Upload</h2>
-<p>https://github.com/epinna/weevely3</p></div>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/buffer-overflow/rop-gadget-leak.html">ROP Gadget - LIBC Leak</a></h2>
     <p>
 
@@ -479,7 +461,7 @@ To get the correct version of glibc it is possible to run the libc file itself s
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory</a></h2>
+    <h2><a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">Active Directory Cheatsheet</a></h2>
     <p>
 
 
@@ -650,6 +632,35 @@ To get the correct version of glibc it is possible to run the libc file itself s
 <p>Generate bytearray …</p></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/binary-exploitation-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">Misc Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="cracking">Cracking</h2>
+<p>Crack salted SHA512 hash with john the ripper:</p>
+<div class="highlight"><pre><span></span><code>john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt --format='dynamic=sha512($p.$s)'
+</code></pre></div>
+<p>Note: hashes need to be formatted as follow: </p>
+<blockquote>
+<p>hash$salt</p>
+</blockquote>
+<p>Crack a zip archive:</p>
+<div class="highlight"><pre><span></span><code>fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip
+</code></pre></div>
+<h2 id="fingerprinting">Fingerprinting</h2>
+<h3 id="wordpress">Wordpress …</h3></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">
       Continue reading
     </a>
   </div>

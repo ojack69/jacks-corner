@@ -125,35 +125,6 @@
 
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">Misc Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><h2 id="cracking">Cracking</h2>
-<p>Crack salted SHA512 hash with john the ripper:</p>
-<div class="highlight"><pre><span></span><code>john hashes.txt --wordlist=/usr/share/wordlists/rockyou.txt --format='dynamic=sha512($p.$s)'
-</code></pre></div>
-<p>Note: hashes need to be formatted as follow: </p>
-<blockquote>
-<p>hash$salt</p>
-</blockquote>
-<p>Crack a zip archive:</p>
-<div class="highlight"><pre><span></span><code>fcrackzip -u -D -p /usr/share/wordlists/rockyou.txt 16162020_backup.zip
-</code></pre></div>
-<h2 id="fingerprinting">Fingerprinting</h2>
-<h3 id="wordpress">Wordpress …</h3></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/misc/cheatsheet.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/misc/network.html">Network Cheatsheet</a></h2>
     <p>
 
@@ -207,32 +178,6 @@
 </article>
 <article>
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">ADB Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><h2 id="activities-services-content-providers-broadcast-receivers">Activities, Services, Content Providers, Broadcast Receivers</h2>
-<p>Start Activity by name:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="w"> </span>-n<span class="w"> </span>com.android.insecurebankv2/.WrongLogin
-</code></pre></div>
-<p>Start Activity by deeplink:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="w"> </span>-W<span class="w"> </span><span class="s2">"[schema]://[host]/[path][?queryParams]"</span>
-</code></pre></div>
-<p>Start Activity Intent:</p>
-<div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>am<span class="w"> </span>start<span class="p">|</span>startservice<span class="p">|</span>broadcast<span class="w"> </span>&lt;INTENT&gt;<span class="o">[</span>&lt;COMPONENT&gt;<span class="o">]</span>
--a<span class="w"> </span>&lt;ACTION&gt;<span class="w"> </span>e.g.<span class="w"> </span>android.intent.action …</code></pre></div></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/mobile/adb-cheatsheet.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">Mobile Cheatsheet</a></h2>
     <p>
 
@@ -241,7 +186,8 @@
   </header>
   <div>
     <div><h2 id="android">Android</h2>
-<h3 id="architecture">Architecture</h3>
+<h3 id="concepts">Concepts</h3>
+<h4 id="architecture">Architecture</h4>
 <p><img alt="android-framework.png" src="https://ojack69.github.io/jacks-corner/images/mobile/cheatsheet/android-framework.png"/></p>
 <p><strong>Kernel</strong>: it's a Linux Kernel. It's the most privileged as well as the hardest to reach. Some of the classic Linux kernel exploits are still applicable.
 It uses as well SELinux.</p>
@@ -252,49 +198,9 @@ It uses as well SELinux.</p>
 <li>Network Stack</li>
 <li>Devices Drivers</li>
 </ul>
-<p><strong>Hardware Abstraction …</strong></p></div>
+<p><strong>Hardware …</strong></p></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/mobile/cheatsheet.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">Frida & Objection Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><p>References:</p>
-<ul>
-<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
-</ul>
-<p>Useful Resources:</p>
-<ul>
-<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
-</ul>
-<p>List processes:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
-frida-ps<span class="w"> </span>-U
-
-//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Ua
-
-
-//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
-frida-ps<span class="w"> </span>-Uai
-</code></pre></div>
-<p>Connect to process:</p>
-<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
-frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
-
-//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f …</code></pre></div></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html">
       Continue reading
     </a>
   </div>
@@ -317,7 +223,6 @@ frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span
 <hr/>
 <ul>
 <li goal-group="">Learning</li>
-<li>AWS Penetration Testing Basics</li>
 <li>iOS Penetration Testing Basics</li>
 <li>Book: Operating Systems - Three Easy Pieces</li>
 <li>Linux Heap Exploitation 2</li>
@@ -330,6 +235,7 @@ frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span
 <hr/>
 <ul>
 <li goal-group="">Completed</li>
+<li goal-completed="01/08/2025">AWS Penetration Testing Basics</li>
 <li goal-completed="07/06/2025">eWPTX</li>
 <li goal-completed="23/03/2025">CAPen</li>
 <li goal-completed="17/03/2025">Game of Active Directory Full Lab (GOAD)</li>
