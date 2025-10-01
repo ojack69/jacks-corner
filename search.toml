@@ -1,0 +1,254 @@
+[input]
+base_directory = "content"
+url_prefix = "/jacks-corner"
+html_selector = "main"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/captain-nohook.md"
+url = "/mobile/mobilehackinglab/captain-nohook.html"
+title = "MobileHackingLab - Captain Nohook"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/freshcart.md"
+url = "/mobile/mobilehackinglab/fresh-cart.html"
+title = "MobileHackingLab - FreshCart"
+
+[[input.files]]
+path = "ctf/vulnlab/chains/trusted.md"
+url = "/ctf/vulnlab/chains/trusted.html"
+title = "Trusted"
+
+[[input.files]]
+path = "ctf/vulnlab/chains/hybrid.md"
+url = "/ctf/vulnlab/chains/hybrid.html"
+title = "Hybrid"
+
+[[input.files]]
+path = "cloud/flaws2.cloud/flaws2.cloud.md"
+url = "/cloud/aws/flaws2.cloud.html"
+title = "flaws2.cloud Challenges"
+
+[[input.files]]
+path = "cloud/flaws.cloud/flaws.cloud.md"
+url = "/cloud/aws/flaws.cloud.html"
+title = "flaws.cloud Challenges"
+
+[[input.files]]
+path = "ad/goad/game-of-active-directory-notes.md"
+url = "/ad/goad.html"
+title = "Game of Active Directory Notes"
+
+[[input.files]]
+path = "privilege-escalation/windows-privilege-escalation.md"
+url = "/privilege-escalation/windows-privilege-escalation.html"
+title = "Windows Privilege Escalation"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/note-keeper.md"
+url = "/mobile/mobilehackinglab/note-keeper.html"
+title = "MobileHackingLab - Note Keeper"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/post-board.md"
+url = "/mobile/mobilehackinglab/post-board.html"
+title = "MobileHackingLab - Post Board"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/document-viewer.md"
+url = "/mobile/mobilehackinglab/document-viewer.html"
+title = "MobileHackingLab - Document Viewer"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/config-editor.md"
+url = "/mobile/mobilehackinglab/config-editor.html"
+title = "MobileHackingLab - Config Editor"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/guessme.md"
+url = "/mobile/mobilehackinglab/guessme.html"
+title = "MobileHackingLab - GuessMe"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/cyclic-scanner.md"
+url = "/mobile/mobilehackinglab/cyclic-scanner.html"
+title = "MobileHackingLab - CyclicScanner"
+
+[[input.files]]
+path = "mobile/mobilehackinglab/strings.md"
+url = "/mobile/mobilehackinglab/strings.html"
+title = "MobileHackingLab - Strings"
+
+[[input.files]]
+path = "binary-exploitation/buffer-overflow/ret2syscall.md"
+url = "/binary-exploitation/buffer-overflow/rop-gadget-ret2syscall.html"
+title = "ROP Gadget - ret2syscall"
+
+[[input.files]]
+path = "binary-exploitation/format-string-vulnerabilities/got-overwrite.md"
+url = "/binary-exploitation/format-string-vulnerabilities/got-overwrite.html"
+title = "GOT Overwrite Abusing Format String Vulnerability"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/ret2csu.md"
+url = "/binary-exploitation/rop-emporium/ret2csu.html"
+title = "ROP Emporium - ret2csu"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/pivot.md"
+url = "/binary-exploitation/rop-emporium/pivot.html"
+title = "ROP Emporium - pivot"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/fluff.md"
+url = "/binary-exploitation/rop-emporium/fluff.html"
+title = "ROP Emporium - fluff"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/badchars.md"
+url = "/binary-exploitation/rop-emporium/badchars.html"
+title = "ROP Emporium - badchars"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/write4.md"
+url = "/binary-exploitation/rop-emporium/write4.html"
+title = "ROP Emporium - write4"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/callme.md"
+url = "/binary-exploitation/rop-emporium/callme.html"
+title = "ROP Emporium - callme"
+
+[[input.files]]
+path = "binary-exploitation/buffer-overflow/rop-gadget-leak.md"
+url = "/binary-exploitation/buffer-overflow/rop-gadget-leak.html"
+title = "ROP Gadget - LIBC Leak"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/split.md"
+url = "/binary-exploitation/rop-emporium/split.html"
+title = "ROP Emporium - split"
+
+[[input.files]]
+path = "binary-exploitation/rop-emporium/ret2win.md"
+url = "/binary-exploitation/rop-emporium/ret2win.html"
+title = "ROP Emporium - ret2win"
+
+[[input.files]]
+path = "ctf/mapna-2024/ninipwn.md"
+url = "/ctf/mapna-2024/ninipwn.html"
+title = "MAPNA CTF 2024 - ninipwn"
+
+[[input.files]]
+path = "certifications/inesecurity/ejpt-concepts.md"
+url = "/certifications/inesecurity/ejpt-concepts.html"
+title = "eJPT-v2 Concepts"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/one-byte.md"
+url = "/binary-exploitation/heap-journey/one-byte.html"
+title = "Heap Journey - One-Byte"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/house-of-orange.md"
+url = "/binary-exploitation/heap-journey/house-of-orange.html"
+title = "Heap Journey - House of Orange"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/safe-unlink.md"
+url = "/binary-exploitation/heap-journey/safe-unlink.html"
+title = "Heap Journey - Safe Unlink"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/unsafe-unlink.md"
+url = "/binary-exploitation/heap-journey/unsafe-unlink.html"
+title = "Heap Journey - Unsafe Unlink"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/extra.md"
+url = "/binary-exploitation/heap-journey/extra.html"
+title = "Heap Journey - Extra"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/fastbin-dup.md"
+url = "/binary-exploitation/heap-journey/fastbin-dup.html"
+title = "Heap Journey - Fastbin Dup (Duplication)"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/house-of-force.md"
+url = "/binary-exploitation/heap-journey/house-of-force.html"
+title = "Heap Journey - House of Force"
+
+[[input.files]]
+path = "ad/active-directory-cheatsheet.md"
+url = "/ad/cheatsheet.html"
+title = "Active Directory Cheatsheet"
+
+[[input.files]]
+path = "binary-exploitation/heap-journey/glibc-appendix.md"
+url = "/binary-exploitation/heap-journey/glibc-appendix.html"
+title = "Heap Journey - GLIBC Concepts Appendix"
+
+[[input.files]]
+path = "books/attacking-and-exploiting-modern-web-applications.md"
+url = "/books/attacking-and-exploiting-modern-web-applications.html"
+title = "Attacking and Exploiting Modern Web Applications - S.Onofri | D.Onofri"
+
+[[input.files]]
+path = "certifications/inesecurity/ejpt-cheatsheet.md"
+url = "/certifications/inesecurity/ejpt-cheatsheet.html"
+title = "eJPT-v2 Cheatsheet"
+
+[[input.files]]
+path = "cloud/cloud-cheatsheet.md"
+url = "/cloud/cheatsheet.html"
+title = "Cloud Cheatsheet"
+
+[[input.files]]
+path = "binary-exploitation/binary-exploitation-cheatsheet.md"
+url = "/misc/binary-exploitation-cheatsheet.html"
+title = "Binary Exploitation Cheatsheet"
+
+[[input.files]]
+path = "misc/misc-cheatsheet.md"
+url = "/misc/cheatsheet.html"
+title = "Misc Cheatsheet"
+
+[[input.files]]
+path = "misc/network-cheatsheet.md"
+url = "/misc/network.html"
+title = "Network Cheatsheet"
+
+[[input.files]]
+path = "misc/powershell-cheatsheet.md"
+url = "/misc/powershell-cheatsheet.html"
+title = "PowerShell Cheatsheet"
+
+[[input.files]]
+path = "mobile/mobile-cheatsheet.md"
+url = "/mobile/cheatsheet.html"
+title = "Mobile Cheatsheet"
+
+[[input.files]]
+path = "personal/goals.md"
+url = "/personal/goals.html"
+title = "Goals"
+
+[[input.files]]
+path = "privilege-escalation/windows-privilege-escalation-cheatsheet.md"
+url = "/privilege-escalation/windows-privilege-escalation-cheatsheet.html"
+title = "Windows Privilege Escalation Cheatsheet"
+
+[[input.files]]
+path = "reversing/ida-cheat-sheet.md"
+url = "/reversing/ida-cheatsheet.html"
+title = "IDA Cheatsheet"
+
+[[input.files]]
+path = "reversing/reverse-engineering-cheatsheet.md"
+url = "/reversing/reverse-engineering-cheatsheet.html"
+title = "Reverse Engineering Cheatsheet"
+
+[[input.files]]
+path = "web/web-cheatsheet.md"
+url = "/web/cheatsheet.html"
+title = "Web Cheatsheet"

@@ -1,0 +1,774 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Reverse Engineering Common Strategies Patching assembly Tampering registers Delete instructions replacing them with a number of nop instructions equal to the size of the deleted instruction in term of bytes. Fundamentals Data sizes In x86 terminology/documentation, a &#34;word&#34; is 16 bits because x86 evolved out of 16-bit 8086. Term …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Reverse Engineering Cheatsheet"/>
+  <meta property="og:description" content="Reverse Engineering Common Strategies Patching assembly Tampering registers Delete instructions replacing them with a number of nop instructions equal to the size of the deleted instruction in term of bytes. Fundamentals Data sizes In x86 terminology/documentation, a &#34;word&#34; is 16 bits because x86 evolved out of 16-bit 8086. Term …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Reverse Engineering Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="reversing/reverse-engineering-cheatsheet">Reverse Engineering Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#reverse-engineering-common-strategies" title="Reverse Engineering Common Strategies">Reverse Engineering Common Strategies</a></li><li><a class="toc-href" href="#fundamentals" title="Fundamentals">Fundamentals</a></li><li><a class="toc-href" href="#data-sizes" title="Data sizes">Data sizes</a><ul><li><a class="toc-href" href="#bitwise-operations" title="Bitwise Operations">Bitwise Operations</a><ul><li><a class="toc-href" href="#bitwise-and" title="Bitwise AND">Bitwise AND</a></li><li><a class="toc-href" href="#bitwise-or" title="Bitwise OR">Bitwise OR</a></li><li><a class="toc-href" href="#bitwise-xor" title="Bitwise XOR">Bitwise XOR</a></li><li><a class="toc-href" href="#left-shift" title="Left Shift">Left Shift</a></li><li><a class="toc-href" href="#left-shift_1" title="Left Shift">Left Shift</a></li></ul></li><li><a class="toc-href" href="#bitwise-algorithms_1" title="Bitwise Algorithms">Bitwise Algorithms</a><ul><li><a class="toc-href" href="#bit-rotation" title="Bit rotation">Bit rotation</a></li></ul></li></ul></li><li><a class="toc-href" href="#assembly_2" title="Assembly">Assembly</a><ul><li><a class="toc-href" href="#registers" title="Registers">Registers</a></li><li><a class="toc-href" href="#common-assembly-instructions" title="Common Assembly Instructions">Common Assembly Instructions</a></li><li><a class="toc-href" href="#calling-conventions-and-registers-usage" title="Calling Conventions and Registers Usage">Calling Conventions and Registers Usage</a></li><li><a class="toc-href" href="#misc-notes" title="Misc Notes">Misc Notes</a></li></ul></li><li><a class="toc-href" href="#reverse-engineering-utils_1" title="Reverse Engineering Utils">Reverse Engineering Utils</a></li></ul></div>
+        </div>
+    <h2 id="reverse-engineering-common-strategies">Reverse Engineering Common Strategies</h2>
+<ul>
+<li>Patching assembly</li>
+<li>Tampering registers</li>
+<li>Delete instructions replacing them with a number of <code>nop</code> instructions equal to the size of the deleted instruction in term of bytes.</li>
+</ul>
+<h2 id="fundamentals">Fundamentals</h2>
+<h2 id="data-sizes">Data sizes</h2>
+<p><strong>In x86 terminology/documentation, a "word" is 16 bits</strong> because x86 evolved out of 16-bit 8086.</p>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>x86 Bytes</th>
+<th>x86 Bits</th>
+<th>x64 Bytes</th>
+<th>x64 Bits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>byte</td>
+<td>1</td>
+<td>8</td>
+<td>1</td>
+<td>8</td>
+</tr>
+<tr>
+<td>word</td>
+<td>2</td>
+<td>16</td>
+<td>4</td>
+<td>32</td>
+</tr>
+<tr>
+<td>dword*</td>
+<td>4</td>
+<td>32</td>
+<td>8</td>
+<td>64</td>
+</tr>
+<tr>
+<td>qword*</td>
+<td>8</td>
+<td>64</td>
+<td>16</td>
+<td>128</td>
+</tr>
+</tbody>
+</table>
+<p>*The effective size depends on the architecture using the <em>word</em> as reference. A <em>dword</em> is then the double of a <em>word</em> whilst a qword is the quadruple of a <em>word</em>.</p>
+<h3 id="bitwise-operations">Bitwise Operations</h3>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Operator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Complement</td>
+<td>~</td>
+</tr>
+<tr>
+<td>AND</td>
+<td>&amp;</td>
+</tr>
+<tr>
+<td>OR</td>
+<td>|</td>
+</tr>
+<tr>
+<td>XOR</td>
+<td>^</td>
+</tr>
+<tr>
+<td>Left Shift</td>
+<td>&lt;&lt;</td>
+</tr>
+<tr>
+<td>Right Shift</td>
+<td>&gt;&gt;</td>
+</tr>
+<tr>
+<td>#### Complement</td>
+<td></td>
+</tr>
+<tr>
+<td>Value</td>
+<td>Result</td>
+</tr>
+<tr>
+<td>-----</td>
+<td>------</td>
+</tr>
+<tr>
+<td>~ 1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>~0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<blockquote>
+<p>~12 = -13<br/>
+~12 = ~00001100 = 11110011 = -13<br/>
+13 = 00001101 <br/>
+~13 = 11110010<br/>
+-13 = ~13 + 1 = 11110011  </p>
+</blockquote>
+<h4 id="bitwise-and">Bitwise AND</h4>
+<table>
+<thead>
+<tr>
+<th>V1</th>
+<th>V2</th>
+<th>Reults</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<blockquote>
+<p>12 &amp; 13 = 12<br/>
+00001100 &amp; 00001101 = 00001100  </p>
+</blockquote>
+<h4 id="bitwise-or">Bitwise OR</h4>
+<table>
+<thead>
+<tr>
+<th>V1</th>
+<th>V2</th>
+<th>Reults</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<blockquote>
+<p>12 | 13 = 13<br/>
+00001100 &amp; 00001101 = 00001101  </p>
+</blockquote>
+<h4 id="bitwise-xor">Bitwise XOR</h4>
+<table>
+<thead>
+<tr>
+<th>V1</th>
+<th>V2</th>
+<th>Reults</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<blockquote>
+<p>12 ^ 13 = 1<br/>
+00001100 ^ 00001101 = 00000001  </p>
+</blockquote>
+<h4 id="left-shift">Left Shift</h4>
+<p>Example:</p>
+<blockquote>
+<p>10 &lt;&lt; 2 = 40<br/>
+00001010 &lt;&lt; 2 = 00101000  </p>
+</blockquote>
+<h4 id="left-shift_1">Left Shift</h4>
+<p>Example:</p>
+<blockquote>
+<p>10 &gt;&gt; 2 = 2<br/>
+00000010 &gt;&gt; 2 = 2  </p>
+</blockquote>
+<h3 id="bitwise-algorithms_1">Bitwise Algorithms</h3>
+<h4 id="bit-rotation">Bit rotation</h4>
+<p>Unlike shift operations where the left-most (left shift) or right-most (right shift) bits are lost, with a bit rotation a circular shift is applied so that the left-most bits became the right-most (left rotation) and vice versa (right rotation).</p>
+<p>If <code>n</code> is the input sequence of bit and <code>d</code> is the number of bit to rotate:</p>
+<blockquote>
+<p>Left Rotation(n,d) = n &lt;&lt; d |  n &gt;&gt; (TOTAL_BYTES - d)</p>
+<p>Right Rotation(n,d) =   n &gt;&gt;  d |  n &lt;&lt; (TOTAL_BYTES - d) </p>
+</blockquote>
+<h2 id="assembly_2">Assembly</h2>
+<h3 id="registers">Registers</h3>
+<p>Useful resources: <a href="http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html">http://www.eecg.toronto.edu/~amza/www.mindsec.com/files/x86regs.html</a></p>
+<p><strong>General Registers:</strong></p>
+<table>
+<thead>
+<tr>
+<th>x32 Register</th>
+<th>x64 Register</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EAX</td>
+<td>RAX</td>
+<td>Accumulator. It&rsquo;s also used for I/O port access, arithmetic operations, and interrupt calls.</td>
+</tr>
+<tr>
+<td>EBX</td>
+<td>RBX</td>
+<td>Base index. It&rsquo;s used to get interrupt return values, but generally represents the base of the input you&rsquo;re saving to memory.</td>
+</tr>
+<tr>
+<td>ECX</td>
+<td>RCX</td>
+<td>Counter. It&rsquo;s used as a loop/string counter and to count shifts.</td>
+</tr>
+<tr>
+<td>EDX</td>
+<td>RDX</td>
+<td>Extends the precision of the accumulator (also called the data register). EAX and EDX are often combined in 64-bit operations using 32-bit code.</td>
+</tr>
+<tr>
+<td>ESI</td>
+<td>RSI</td>
+<td>Source index for string operations. Essentially, this stores the start of the string that you&rsquo;re saving to memory and is also used for string/memory copying.</td>
+</tr>
+<tr>
+<td>EDI</td>
+<td>RDI</td>
+<td>Destination index for string operations. This is used for string and memory array copying.</td>
+</tr>
+<tr>
+<td>EBP</td>
+<td>RBP</td>
+<td>Base Pointer. The base pointer for the current stack frame.</td>
+</tr>
+<tr>
+<td>ESP</td>
+<td>RSP</td>
+<td>Stack Pointer. the top pointer of the current stack frame.</td>
+</tr>
+<tr>
+<td>EIP</td>
+<td>RIP</td>
+<td>Instruction Pointer. Pointer to the next instruction to be executed.</td>
+</tr>
+<tr>
+<td></td>
+<td>R8-R15</td>
+<td>General purpose registers.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Segment Registers:</strong>
+The segment registers are used specifically for referencing memory locations. There are three different methods of accessing system memory of which we will focus on the flat memory model which is relevant for our purposes.</p>
+<table>
+<thead>
+<tr>
+<th>Register</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SS</td>
+<td>Holds the Stack segment the running program uses.</td>
+</tr>
+<tr>
+<td>CS</td>
+<td>Holds the Code segment the program runs.</td>
+</tr>
+<tr>
+<td>DS</td>
+<td>Holds the Data segment that the program accesses.</td>
+</tr>
+<tr>
+<td>ES</td>
+<td>These are extra segment registers available for far pointer addressing like video memory and such.</td>
+</tr>
+<tr>
+<td>FS</td>
+<td>These are extra segment registers available for far pointer addressing like video memory and such.</td>
+</tr>
+<tr>
+<td>GS</td>
+<td>These are extra segment registers available for far pointer addressing like video memory and such.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>EFLAGS register</strong>
+The EFLAGS register hold the state of the processor. It is modified by many intructions and is used for comparing some parameters, conditional loops and conditionnal jumps. Each bit holds the state of specific parameter of the last instruction.</p>
+<p>Note: these flags are referred to 8086 microprocessor.</p>
+<table>
+<thead>
+<tr>
+<th>Bit</th>
+<th>Label/Flag</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>CF</td>
+<td>Carry Flag - Set when the result of an operation is too large for the destination operand</td>
+</tr>
+<tr>
+<td>2</td>
+<td>PF</td>
+<td>Parity Flag - Indicates if the number of bits resulting from the last operation are even or odd</td>
+</tr>
+<tr>
+<td>4</td>
+<td>AZ</td>
+<td>Auxiliary Carry Flag</td>
+</tr>
+<tr>
+<td>6</td>
+<td>ZF</td>
+<td>Zero Flag - Set when the result of an operation is equal to zero</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SF</td>
+<td>Sign Flag - Set if the result of an operation is negative</td>
+</tr>
+<tr>
+<td>8</td>
+<td>TF</td>
+<td>Trap Flag - Set if step by step debugging</td>
+</tr>
+<tr>
+<td>9</td>
+<td>IF</td>
+<td>Interrupt Enable Flag</td>
+</tr>
+<tr>
+<td>10</td>
+<td>DF</td>
+<td>Direction Flag</td>
+</tr>
+<tr>
+<td>11</td>
+<td>OF</td>
+<td>Overflow Flag</td>
+</tr>
+<tr>
+<td>12-13</td>
+<td>IOPL</td>
+<td>I/O Priviledged Level</td>
+</tr>
+<tr>
+<td>14</td>
+<td>NT</td>
+<td>Nested Task Flag</td>
+</tr>
+<tr>
+<td>16</td>
+<td>RF</td>
+<td>Resume Flag</td>
+</tr>
+<tr>
+<td>17</td>
+<td>VM</td>
+<td>Virtual 8086 mode flag</td>
+</tr>
+<tr>
+<td>18</td>
+<td>AC</td>
+<td>Alignment check flag (486+)</td>
+</tr>
+<tr>
+<td>19</td>
+<td>VIF</td>
+<td>Virutal interrupt flag</td>
+</tr>
+<tr>
+<td>20</td>
+<td>VIP</td>
+<td>Virtual interrupt pending flag</td>
+</tr>
+<tr>
+<td>21</td>
+<td>ID</td>
+<td>ID flag</td>
+</tr>
+</tbody>
+</table>
+<h3 id="common-assembly-instructions">Common Assembly Instructions</h3>
+<table>
+<thead>
+<tr>
+<th>Instruction</th>
+<th>Category</th>
+<th>Purpose</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mov</td>
+<td>Data Transfer</td>
+<td>Move data</td>
+<td><em>mov dest, src</em></td>
+</tr>
+<tr>
+<td>movzx</td>
+<td>Data Transfer</td>
+<td>Movx Move-Zero-Extendend - move source to destination and pad with 0 destination</td>
+<td><em>movzx dest, src</em></td>
+</tr>
+<tr>
+<td>lea</td>
+<td>Data Transfer</td>
+<td>Load Effective Address</td>
+<td><em>lea dest, src</em></td>
+</tr>
+<tr>
+<td>xchg</td>
+<td>Data Transfer</td>
+<td>Exchange - Swap destination and source values</td>
+<td><em>xchg dest, src</em></td>
+</tr>
+<tr>
+<td>call</td>
+<td>Control Flow</td>
+<td>Execute Function</td>
+<td><em>call function</em></td>
+</tr>
+<tr>
+<td>push</td>
+<td>Control Flow</td>
+<td>Push value to the stack - move <code>rsp</code>/<code>esp</code> backward</td>
+<td><em>push value</em></td>
+</tr>
+<tr>
+<td>pop</td>
+<td>Control Flow</td>
+<td>Pop value off the stack into the specified register  - move <code>rsp</code>/<code>esp</code> forward</td>
+<td><em>pop register</em></td>
+</tr>
+<tr>
+<td>ret</td>
+<td>Control Flow</td>
+<td>Return from function</td>
+<td><em>ret</em></td>
+</tr>
+<tr>
+<td>jmp</td>
+<td>Control Flow</td>
+<td>Unconditional Jump</td>
+<td><em>jmp address</em></td>
+</tr>
+<tr>
+<td>je</td>
+<td>Control Flow</td>
+<td>Jump if Equal - Jump to address if ZF = 1</td>
+<td><em>je address</em></td>
+</tr>
+<tr>
+<td>jnz</td>
+<td>Control Flow</td>
+<td>Jump if Not Zero - Jump to address if ZF = 0</td>
+<td><em>jnz address</em></td>
+</tr>
+<tr>
+<td>jnb</td>
+<td>Control Flow</td>
+<td>Jump if Not Below - Jump to address if CF = 0</td>
+<td><em>jnb address</em></td>
+</tr>
+<tr>
+<td>add</td>
+<td>Arithmetic Instruction</td>
+<td>Add source to destination</td>
+<td><em>add dest, src</em></td>
+</tr>
+<tr>
+<td>sub</td>
+<td>Arithmetic Instruction</td>
+<td>Subtract source from destination</td>
+<td><em>sub dest, src</em></td>
+</tr>
+<tr>
+<td>imul</td>
+<td>Arithmetic Instruction</td>
+<td>Multiply source by a value and store the result into the destination</td>
+<td><em>imul dest, src, val</em></td>
+</tr>
+<tr>
+<td>inc</td>
+<td>Arithmetic Instruction</td>
+<td>Increment register by 1</td>
+<td><em>inc register</em></td>
+</tr>
+</tbody>
+</table>
+<p>*Notes: </p>
+<ul>
+<li>Each jump instruction is preceded by either a <code>test</code> or a <code>cmp</code> instructions. However, <code>jmp</code> is an unconditional jump and not preceded by anything <code>test</code> or <code>cmp</code>.</li>
+<li><code>jz</code>/<code>jnz</code> and <code>je</code>/<code>jne</code> are equivalent but <code>jz</code>/<code>jnz</code> are more appropriate when you are explicitly testing for something being equal to zero; <code>je</code>/ <code>jne</code> are more appropriate after a <code>cmp</code> instruction:</li>
+</ul>
+<h3 id="calling-conventions-and-registers-usage">Calling Conventions and Registers Usage</h3>
+<p><code>EAX</code>/<code>RAX</code> register is used by convention to hold the return value of a function call, if it exists and is no more than 64 bits long. 
+Larger return types like structs are returned using the stack.</p>
+<p>Generally, before any function call, the assembly prepares the parameters:</p>
+<ul>
+<li>In 32 bit programs, the stack is used to pass parameters to function by <code>push</code> instructions.</li>
+<li>In 64 bit programs, the "parameter preparation" is done with <code>mov</code> instructions to specific registers (following some "Calling Conventions") when the size of the parameter is not too big &ndash; For this reason, these calls are called <strong>fastcalls</strong>. Otherwise the stack is used by mean of <code>push</code> instructions.</li>
+</ul>
+<p>In x64 architectures, <code>RDI</code>, <code>RSI</code>, <code>RDX</code>, <code>RCX</code>, <code>R8</code>, and <code>R9</code> are used to pass the first six integer or pointer parameters to called functions. Additional parameters or large parameters such as structs passed by value are passed on the stack.</p>
+<h3 id="misc-notes">Misc Notes</h3>
+<ul>
+<li>In x86 assembly language, "short" is used to indicate a short (relative) jump instruction. This instruction typically allows for a smaller jump range compared to the non-short version. It's used when the destination label is within a limited range from the current instruction.</li>
+<li>The "short" keyword is not a part of the condition evaluation. It just indicates the type of jump instruction to use.</li>
+</ul>
+<h2 id="reverse-engineering-utils_1">Reverse Engineering Utils</h2>
+<p>Extract data from binary:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">binwalk</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="nx">binary</span><span class="w"> </span><span class="c1">// extract default known file types</span>
+<span class="nx">binwalk</span><span class="w"> </span><span class="o">--</span><span class="nx">dd</span><span class="p">=</span><span class="s">".*"</span><span class="w"> </span><span class="nx">file_name</span><span class="w"> </span><span class="c1">// extract any file types or specified one</span>
+</code></pre></div>
+<p>Emulate devices in user-space:</p>
+<div class="highlight"><pre><span></span><code>file firmware.bin // Check firmware architecture
+cp $(which qemu-ARCH-static) ./to_emulate_root_dir
+chroot ./to_emulate_root_dir ./qemu-ARCH-static command // run command in emulated environment
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

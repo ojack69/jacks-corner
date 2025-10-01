@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Information Gathering Active: actively interacting with systems or individuals to obtain specific information Passive: find as much information about a target from public available information Passive Information Gathering WHOIS Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee when privacy options …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="eJPT-v2 Concepts"/>
+  <meta property="og:description" content="Information Gathering Active: actively interacting with systems or individuals to obtain specific information Passive: find as much information about a target from public available information Passive Information Gathering WHOIS Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee when privacy options …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-01-05 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Certifications"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; eJPT-v2 Concepts</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="certifications/inesecurity/ejpt-concepts">eJPT-v2 Concepts</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#information-gathering" title="Information Gathering">Information Gathering</a><ul><li><a class="toc-href" href="#passive-information-gathering" title="Passive Information Gathering">Passive Information Gathering</a><ul><li><a class="toc-href" href="#whois" title="WHOIS">WHOIS</a></li><li><a class="toc-href" href="#website-footprinting-with-netcraft" title="Website Footprinting with Netcraft">Website Footprinting with Netcraft</a></li><li><a class="toc-href" href="#dns-recon" title="DNS Recon">DNS Recon</a></li><li><a class="toc-href" href="#subdomain-enumeration-with-sublist3r" title="Subdomain Enumeration with sublist3r">Subdomain Enumeration with sublist3r</a></li></ul></li><li><a class="toc-href" href="#active-information-gathering_1" title="Active Information Gathering">Active Information Gathering</a><ul><li><a class="toc-href" href="#dns-zone-transfers" title="DNS Zone Transfers">DNS Zone Transfers</a></li><li><a class="toc-href" href="#port-scanning" title="Port Scanning">Port Scanning</a></li></ul></li></ul></li><li><a class="toc-href" href="#assessment-methodologies-footprinting-scanning_2" title="Assessment Methodologies: Footprinting &amp; Scanning">Assessment Methodologies: Footprinting &amp; Scanning</a><ul><li><a class="toc-href" href="#network-host-mapping" title="Network Host Mapping">Network Host Mapping</a></li><li><a class="toc-href" href="#port-scanning_1" title="Port Scanning">Port Scanning</a></li><li><a class="toc-href" href="#assessment-methodologies-enumeration" title="Assessment Methodologies: Enumeration">Assessment Methodologies: Enumeration</a><ul><li><a class="toc-href" href="#smb-samba" title="SMB &amp; SAMBA">SMB &amp; SAMBA</a></li><li><a class="toc-href" href="#ftp" title="FTP">FTP</a></li><li><a class="toc-href" href="#ssh" title="SSH">SSH</a></li><li><a class="toc-href" href="#mysql" title="MySQL">MySQL</a></li><li><a class="toc-href" href="#mssql" title="MSSQL">MSSQL</a></li><li><a class="toc-href" href="#smtp" title="SMTP">SMTP</a></li></ul></li></ul></li><li><a class="toc-href" href="#vulnerability-assessment_2" title="Vulnerability Assessment">Vulnerability Assessment</a><ul><li><a class="toc-href" href="#vulnerabilities" title="Vulnerabilities">Vulnerabilities</a></li><li><a class="toc-href" href="#heartbleed" title="Heartbleed">Heartbleed</a></li><li><a class="toc-href" href="#eternalblue-ms17-1010" title="EternalBlue - MS17-1010">EternalBlue - MS17-1010</a></li><li><a class="toc-href" href="#log4j" title="Log4J">Log4J</a></li></ul></li><li><a class="toc-href" href="#host-network-penetration-testing-systemhost-based-attacks_1" title="Host &amp; Network Penetration Testing: System/Host Based Attacks">Host &amp; Network Penetration Testing: System/Host Based Attacks</a><ul><li><a class="toc-href" href="#windows" title="Windows">Windows</a><ul><li><a class="toc-href" href="#frequently-exploited-windows-services" title="Frequently Exploited Windows Services">Frequently Exploited Windows Services</a><ul><li><a class="toc-href" href="#iis" title="IIS">IIS</a></li><li><a class="toc-href" href="#webdav" title="WebDAV">WebDAV</a></li><li><a class="toc-href" href="#smb-and-psexec" title="SMB and PsExec">SMB and PsExec</a></li><li><a class="toc-href" href="#ms17-010-eternalblue-exploit" title="MS17-010 EternalBlue Exploit">MS17-010 EternalBlue Exploit</a></li><li><a class="toc-href" href="#rdp" title="RDP">RDP</a></li><li><a class="toc-href" href="#cve-2019-0708-bluekeep" title="CVE-2019-0708 - BlueKeep">CVE-2019-0708 - BlueKeep</a></li><li><a class="toc-href" href="#winrm" title="WinRM">WinRM</a></li></ul></li><li><a class="toc-href" href="#windows-privilege-escalation_1" title="Windows Privilege Escalation">Windows Privilege Escalation</a><ul><li><a class="toc-href" href="#windows-kernel-exploitation" title="Windows Kernel Exploitation">Windows Kernel Exploitation</a></li><li><a class="toc-href" href="#bypassing-uac-with-uacme" title="Bypassing UAC With UACMe">Bypassing UAC With UACMe</a></li><li><a class="toc-href" href="#access-token-impersonation" title="Access Token Impersonation">Access Token Impersonation</a></li></ul></li><li><a class="toc-href" href="#windows-file-system-vulnerabilities_1" title="Windows File System Vulnerabilities">Windows File System Vulnerabilities</a><ul><li><a class="toc-href" href="#alternate-data-streams" title="Alternate Data Streams">Alternate Data Streams</a></li></ul></li><li><a class="toc-href" href="#windows-credential-dumping_1" title="Windows Credential Dumping">Windows Credential Dumping</a><ul><li><a class="toc-href" href="#windows-password" title="Windows Password">Windows Password</a></li><li><a class="toc-href" href="#passwords-in-configuration-files" title="Passwords in Configuration Files">Passwords in Configuration Files</a></li><li><a class="toc-href" href="#pass-the-hash-attack" title="Pass-the-Hash Attack">Pass-the-Hash Attack</a></li></ul></li></ul></li><li><a class="toc-href" href="#linux-exploitation_2" title="Linux Exploitation">Linux Exploitation</a><ul><li><a class="toc-href" href="#frequently-exploited-linux-services" title="Frequently Exploited Linux Services">Frequently Exploited Linux Services</a></li><li><a class="toc-href" href="#bash-cve-2014-6271-vulnerability-shellshock" title="Bash CVE-2014-6271 Vulnerability (Shellshock)">Bash CVE-2014-6271 Vulnerability (Shellshock)</a></li><li><a class="toc-href" href="#linux-kernel-exploits" title="Linux Kernel Exploits">Linux Kernel Exploits</a></li><li><a class="toc-href" href="#exploiting-misconfigured-cron-jobs" title="Exploiting Misconfigured Cron Jobs">Exploiting Misconfigured Cron Jobs</a></li><li><a class="toc-href" href="#exploiting-suid-binaries" title="Exploiting SUID Binaries">Exploiting SUID Binaries</a></li></ul></li><li><a class="toc-href" href="#linux-credential-dumping_1" title="Linux Credential Dumping">Linux Credential Dumping</a></li></ul></li><li><a class="toc-href" href="#metasploit-framework_1" title="Metasploit Framework">Metasploit Framework</a><ul><li><a class="toc-href" href="#architecture" title="Architecture">Architecture</a></li><li><a class="toc-href" href="#penetration-testing-with-msf" title="Penetration Testing with MSF">Penetration Testing with MSF</a></li><li><a class="toc-href" href="#msf-wmap" title="MSF: WMAP">MSF: WMAP</a></li><li><a class="toc-href" href="#meterpreter" title="Meterpreter">Meterpreter</a></li><li><a class="toc-href" href="#msf-windows-post-exploitation-modules" title="MSF: Windows Post-Exploitation Modules">MSF: Windows Post-Exploitation Modules</a></li></ul></li><li><a class="toc-href" href="#host-network-penetration-testing-exploitation_1" title="Host &amp; Network Penetration Testing: Exploitation">Host &amp; Network Penetration Testing: Exploitation</a><ul><li><a class="toc-href" href="#av-evasion-obfuscation" title="AV Evasion &amp; Obfuscation">AV Evasion &amp; Obfuscation</a><ul><li><a class="toc-href" href="#shellter" title="Shellter">Shellter</a></li><li><a class="toc-href" href="#invoke-obfuscation" title="Invoke-Obfuscation">Invoke-Obfuscation</a></li></ul></li></ul></li><li><a class="toc-href" href="#host-network-penetration-testing-post-exploitation_2" title="Host &amp; Network Penetration Testing: Post-Exploitation">Host &amp; Network Penetration Testing: Post-Exploitation</a></li></ul></div>
+        </div>
+    <h1 id="information-gathering">Information Gathering</h1>
+<p>Active: actively interacting with systems or individuals to obtain specific information
+Passive: find as much information about a target from public available information</p>
+<h2 id="passive-information-gathering">Passive Information Gathering</h2>
+<h3 id="whois">WHOIS</h3>
+<p>Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee</p>
+<p>when privacy options are enabled (for example by enabling DNSSEC), it hides information about registrant.</p>
+<h3 id="website-footprinting-with-netcraft">Website Footprinting with Netcraft</h3>
+<p>Netcraft: it's used to gather information about a target domain such as registrar, emails, ip addresses, tls/ssl certificates, OS or web technologies, probable vulnerabilities, etc.
+It offers an Internet Data Mining service which collects all kind of informations about a target</p>
+<p>It collects all information collected manually into previous topics.</p>
+<h3 id="dns-recon">DNS Recon</h3>
+<p>When cloudflare is set as proxy, if the mail server and website are hosted on the same server, the MX record will expose the real IP since it needs an A record since Cloudflare does not proxy mail traffic (<a href="https://community.cloudflare.com/t/deprecated-an-a-aaaa-cname-or-mx-record-is-pointed-to-your-origin-server-exposing-your-origin-ip-address/67604">see here</a>).</p>
+<h3 id="subdomain-enumeration-with-sublist3r">Subdomain Enumeration with sublist3r</h3>
+<p>sublist3r: uses public accessible databases (OSINT) to collect information about a domain. Eventually it supports brute force but it would be active enumeration.</p>
+<p>Since it uses public engines, a large number of requests can lead to a block: bypassable with a VPN</p>
+<h2 id="active-information-gathering_1">Active Information Gathering</h2>
+<h3 id="dns-zone-transfers">DNS Zone Transfers</h3>
+<p>Cool resource:</p>
+<ul>
+<li>zonetransfer.me : playground domain useful when testing tools regarding DNS pentesting</li>
+</ul>
+<p>Zone transfer is a mechanism use to copy one or more zone records from a DNS server to another; in case of misconfigurations, this functionality can be abused by attackers which can obtain a more complete view of the target network, and, in some cases, leak internal network addresses.</p>
+<p>*Note: /etc/hosts has priority above dns server when resolving a name</p>
+<h3 id="port-scanning">Port Scanning</h3>
+<p>When dealing with windows systems, ICMP requests are tipically blocked. Nmap uses ping (ICMP protocol) to check host aliveness: when ICMP is blocked, the -Pn option is required to avoid checking host is alive.</p>
+<h1 id="assessment-methodologies-footprinting-scanning_2">Assessment Methodologies: Footprinting &amp; Scanning</h1>
+<h2 id="network-host-mapping">Network Host Mapping</h2>
+<p>Network mapping process involves:</p>
+<ul>
+<li>
+<p>Physical Access: </p>
+<ul>
+<li>a PT can include physical security like camera</li>
+<li>get ip addresses or dns records through OSINT, </li>
+<li>Use Social engineering to get addresses</li>
+</ul>
+</li>
+<li>
+<p>Sniffing: </p>
+<ul>
+<li>collect ip addresses or mac intercepting traffic</li>
+</ul>
+</li>
+<li>
+<p>ARP: protocol which maps MAC with ip addresses. Each host holds an arp table containing the known associations between MAC and IP addresses; when a new host requests (via broadcast message) whose MAC is associated to an ip, the first host who knows the answer (in its arp table) will respond</p>
+<ul>
+<li>arp-scan: tool to run an arp scan</li>
+</ul>
+</li>
+<li>
+<p>ICMP: protocol generally used to diagnose network connectivity issues. </p>
+<ul>
+<li>traceroute: shows all the network point between a source and a destinations, revealing the path of the sent packages</li>
+<li>ping: sends an echo request (type 8) and eventually gets a response; used to check if an host is alive</li>
+</ul>
+</li>
+</ul>
+<h2 id="port-scanning_1">Port Scanning</h2>
+<p>TCP Three way handshake
+    - Client: SYN
+    - Server: SYN + ACK
+    - Client: ACK</p>
+<ul>
+<li>
+<p>Identify Operating Systems:</p>
+<ul>
+<li>Based on what's revealed by signature: the tool compares the responses from an host with the signatures stored in its signature database</li>
+</ul>
+</li>
+<li>
+<p>Identify Services: trying to connect to their port and understand how them respond.</p>
+<ul>
+<li>Trying a TCP full handshake (three-way handshake)</li>
+<li>Trying a stealth TCP connection, resetting the connection (RST) right after the SYN + ACK</li>
+<li>banner grabbing</li>
+</ul>
+</li>
+</ul>
+<h2 id="assessment-methodologies-enumeration">Assessment Methodologies: Enumeration</h2>
+<h3 id="smb-samba">SMB &amp; SAMBA</h3>
+<p>Generally ports open are 135, 139, 445 when dealing with machines with SMB.</p>
+<p><strong>SMB</strong>: Windows implementation of a network file share service. Stands for Server Message Block.
+<strong>SAMBA</strong>: is SMB protocol implementation on Linux.</p>
+<h3 id="ftp">FTP</h3>
+<p>File Transfer Protocol, default port is 21.</p>
+<p>Anonymous login: when anonymous login is enabled is possible to login as "anonymous" user with empty password</p>
+<h3 id="ssh">SSH</h3>
+<p>Secure Shell, default port is 22.</p>
+<h3 id="mysql">MySQL</h3>
+<p>Default port is 3306.</p>
+<h3 id="mssql">MSSQL</h3>
+<p>Default port 1433.</p>
+<h3 id="smtp">SMTP</h3>
+<p>SMTP uses TCP port 25 by default. It is can also be configured to run on TCP port 465 and 587 when running with SSL or TLS.</p>
+<h1 id="vulnerability-assessment_2">Vulnerability Assessment</h1>
+<h3 id="vulnerabilities">Vulnerabilities</h3>
+<p>Vulnerability: </p>
+<ul>
+<li>NIST definition: A weakness in the computational logic (e.g., code) found in software and hardware components that, when exploited, results in a negative impact to confidentiality, integrity, or availability.</li>
+</ul>
+<p>Can be found in:</p>
+<ul>
+<li>the hardware</li>
+<li>the software</li>
+<li>the OS</li>
+</ul>
+<h3 id="heartbleed">Heartbleed</h3>
+<p>Heartbleed (CVE-2014-0160): The (1) TLS and (2) DTLS implementations in OpenSSL 1.0.1 before 1.0.1g do not properly handle Heartbeat Extension packets, which allows remote attackers to obtain sensitive information from process memory via crafted packets that trigger a buffer over-read, as demonstrated by reading private keys, related to d1_both.c and t1_lib.c, aka the Heartbleed bug.</p>
+<h3 id="eternalblue-ms17-1010">EternalBlue - MS17-1010</h3>
+<p>EternalBlue (CVE-2017-0143): The SMBv1 server in Microsoft Windows Vista SP2; Windows Server 2008 SP2 and R2 SP1; Windows 7 SP1; Windows 8.1; Windows Server 2012 Gold and R2; Windows RT 8.1; and Windows 10 Gold, 1511, and 1607; and Windows Server 2016 allows remote attackers to execute arbitrary code via crafted packets, aka "Windows SMB Remote Code Execution Vulnerability." </p>
+<h3 id="log4j">Log4J</h3>
+<p>CVE-2021-44228: Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.</p>
+<h1 id="host-network-penetration-testing-systemhost-based-attacks_1">Host &amp; Network Penetration Testing: System/Host Based Attacks</h1>
+<p>Inherent with exploiting Windows or Linux vulnerabilities.</p>
+<p>System/Host based attacks are attacks targeting a specific system running a specific operating system. Usually exploitable after gaining access to the target network. </p>
+<h2 id="windows">Windows</h2>
+<p>Microsoft Windows has various OS versions and releases which makes the threat surface fragmented in terms of vulnerabilities.</p>
+<ul>
+<li>For example, vulnerabilities that exist in Windows 7 are not present in Windows 10</li>
+</ul>
+<p>All Windows OS&rsquo;s:</p>
+<ul>
+<li>are developed in C =&gt; vulnerable to buffer overflows, arbitrary code execution</li>
+<li>are unsafe by default, a proactive implementation of security policies is required</li>
+<li>new vulnerabilities are slowly patched due the fragmented Windows nature</li>
+</ul>
+<p>Transition from a Windows release to another is a slow process for customers so many of them opt to use older versions that may be affected by an increasing number of vulnerabilities.</p>
+<h3 id="frequently-exploited-windows-services">Frequently Exploited Windows Services</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Protocol/Service</th>
+<th style="text-align: left;">Ports</th>
+<th style="text-align: left;">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Microsoft IIS (Internet Information Services)</td>
+<td style="text-align: left;">TCP ports 80/443</td>
+<td style="text-align: left;">Proprietary web server software developed by Microsoft that runs on Windows.</td>
+</tr>
+<tr>
+<td style="text-align: left;">WebDAV (Web Distributed Authoring &amp; Versioning)</td>
+<td style="text-align: left;">TCP ports 80/443</td>
+<td style="text-align: left;">HTTP extension that allows clients to update, delete, move and copy files on a web server. WebDAV is used to enable a web server to act as a file server.</td>
+</tr>
+<tr>
+<td style="text-align: left;">SMB/CIFS (Server Message Block Protocol)</td>
+<td style="text-align: left;">TCP port 445</td>
+<td style="text-align: left;">Network file sharing protocol that is used to facilitate the sharing of files and peripherals between computers on a local network (LAN).</td>
+</tr>
+<tr>
+<td style="text-align: left;">RDP(Remote Desktop Protocol)</td>
+<td style="text-align: left;">TCP port 445</td>
+<td style="text-align: left;">Proprietary GUI remote access protocol developed by Microsoft and is used to remotely authenticate and interact with a Windows system.</td>
+</tr>
+<tr>
+<td style="text-align: left;">WinRM (Windows Remote Management Protocol)</td>
+<td style="text-align: left;">TCP ports 5986/443</td>
+<td style="text-align: left;">Windows remote management protocol that can be used to facilitate remote access with Windows systems.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="iis">IIS</h4>
+<p>IIS (Internet Information Services) is a proprietary extensible web server software developed by Microsoft for use with the Windows NT family.</p>
+<p>Supported executable file extensions:</p>
+<ul>
+<li>.asp</li>
+<li>.aspx</li>
+<li>.config</li>
+<li>.php</li>
+</ul>
+<h4 id="webdav">WebDAV</h4>
+<p>WebDAV (Web-based Distributed Authoring and Versioning) is a set of extensions to the HTTP protocol which allow users to collaboratively edit and manage files on remote web servers. WebDAV runs on top Microsoft IIS on ports 80/443.
+WebDAV implements authentication in the form of a username and password.</p>
+<p>Exploitation:</p>
+<ul>
+<li>Identifying whether WebDAV has been configured to run on the IIS web server</li>
+<li>Brute-force attack on the WebDAV server in order to identify legitimate credentials</li>
+<li>Upload a malicious .asp payload that can be used to execute arbitrary commands or obtain a reverse shell on the target.</li>
+</ul>
+<h4 id="smb-and-psexec">SMB and PsExec</h4>
+<p>SMB (Server Message Block) is a network file sharing protocol that is used to facilitate the sharing of files and peripherals (printers and serial ports) between computers on a local network (LAN).</p>
+<p>Users must provide a username and password in order to authenticate with the SMB server in order to access a share.</p>
+<p>PsExec is a lightweight telnet-replacement developed by Microsoft that allows you execute processes on remote windows systems using any user&rsquo;s credentials.</p>
+<h4 id="ms17-010-eternalblue-exploit">MS17-010 EternalBlue Exploit</h4>
+<p>EternalBlue (MS17-010/CVE-2017-0144) is the name given to a collection of
+Windows vulnerabilities and exploits that allow attackers to remotely execute arbitrary code and gain access to a Windows system and consequently the network that the target system is a part of.
+The EternalBlue exploit takes advantage of a vulnerability in the Windows SMBv1 protocol that allows attackers to send specially crafted packets that consequently facilitate the execution of arbitrary commands.</p>
+<p>It grants generally elevated privileges.
+This vulnerability affects multiple versions of Windows:</p>
+<ul>
+<li>Windows Vista</li>
+<li>Windows 7</li>
+<li>Windows Server 2008</li>
+<li>Windows 8.1</li>
+<li>Windows Server 2012</li>
+<li>Windows 10</li>
+<li>Windows Server 2016</li>
+</ul>
+<p>Microsoft released a patch for the vulnerability in March, 2017, however, many users and companies have still not yet patched their systems.</p>
+<h4 id="rdp">RDP</h4>
+<p>The Remote Desktop Protocol (RDP) is a proprietary GUI remote access protocol developed by Microsoft and is used to remotely connect and interact with a Windows system. </p>
+<p>RDP authentication requires a legitimate user account on the target system as well as the user&rsquo;s password in clear-text.</p>
+<ul>
+<li>perform RDP brute-force attack to identify legitimate user credentials</li>
+</ul>
+<p>Often system administrators change the default port 3389.</p>
+<h4 id="cve-2019-0708-bluekeep">CVE-2019-0708 - BlueKeep</h4>
+<p>BlueKeep (CVE-2019-0708) is the name given to an RDP vulnerability in Windows that could potentially allow attackers to remotely execute arbitrary code and gain access to a Windows system and consequently the network that the target system is a part of.</p>
+<p>The BlueKeep vulnerability was made public by Microsoft in May 2019.</p>
+<p>The BlueKeep exploit takes advantage of a vulnerability in the Windows RDP protocol that allows attackers to gain access to a chunk of kernel memory consequently allowing them to remotely execute arbitrary code at the system level without authentication.</p>
+<p>The BlueKeep vulnerability affects multiple versions of Windows:
+- XP
+- Vista
+- Windows 7
+- Windows Server 2008 &amp; R2</p>
+<h4 id="winrm">WinRM</h4>
+<p>Windows Remote Management (WinRM) is a Windows remote management protocol that can be used to facilitate remote access with Windows systems over HTTP(S).</p>
+<p>WinRM is typically used in the following ways:
+- Remotely access and interact with Windows hosts on a local network.
+- Remotely access and execute commands on Windows systems.
+- Manage and configure Windows systems remotely.</p>
+<p>WinRM typically uses TCP port 5985 and 5986 (HTTPS).</p>
+<p>WinRM implements access control and security for communication between systems through various forms of authentication.</p>
+<h3 id="windows-privilege-escalation_1">Windows Privilege Escalation</h3>
+<p>Privilege escalation is the process of exploiting vulnerabilities or misconfigurations in
+systems to elevate privileges from one user to another, typically to a user with
+administrative or root access on a system.</p>
+<h4 id="windows-kernel-exploitation">Windows Kernel Exploitation</h4>
+<p>A Kernel is a computer program that is the core of an operating system and has
+complete control over every resource and hardware on a system. It acts as a translation
+layer between hardware and software and facilitates the communication between
+these two layers.</p>
+<ul>
+<li>Windows NT is the kernel that comes pre-packaged with all versions of Microsoft
+Windows</li>
+</ul>
+<p>It consists of two main modes of operation that determine access to
+system resources and hardware:</p>
+<ul>
+<li>User Mode: Programs and services running in user mode have limited access to
+system resources and functionality.</li>
+<li>Kernel Mode: Kernel mode has unrestricted access to system resources and
+functionality with the added functionality of managing devices and system
+memory.</li>
+</ul>
+<p>Privilege escalation on Windows systems will typically follow the following
+methodology:
+- Identifying kernel vulnerabilities
+- Downloading, compiling and transferring kernel exploits onto the target
+system.</p>
+<h4 id="bypassing-uac-with-uacme">Bypassing UAC With UACMe</h4>
+<p>User Account Control (UAC) is a Windows security feature introduced in Windows Vista that is used to prevent unauthorized changes from being made to the operating system.</p>
+<ul>
+<li>changes to the operating system require approval from the administrator or a user account that is part of the local administrators group.</li>
+</ul>
+<p>A non-privileged user attempting to execute a program with elevated privileges will be prompted with the UAC credential prompt, whereas a privileged user will be prompted with a consent prompt.</p>
+<ul>
+<li>Attacks can bypass UAC in order to execute malicious executables with elevated privileges.</li>
+</ul>
+<p>In order to successfully bypass UAC, we will need to have access to a user account that is a part of the local administrators group on the Windows target system.</p>
+<p>UAC has various integrity levels ranging from low to high, if the UAC protection level is set below high, Windows programs can be executed with elevated privileges without prompting the user for confirmation</p>
+<p>Tools:</p>
+<p><a href="https://github.com/hfiref0x/UACME">UACMe</a> is an open source, robust privilege escalation tool developed by @hfire0x. It can be used to bypass Windows UAC by leveraging various techniques</p>
+<ul>
+<li>It allows attackers to execute malicious payloads on a Windows target with
+administrative/elevated privileges by abusing the inbuilt Windows AutoElevate tool.</li>
+</ul>
+<h4 id="access-token-impersonation">Access Token Impersonation</h4>
+<p>Windows access tokens are a core element of the authentication process on Windows and are created and managed by the <strong>Local Security Authority Subsystem Service</strong> (LSASS).</p>
+<p>A Windows access token is responsible for identifying and describing the security context of a process or thread running on a system. Simply put, an access token can be thought of as a temporary key akin to a web cookie that provides users with access to a system or network resource without having to provide credentials each time a process is started or a system resource is accessed.</p>
+<p>Access tokens are generated by the winlogon.exe process every time a user authenticates successfully and includes the identity and privileges of the user account associated with the thread or process. This token is then attached to the userinit.exe process, after which all child processes started by a user will inherit a copy of the access token from their creator and will run under the privileges of the same access token.</p>
+<p>An access token will typically be assigned one of the following security levels:</p>
+<ul>
+<li>Impersonate-level tokens are created as a direct result of a non-interactive login on Windows, typically through specific system services or domain logons.<ul>
+<li>Impersonate-level tokens can be used to impersonate a token on the local system and not on any external systems that utilize the token.</li>
+</ul>
+</li>
+<li>Delegate-level tokens are typically created through an interactive login on Windows, primarily through a traditional login or through remote access protocols such as RDP.<ul>
+<li>Delegate-level tokens pose the largest threat as they can be used to impersonate tokens on any system.</li>
+</ul>
+</li>
+</ul>
+<p>The following are the privileges that are required for a successful impersonation attack:
+- SeAssignPrimaryToken: This allows a user to impersonate tokens.
+- SeCreateToken: This allows a user to create an arbitrary token with administrative privileges.
+- SeImpersonatePrivilege: This allows a user to create a process under the security context of another user typically with administrative privileges.</p>
+<h3 id="windows-file-system-vulnerabilities_1">Windows File System Vulnerabilities</h3>
+<h4 id="alternate-data-streams">Alternate Data Streams</h4>
+<p>Alternate Data Streams (ADS) is an NTFS (New Technology File System) file attribute and
+was designed to provide compatibility with the MacOS HFS (Hierarchical File System).</p>
+<p>Any file created on an NTFS formatted drive will have two different forks/streams:
+- Data stream - Default stream that contains the data of the file.
+- Resource stream - Typically contains the metadata of the file.</p>
+<p>Attackers can use ADS to hide malicious code or executables in legitimate files in order to
+evade detection by storing the malicious code or executables in the file attribute resource
+stream (metadata) of a legitimate file.</p>
+<p>This technique is usually used to evade basic signature based AVs and static scanning
+tools.</p>
+<h3 id="windows-credential-dumping_1">Windows Credential Dumping</h3>
+<h4 id="windows-password">Windows Password</h4>
+<p>The Windows OS stores hashed user account passwords locally in the <strong>SAM (Security
+Accounts Manager)</strong> database. Authentication and verification of user credentials is facilitated by the Local Security Authority (LSA).</p>
+<p>Windows versions up to Windows Server 2003 utilize two different types of hashes:
+- LM
+- NTLM
+Windows disables LM hashing and utilizes NTLM hashing from Windows Vista onwards.</p>
+<p>All user account passwords stored in the SAM database are hashed.
+- The SAM database file cannot be copied while the operating system is running.
+- The Windows NT kernel keeps the SAM database file locked and as a result, attackers typically utilize in-memory techniques and tools to dump SAM hashes from the LSASS process. &lt;-&gt; Elevated/Administrative privileges are required in order to access and interact with the LSASS process.</p>
+<p>In modern versions of Windows, the SAM database is encrypted with a syskey.</p>
+<p>LM (LanMan): is used to hash user passwords, and the hashing process can be broken down into the following steps:
++ The password is broken into two seven-character chunks.
++ All characters are then converted into uppercase.
++ Each chunk is then hashed separately with the DES algorithm.</p>
+<p>LM hashing is generally considered to be a weak protocol and can easily becracked, primarily because the password hash does not include salts, consequently making brute-force and rainbow table attacks effective against LM hashes.</p>
+<p>NTLM (NTHash): is a collection of authentication protocols that are utilized in Windows to facilitate authentication between computers. When a user account is created, it is encrypted using the MD4 hashing algorithm, while the original password is disposed of.</p>
+<p>NTLM improves upon LM in the following ways:
+- Does not split the hash in to two chunks.
+- Case sensitive.
+- Allows the use of symbols and unicode characters.</p>
+<h4 id="passwords-in-configuration-files">Passwords in Configuration Files</h4>
+<p>Windows can automate a variety of repetitive tasks; this is typically done through the use of the Unattended Windows Setup utility, which is used to automate the mass installation/deployment of Windows on systems.
+- <strong>This tool utilizes configuration files that contain specific configurations and user account credentials, specifically the Administrator account&rsquo;s password</strong>.</p>
+<p>If the Unattended Windows Setup configuration files are left on the target system after installation, they can reveal user account credentials that can be used by attackers to authenticate with Windows target legitimately.</p>
+<p>The Unattended Windows Setup utility will typically utilize one of the following configuration files that contain user account and system configuration information:
+- C:\Windows\Panther\Unattend.xml
+- C:\Windows\Panther\Autounattend.xml</p>
+<h4 id="pass-the-hash-attack">Pass-the-Hash Attack</h4>
+<p>Pass-the-hash is an exploitation technique that involves capturing or harvesting NTLM hashes or clear-text passwords and using them to authenticate with the target legitimately.</p>
+<h2 id="linux-exploitation_2">Linux Exploitation</h2>
+<h3 id="frequently-exploited-linux-services">Frequently Exploited Linux Services</h3>
+<table>
+<thead>
+<tr>
+<th>Protocol/Service</th>
+<th>Ports</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Apache Web Server</td>
+<td>TCP ports 80/443</td>
+<td>Free and open source cross-platform web server released under the Apache License 2.0. Apache accounts for over 80% of web servers globally.</td>
+</tr>
+<tr>
+<td>SSH (Secure Shell)</td>
+<td>TCP ports 22</td>
+<td>SSH is a cryptographic remote access protocol that is used to remotely access and control systems over an unsecured network. SSH was developed as a secure successor to telnet.</td>
+</tr>
+<tr>
+<td>FTP (File Transfer Protocol)</td>
+<td>TCP port 21</td>
+<td>FTP (File Transfer Protocol) is a protocol that uses TCP port 21 and is used to facilitate file sharing between a server and client/clients and vice versa.</td>
+</tr>
+<tr>
+<td>SAMBA</td>
+<td>TCP port 445</td>
+<td>Samba is the Linux implementation of SMB, and allows Windows systems to access Linux shares and devices.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bash-cve-2014-6271-vulnerability-shellshock">Bash CVE-2014-6271 Vulnerability (Shellshock)</h3>
+<p>Shellshock (CVE-2014-6271) is the name given to a family of vulnerabilities in the Bash shell (since V1.3) that allow an attacker to execute remote arbitrary commands via Bash, consequently allowing the attacker to obtain remote access to the target system via a reverse shell.</p>
+<p>The Shellshock vulnerability is caused by a vulnerability in Bash, whereby Bash mistakenly executes trailing commands after a series of characters: () {:;};.</p>
+<ul>
+<li>In order to exploit this vulnerability, you will need to locate an input vector or script
+that allows you to communicate with Bash.</li>
+<li>In the context of an Apache web server, we can utilize any legitimate CGI scripts accessible on the web server. Whenever a CGI script is executed, the web server will initiate a new process and run the CGI script with Bash.</li>
+</ul>
+<h3 id="linux-kernel-exploits">Linux Kernel Exploits</h3>
+<p>Kernel exploits on Linux will typically target vulnerabilities In the Linux kernel to execute arbitrary code in order to run privileged system commands or to obtain a system shell.</p>
+<p>Privilege escalation on Linux systems will typically follow the following
+methodology:
+- Identifying kernel vulnerabilities
+- Downloading, compiling and transferring kernel exploits onto the target system.</p>
+<h3 id="exploiting-misconfigured-cron-jobs">Exploiting Misconfigured Cron Jobs</h3>
+<p>Cron jobs can be run as any user on the system; keep an eye on Cron jobs that have been configured to be run as the &ldquo;root&rdquo; user.</p>
+<ul>
+<li>any script or command that is run by a Cron job will run as the root user and will consequently provide us with root access.</li>
+</ul>
+<p>A stealthy way to exploit it could be to give a previously pwned user sudo privileges</p>
+<h3 id="exploiting-suid-binaries">Exploiting SUID Binaries</h3>
+<p>When applied, SUID permission provides users with the ability to execute a script or binary with the permissions of the file owner as opposed to the user that is running the script or binary. </p>
+<ul>
+<li>SUID permissions are typically used to provide unprivileged users with the ability to run specific scripts or binaries with &ldquo;root&rdquo; permissions. It is to be noted, however, that the provision of elevate privileges is limited to the execution of the script and does not translate to elevation of privileges, however, if improperly configured unprivileged users can exploit misconfigurations or vulnerabilities within the binary or script to obtain an elevated session.</li>
+</ul>
+<h2 id="linux-credential-dumping_1">Linux Credential Dumping</h2>
+<p>Linux has multi-user support and as a result, multiple users can access the system simultaneously. </p>
+<p>The passwd file gives us information in regards to the hashing algorithm that is being used and the password hash, this is very helpful as we are able to determine the type of hashing algorithm that is being used and its strength. We can determine this by looking at the number after the username encapsulated by the dollar symbol ($).</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Hashing Algorithms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$1</td>
+<td>MD5</td>
+</tr>
+<tr>
+<td>$2</td>
+<td>Blowfish</td>
+</tr>
+<tr>
+<td>$5</td>
+<td>SHA-256</td>
+</tr>
+<tr>
+<td>$6</td>
+<td>SHA-512</td>
+</tr>
+</tbody>
+</table>
+<h1 id="metasploit-framework_1">Metasploit Framework</h1>
+<h2 id="architecture">Architecture</h2>
+<p><img alt="metasploit-architecture.png" src="https://ojack69.github.io/jacks-corner/images/certifications/inesecurity/ejpt/metasploit-architecture.png"/></p>
+<p>A module in the context of MSF, is a piece of code that can be utilized by the MSF. Its execution is facilitated by MSF libraries.</p>
+<p>Modules:</p>
+<ul>
+<li><strong>Exploit</strong>: A module that is used to take advantage of vulnerability and is typically paired with a payload.</li>
+<li><strong>Payload</strong>: Code that is delivered by MSF and remotely executed on the target after successful exploitation. An example of a payload is a reverse shell that initiates a connection from the target system back to the attacker.</li>
+<li><strong>Encoder</strong>: Used to encode payloads in order to avoid AV detection. For example, shikata_ga_nai is used to encode Windows payloads.</li>
+<li><strong>NOPS</strong>: Used to ensure that payloads sizes are consistent and ensure the stability of a payload when executed.</li>
+<li><strong>Auxiliary</strong>: A module that is used to perform additional functionality like port scanning and enumeration.</li>
+</ul>
+<p>There are two types of payloads that can be paired with an exploit:
+1. <strong>Non-Staged Payload</strong>: Payload that is sent to the target system as is along with the exploit.
+2. <strong>Staged Payload</strong>: A staged payload is sent to the target in two part; the first part (<strong>stager</strong>) contains a payload that is used to establish a reverse connection back to the attacker, download the second part of the payload (<strong>stage</strong>) and execute it.</p>
+<p>The <strong>Meterpreter</strong> (Meta-Interpreter) payload is an advanced multi-functional
+payload that is executed in memory on the target system making it difficult to
+detect.
+It communicates over a stager socket and provides an attacker with an interactive command interpreter on the target system that facilitates the execution of system commands, file system navigation, keylogging and much more.</p>
+<h2 id="penetration-testing-with-msf">Penetration Testing with MSF</h2>
+<table>
+<thead>
+<tr>
+<th>Penetration Testing Phase</th>
+<th>Metasploit Framework Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Information Gathering &amp; Enumeration</td>
+<td>Auxiliary Modules</td>
+</tr>
+<tr>
+<td>Vulnerability Scanning<br/></td>
+<td>Auxiliary Modules<br/>Nessus</td>
+</tr>
+<tr>
+<td>Exploitation<br/></td>
+<td>Exploit Modules &amp; Payloads</td>
+</tr>
+<tr>
+<td>Post Exploitation<br/></td>
+<td>Meterpreter</td>
+</tr>
+<tr>
+<td>Privilege Escalation</td>
+<td>Post Exploitation Modules<br/>Meterpreter</td>
+</tr>
+<tr>
+<td>Maintaining Persistent Access &amp; Clearing Tracks</td>
+<td>Post Exploitation Modules<br/>Persistence Modules</td>
+</tr>
+<tr>
+<td>## MSF Workspaces</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Workspaces allow you to keep track of all your hosts, scans and activities and are extremely useful when conducting penetration tests as they allow you to sort and organize your data based on the target or organization.</p>
+<h2 id="msf-wmap">MSF: WMAP</h2>
+<p>WMAP is a powerful, feature-rich web application vulnerability scanner that can be used to automate web server enumeration and scan web applications for vulnerabilities.</p>
+<h2 id="meterpreter">Meterpreter</h2>
+<p>Sometimes, Meterpreter process has to be migrated in order to:</p>
+<ul>
+<li>Hiding the process to gain persistence and avoid detection.</li>
+<li>Change the process architecture to execute some payloads with the corrent architecture. For example, if there is a 64-bits system and our meterpreter process is 86-bits, some architecture-related problems could happen if we try to execute some exploits against the session gained.</li>
+<li>Migrate to a more stable process</li>
+</ul>
+<h2 id="msf-windows-post-exploitation-modules">MSF: Windows Post-Exploitation Modules</h2>
+<p>The Windows OS stores and catalogs all actions/events performed on the system and stores them in the Windows Event log.</p>
+<p>Event logs are categorized based on the type of events they store:
++ Application logs: Stores application/program events like startups, crashes etc.
++ System logs: Stores system events like startups, reboots etc.
++ Security logs: Stores security events like password changes, authentication failures etc.
++ Event logs can be accessed via the Event Viewer on Windows.</p>
+<p>We can utilise these post exploitation modules to enumerate information about the Windows system we currently have access to:
+- Enumerate user privileges
+- Enumerate logged on users
+- VM check
+- Enumerate installed programs
+- Enumerate AVs
+- Enumerate computers connected to domain
+- Enumerate installed patches
+- Enumerate shares</p>
+<h1 id="host-network-penetration-testing-exploitation_1">Host &amp; Network Penetration Testing: Exploitation</h1>
+<h2 id="av-evasion-obfuscation">AV Evasion &amp; Obfuscation</h2>
+<p>AV software will typically utilize signature, heuristic and behaviour based detection.</p>
+<ol>
+<li><strong>Signature based detection</strong> - An AV signature is a unique sequence of bytes that uniquely identifies malware i.e bypassable by modifying the malware's byte sequence, therefore changing the signature.</li>
+<li><strong>Heuristic-based detection</strong> - Relies on rules or decisions to determine whether a binary is malicious. It also looks for specific patterns within the code or program calls.</li>
+<li><strong>Behavior based detection</strong> - Relies on identifying malware by monitoring its behavior.</li>
+</ol>
+<p><strong>On-disk Evasion Techniques</strong></p>
+<ul>
+<li><strong>Obfuscation</strong> - Obfuscation refers to the process of concealing something important, valuable, or critical.</li>
+<li><strong>Encoding</strong> - Encoding data is a <em>reversible</em> process involving changing data into a new format using a scheme. </li>
+<li><strong>Packing</strong> - Generate executable with new binary structure with a smaller size and therefore provides the payload with a new signature.</li>
+<li><strong>Crypters</strong> - Encrypts code or payloads and decrypts the encrypted code in memory. The decryption key/function is usually stored in a stub.</li>
+</ul>
+<p><strong>In-Memory Evasion Techniques</strong>
+- Focuses on manipulation of memory and does not write files to disk.
+- Injects payload into a process by leveraging various Windows APIs.
+- Payload is then executed in memory in a separate thread.</p>
+<h4 id="shellter">Shellter</h4>
+<p>Shellter is a dynamic shellcode injection tool that can be used in order to inject shellcode into native Windows applications - see <a href="https://www.shellterproject.com/">there</a>.</p>
+<h4 id="invoke-obfuscation">Invoke-Obfuscation</h4>
+<p>Invoke-Obfuscation is an open source PowerShell v2.0+ compatible PowerShell command and script obfuscator. - see <a href="https://github.com/danielbohannon/Invoke-Obfuscation">there</a>.</p>
+<h1 id="host-network-penetration-testing-post-exploitation_2">Host &amp; Network Penetration Testing: Post-Exploitation</h1>
+<p><img alt="post-exploitation-methodology.png" src="https://ojack69.github.io/jacks-corner/images/certifications/inesecurity/ejpt/post-exploitation-methodology.png"/></p>
+<p>1 - Local Enumeration</p>
+<ul>
+<li>Enumerating System Information</li>
+<li>Enumerating Users and Group</li>
+<li>Enumerating Network Information</li>
+<li>Enumerating Services</li>
+<li>Automatic Local Enumeration</li>
+</ul>
+<p>2 - Transfering Files</p>
+<ul>
+<li>Setting up a web server</li>
+<li>Transfering Files to targets</li>
+</ul>
+<p>3 - Upgrading Shells</p>
+<ul>
+<li>Upgrading command shells to meterpreter</li>
+<li>Spawning TTY Shells</li>
+</ul>
+<p>4 - Privilege Escalation</p>
+<ul>
+<li>Identify PrivEsc Vulns</li>
+<li>Windows/Linux PrivEsc</li>
+</ul>
+<p>5 - Persistence</p>
+<ul>
+<li>Setting up persistence on the target</li>
+</ul>
+<p>6 - Dumping &amp; Cracking Hashes</p>
+<p>7 -  Pivoting</p>
+<ul>
+<li>Internal Network Recon</li>
+<li>Pivoting</li>
+</ul>
+<p>8 - Clearing your tracks</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

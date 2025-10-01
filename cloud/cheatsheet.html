@@ -1,0 +1,727 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Cool resource: Hacking the Cloud AWS Setup AWS CLI client configuring credentials, region, etc: aws configure [--profile &lt;profile name&gt;] ARN format - reference: arn:partition:service:region:account-id:resource-id arn:partition:service:region:account-id:resource-type/resource-id arn:partition:service:region:account-id:resource-type:resource-id …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Cloud Cheatsheet"/>
+  <meta property="og:description" content="Cool resource: Hacking the Cloud AWS Setup AWS CLI client configuring credentials, region, etc: aws configure [--profile &lt;profile name&gt;] ARN format - reference: arn:partition:service:region:account-id:resource-id arn:partition:service:region:account-id:resource-type/resource-id arn:partition:service:region:account-id:resource-type:resource-id …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/cloud/cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Cloud Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="cloud/cheatsheet">Cloud Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#aws" title="AWS">AWS</a><ul><li><a class="toc-href" href="#users-permissions-iam" title="Users &amp; Permissions - IAM">Users &amp; Permissions - IAM</a></li><li><a class="toc-href" href="#simple-storage-service-s3" title="Simple Storage Service - S3">Simple Storage Service - S3</a></li><li><a class="toc-href" href="#secrets-manager" title="Secrets Manager">Secrets Manager</a></li><li><a class="toc-href" href="#elastic-compute-cloud-ec2" title="Elastic Compute Cloud -  EC2">Elastic Compute Cloud -  EC2</a></li><li><a class="toc-href" href="#lambda-api" title="Lambda &amp; API">Lambda &amp; API</a></li><li><a class="toc-href" href="#elastic-container-registry-ecr" title="Elastic Container Registry - ECR">Elastic Container Registry - ECR</a></li><li><a class="toc-href" href="#relational-database-service-rds" title="Relational Database Service - RDS">Relational Database Service - RDS</a></li><li><a class="toc-href" href="#simple-queue-service-sqs" title="Simple Queue Service - SQS">Simple Queue Service - SQS</a></li><li><a class="toc-href" href="#dynamodb" title="DynamoDB">DynamoDB</a></li><li><a class="toc-href" href="#codecommit" title="CodeCommit">CodeCommit</a></li><li><a class="toc-href" href="#cognito" title="Cognito">Cognito</a></li><li><a class="toc-href" href="#meta-data" title="Meta Data">Meta Data</a><ul><li><a class="toc-href" href="#ec2" title="EC2">EC2</a></li><li><a class="toc-href" href="#ecs" title="ECS">ECS</a></li></ul></li><li><a class="toc-href" href="#automated-scanner_1" title="Automated Scanner">Automated Scanner</a><ul><li><a class="toc-href" href="#prowler" title="Prowler">Prowler</a></li><li><a class="toc-href" href="#pacu" title="PACU">PACU</a></li></ul></li></ul></li></ul></div>
+        </div>
+    <p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
+<h2 id="aws">AWS</h2>
+<p>Setup AWS CLI client configuring credentials, region, etc:</p>
+<div class="highlight"><pre><span></span><code>aws configure [--profile &lt;profile name&gt;]
+</code></pre></div>
+<p>ARN format - <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html">reference</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
+<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">/</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
+<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
+</code></pre></div>
+<h3 id="users-permissions-iam">Users &amp; Permissions - IAM</h3>
+<p>User credentials file path:</p>
+<div class="highlight"><pre><span></span><code>&lt;user&gt;/.aws/credentials
+</code></pre></div>
+<p>Get current authenticated user info:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-caller-identity
+aws<span class="w"> </span>iam<span class="w"> </span>get-user<span class="w"> </span><span class="o">[</span>--user-name<span class="w"> </span>&lt;user&gt;<span class="o">]</span>
+</code></pre></div>
+<p>Get account id from an access key id:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>get-access-key-info<span class="w"> </span>--access-key-id<span class="o">=</span>&lt;access<span class="w"> </span>key&gt;
+</code></pre></div>
+<p>Get account id from an access key id with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="gh">#</span> Current Profile
+<span class="k">&gt; </span><span class="ge">run iam__decode_accesskey_id</span>
+
+<span class="gh">#</span> Specified Access Key
+<span class="k">&gt; </span><span class="ge">run iam__decode_accesskey_id &lt;access key&gt;</span>
+</code></pre></div>
+<p>When <code>sts get-caller-identity</code> is disabled or the main goal is to remain stealthy, an alternative method to obtain the principal name associate to current keys is to trigger some errors for particular services; AWS leaks the calling role and the account ID in those errors:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
+aws<span class="w"> </span>pinpoint-sms-voice<span class="w"> </span>send-voice-message
+aws<span class="w"> </span>timestream-query<span class="w"> </span>describe-endpoints
+</code></pre></div>
+<p><strong>Note</strong>: these services <strong>are not logged in CloudTrail</strong>!</p>
+<p>Enumerate user's permissions with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__enum_permissions</span>
+<span class="c1"># OR, when no IAM privileges are grante - should be similar to aws-enumerator - more noisy</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__bruteforce_permissions</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">whoami</span>
+</code></pre></div>
+<p>Enumerate users, roles, policies and groups with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">iam__enum_users_roles_policies_groups</span>
+</code></pre></div>
+<p>Get <strong>inline</strong> user policies (policies specifically written for that user):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-user-policies<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
+</code></pre></div>
+<p>Get inline policy details:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-user-policy<span class="w"> </span>--policy-name<span class="w"> </span>&lt;policy<span class="w"> </span>name&gt;<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
+</code></pre></div>
+<p>Get user attached policies:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-user-policies<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
+</code></pre></div>
+<p>List policies (might be interesting policies with "AttachmentCount" &gt; 0):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policies
+</code></pre></div>
+<p>List policy versions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-policy-versions<span class="w"> </span>--policy-arn<span class="w"> </span>&lt;policy<span class="w"> </span>arn&gt;
+</code></pre></div>
+<p>Get policy version and associated permissions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-policy-version<span class="w"> </span>--policy-arn<span class="w"> </span>&lt;policy<span class="w"> </span>arn&gt;<span class="w"> </span>--version-id<span class="w"> </span>&lt;version<span class="w"> </span>id&gt;
+</code></pre></div>
+<p>Get user's group membership:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-groups-for-user<span class="w"> </span>--user-name<span class="w"> </span>&lt;username&gt;
+</code></pre></div>
+<p>List group policies:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-group-policies<span class="w"> </span>--group-name<span class="w"> </span>&lt;group<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>List group attached policies:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-group-policies<span class="w"> </span>--group-name<span class="w"> </span>&lt;group<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>List roles:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-roles
+</code></pre></div>
+<p>Get role details and assume policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-role<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>List <strong>inline</strong> role policies (policy specifically written for that role):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-role-policies<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>List role attached policies:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>list-attached-role-policies<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Get details for policy attached to role:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>iam<span class="w"> </span>get-role-policy<span class="w"> </span>--role-name<span class="w"> </span>&lt;role<span class="w"> </span>name&gt;<span class="w"> </span>--policy-name<span class="w"> </span>&lt;policy<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Request temporary credentials (<strong>assume role</strong>) to access AWS resources with a particular role:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sts<span class="w"> </span>assume-role<span class="w"> </span>--role-arn<span class="w"> </span>&lt;role<span class="w"> </span>ARN&gt;<span class="w"> </span>--role-session-name<span class="w"> </span>&lt;any<span class="w"> </span>session<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--external-id<span class="w"> </span>&lt;external<span class="w"> </span>id&gt;<span class="o">]</span>
+</code></pre></div>
+<p>Enumerate all user permissions with <a href="https://github.com/shabarkin/aws-enumerator">aws-enumerator</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Setup credentials</span>
+aws-enumerator<span class="w"> </span>cred<span class="w"> </span>-aws_access_key_id<span class="w"> </span>&lt;access<span class="w"> </span>key&gt;<span class="w"> </span>-aws_region<span class="w"> </span>&lt;region&gt;<span class="w"> </span>-aws_secret_access_key<span class="w"> </span>&lt;secret<span class="w"> </span>access<span class="w"> </span>key&gt;<span class="w"> </span>
+
+<span class="c1"># Enumerate all services</span>
+aws-enumerator<span class="w"> </span>enum<span class="w"> </span>--services<span class="w"> </span>all
+<span class="c1">## Filter only services to which the credentials have actual permissions</span>
+aws-enumerator<span class="w"> </span>enum<span class="w"> </span>--services<span class="w"> </span>all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-v<span class="w"> </span><span class="s1">'0 /'</span><span class="w"> </span>
+
+<span class="c1"># Get permissions for each found service</span>
+aws-enumerator<span class="w"> </span>dump<span class="w"> </span>--services<span class="w"> </span>&lt;services<span class="w"> </span>list&gt;
+</code></pre></div>
+<p>AWS IAM Console Credentials Spraying/Bruteforcing using <a href="https://github.com/WhiteOakSecurity/GoAWSConsoleSpray">GoAWSConsoleSpray</a>:</p>
+<div class="highlight"><pre><span></span><code># User/Password spraying against an AccountID (get it from sts)
+GoAWSConsoleSpray -a &lt;AccountID&gt; -u &lt;users list file&gt; -p &lt;password list files&gt;
+</code></pre></div>
+<p><strong>Note</strong>: <strong>it seems that the tools does not strip hidden chars/spaces/newline and therefore the attack may fail even with valid credentials!</strong> - if that's the case, try to rewrite the password wordlist.</p>
+<p>Predefined groups:</p>
+<ul>
+<li><strong>Authenticated Users</strong> - <code>http://acs.amazonaws.com/groups/global/AuthenticatedUsers</code> - All existing and authenticated AWS accounts.</li>
+<li><strong>All Users</strong> - <code>http://acs.amazonaws.com/groups/global/AllUsers</code> - worldwide access to the resource (no authentication).</li>
+<li><strong>Log Delivery</strong> - <code>http://acs.amazonaws.com/groups/s3/LogDelivery</code> - write access to the bucket to write server access logs.</li>
+</ul>
+<h3 id="simple-storage-service-s3">Simple Storage Service - S3</h3>
+<p>AWS Buckets' resources location:</p>
+<div class="highlight"><pre><span></span><code><span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/&lt;resource name&gt;</span>
+<span class="nl">https:</span><span class="c1">//s3.&lt;region code&gt;.amazonaws.com/&lt;bucket name&gt;/&lt;resource name&gt;</span>
+<span class="nl">https:</span><span class="c1">//s3.amazonaws.com/&lt;bucket name&gt;/&lt;resource name&gt; # Deprecated</span>
+</code></pre></div>
+<p>Get bucket region:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-Is<span class="w"> </span>https://&lt;bucket<span class="w"> </span>URL&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">'x-amz-bucket-region'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s1">' '</span><span class="w"> </span><span class="s1">'{print $2}'</span>
+</code></pre></div>
+<p>Regions wordlist:</p>
+<div class="highlight"><pre><span></span><code>us-west-1
+us-west-2
+us-east-1
+us-east-2
+cn-north-1
+cn-northwest-1
+eu-central-1
+eu-north-1
+eu-west-1
+eu-west-2
+eu-west-3
+ap-northeast-1
+ap-northeast-2
+ap-northeast-3
+ap-south-1
+ap-southeast-1
+ap-southeast-2
+ca-central-1
+me-south-1
+sa-east-1
+us-gov-east-1
+us-gov-west-1
+ap-east-1
+</code></pre></div>
+<p>Most common s3 bucket names: <a href="aws-s3-bucket-wordlist">https://github.com/koaj/aws-s3-bucket-wordlist</a></p>
+<p>From browser, if the root of a bucket it's not accessible, try appending <code>?prefix=&amp;delimiter=/</code>. By default, AWS cli includes this parameters automatically:</p>
+<div class="highlight"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">Not</span><span class="w"> </span><span class="n">accessible</span><span class="o">!</span>
+<span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">Accessible</span><span class="o">!</span>
+<span class="nl">https:</span><span class="c1">//&lt;bucket name&gt;.s3.&lt;region code&gt;.amazonaws.com/?prefix=&amp;delimiter=/</span>
+</code></pre></div>
+<p>List all buckets that current user can access:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls
+</code></pre></div>
+<p>List content in a Bucket:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3<span class="w"> </span>ls<span class="w"> </span>s3://&lt;bucket<span class="w"> </span>name&gt;/<span class="w"> </span>--recursive
+aws<span class="w"> </span>s3api<span class="w"> </span>list-objects-v2<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span>
+</code></pre></div>
+<p>Copy a file from and to the bucket to a local path:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># From bucket to local</span>
+aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>s3://&lt;bucket<span class="w"> </span>name&gt;/&lt;resource<span class="w"> </span>name&gt;<span class="w"> </span>&lt;destination<span class="w"> </span>path&gt;
+
+<span class="c1"># From local to bucket</span>
+aws<span class="w"> </span>s3<span class="w"> </span>cp<span class="w"> </span>&lt;file<span class="w"> </span>path&gt;<span class="w"> </span>s3://&lt;bucket<span class="w"> </span>name&gt;/&lt;resource<span class="w"> </span>name&gt;
+
+<span class="c1"># From bucket to local</span>
+aws<span class="w"> </span>s3api<span class="w"> </span>get-object<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span>--key<span class="w"> </span>&lt;resource<span class="w"> </span>key&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span><span class="w"> </span>&lt;output<span class="w"> </span>file&gt;
+</code></pre></div>
+<p>List bucket's versioning:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List bucket object's versioning:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span>
+
+<span class="c1"># Get only objects that actually have versions</span>
+aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> &nbsp;</span><span class="s1">'.Versions[]|select(.VersionId != "null")'</span>
+
+aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-versioning<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span><span class="w"> </span>--query<span class="w"> </span><span class="s2">"Versions[?VersionId!='null']"</span>
+</code></pre></div>
+<p>Get specific object version:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-object<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;<span class="w"> </span>--key<span class="w"> </span>&lt;resource<span class="w"> </span>key&gt;<span class="w"> </span>--version-id<span class="w"> </span>&lt;version<span class="w"> </span>id&gt;<span class="w"> </span><span class="o">[</span>--region<span class="w"> </span>&lt;region&gt;<span class="o">]</span><span class="w"> </span>&lt;output<span class="w"> </span>file&gt;
+</code></pre></div>
+<p>List bucket's policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-policy<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;
+</code></pre></div>
+<p>List bucket's ACLs:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>s3api<span class="w"> </span>get-bucket-acl<span class="w"> </span>--bucket<span class="w"> </span>&lt;bucket<span class="w"> </span>name&gt;
+</code></pre></div>
+<p><strong>Note</strong>: Even though no particular privileges are found on current profile, <strong>it's always worth trying the previous two commands</strong>!</p>
+<p><strong>Note</strong>: If getting <code>Access Denined</code> try appending <code>--no-sign-request</code> to AWS cli commands.</p>
+<p>Find the Account ID to which a S3 bucket belongs to using <a href="https://github.com/WeAreCloudar/s3-account-search">s3-account-search</a>:</p>
+<div class="highlight"><pre><span></span><code>s3-account-search<span class="w"> </span>--profile<span class="w"> </span><span class="o">[</span>&lt;profile&gt;<span class="w"> </span><span class="o">]</span><span class="w"> </span>&lt;known<span class="w"> </span>role&gt;<span class="w"> </span>s3://&lt;bucket&gt;
+</code></pre></div>
+<p>where <code>&lt;known role&gt;</code> is a role with one of the following permissions:</p>
+<ul>
+<li><code>s3:getObject</code>: download a file from the bucket</li>
+<li><code>s3:ListBucket</code>: list the content of the bucket</li>
+</ul>
+<p><strong>Note</strong>: current account must have the <code>sts:AssumeRole</code> permission on the <code>&lt;known role&gt;</code></p>
+<h3 id="secrets-manager">Secrets Manager</h3>
+<p>Enumerate Secret Manager with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">secrets__enum</span>
+</code></pre></div>
+<p>List secrets:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>secretsmanager<span class="w"> </span>list-secrets<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get secret:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>secretsmanager<span class="w"> </span>get-secret-value<span class="w"> </span>--secret-id<span class="w"> </span>&lt;secret<span class="w"> </span>id&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<h3 id="elastic-compute-cloud-ec2">Elastic Compute Cloud -  EC2</h3>
+<p>Enumerate EC2 with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">ec2__enum</span>
+</code></pre></div>
+<p>List images owned by current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-images<span class="w"> </span>--owners<span class="w"> </span>self
+</code></pre></div>
+<p>List instances for current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-instances<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List volumes for current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-volumes<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List snapshots owned by current user:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--owner-ids<span class="w"> </span>self
+</code></pre></div>
+<p>List snapshots with tags (useful to filter out automatic snapshots):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-snapshots<span class="w"> </span>--query<span class="w"> </span><span class="s1">'Snapshots[?Tags!=null]'</span>
+</code></pre></div>
+<p>Enumerate EBS snapshots with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">ebs__enum_volumes_snapshots</span>
+</code></pre></div>
+<p>Create a volume from the specified snapshot - see <a href="https://docs.aws.amazon.com/global-infrastructure/latest/regions/aws-availability-zones.htm">AWS Availability Zones</a>:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>create-volume<span class="w"> </span>--availability-zone<span class="w"> </span>&lt;target<span class="w"> </span>availability<span class="w"> </span>zone&gt;<span class="w"> </span>--snapshot-id<span class="w">  </span>&lt;snapshot<span class="w"> </span>id&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List available Availability Zone for specified region:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-availability-zones<span class="w"> </span>--query<span class="w"> </span><span class="s1">'AvailabilityZones[].ZoneName'</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Having the volume, it's possible to create an EC2 instance from the AWS Console and then attach the volume. <strong>Note that the instance must be in the same availability zone as the volume!</strong> It should also be possible to attach the volume directly in the instance creation wizard.</p>
+<p><strong>Loot Public EBS Snapshot</strong> - A possible attack path is:</p>
+<ol>
+<li>Find a misconfigured snapshot or abuse dumped credentials</li>
+<li>Get snapshot id</li>
+<li>Create a volume with that snapshot (in the same region)</li>
+<li>Create an instance using this volume</li>
+<li>Explore the snapshot content</li>
+</ol>
+<p>List available launch templates:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-launch-templates
+</code></pre></div>
+<p>Get launch template details:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>describe-launch-template-versions<span class="w"> </span>--launch-template-id<span class="w"> </span>&lt;launch<span class="w"> </span>template<span class="w"> </span>id&gt;
+</code></pre></div>
+<p>Get admin password for an instance - please note that the private key is required in order to obtain the cleartext password:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>ec2<span class="w"> </span>get-password-data<span class="w"> </span>--instance-id<span class="w"> </span>&lt;instance<span class="w"> </span>id&gt;<span class="w"> </span>--priv-launch-key<span class="w"> </span>&lt;private<span class="w"> </span>key&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<h3 id="lambda-api">Lambda &amp; API</h3>
+<p>Enumerate Lambda with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">lambda__enum</span>
+</code></pre></div>
+<p>List available rest API:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-rest-apis
+</code></pre></div>
+<p>Get rest API detail:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-rest-api<span class="w"> </span>--rest-api-id<span class="w"> </span>&lt;rest<span class="w"> </span>api<span class="w"> </span>id&gt;
+</code></pre></div>
+<p>Get rest API stages:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>apigateway<span class="w"> </span>get-stages<span class="w"> </span>--rest-api-id<span class="w"> </span>&lt;rest<span class="w"> </span>api<span class="w"> </span>id&gt;
+</code></pre></div>
+<p>Rest API URL is :</p>
+<div class="highlight"><pre><span></span><code><span class="nl">https:</span><span class="c1">//&lt;rest api id&gt;.execute-api.&lt;region&gt;.amazonaws.com/&lt;stage&gt;/&lt;lambda function&gt;</span>
+</code></pre></div>
+<p>List available lambda functions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>list-functions
+</code></pre></div>
+<p>Invoke lambda functions:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>invoke<span class="w"> </span>--function-name<span class="w"> </span>&lt;<span class="k">function</span><span class="w"> </span>name&gt;<span class="w"> </span><span class="o">[</span>--payload<span class="w"> </span><span class="s2">"&lt;json formatted payload&gt;"</span><span class="o">]</span><span class="w"> </span>&lt;output<span class="w"> </span>file&gt;
+</code></pre></div>
+<p>Invoke lambda function from URL:</p>
+<div class="highlight"><pre><span></span><code><span class="nl">https:</span><span class="c1">//&lt;url-id&gt;.lambda-url.&lt;region&gt;.on.aws</span>
+</code></pre></div>
+<p>where  <code>&lt;url-id&gt;</code> is randomly generated when the lambda function is created.
+Refer to <a href="https://docs.aws.amazon.com/en_us/lambda/latest/dg/urls-invocation.html">Lambda URLs Invocation</a></p>
+<p>Get lambda function associated policy:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>lambda<span class="w"> </span>get-policy<span class="w"> </span>--function-name<span class="w"> </span>&lt;<span class="k">function</span><span class="w"> </span>name&gt;
+</code></pre></div>
+<p>Useful resource: <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-create-api-as-simple-proxy-for-lambda.html">Tutorial: Create a REST API with a Lambda proxy integration</a></p>
+<h3 id="elastic-container-registry-ecr">Elastic Container Registry - ECR</h3>
+<p>Enumerate ECR with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">ecr__enum</span>
+</code></pre></div>
+<p>Describe registry:</p>
+<div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="w"> </span><span class="n">ecr</span><span class="w"> </span><span class="n">describe</span><span class="o">-</span><span class="n">registry</span>
+</code></pre></div>
+<p>Describe repositories:</p>
+<div class="highlight"><pre><span></span><code><span class="n">aws</span><span class="w"> </span><span class="n">ecr</span><span class="w"> </span><span class="n">describe</span><span class="o">-</span><span class="n">repositories</span><span class="w"> </span><span class="p">[</span><span class="o">--</span><span class="n">registry</span><span class="o">-</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="n">registry</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span><span class="p">]</span>
+</code></pre></div>
+<p>Note that <code>registry id</code> should be equal to the <code>account id</code>.</p>
+<p>List images in repository:</p>
+<div class="highlight"><pre><span></span><code>aws ecr list-images --repository-name &lt;repository name&gt;
+aws ecr describe-images --repository-name &lt;repository name&gt;
+</code></pre></div>
+<p>Repository URL structure:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="n">aws</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">id</span><span class="o">&gt;</span><span class="p">.</span><span class="n">dkr</span><span class="p">.</span><span class="n">ecr</span><span class="p">.</span><span class="o">&lt;</span><span class="n">region</span><span class="o">&gt;</span><span class="p">.</span><span class="n">amazonaws</span><span class="p">.</span><span class="n">com</span>
+</code></pre></div>
+<p>Get login password to registry:</p>
+<div class="highlight"><pre><span></span><code>aws ecr get-login
+aws ecr get-login-password
+</code></pre></div>
+<p>Pull image from registry:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># By tag</span>
+docker<span class="w"> </span>pull<span class="w"> </span>&lt;registry&gt;/&lt;repository&gt;:&lt;tag&gt;
+
+<span class="c1"># By digest</span>
+docker<span class="w"> </span>pull<span class="w"> </span>&lt;registry&gt;/&lt;repository&gt;@&lt;image<span class="w"> </span>digest&gt;
+</code></pre></div>
+<p>Sometimes could be interesting to take a look to an image history containing the last Dockerfile commands:</p>
+<div class="highlight"><pre><span></span><code>docker history &lt;image id or name&gt;
+</code></pre></div>
+<h3 id="relational-database-service-rds">Relational Database Service - RDS</h3>
+<p>Enumerate RDS with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">rds__enum</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">rds__enum_snapshots</span>
+</code></pre></div>
+<p>List current user DB and DB clusters:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-instances<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-clusters<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List current user DB and DB clusters snapshots:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-snapshots<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapshots<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List public DB and DB clusters snaphots:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-snapshots<span class="w"> </span>--snapshot-type<span class="w"> </span>public<span class="w"> </span>--include-public<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapshots<span class="w"> </span>--snapshot-type<span class="w"> </span>public<span class="w"> </span>--include-public<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Having the account id of an user, it's possible to find its public snapshots since the <strong>account id</strong> is contained into the ARN of each snapshot. Use <code>grep</code> to filter those snapshots by <strong>account id</strong>.</p>
+<p>Get snapshot by id:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>rds<span class="w"> </span>describe-db-snapshots<span class="w"> </span><span class="o">[</span>--include-public<span class="w"> </span>--snapshot-type<span class="w"> </span>public<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span>--db-cluster-snapshot-identifier<span class="w"> </span>&lt;snapshot<span class="w"> </span>identifier&gt;
+
+aws<span class="w"> </span>rds<span class="w"> </span>describe-db-cluster-snapshots<span class="w"> </span><span class="o">[</span>--include-public<span class="w"> </span>--snapshot-type<span class="w"> </span>public<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span>--db-cluster-snapshot-identifier<span class="w"> </span>&lt;snapshot<span class="w"> </span>identifier&gt;
+</code></pre></div>
+<p><strong>Plunder Public RDS Snapshots</strong>: </p>
+<ol>
+<li>From the AWS console, restore the public snapshot </li>
+<li>If restoring as private DB, create a connected EC2 instance and associate it</li>
+<li>Change the root password (if not known the original)</li>
+<li>Access the content via the EC2 instance (if private) or directly if restored as public RDS instance.</li>
+</ol>
+<h3 id="simple-queue-service-sqs">Simple Queue Service - SQS</h3>
+<p>List queues:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>list-queues
+</code></pre></div>
+<p>Receive messages:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>receive-message<span class="w"> </span>--queue-url<span class="w"> </span>&lt;queue<span class="w"> </span>URL&gt;<span class="w"> </span><span class="o">[</span>--message-attribute-names<span class="w"> </span><span class="o">[</span>All<span class="p">|</span>&lt;attributes&gt;<span class="o">]]</span>
+</code></pre></div>
+<p>Send messages:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>sqs<span class="w"> </span>send-message<span class="w"> </span>--queue-url<span class="w"> </span>&lt;queue<span class="w"> </span>URL&gt;<span class="w"> </span>--message-attributes<span class="w"> </span><span class="s1">'{ "&lt;attribute&gt;": { "StringValue": "&lt;value&gt;", "DataType":"&lt;type&gt;"},...}'</span><span class="w"> </span>--message-body<span class="w"> </span><span class="s2">"&lt;message body&gt;"</span>
+</code></pre></div>
+<p>Refer to <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-message-metadata.html#sqs-message-attributes">SQS Message Attributes</a>.</p>
+<h3 id="dynamodb">DynamoDB</h3>
+<p>Enumerate DynamoDB with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">dynamodb__enum</span>
+</code></pre></div>
+<p>List available endpoints:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>describe-endpoints<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List available tables:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>list-tables<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List available global tables:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>list-global-tables<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Describe table (useful to get key attributes to be used for querying):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>describe-table<span class="w"> </span>--table-name<span class="w"> </span>&lt;table<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>See there how to perform queries with that shitty format: <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Query.html">Querying tables in DynamoDB</a></p>
+<p>Get table content:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>scan<span class="w"> </span>--table-name<span class="w"> </span>&lt;table<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>List available backups:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>dynamodb<span class="w"> </span>list-backups<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<h3 id="codecommit">CodeCommit</h3>
+<p>List repositories:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>list-repositories<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get repository details:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-repository<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get repository credentials:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">"protocol=https\npath=&lt;repository path&gt;\nhost=&lt;repository host&gt;"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>aws<span class="w"> </span>codecommit<span class="w"> </span>credential-helper<span class="w"> </span>get
+</code></pre></div>
+<p>List repository branches:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>list-branches<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get branch last commit:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-branch<span class="w"> </span>--branch-name<span class="w"> </span>&lt;branch<span class="w"> </span>name&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get commit:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-commit<span class="w"> </span>--commit-id<span class="w"> </span>&lt;commit<span class="w"> </span>id&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get differences between two or more commits:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-differences<span class="w"> </span>--before-commit-specifier<span class="w"> </span>&lt;older<span class="w"> </span>commit&gt;<span class="w"> </span>--after-commit-specifier<span class="w"> </span>&lt;later<span class="w"> </span>commit&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get file content:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>codecommit<span class="w"> </span>get-file<span class="w"> </span>--file-path<span class="w"> </span><span class="s2">"&lt;file path&gt;"</span><span class="w"> </span>--commit-specifier<span class="w"> </span>&lt;commit<span class="w"> </span>id&gt;<span class="w"> </span>--repository-name<span class="w"> </span>&lt;repository<span class="w"> </span>name&gt;<span class="w">  </span>--region<span class="w"> </span>&lt;region&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.fileContent<span class="w"> </span><span class="p">|</span><span class="w"> </span>base64<span class="w"> </span>-d
+</code></pre></div>
+<h3 id="cognito">Cognito</h3>
+<p><img alt="aws-cognito-auth-flow.png" src="https://ojack69.github.io/jacks-corner/images/cloud/cloud-cheatsheet/aws-cognito-auth-flow.png"/></p>
+<p>*Note: Cognito could be configured to allow anonymous users. In that case step 1 and 2 are skipped.</p>
+<p>Enumerate Cognito with <code>pacu</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="n">cognito__enum</span>
+</code></pre></div>
+<p>Get an Identity from an identity pool (step 3.1) - Anonymously:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-id<span class="w"> </span>--identity-pool-id<span class="w"> </span>&lt;user<span class="w"> </span>pool&gt;<span class="w"> </span><span class="o">[</span>--no-sign-request<span class="o">]</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get temporary AWS credentials (step 3.2) - Anonymously:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-credentials-for-identity<span class="w"> </span>--identity-id<span class="w"> </span>&lt;identity<span class="w"> </span>id&gt;<span class="w"> </span>--no-sign-request<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Signup to a user pool (step 0):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--password<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>*Note: it's possible to perform username enumeration with this command since "User already exists" is returned when signing up with an existing username.</p>
+<p>Get Access and ID JWTs (step 1-2):</p>
+<div class="highlight"><pre><span></span><code>cognito-idp.us-east-1.amazonaws.com/us-east-1_8rcK7abtz
+</code></pre></div>
+<p>*Notes: </p>
+<ul>
+<li>Auth flow may vary depending on the authentication scheme configured for the user pool.</li>
+<li>The user pool id is contained in the <code>iss</code> claim of the issued JWT access token.</li>
+</ul>
+<p>If getting <code>UserNotConfirmedException</code>, signup specifying the email to which receive the confirmation code ("Allow Cognito to automatically send messages to verify and confirm" setting should be enabled - this is generally true):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--password<span class="w"> </span>&lt;password&gt;<span class="w"> </span>--user-attributes<span class="w"> </span><span class="nv">Name</span><span class="o">=</span><span class="s2">"email"</span>,Value<span class="o">=</span><span class="s2">"&lt;email&gt;"</span><span class="w"> </span><span class="nv">Name</span><span class="o">=</span><span class="s2">"name"</span>,Value<span class="o">=</span><span class="s2">"&lt;name&gt;"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Confirm the signup with the code received on the email:</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-idp<span class="w"> </span>confirm-sign-up<span class="w"> </span>--client-id<span class="w"> </span>&lt;client<span class="w"> </span>id&gt;<span class="w"> </span>--username<span class="w"> </span>&lt;username&gt;<span class="w"> </span>--confirmation-code<span class="w"> </span>&lt;confirmation<span class="w"> </span>code&gt;<span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get an Identity from an identity pool (step 3.1):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-id<span class="w"> </span>--identity-pool-id<span class="w"> </span>&lt;identity<span class="w"> </span>pool<span class="w"> </span>id&gt;<span class="w"> </span>--logins<span class="w"> </span><span class="s2">"{ \"&lt;access token iss claim content without https://&gt;\": \"&lt;id token&gt;\" }"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<p>Get temporary AWS credentials (step 3.2):</p>
+<div class="highlight"><pre><span></span><code>aws<span class="w"> </span>cognito-identity<span class="w"> </span>get-credentials-for-identity<span class="w"> </span>--identity-id<span class="w"> </span>&lt;identity<span class="w"> </span>id&gt;<span class="w"> </span>--logins<span class="w"> </span><span class="s2">"{ \"&lt;access token iss claim content without https://&gt;\": \"&lt;id token&gt;\" }"</span><span class="w"> </span>--region<span class="w"> </span>&lt;region&gt;
+</code></pre></div>
+<h3 id="meta-data">Meta Data</h3>
+<p>When dumping API keys from metadata, set also the <code>api_session_token</code> in the AWS CLI config.</p>
+<h4 id="ec2">EC2</h4>
+<p>Running EC2 instance metadata (Instance Metadata Version - IMS) base location:</p>
+<div class="highlight"><pre><span></span><code># IPv4
+http://169.254.169.254/latest/meta-data/
+
+# IPv6
+http://[fd00:ec2::254]/latest/meta-data/
+</code></pre></div>
+<p>Get instance's IAM role:</p>
+<div class="highlight"><pre><span></span><code>http://169.254.169.254/latest/meta-data/iam/info
+</code></pre></div>
+<p>where, depending on the response:</p>
+<ul>
+<li><strong>404 Not Found:</strong> no IAM role associated with the EC2 instance</li>
+<li><strong>200 OK with empty body:</strong> IAM role has been revoked</li>
+<li><strong>200 OK with body:</strong> IAM role associated with EC2 instance</li>
+</ul>
+<p>IAM credentials are located at:</p>
+<div class="highlight"><pre><span></span><code>http://169.254.169.254/latest/meta-data/iam/security-credentials/&lt;IAM role name&gt;
+</code></pre></div>
+<p>From IMVSv2, an SSRF protection has been introduced requiring the user to create a token and pass it in the <code>X-aws-ec2-metadata-token</code> header. The token can the requested at:</p>
+<div class="highlight"><pre><span></span><code>http://169.254.169.254/latest/api/token
+</code></pre></div>
+<h4 id="ecs">ECS</h4>
+<p>Running ECS task metadata location, including a list of the container IDs and names for all of the containers associated with the task.:</p>
+<div class="highlight"><pre><span></span><code># Deprecated
+http://169.254.170.2/v2/metadata
+
+# v4
+http://169.254.170.2/v4/metadata
+</code></pre></div>
+<p>Running ECS container metadata location:</p>
+<div class="highlight"><pre><span></span><code># v2 - Deprecated
+http://169.254.170.2/v2/metadata/&lt;container id&gt;
+
+# v4
+http://169.254.170.2/v4/&lt;container id&gt;
+</code></pre></div>
+<p>Running ECS container credentials location:</p>
+<div class="highlight"><pre><span></span><code>http://169.254.170.2/v2/credentials/&lt;guid&gt;
+</code></pre></div>
+<p>Note: <code>&lt;guid&gt;</code> can be found in environment variable <code>AWS_CONTAINER_CREDENTIALS_RELATIVE_URI</code> on the running container (RCE, LFI or other methods are needed to access it)</p>
+<h3 id="automated-scanner_1">Automated Scanner</h3>
+<h4 id="prowler">Prowler</h4>
+<p>Launch all checks within <a href="https://github.com/prowler-cloud/prowler">prowler</a>:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span><span class="o">[</span>--profile<span class="w"> </span>&lt;profile&gt;<span class="o">]</span>
+</code></pre></div>
+<p>List available checks within:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--list-checks
+</code></pre></div>
+<p>List available categories:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--list-categories
+</code></pre></div>
+<p>List available services:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--list-categories
+</code></pre></div>
+<p>Perform specific checks:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--checks<span class="w"> </span>&lt;checks<span class="w"> </span>list&gt;
+</code></pre></div>
+<p>Perform checks from specific categories:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--categories<span class="w"> </span>&lt;categories<span class="w"> </span>list&gt;
+</code></pre></div>
+<p>Perform checks for specific services:</p>
+<div class="highlight"><pre><span></span><code>prowler<span class="w"> </span>aws<span class="w"> </span>--services<span class="w"> </span>&lt;services<span class="w"> </span>list&gt;
+</code></pre></div>
+<p><strong>Note</strong>: previous three command can be combined.</p>
+<h4 id="pacu">PACU</h4>
+<p>Set up keys for current session:</p>
+<div class="highlight"><pre><span></span><code><span class="k">&gt; </span><span class="ge">set_keys</span>
+</code></pre></div>
+<p>List available modules:</p>
+<div class="highlight"><pre><span></span><code>&gt; ls
+</code></pre></div>
+<p>Run module:</p>
+<div class="highlight"><pre><span></span><code>&gt; run &lt;module name&gt; 
+</code></pre></div>
+<p>Show enumerated data:</p>
+<div class="highlight"><pre><span></span><code>&gt; data
+</code></pre></div>
+<p>Query data with <code>jq</code>:</p>
+<div class="highlight"><pre><span></span><code>&gt; jq &lt;query&gt; &lt;service&gt;
+</code></pre></div>
+<p>List of useful queries:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get enumerated EC2 instances' names</span>
+<span class="o">&gt;</span><span class="w"> </span><span class="n">jq</span><span class="w"> </span><span class="o">.</span><span class="n">Instances</span><span class="o">.</span><span class="p">[]</span><span class="o">|</span><span class="p">{</span><span class="n">KeyName</span><span class="p">:</span><span class="o">.</span><span class="n">KeyName</span><span class="p">,</span><span class="n">InstanceId</span><span class="p">:</span><span class="o">.</span><span class="n">InstanceId</span><span class="p">,</span><span class="n">ImageId</span><span class="p">:</span><span class="o">.</span><span class="n">ImageId</span><span class="p">,</span><span class="n">Region</span><span class="p">:</span><span class="o">.</span><span class="n">Region</span><span class="p">,</span><span class="n">Tags</span><span class="p">:</span><span class="o">.</span><span class="n">Tags</span><span class="p">,</span><span class="n">PrivateIpAddress</span><span class="p">:</span><span class="o">.</span><span class="n">PrivateIpAddress</span><span class="p">,</span><span class="n">PublicIpAddress</span><span class="p">:</span><span class="o">.</span><span class="n">PublicI</span><span class="w">  </span>
+<span class="n">pAddress</span><span class="p">}</span><span class="w"> </span><span class="n">EC2</span>
+</code></pre></div>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

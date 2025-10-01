@@ -1,0 +1,360 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="References: https://frida.re/docs/javascript-api/#java Useful Resources: https://codeshare.frida.re/browse List processes: // -U - USB Device frida-ps -U // -a - List only applications frida-ps -Ua // -i - List all installed applications frida-ps -Uai Connect to process: // Connect by name (-n) frida -U -n &#34;&lt;process name&gt;&#34; // Connect by package (-f …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Frida &amp; Objection Cheatsheet"/>
+  <meta property="og:description" content="References: https://frida.re/docs/javascript-api/#java Useful Resources: https://codeshare.frida.re/browse List processes: // -U - USB Device frida-ps -U // -a - List only applications frida-ps -Ua // -i - List all installed applications frida-ps -Uai Connect to process: // Connect by name (-n) frida -U -n &#34;&lt;process name&gt;&#34; // Connect by package (-f …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/frida-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Cheatsheet"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Frida &amp; Objection Cheatsheet</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/frida-cheatsheet">Frida & Objection Cheatsheet</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#code-snippets" title="Code Snippets">Code Snippets</a></li></ul></div>
+        </div>
+    <p>References:</p>
+<ul>
+<li><a href="https://frida.re/docs/javascript-api/#java">https://frida.re/docs/javascript-api/#java</a></li>
+</ul>
+<p>Useful Resources:</p>
+<ul>
+<li><a href="https://codeshare.frida.re/browse">https://codeshare.frida.re/browse</a></li>
+</ul>
+<p>List processes:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>-U<span class="w"> </span>-<span class="w"> </span>USB<span class="w"> </span>Device
+frida-ps<span class="w"> </span>-U
+
+//<span class="w"> </span>-a<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>only<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Ua
+
+
+//<span class="w"> </span>-i<span class="w"> </span>-<span class="w"> </span>List<span class="w"> </span>all<span class="w"> </span>installed<span class="w"> </span>applications
+frida-ps<span class="w"> </span>-Uai
+</code></pre></div>
+<p>Connect to process:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>name<span class="w"> </span><span class="o">(</span>-n<span class="o">)</span>
+frida<span class="w"> </span>-U<span class="w"> </span>-n<span class="w"> </span><span class="s2">"&lt;process name&gt;"</span>
+
+//<span class="w"> </span>Connect<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span><span class="o">(</span>-f<span class="o">)</span>
+frida<span class="w"> </span>-U<span class="w"> </span>-f<span class="w"> </span>com.jack.ovaasolution
+
+objection<span class="w"> </span>--gadget<span class="p">|</span>-g<span class="w"> </span>&lt;package<span class="w"> </span>name&gt;<span class="w"> </span>explore
+</code></pre></div>
+<p>Run script:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Run<span class="w"> </span>script<span class="w"> </span>on<span class="w"> </span>load*
+frida<span class="w"> </span>-U<span class="w"> </span>-f<span class="w"> </span>&lt;package&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;script&gt;<span class="w"> </span>
+
+//<span class="w"> </span>Run<span class="w"> </span>script<span class="w"> </span><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>attached<span class="w"> </span>process
+<span class="o">[</span>frida<span class="o">]</span>-&gt;<span class="w"> </span>%exec<span class="w"> </span>&lt;script&gt;
+</code></pre></div>
+<p>*Note: a script attached on load will re-run every time it's modified - REPL mode</p>
+<p>Patch APK to inject Frida gadget, for non-rooted devices:</p>
+<div class="highlight"><pre><span></span><code>//<span class="w"> </span>Get<span class="w"> </span>device<span class="w"> </span>architecture
+<span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>getprop<span class="w"> </span>ro.product.cpu.abi
+<span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>getprop<span class="w"> </span>ro.product.cpu.abilist<span class="w"> </span><span class="o">(</span>alternative<span class="o">)</span>
+
+
+objection<span class="w"> </span>patchapk<span class="w"> </span>--source<span class="w"> </span>&lt;apk<span class="w"> </span>path&gt;<span class="w"> </span>-a<span class="w"> </span>&lt;architecture&gt;<span class="w"> </span><span class="o">[</span>--use-aapt2<span class="o">]</span>
+</code></pre></div>
+<p>Root bypass:</p>
+<div class="highlight"><pre><span></span><code>frida<span class="w"> </span>--codeshare<span class="w"> </span>dzonerzy/fridantiroot<span class="w"> </span>-f<span class="w"> </span>&lt;package&gt;
+
+<span class="o">[</span>objection<span class="w"> </span>-g<span class="w"> </span>&lt;package<span class="w"> </span>name&gt;<span class="w"> </span>explore<span class="w"> </span>-s<span class="o">]</span><span class="w"> </span><span class="s2">"android root disable"</span>
+</code></pre></div>
+<p>List hookable method in class:</p>
+<div class="highlight"><pre><span></span><code>objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span class="w"> </span>list<span class="w"> </span>class_methods<span class="w"> </span>&lt;classname&gt;
+</code></pre></div>
+<p>Watch class and class methods invocatations:</p>
+<div class="highlight"><pre><span></span><code>objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span class="w"> </span>watch<span class="w"> </span>class<span class="w"> </span>&lt;package.class&gt;<span class="w"> </span><span class="o">[</span>--dump-backtrace<span class="w"> </span>--dump-args<span class="w"> </span>--dump-return<span class="o">]</span>
+
+objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span class="w"> </span>watch<span class="w"> </span>class_method<span class="w"> </span>&lt;package.class.method&gt;<span class="w"> </span><span class="o">[</span>--dump-backtrace<span class="w"> </span>--dump-args<span class="w"> </span>--dump-return<span class="o">]</span>
+</code></pre></div>
+<p>Search or write in memory:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">objection</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">memory</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="s">"&lt;pattern eg: 41 41 41 ?? 41&gt;"</span><span class="w"> </span><span class="p">(</span><span class="o">--</span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="o">--</span><span class="nx">offsets</span><span class="o">-</span><span class="nx">only</span><span class="p">)</span>
+<span class="nx">objection</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">memory</span><span class="w"> </span><span class="nx">write</span><span class="w"> </span><span class="s">"&lt;address&gt;"</span><span class="w"> </span><span class="s">"&lt;pattern eg: 41 41 41 41&gt;"</span><span class="w"> </span><span class="p">(</span><span class="o">--</span><span class="kt">string</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="code-snippets">Code Snippets</h2>
+<p>Read from and transform to byte array:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">fromByteArray</span><span class="p">(</span><span class="nx">arr</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">result</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">String</span><span class="p">.</span><span class="nx">fromCharCode</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span>
+<span class="p">}</span>
+
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">toByteArray</span><span class="p">(</span><span class="nx">str</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="kd">let</span><span class="w"> </span><span class="nx">i</span><span class="o">=</span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">str</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">result</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">str</span><span class="p">.</span><span class="nx">charCodeAt</span><span class="p">(</span><span class="nx">i</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">result</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Attach to native functions:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="s2">"&lt;native lib&gt;"</span><span class="p">,</span><span class="w"> </span><span class="s2">"&lt;function&gt;"</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">        </span>
+<span class="w">        </span><span class="c1">// Set a custom property</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">custom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// args[0] is a expected to be a pointer to a string</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mf">0</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">retval</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">custom</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"yes"</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">retval</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// Replace return value</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Replace native function implementation:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">strstrPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">getExportByName</span><span class="p">(</span><span class="s1">'libc.so'</span><span class="p">,</span><span class="w"> </span><span class="s1">'strstr'</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">strstr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NativeFunction</span><span class="p">(</span><span class="nx">strstrPtr</span><span class="p">,</span><span class="w"> </span><span class="s1">'pointer'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">'pointer'</span><span class="p">,</span><span class="w"> </span><span class="s1">'pointer'</span><span class="p">]);</span>
+<span class="w">    </span><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">strstrPtr</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NativeCallback</span><span class="p">((</span><span class="nx">haystack</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">haystackStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">(</span><span class="nx">haystack</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">needleStr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">(</span><span class="nx">needle</span><span class="p">);</span>
+
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">haystackStr</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">needleStr</span><span class="p">);</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">strstr</span><span class="p">(</span><span class="nx">haystack</span><span class="p">,</span><span class="w"> </span><span class="nx">needle</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">NativePointer</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="s1">'pointer'</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">'pointer'</span><span class="p">,</span><span class="w"> </span><span class="s1">'pointer'</span><span class="p">]));</span>
+</code></pre></div>
+<p>Attach to all exported functions of a module:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">lib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"libfoo.so"</span><span class="p">;</span>
+<span class="nx">Module</span><span class="p">.</span><span class="nx">enumerateExportsSync</span><span class="p">(</span><span class="nx">lib</span><span class="p">).</span><span class="nx">map</span><span class="p">((</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">.</span><span class="nx">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">"function"</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[!] Attaching to: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="nx">lib</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">name</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Entering "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">                </span><span class="p">},</span>
+<span class="w">                </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">retval</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Leaving "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+</code></pre></div>
+<p>Attach to module internal function (not exported):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x00000fa0</span><span class="p">;</span><span class="w"> </span><span class="c1">// from radare2 or Ghidra (for Ghidra see this: https://stackoverflow.com/questions/68332781/frida-hook-native-non-exported-functions)</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">baseAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">getBaseAddress</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">module</span><span class="w"> </span><span class="nx">name</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">baseAddress</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">offset</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Entered internal function"</span><span class="p">);</span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="nx">buff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">args</span><span class="p">[</span><span class="mf">0</span><span class="p">];</span>
+
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">retval</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Hex dump the result "</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hexdump</span><span class="p">(</span><span class="nx">retval</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="mf">24</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">header</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">ansi</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}));</span>
+<span class="w">        </span><span class="c1">// OR use saved buffer pointer in the onEnter hook if retval is something different</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">buff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readByteArray</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">buff</span><span class="p">,</span><span class="nx">numBytes</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">hexdump</span><span class="p">(</span><span class="nx">buff</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">offset</span><span class="o">:</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="mf">24</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                </span><span class="nx">header</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">                </span><span class="nx">ansi</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">        </span><span class="p">}));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Scan memory for pattern:</p>
+<div class="highlight"><pre><span></span><code><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">flagLib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Process</span><span class="p">.</span><span class="nx">getModuleByName</span><span class="p">(</span><span class="s2">"libflag.so"</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">scanSync</span><span class="p">(</span><span class="nx">flagLib</span><span class="p">.</span><span class="nx">base</span><span class="p">,</span><span class="w"> </span><span class="nx">flagLib</span><span class="p">.</span><span class="nx">size</span><span class="p">,</span><span class="w"> </span><span class="s2">"4d 48 4c 7b"</span><span class="p">);</span><span class="w"> </span><span class="c1">// Search for MHL{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">res</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">element</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="k">try</span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">address</span><span class="p">));</span><span class="w">    </span>
+<span class="w">                </span><span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[x] Cannot read memory at "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">element</span><span class="p">.</span><span class="nx">address</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">"as string"</span><span class="p">)</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">            </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+</code></pre></div>
+<p>It's possible to use "?" as placeholder.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

