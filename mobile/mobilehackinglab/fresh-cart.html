@@ -60,13 +60,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="This is an iOS mobile challenge from MobileHackingLabs Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge. Objective: Your task is to craft a payload that exploits the vulnerability in the Freshcart app to steal the user&#39;s token via the JavaScript-native bridge. The …" />
+<meta name="description" content="This is an iOS mobile challenge from MobileHackingLabs. Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge. Objective: Your task is to craft a payload that exploits the vulnerability in the Freshcart app to steal the user&#39;s token via the JavaScript-native bridge. The …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="MobileHackingLab - FreshCart"/>
-  <meta property="og:description" content="This is an iOS mobile challenge from MobileHackingLabs Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge. Objective: Your task is to craft a payload that exploits the vulnerability in the Freshcart app to steal the user&#39;s token via the JavaScript-native bridge. The …"/>
+  <meta property="og:description" content="This is an iOS mobile challenge from MobileHackingLabs. Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge. Objective: Your task is to craft a payload that exploits the vulnerability in the Freshcart app to steal the user&#39;s token via the JavaScript-native bridge. The …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/fresh-cart.html"/>
   <meta property="og:type" content="article"/>
@@ -143,8 +143,8 @@
         <div class="toc col-lg-3 hidden-xs hidden-sm">
             <div id="toc"><ul><li><a class="toc-href" href="#static-analysis" title="Static Analysis">Static Analysis</a></li><li><a class="toc-href" href="#dynamic-analysis" title="Dynamic Analysis">Dynamic Analysis</a></li><li><a class="toc-href" href="#solution" title="Solution">Solution</a></li></ul></div>
         </div>
-    <p>This is an iOS mobile challenge from <a href="https://www.mobilehackinglab.com/course/lab-freshcart">MobileHackingLabs</a>
-Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge.</p>
+    <p>This is an iOS mobile challenge from <a href="https://www.mobilehackinglab.com/course/lab-freshcart">MobileHackingLabs</a>.</p>
+<p>Freshcart contains a critical vulnerability that allows token stealing by exploiting the JavaScript to native bridge.</p>
 <p><strong>Objective</strong>: Your task is to craft a payload that exploits the vulnerability in the Freshcart app to steal the user's token via the JavaScript-native bridge.</p>
 <p>The app presents itself as follows:</p>
 <p><img alt="fresh-cart-app-2.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/freshcart/fresh-cart-app-2.jpg"/></p>
@@ -154,7 +154,7 @@ Freshcart contains a critical vulnerability that allows token stealing by exploi
 <p><img alt="fresh-cart-app-1.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/freshcart/fresh-cart-app-1.jpg"/></p>
 <p>Entering the detail of a product, it's possible to write a review:</p>
 <p><img alt="fresh-cart-app-4.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/freshcart/fresh-cart-app-4.jpg"/></p>
-<p>Testing the following payload in the "Review Content" produces no results:</p>
+<p>Testing the following payload in the "Review Content" field produces no results:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">&lt;script&gt;</span>alert(1)<span class="nt">&lt;/script&gt;</span>
 </code></pre></div>
 <p><img alt="fresh-cart-app-5.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/freshcart/fresh-cart-app-5.jpg"/></p>
@@ -444,7 +444,7 @@ Freshcart contains a critical vulnerability that allows token stealing by exploi
 <li>A post message containing the current user JWT token is sent whenever the method <code>userContentController</code> is invoked. </li>
 </ul>
 <p><img alt="fresh-cart-decompiled-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/freshcart/fresh-cart-decompiled-2.png"/></p>
-<p>By using <code>frida</code>, write a script for intercepting <code>evaluateJavaScript:completionHandler</code> and dumping its arguments. This is necessary to understand whether this function is used on </p>
+<p>By using <code>frida</code>, a script for intercepting <code>evaluateJavaScript:completionHandler</code> and dumping its arguments has been written. This is necessary to understand whether this function is actually used within the XSS-vulnerable functionality. </p>
 <p>First, enumerate the method signature:</p>
 <div class="highlight"><pre><span></span><code>frida -U -n 'FreshCart' 
 ...
