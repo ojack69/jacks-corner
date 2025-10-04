@@ -4,6 +4,11 @@ url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
+path = "mobile/mobilehackinglab/gotham-times.md"
+url = "/mobile/mobilehackinglab/gotham-times.html"
+title = "MobileHackingLab - Gotham Times"
+
+[[input.files]]
 path = "mobile/mobilehackinglab/captain-nohook.md"
 url = "/mobile/mobilehackinglab/captain-nohook.html"
 title = "MobileHackingLab - Captain Nohook"

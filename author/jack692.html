@@ -125,6 +125,49 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/fluff.html">ROP Emporium - fluff</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><p>Running <em>checksec</em> against the binary:</p>
+<blockquote>
+<p>&gt; checksec fluff<br/>
+...<br/>
+Arch: &nbsp;&nbsp;&nbsp;&nbsp;amd64-64-little  <br/>
+&nbsp;&nbsp;&nbsp;RELRO: &nbsp;&nbsp;&nbsp;Partial RELRO  <br/>
+&nbsp;&nbsp;&nbsp;Stack: &nbsp;&nbsp;&nbsp;No canary found  <br/>
+&nbsp;&nbsp;&nbsp;NX: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NX enabled  <br/>
+&nbsp;&nbsp;&nbsp;PIE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No PIE (0x400000)  <br/>
+&nbsp;&nbsp;&nbsp;RUNPATH: &nbsp;b'.'  </p>
+</blockquote>
+<p>List all symbols:</p>
+<blockquote>
+<p>&gt;nm fluff<br/>
+...<br/>
+0000000000400607 T main  <br/>
+...<br/>
+0000000000400628 t questionableGadgets  <br/>
+...<br/>
+0000000000400617 t usefulFunction  </p>
+</blockquote>
+<p>Analyze the binary:</p>
+<blockquote>
+<p>&gt; r2 fluff<br/>
+&gt; aaa  </p>
+</blockquote>
+<p>Locate writable memory area section …</p></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/fluff.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/badchars.html">ROP Emporium - badchars</a></h2>
     <p>
 
@@ -666,31 +709,6 @@ To get the correct version of glibc it is possible to run the libc file itself s
 <li>whois …</li></ul></li></ul></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-cheatsheet.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/cloud/cheatsheet.html">Cloud Cheatsheet</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><p>Cool resource: <a href="https://hackingthe.cloud/">Hacking the Cloud</a></p>
-<h2 id="aws">AWS</h2>
-<p>Setup AWS CLI client configuring credentials, region, etc:</p>
-<div class="highlight"><pre><span></span><code>aws configure [--profile &lt;profile name&gt;]
-</code></pre></div>
-<p>ARN format - <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html">reference</a>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
-<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">/</span><span class="n">resource</span><span class="o">-</span><span class="n">id</span>
-<span class="n">arn</span><span class="o">:</span><span class="n">partition</span><span class="o">:</span><span class="n">service</span><span class="o">:</span><span class="n">region</span><span class="o">:</span><span class="n">account</span><span class="o">-</span><span class="n">id</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">type</span><span class="o">:</span><span class="n">resource</span><span class="o">-</span><span class="n">id …</span></code></pre></div></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/cloud/cheatsheet.html">
       Continue reading
     </a>
   </div>

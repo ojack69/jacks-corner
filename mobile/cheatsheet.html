@@ -1339,7 +1339,7 @@ r2<span class="w"> </span>-q<span class="w"> </span>-c<span class="w"> </span>iz
 </code></pre></div>
 <p>Check entitlements with <code>ipsw</code>:</p>
 <div class="highlight"><pre><span></span><code>ipsw<span class="w"> </span>ent<span class="w"> </span>--input<span class="w"> </span>&lt;binary&gt;<span class="w"> </span>--key<span class="w"> </span>&lt;entitlement&gt;
-ipws<span class="w"> </span>macho<span class="w"> </span>info<span class="w"> </span>-e<span class="w"> </span>&lt;binary&gt;
+ipsw<span class="w"> </span>macho<span class="w"> </span>info<span class="w"> </span>-e<span class="w"> </span>&lt;binary&gt;
 </code></pre></div>
 <ul>
 <li>If the entitlement <code>get-task-allow</code> is present, the application is built with debug symbols.</li>
@@ -1644,7 +1644,10 @@ Use the following script to dump the YapDatabase.sqlite decoded content:</p>
 <h4 id="inter-process-communication">Inter-Process-Communication</h4>
 <h6 id="universal-links-url-schemes">Universal Links &amp; URL Schemes</h6>
 <p>Check what universal links are allowed by looking for the entitlement <code>com.apple.developer.associated-domains</code>.</p>
-<p>URL schemes are registered in the Info.plist in the <code>CFBundleURLTypes</code> property.</p>
+<p>URL schemes are registered in the <code>Info.plist</code> in the <code>CFBundleURLTypes</code> property.</p>
+<ul>
+<li>Deeplinks handler are usually Scenes. Those are generally registered in the <code>UIApplicationSceneManifest</code> property in the <code>Info.plist</code>.</li>
+</ul>
 <p>Enumerate possible Universal Links or app links using URL Schemes:</p>
 <div class="highlight"><pre><span></span><code>strings<span class="w"> </span>&lt;binary&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">"://"</span>
 </code></pre></div>
@@ -2055,6 +2058,60 @@ objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span
 <div class="highlight"><pre><span></span><code><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
 <span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[&gt;] Arguments: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nb">Object</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mf">2</span><span class="p">]));;</span>
 <span class="p">},</span>
+</code></pre></div>
+<p>Initialise a <code>NSString</code> object:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">nsstring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">.</span><span class="nx">NSString</span><span class="p">.</span><span class="nx">stringWithString_</span><span class="p">(</span><span class="s2">"rickfromfrida"</span><span class="p">);</span>
+</code></pre></div>
+<p><code>UIKit</code> code must be ran on the main thread in order to properly work. The following snippet allows to queue function on the main thread queue:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// &lt;-- All UIKit code goes here</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>Close keyboard (globally) - from ChaptGPT:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">closeKeyboard</span><span class="p">(){</span>
+<span class="w">    </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="kd">const</span><span class="w"> </span><span class="nx">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">.</span><span class="nx">UIApplication</span><span class="p">.</span><span class="nx">sharedApplication</span><span class="p">();</span>
+<span class="w">       </span><span class="kd">var</span><span class="w"> </span><span class="nx">sel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">selector</span><span class="p">(</span><span class="s2">"resignFirstResponder"</span><span class="p">);</span>
+<span class="w">       </span><span class="c1">// sendAction:to:from:forEvent:</span>
+<span class="w">       </span><span class="nx">app</span><span class="p">.</span><span class="nx">sendAction_to_from_forEvent_</span><span class="p">(</span><span class="nx">sel</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="kc">null</span><span class="p">);</span><span class="w">       </span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Close keyboard (globally) invoking <code>- endEditing:YES</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">closeKeyboard</span><span class="p">(</span><span class="nx">f</span><span class="o">=</span><span class="kc">null</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">controllers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">controllers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">controllers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span><span class="p">=&gt;</span><span class="nx">x</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">f</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">controllers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get the active instance for that controller, whether it exists</span>
+<span class="w">        </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">choose</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">[</span><span class="nx">c</span><span class="p">],{</span>
+<span class="w">            </span><span class="nx">onMatch</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// use '- endEditing:' for closing the keyboard on the active controller's view</span>
+<span class="w">                </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">instance</span><span class="p">.</span><span class="nx">view</span><span class="p">()[</span><span class="s1">'- endEditing:'</span><span class="p">]();</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">onComplete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Do nothing</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Close keyboard in specific view invoking <code>- endEditing:YES</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">[</span><span class="s1">'&lt;controller class name&gt;'</span><span class="p">]</span>
+
+<span class="nx">ObjC</span><span class="p">.</span><span class="nx">choose</span><span class="p">(</span><span class="nx">controller</span><span class="p">,{</span>
+<span class="w">    </span><span class="nx">onMatch</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">instance</span><span class="p">.</span><span class="nx">view</span><span class="p">()[</span><span class="s1">'- endEditing:'</span><span class="p">]()</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="nx">onComplete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Do nothing</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">})</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

