@@ -189,7 +189,7 @@
 <p><img alt="no-escape-static-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-1.png"/></p>
 <p>This method implements 4 different checks:</p>
 <ul>
-<li><code>checkForJailbreakFiles</code></li>
+<li><code>checkForJailbreakFiles</code>: This check looks for common jailbreak files such as <code>/Application/Cydia.app</code>, <code>/bin/bash</code>, etc.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">undefined4</span>
 <span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkForJailbreakFiles_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
@@ -288,9 +288,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img alt="no-escape-static-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-2.png"/></p>
-<p>This check looks for common jailbreak files such as <code>/Application/Cydia.app</code>, <code>/bin/bash</code>, etc.</p>
 <ul>
-<li><code>checkForWritableSystemDirectories</code></li>
+<li><code>checkForWritableSystemDirectories</code>: This check tries performing write operation on the file system <code>/private</code> which is supposed to be read-only on non-jailbroken systems.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="cm">/* WARNING: Removing unreachable block (ram,0x00010000a690) */</span>
 
@@ -402,9 +401,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img alt="no-escape-static-3.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-3.png"/></p>
-<p>This check tries performing write operation on the file system <code>/private</code> which is supposed to be read-only on non-jailbroken systems.</p>
 <ul>
-<li><code>canOpenCydia</code></li>
+<li><code>canOpenCydia</code>: This check tries to open Cydia with a deeplink to a fake package. </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="n">undefined4</span><span class="w"> </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">canOpenCydia_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
@@ -486,9 +484,8 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img alt="no-escape-static-4.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-4.png"/></p>
-<p>This check tries to open Cydia with a deeplink to a fake package. </p>
 <ul>
-<li><code>checkSandboxViolation</code></li>
+<li><code>checkSandboxViolation</code>: This check looks for the folder <code>/private/var/lib/apt/</code> which indicates that the device has been jailbroken.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkSandboxViolation_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
 
@@ -524,7 +521,6 @@
 <span class="p">}</span>
 </code></pre></div>
 <p><img alt="no-escape-static-5.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-5.png"/></p>
-<p>This check looks for the folder <code>/private/var/lib/apt/</code> which indicates that the device has been jailbroken.</p>
 <h2 id="solution">Solution</h2>
 <p>The solution is straightforward: by using <code>frida</code>, I'll hook to these methods and force the return value to <code>false</code> in order to bypass the security controls.</p>
 <p><strong>Note</strong>: a simpler solution would be to just hook the <code>isJailbroken</code> method instead of all the specific checks.</p>
