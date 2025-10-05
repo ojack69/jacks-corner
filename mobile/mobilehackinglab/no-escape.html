@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="This is an iOS mobile challenge from MobileHackingLabs. The challenge centers around a fictitious app called No Escape, designed with robust jailbreak detection mechanisms. Your mission is to bypass these mechanisms and gain full access to the app&#39;s functionalities using Frida. Objective: Evade the jailbreak detection implemented in the No …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - No Escape"/>
+  <meta property="og:description" content="This is an iOS mobile challenge from MobileHackingLabs. The challenge centers around a fictitious app called No Escape, designed with robust jailbreak detection mechanisms. Your mission is to bypass these mechanisms and gain full access to the app&#39;s functionalities using Frida. Objective: Evade the jailbreak detection implemented in the No …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/no-escape.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-05 18:00:00+02:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - No Escape</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/no-escape">MobileHackingLab - No Escape</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#static-analysis" title="Static Analysis">Static Analysis</a></li><li><a class="toc-href" href="#solution" title="Solution">Solution</a></li></ul></div>
+        </div>
+    <p>This is an iOS mobile challenge from <a href="https://www.mobilehackinglab.com/course/lab-no-escape">MobileHackingLabs</a>.</p>
+<p>The challenge centers around a fictitious app called No Escape, designed with robust jailbreak detection mechanisms. Your mission is to bypass these mechanisms and gain full access to the app's functionalities using Frida.</p>
+<p><strong>Objective</strong>: Evade the jailbreak detection implemented in the No Escape app to get a flag.</p>
+<p>When opening the application with a Jailbroken device, the following error message is returned:</p>
+<p><img alt="no-escape-app-1.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-app-1.jpg"/></p>
+<h2 id="static-analysis">Static Analysis</h2>
+<p>After decompiling the application, the method <code>isJailbroken</code> is easily identified:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* No_Escape.isJailbroken() -&gt; Swift.Bool */</span>
+
+<span class="kt">bool</span><span class="w"> </span><span class="nf">No_Escape::isJailbroken</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">in_x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">uStack_1c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">uStack_18</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">uStack_14</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkForJailbreakFiles_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">();</span>
+<span class="w">  </span><span class="n">uStack_14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">in_x0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">in_x0</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkForWritableSystemDirectories_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="w"> </span><span class="n">Bool</span>
+<span class="w">              </span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">uStack_14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">uStack_14</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">canOpenCydia_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">();</span>
+<span class="w">    </span><span class="n">uStack_18</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uStack_14</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">uStack_18</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">uStack_18</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkSandboxViolation_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">();</span>
+<span class="w">    </span><span class="n">uStack_1c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uStack_18</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">uStack_1c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">uStack_1c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="no-escape-static-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-1.png"/></p>
+<p>This method implements 4 different checks:</p>
+<ul>
+<li><code>checkForJailbreakFiles</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">undefined4</span>
+<span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkForJailbreakFiles_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="n">puVar6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_50</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lStack_48</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_38</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_30</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_28</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">puVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PTR__$sSSN_1001646a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uStack_28</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uStack_38</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uStack_30</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR__$sSSN_1001646a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$ss27_allocateUninitializedArrayySayxG_BptBwlF</span><span class="p">();</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/Applications/Cydia.app"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x17</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span>
+<span class="w">            </span><span class="p">(</span><span class="s">"/Applications/Cydia.app"</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="o">*</span><span class="n">puVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/Library/MobileSubstrate/MobileSubstrate.dylib"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x2e</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span>
+<span class="w">            </span><span class="p">(</span><span class="s">"/Library/MobileSubstrate/MobileSubstrate.dylib"</span><span class="p">,</span><span class="mh">0x2e</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/bin/bash"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span><span class="p">(</span><span class="s">"/bin/bash"</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/usr/sbin/sshd"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xe</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span><span class="p">(</span><span class="s">"/usr/sbin/sshd"</span><span class="p">,</span><span class="mh">0xe</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/etc/apt"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span><span class="p">(</span><span class="s">"/etc/apt"</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"/bin"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_$sSS21_builtinStringLiteral17utf8CodeUnitCount7isASCIISSBp_BwBi1_tcfC</span><span class="p">(</span><span class="s">"/bin"</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar6</span><span class="p">[</span><span class="mh">0xb</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Swift</span><span class="o">::</span><span class="n">$_finalizeUninitializedArray</span><span class="p">(</span><span class="n">uVar2</span><span class="p">,</span><span class="n">puVar4</span><span class="p">);</span>
+<span class="w">  </span><span class="n">uStack_28</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">puVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_$sSaySSGMD</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uStack_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">();</span>
+<span class="w">  </span><span class="n">puVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;::</span><span class="n">$lazy_protocol_witness_table_accessor</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_$sSlss16IndexingIteratorVyxG0B0RtzrlE04makeB0ACyF</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uStack_38</span><span class="p">,</span><span class="n">puVar4</span><span class="p">,</span><span class="n">puVar5</span><span class="p">);</span>
+<span class="w">  </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="nb">true</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">(</span><span class="o">&amp;</span><span class="n">_$ss16IndexingIteratorVySaySSGGMD</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_$ss16IndexingIteratorV4next7ElementQzSgyF</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uStack_50</span><span class="p">);</span>
+<span class="w">    </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lStack_48</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uStack_50</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lStack_48</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">IndexingIterator</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uStack_38</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">uVar2</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">puVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_NSFileManager</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_opt_self</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_objc_msgSend</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">lVar1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_$sSS10FoundationE19_bridgeToObjectiveCSo8NSStringCyF</span><span class="p">(</span><span class="n">uVar7</span><span class="p">,</span><span class="n">lVar1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">lVar1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">puVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar5</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">puVar5</span><span class="p">,</span><span class="s">"fileExistsAtPath:"</span><span class="p">,</span><span class="n">uVar7</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">uVar7</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">puVar5</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(((</span><span class="n">ulong</span><span class="p">)</span><span class="n">puVar4</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">lVar1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">lVar1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">IndexingIterator</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="o">&amp;</span><span class="n">uStack_38</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">uVar2</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="no-escape-static-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-2.png"/></p>
+<p>This check looks for common jailbreak files such as <code>/Application/Cydia.app</code>, <code>/bin/bash</code>, etc.</p>
+<ul>
+<li><code>checkForWritableSystemDirectories</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="cm">/* WARNING: Removing unreachable block (ram,0x00010000a690) */</span>
+
+<span class="n">uint</span><span class="w"> </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkForWritableSystemDirectories_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="w"> </span><span class="p">.</span><span class="n">Bool</span>
+<span class="w">               </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">bVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Encoding</span><span class="w"> </span><span class="n">EVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">local_120</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_118</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_110</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_100</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_f0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_ec</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_e8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_cc</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_9c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="n">local_98</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">**</span><span class="n">local_90</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_80</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_68</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_60</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_50</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_38</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">local_38</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____stack_chk_guard_1001642c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">String</span><span class="p">)</span><span class="n">ZEXT816</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_78</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Encoding</span><span class="o">::</span><span class="n">$typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_c8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_c0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100164268</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">local_98</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_120</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_9c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"/private/jailbreak_test.txt"</span><span class="p">,</span><span class="mh">0x1b</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_60</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"This is a test."</span><span class="p">,</span><span class="mh">0xf</span><span class="p">,(</span><span class="n">byte</span><span class="p">)</span><span class="n">local_9c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_90</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_70</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b0</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_68</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b0</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">  </span><span class="n">EVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Encoding</span><span class="o">::</span><span class="n">$get_utf8</span><span class="p">((</span><span class="n">Encoding</span><span class="p">)</span><span class="n">local_b0</span><span class="p">.</span><span class="n">str</span><span class="p">);</span>
+<span class="w">  </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">$lazy_protocol_witness_table_accessor</span><span class="p">();</span>
+<span class="w">  </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">StringProtocol</span><span class="o">::</span><span class="n">$write</span>
+<span class="w">            </span><span class="p">(</span><span class="n">local_90</span><span class="p">,</span><span class="n">local_9c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="n">local_98</span><span class="p">,</span><span class="n">PTR_$$type_metadata_for_Swift</span><span class="p">.</span><span class="n">String_1001646a8</span><span class="p">,</span>
+<span class="w">             </span><span class="n">PTR_$$type_metadata_for_Swift</span><span class="p">.</span><span class="n">String_1001646a8</span><span class="p">,</span><span class="n">EVar2</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_88</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_c0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">))(</span><span class="n">local_98</span><span class="p">,</span><span class="n">local_c8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_60</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_NSFileManager</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_opt_self</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_b0</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_b0</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_80</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_d8</span><span class="p">,</span><span class="s">"removeItemAtPath:error:"</span><span class="p">,</span><span class="n">local_e0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_80</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_cc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_80</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">uVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_e8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">uVar4</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_e0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_d8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">bVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">local_cc</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVar1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_b0</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">local_118</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">    </span><span class="n">uVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Foundation</span><span class="o">::</span><span class="n">$_convertNSErrorToError</span><span class="p">();</span>
+<span class="w">    </span><span class="n">local_110</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar4</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_118</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_swift_willThrow</span><span class="p">();</span>
+<span class="w">    </span><span class="n">local_100</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_110</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_100</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_swift_errorRetain</span><span class="p">();</span>
+<span class="w">    </span><span class="n">local_78</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_f8</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_swift_errorRelease</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_swift_errorRelease</span><span class="p">(</span><span class="n">local_f8</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_b0</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">local_ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">bVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_ec</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____stack_chk_guard_1001642c8</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">local_38</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">local_ec</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Subroutine does not return */</span>
+<span class="w">  </span><span class="n">___stack_chk_fail</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="no-escape-static-3.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-3.png"/></p>
+<p>This check tries performing write operation on the file system <code>/private</code> which is supposed to be read-only on non-jailbroken systems.</p>
+<ul>
+<li><code>canOpenCydia</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">undefined4</span><span class="w"> </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">canOpenCydia_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="n">puVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">URL</span><span class="w"> </span><span class="n">UVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_a0</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="n">local_98</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSURL</span><span class="w"> </span><span class="o">*</span><span class="n">local_90</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_7c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="n">local_68</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_60</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_58</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_50</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_48</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined4</span><span class="w"> </span><span class="n">local_34</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_30</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_28</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">local_28</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">puVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">$$demangling_cache_variable_for_type_metadata_for_Foundation</span><span class="p">.</span><span class="n">URL</span><span class="o">?</span><span class="p">;</span>
+<span class="w">  </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_78</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">puVar3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100164268</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">puVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">auStack_a0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_30</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_48</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_30</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_70</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100164268</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_60</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_68</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100164268</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">local_58</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="p">)(</span><span class="n">puVar2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lVar1</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_60</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_34</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_28</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_58</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"cydia://package/com.example.package"</span><span class="p">,</span><span class="mh">0x23</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">local_50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar5</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">$init</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_50</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x30</span><span class="p">))(</span><span class="n">local_40</span><span class="p">,</span><span class="n">local_34</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">  </span><span class="n">UVar4</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_68</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="n">puVar2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">$$outlined_destroy_of_Foundation</span><span class="p">.</span><span class="n">URL</span><span class="o">?</span><span class="p">(</span><span class="n">local_40</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x20</span><span class="p">))(</span><span class="n">local_58</span><span class="p">,</span><span class="n">local_40</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">    </span><span class="n">puVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_UIApplication</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_opt_self</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_objc_msgSend</span><span class="p">();</span>
+<span class="w">    </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">    </span><span class="n">local_88</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">    </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x10</span><span class="p">))(</span><span class="n">UVar4</span><span class="p">.</span><span class="n">unknown</span><span class="p">,</span><span class="n">local_58</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_90</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Foundation</span><span class="o">::</span><span class="n">URL</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">(</span><span class="n">UVar4</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_98</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_48</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">);</span>
+<span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">local_98</span><span class="p">)(</span><span class="n">local_68</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">    </span><span class="n">puVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_88</span><span class="p">,</span><span class="s">"canOpenURL:"</span><span class="p">,</span><span class="n">local_90</span><span class="p">);</span>
+<span class="w">    </span><span class="n">local_7c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">puVar3</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_90</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_88</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">local_7c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">(</span><span class="o">*</span><span class="n">local_98</span><span class="p">)(</span><span class="n">local_58</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="p">(</span><span class="o">*</span><span class="n">local_98</span><span class="p">)(</span><span class="n">local_58</span><span class="p">,</span><span class="n">local_30</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="no-escape-static-4.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-4.png"/></p>
+<p>This check tries to open Cydia with a deeplink to a fake package. </p>
+<ul>
+<li><code>checkSandboxViolation</code></li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kt">bool</span><span class="w"> </span><span class="n">$$No_Escape</span><span class="p">.(</span><span class="n">checkSandboxViolation_in__BCE8F13474E5A52C60853EA803F80A81</span><span class="p">)()</span><span class="n">_</span><span class="o">-&gt;</span><span class="n">_Swift</span><span class="p">.</span><span class="n">Bool</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">bVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">pNVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_40</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">SVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"/private/var/lib/apt/"</span><span class="p">,</span><span class="mh">0x15</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_NSFileManager</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_opt_self</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar5</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_40</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pNVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_40</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">puVar2</span><span class="p">,</span><span class="s">"fileExistsAtPath:"</span><span class="p">,</span><span class="n">pNVar3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">pNVar3</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">puVar2</span><span class="p">);</span>
+<span class="w">  </span><span class="n">bVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">((</span><span class="n">ulong</span><span class="p">)</span><span class="n">puVar4</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bVar1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_40</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_40</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">bVar1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="no-escape-static-5.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-static-5.png"/></p>
+<p>This check looks for the folder <code>/private/var/lib/apt/</code> which indicates that the device has been jailbroken.</p>
+<h2 id="solution">Solution</h2>
+<p>The solution is straightforward: by using <code>frida</code>, I'll hook to these methods and force the return value to <code>false</code> in order to bypass the security controls.</p>
+<p><strong>Note</strong>: a simpler solution would be to just hook the <code>isJailbroken</code> method instead of all the specific checks.</p>
+<p>Since <code>checkForJailbreakFiles</code>, <code>checkForWritableSystemDirectories</code>, <code>canOpenCydia</code>, and <code>checkSandboxViolation</code> are not exported functions, in order to hook them, I need their offset, as shown below:</p>
+<p><img alt="no-escape-ghidra-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-ghidra-1.png"/></p>
+<p>Please note that address in <code>ghidra</code> start from the configured <strong>base image address</strong> which is found at:</p>
+<div class="highlight"><pre><span></span><code>Window &gt; Memory Map
+</code></pre></div>
+<p><img alt="no-escape-ghidra-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-ghidra-2.png"/></p>
+<p>This mean that in the <code>frida</code> script, I must subtract this base image address from the actual function offset. The final solution script is the following:</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">offsetsLabels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">'checkForJailbreakFiles'</span><span class="p">,</span><span class="w"> </span><span class="s1">'checkForWritableSystemDirectories'</span><span class="p">,</span><span class="w"> </span><span class="s1">'canOpenCydia'</span><span class="p">,</span><span class="w"> </span><span class="s1">'checkSandboxViolation'</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">offsets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mh">0x00000a118</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000a3fc</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000a6fc</span><span class="p">,</span><span class="w"> </span><span class="mh">0x00000a940</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">baseAddress</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Module</span><span class="p">.</span><span class="nx">getBaseAddress</span><span class="p">(</span><span class="s2">"No Escape"</span><span class="p">);</span>
+
+<span class="nx">offsets</span><span class="p">.</span><span class="nx">forEach</span><span class="p">((</span><span class="nx">o</span><span class="p">,</span><span class="w"> </span><span class="nx">i</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">label</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">offsetsLabels</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[!] Attaching to: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">label</span><span class="p">)</span>
+<span class="w">    </span><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">baseAddress</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">o</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"\n[&gt;] Entered: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">label</span><span class="p">)</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="p">(</span><span class="nx">retval</span><span class="p">){</span>
+<span class="w">            </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[&gt;] Changing return value to false"</span><span class="p">)</span>
+<span class="w">            </span><span class="nx">retval</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">})</span>
+</code></pre></div>
+<p><img alt="no-escape-solution-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-solution-1.png"/></p>
+<p>Launch <code>frida</code> <strong>before</strong> opening the application as follows; the <code>-W</code> option instructs <code>frida</code> to await for the <strong>No Escape</strong> process to spawn instead of attaching to a running process: </p>
+<div class="highlight"><pre><span></span><code>frida<span class="w"> </span>-U<span class="w"> </span>-l<span class="w"> </span>bypass.js<span class="w"> </span>-W<span class="w"> </span><span class="s1">'com.mobilehackinglab.No-Escape.36V2J65722'</span><span class="w"> </span>
+</code></pre></div>
+<p><img alt="no-escape-frida-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-frida-1.png"/></p>
+<p>Having bypassed all the security checks, the flag is returned:</p>
+<p><img alt="no-escape-app-2.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/no-escape/no-escape-app-2.jpg"/></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>

@@ -149,7 +149,7 @@
 <p>The app presents itself as follows:</p>
 <p><img alt="gotham-times-app-1.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-1.jpg"/></p>
 <p><img alt="gotham-times-app-2.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-2.jpg"/></p>
-<p>When focusing on any text field, on a real iPhone device (no Corelium emulator), the keyboard remains opened and it's not possible to close it even tapping outside the field:</p>
+<p>When focusing on any text field, on a real iPhone device (no Corelium emulator), the keyboard remains opened and it's not possible to close it even by tapping outside the field:</p>
 <p><img alt="gotham-times-app-3.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-3.jpg"/></p>
 <p>This didn't allowed me to complete the signup process. To bypass this inconvenience, I've programmatically forced closing the keyboard with the following <code>frida</code> script:</p>
 <div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">closeKeyboard</span><span class="p">(</span><span class="nx">f</span><span class="o">=</span><span class="kc">null</span><span class="p">){</span>
@@ -673,8 +673,8 @@
 <p>This method perform the following operations:</p>
 <ul>
 <li><strong>URL Processing</strong>: When the app receives a URL to open like <code>gothamtimes://something</code>, this method gets called.</li>
-<li><strong>Checks for URLs with the host "open"</strong> like<code>gothamtimes://open/...</code></li>
-<li><strong>Extracts URL Parameter</strong>:If the host matches "open", it calls <code>getQueryStringParameter</code> to extract a URL parameter named "url", like <code>gothamtimes://open?url=http://shomething</code></li>
+<li><strong>Checks for URLs with the host "open"</strong> like <code>gothamtimes://open/...</code></li>
+<li><strong>Extracts URL Parameter</strong>: If the host matches "open", it calls <code>getQueryStringParameter</code> to extract a URL parameter named "url", like <code>gothamtimes://open?url=http://shomething</code></li>
 <li><strong>Open the URL</strong> in a <code>WKWebView</code> .</li>
 </ul>
 <p>Therefore, based on the decompiled code, the deeplink format that the application is expecting is the following: <code>gothamtimes://open?url=&lt;target url&gt;</code>.</p>
@@ -684,7 +684,7 @@
 </code></pre></div>
 <p><img alt="gotham-times-solution-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-solution-1.png"/></p>
 <p><img alt="gotham-times-app-6.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-app-6.jpg"/></p>
-<p>The application processes the deeplinks and opens a webview on the provided url; on the attacker listener, the following headers are received, leaking the <code>Authorization</code> JWT token and the flag:</p>
+<p>The application processes the deeplinks and opens a webview to the provided URL; on the attacker listener, the following headers are received, leaking the JWT token in the <code>Authorization</code> header  and the flag:</p>
 <p><img alt="gotham-times-solution-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/gotham-times/gotham-times-solution-2.png"/></p>
 <h2 id="extended-analysis">Extended Analysis</h2>
 <p>By looking  to the <code>Info.plist</code>'s <code>UIApplicationSceneManifest</code> property, it's possible to statically identify the deeplink handler without need of <code>frida-trace</code>:</p>

@@ -1880,6 +1880,9 @@ frida<span class="w"> </span>-U<span class="w"> </span>-f<span class="w"> </span
 
 objection<span class="w"> </span>--gadget<span class="p">|</span>-g<span class="w"> </span>&lt;package<span class="w"> </span>name&gt;<span class="w"> </span>explore
 </code></pre></div>
+<p>Await for process to spawn:</p>
+<div class="highlight"><pre><span></span><code>frida<span class="w"> </span>-U<span class="w"> </span>-W<span class="w"> </span><span class="s1">'&lt;package name&gt;'</span><span class="w"> </span>
+</code></pre></div>
 <p>Run script:</p>
 <div class="highlight"><pre><span></span><code>//<span class="w"> </span>Run<span class="w"> </span>script<span class="w"> </span>on<span class="w"> </span>load*
 frida<span class="w"> </span>-U<span class="w"> </span>-f<span class="w"> </span>&lt;package&gt;<span class="w"> </span>-l<span class="w"> </span>&lt;script&gt;<span class="w"> </span>
