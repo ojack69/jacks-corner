@@ -1,5 +1,6 @@
 [input]
 base_directory = "content"
+url_prefix = "/jacks-corner"
 html_selector = "main"
 
 [[input.files]]
@@ -48,11 +49,6 @@ url = "/cloud/aws/flaws.cloud.html"
 title = "flaws.cloud Challenges"
 
 [[input.files]]
-path = "ctf/htb/machines/cypher.md"
-url = "/ctf/htb/cypher.html"
-title = "CTF: HackTheBox Cypher"
-
-[[input.files]]
 path = "ad/goad/game-of-active-directory-notes.md"
 url = "/ad/goad.html"
 title = "Game of Active Directory Notes"
@@ -61,11 +57,6 @@ title = "Game of Active Directory Notes"
 path = "privilege-escalation/windows-privilege-escalation.md"
 url = "/privilege-escalation/windows-privilege-escalation.html"
 title = "Windows Privilege Escalation"
-
-[[input.files]]
-path = "ctf/htb/machines/chemistry.md"
-url = "/ctf/htb/chemistry.html"
-title = "CTF: HackTheBox Chemistry"
 
 [[input.files]]
 path = "mobile/mobilehackinglab/note-keeper.md"
@@ -101,11 +92,6 @@ title = "MobileHackingLab - CyclicScanner"
 path = "mobile/mobilehackinglab/strings.md"
 url = "/mobile/mobilehackinglab/strings.html"
 title = "MobileHackingLab - Strings"
-
-[[input.files]]
-path = "ctf/htb/fortresses/akerva.md"
-url = "/ctf/htb/akerva.html"
-title = "CTF: HackTheBox Akerva Fortress"
 
 [[input.files]]
 path = "binary-exploitation/buffer-overflow/ret2syscall.md"
@@ -168,44 +154,9 @@ url = "/ctf/mapna-2024/ninipwn.html"
 title = "MAPNA CTF 2024 - ninipwn"
 
 [[input.files]]
-path = "ctf/htb/machines/codify.md"
-url = "/ctf/htb/codify.html"
-title = "CTF: HackTheBox Codify"
-
-[[input.files]]
-path = "ctf/htb/machines/devvortex.md"
-url = "/ctf/htb/devvortex.html"
-title = "CTF: HackTheBox Devvortex"
-
-[[input.files]]
-path = "ctf/htb/machines/analytics.md"
-url = "/ctf/htb/analytics.html"
-title = "CTF: HackTheBox Analytics"
-
-[[input.files]]
-path = "ctf/htb/machines/bizness.md"
-url = "/ctf/htb/bizness.html"
-title = "CTF: HackTheBox Bizness"
-
-[[input.files]]
 path = "certifications/inesecurity/ejpt-concepts.md"
 url = "/certifications/inesecurity/ejpt-concepts.html"
 title = "eJPT-v2 Concepts"
-
-[[input.files]]
-path = "ctf/htb/machines/keeper.md"
-url = "/ctf/htb/keeper.html"
-title = "CTF: HackTheBox Keeper"
-
-[[input.files]]
-path = "ctf/htb/machines/cozyhosting.md"
-url = "/ctf/htb/cozyhosting.html"
-title = "CTF: HackTheBox Cozyhosting"
-
-[[input.files]]
-path = "ctf/htb/fortresses/jet.md"
-url = "/ctf/htb/jet.html"
-title = "CTF: HackTheBox Jet Fortress"
 
 [[input.files]]
 path = "binary-exploitation/heap-journey/one-byte.md"
@@ -226,11 +177,6 @@ title = "Heap Journey - Safe Unlink"
 path = "binary-exploitation/heap-journey/unsafe-unlink.md"
 url = "/binary-exploitation/heap-journey/unsafe-unlink.html"
 title = "Heap Journey - Unsafe Unlink"
-
-[[input.files]]
-path = "ctf/htb/machines/snoopy.md"
-url = "/ctf/htb/snoopy.html"
-title = "CTF: HackTheBox Snoopy"
 
 [[input.files]]
 path = "binary-exploitation/heap-journey/extra.md"
