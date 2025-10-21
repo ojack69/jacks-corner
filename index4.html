@@ -125,6 +125,32 @@
 
 <article>
   <header>
+    <h2><a href="http://localhost:1337/privilege-escalation/windows-privilege-escalation-cheatsheet.html">Windows Privilege Escalation Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="generic-enumeration">Generic Enumeration</h2>
+<p>Powershell history location:</p>
+<div class="highlight"><pre><span></span><code>C:\Windows\system32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+</code></pre></div>
+<p>Find interesting files by extension:</p>
+<div class="highlight"><pre><span></span><code>where.exe /r &lt;base dir&gt; <span class="gs">*.ps1</span>
+<span class="gs">where.exe /r &lt;base dir&gt; .git</span>
+<span class="gs">where.exe /r &lt;base dir&gt; *</span>.bat
+</code></pre></div>
+<p>Note: an interesting base dir could be <code>c:\windows …</code></p></div>
+    <br>
+    <a class="btn" href="http://localhost:1337/privilege-escalation/windows-privilege-escalation-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="http://localhost:1337/reversing/ida-cheatsheet.html">IDA Cheatsheet</a></h2>
     <p>
 
