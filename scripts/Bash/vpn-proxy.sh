@@ -4,7 +4,7 @@
 # This script setups a Wireguard server docker container.
 # The traffic on configured ports (REDIRECTED_TCP_PORTS - expecting HTTP/HTTPS traffic) will be redirected to the container's listening proxy.
 # The main purpose of this script is to allow intercepting HTTP/HTTPs traffic during security assessment on Flutter applications.
-# This script works only on Linux. If using a different OS, create a Linux VM. Eventually, start a Burp Proxy on the Linux VM and configure it to forward traffic to your host Burp Proxy
+# If using a non-Linux OS, this script will create a mitmproxy container in upstream mode; the VPN traffic will be forwarded to mitmproxy which will forward the HTTP/HTTPS traffic to the upstream (the proxy listening on the host). This is due to the fact that generally non-Linux OS use light VMs for Docker; in that case, iptables routing won't work.
 # Alternatives: https://docs.mitmproxy.org/stable/concepts/modes/#wireguard
 
 # Settings
@@ -13,6 +13,7 @@ VPN_UDP_PORT=51820
 VPN_PEER_DNS=1.1.1.1
 REDIRECTED_TCP_PORTS="80,443"
 LOCAL_INTERFACE="wlp1s0"
+PROXY_PORT=8080 # needed when using mitmproxy
 LOCAL_PORT=8080
 LOCAL_HOST="$(ifconfig $LOCAL_INTERFACE | grep -Eo '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -n 1)"
 CONTAINER_NAME="wg-proxy-vpn-server"
@@ -53,6 +54,12 @@ function log(){
 
 function get_config(){
     config_path="$CONFIG_PATH/config/peer1/peer1.conf"
+
+    if [[ ! -f "$config_path" ]]; then
+        log "VPN proxy not configured yet!" "error"
+        exit 1
+    fi
+
     log "Use the following client config file: $config_path" "warning"
 
     log "\n==========================================================="
@@ -72,14 +79,6 @@ function get_config(){
 action="$1"
 if [[ "$action" != "start" && "$action" != "stop" && "$action" != "config" && "$action" != "uninstall" ]]; then
     log "Usage: $0 [start|stop|config|uninstall]"
-    exit 1
-fi
-
-# OS Checking
-if [[ "$(uname -s)" != "Linux" ]]; then
-    log "Seems you are running a shitty OS: THIS SCRIPT WON'T WORK WITH DOCKER DESKTOP!" "error"
-    log "You can run this script on Linux VM, or, even better, install Linux on your computer :D" "warning"
-    log "Alternatively, consider: https://docs.mitmproxy.org/stable/concepts/modes/#wireguard" "warning"
     exit 1
 fi
 
@@ -106,7 +105,20 @@ if [[ -z "$check_wireguard_container_exists" && "$action" == "start" ]]; then
     
     mkdir -p "$CONFIG_PATH"
 
-     docker run -d --name="$CONTAINER_NAME" --cap-add=NET_ADMIN --cap-add=SYS_MODULE -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e SERVERURL="$LOCAL_HOST" -e PEERS=1 -e PEERDNS="$VPN_PEER_DNS" -e PERSISTENTKEEPALIVE_PEERS=25 -e INTERNAL_SUBNET="$VPN_SUBNET" -e ALLOWEDIPS=0.0.0.0/0 -e LOG_CONFS=true -p "$VPN_UDP_PORT":51820/udp -v "$CONFIG_PATH/config":/config -v /lib/modules:/lib/modules --sysctl="net.ipv4.conf.all.src_valid_mark=1" lscr.io/linuxserver/wireguard:latest 1>/dev/null
+    # OS Checking
+    if [[ "$(uname -s)" != "Linux" ]]; then
+        log "Seems you are not running a Linux OS: re-routing the traffic to the listening proxy won't work since Docker it's likely to be running in a light vm." "warning"
+        log "A mitmproxy instance in upstream mode will be used to bypass this restriction..." "warning"
+
+        docker run --name "$CONTAINER_NAME-mitmproxy" -d mitmproxy/mitmproxy mitmdump --mode upstream:"http://$LOCAL_HOST:$LOCAL_PORT" -p "$PROXY_PORT" --set ssl_insecure=true 1>/dev/null 
+
+        PROXY_HOST=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$CONTAINER_NAME-mitmproxy")
+    else
+        PROXY_HOST="$LOCAL_HOST"
+        PROXY_PORT="$LOCAL_PORT"
+    fi
+
+    docker run -d --name="$CONTAINER_NAME" --cap-add=NET_ADMIN --cap-add=SYS_MODULE -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e SERVERURL="$LOCAL_HOST" -e PEERS=1 -e PEERDNS="$VPN_PEER_DNS" -e PERSISTENTKEEPALIVE_PEERS=25 -e INTERNAL_SUBNET="$VPN_SUBNET" -e ALLOWEDIPS=0.0.0.0/0 -e LOG_CONFS=true -p "$VPN_UDP_PORT":51820/udp -v "$CONFIG_PATH/config":/config -v /lib/modules:/lib/modules --sysctl="net.ipv4.conf.all.src_valid_mark=1" lscr.io/linuxserver/wireguard:latest 1>/dev/null
 
     check_wireguard_container_exists=$(docker container ls -a | grep "$CONTAINER_NAME")
     if [[ -z "$check_wireguard_container_exists" ]]; then
@@ -123,25 +135,36 @@ if [[ "$action" == "start" ]];then
     
     log "Starting the VPN server container..." "success"
     docker container start "$CONTAINER_NAME" 1>/dev/null
+    docker container start "$CONTAINER_NAME-mitmproxy" 1>/dev/null 2>/dev/null
+
+    if [[ "$(uname -s)" != "Linux" ]]; then
+        PROXY_HOST=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$CONTAINER_NAME-mitmproxy")
+    else
+        PROXY_HOST="$LOCAL_HOST"
+        PROXY_PORT="$LOCAL_PORT"
+    fi
 
     log "Setting up iptables..." "success"
         
     # Redirect TCP traffic on specified ports from VPN clients to host
-    docker exec "$CONTAINER_NAME" iptables -t nat -A PREROUTING -i wg0 -p tcp -m multiport --dports "$REDIRECTED_TCP_PORTS" -j DNAT --to-destination "$LOCAL_HOST:$LOCAL_PORT"
+    docker exec "$CONTAINER_NAME" iptables -t nat -A PREROUTING -i wg0 -p tcp -m multiport --dports "$REDIRECTED_TCP_PORTS" -j DNAT --to-destination "$PROXY_HOST:$PROXY_PORT"
 
     # Allow forwarding
-    docker exec "$CONTAINER_NAME" iptables -A FORWARD -i wg0 -p tcp -m multiport --dports "$REDIRECTED_TCP_PORTS" -d "$LOCAL_HOST" -j ACCEPT
+    docker exec "$CONTAINER_NAME" iptables -A FORWARD -i wg0 -p tcp -m multiport --dports "$REDIRECTED_TCP_PORTS" -d "$PROXY_HOST" -j ACCEPT
 
     # Allow packets to get back to the client
     docker exec "$CONTAINER_NAME" iptables -t nat -A POSTROUTING -o wg0 -j MASQUERADE
     
     log "Expecting listening port $LOCAL_PORT on host $LOCAL_HOST. Remember to enable invisible proxying when using Burp!" "warning"
     log "Done!" "success"
+
 elif [[ "$action" == "stop" ]]; then
     log "Stopping the VPN server container..." "success"
     docker container stop "$CONTAINER_NAME" 1>/dev/null
+    docker container stop "$CONTAINER_NAME-mitmproxy" 1>/dev/null 2>/dev/null
     log "Done!" "success"
     exit 0
+
 elif [[ "$action" == "uninstall" ]]; then
     read -p "$(log "Are you sure you want to uninstall? y/N: " "warning")" confirm && [[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || exit 1
     if [[ $EUID -ne 0 ]]; then
@@ -149,8 +172,14 @@ elif [[ "$action" == "uninstall" ]]; then
         exit 1
     fi
     rm -rf "$CONFIG_PATH"
-    docker container stop "$CONTAINER_NAME" 1>/dev/null && docker container rm "$CONTAINER_NAME" 1>/dev/null
+
+    docker container stop "$CONTAINER_NAME" 1>/dev/null
+    docker container stop "$CONTAINER_NAME-mitmproxy" 1>/dev/null 2>/dev/null
+    docker container rm "$CONTAINER_NAME" 1>/dev/null
+    docker container rm "$CONTAINER_NAME-mitmproxy" 1>/dev/null 2>/dev/null
+    
     log "Done!" "success"
+
 else
     get_config
     exit 0
