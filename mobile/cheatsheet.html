@@ -2180,7 +2180,7 @@ objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span
 <span class="w">    </span><span class="p">})</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>Close keyboard in specific view invoking <code>- endEditing:YES</code>:</p>
+<p>Close keyboard in specific view invoking <code>- endEditing:YES</code> (for iOS):</p>
 <div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">ObjC</span><span class="p">.</span><span class="nx">classes</span><span class="p">[</span><span class="s1">'&lt;controller class name&gt;'</span><span class="p">]</span>
 
 <span class="nx">ObjC</span><span class="p">.</span><span class="nx">choose</span><span class="p">(</span><span class="nx">controller</span><span class="p">,{</span>
@@ -2193,6 +2193,49 @@ objection&gt;<span class="w"> </span>android<span class="w"> </span>hooking<span
 <span class="w">        </span><span class="c1">// Do nothing</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="p">})</span>
+</code></pre></div>
+<p>Dump <code>char *arr[]</code> (array of char pointers):</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">readString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">;</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">dumpCharPointerArray</span><span class="p">(</span><span class="nx">arrayPtr</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">values</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="kc">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// readPointer at arrayPtr + idx * pointerSize</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">rawPtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">arrayPtr</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">idx</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">Process</span><span class="p">.</span><span class="nx">pointerSize</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">valuePtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readPointer</span><span class="p">(</span><span class="nx">rawPtr</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">valuePtr</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">readString</span><span class="p">(</span><span class="nx">valuePtr</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">values</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span>
+<span class="w">        </span><span class="nx">idx</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">values</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Hook <code>posix_spawn</code> (based on <a href="https://gist.github.com/trufae/06cd2a4a5e2b1b4ad1a30e5b72d4d2c5">frida-launchd-spawn.js</a>):</p>
+<div class="highlight"><pre><span></span><code><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="s1">'/usr/lib/system/libsystem_kernel.dylib'</span><span class="p">,</span><span class="w"> </span><span class="s1">'posix_spawn'</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// Dump argv if present</span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">argv_ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">args</span><span class="p">[</span><span class="mf">4</span><span class="p">];</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">argv_ptr</span><span class="p">.</span><span class="nx">isNull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">argv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dumpCharPointerArray</span><span class="p">(</span><span class="nx">argv_ptr</span><span class="p">)</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="c1">// pretty print</span>
+<span class="w">                </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'posix_spawn argv ('</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">'):'</span><span class="p">);</span>
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nx">argv</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span><span class="w"> </span><span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'  ['</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">'] '</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">argv</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// safe fallback if reading memory fails</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'error reading argv: '</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">e</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">});</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

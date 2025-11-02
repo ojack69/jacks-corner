@@ -125,6 +125,28 @@
 
 <article>
   <header>
+    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/format-string-vulnerabilities/got-overwrite.html">GOT Overwrite Abusing Format String Vulnerability</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="relocation-read-only-relro">Relocation Read-Only (RELRO)</h2>
+<p>Source: <a href="https://ctf101.org/binary-exploitation/relocation-read-only/">https://ctf101.org/binary-exploitation/relocation-read-only/</a></p>
+<p>Relocation Read-Only (or <strong>RELRO</strong>) is a security measure which makes some binary sections read-only.</p>
+<p>There are two <strong>RELRO</strong> "modes": partial and full.</p>
+<ul>
+<li><strong>Partial RELRO</strong> is the default setting in GCC; it forces the GOT to come before the BSS in memory …</li></ul></div>
+    <br>
+    <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/format-string-vulnerabilities/got-overwrite.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
     <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/rop-emporium/ret2csu.html">ROP Emporium - ret2csu</a></h2>
     <p>
 
@@ -645,40 +667,6 @@ To get the correct version of glibc it is possible to run the libc file itself s
 <li>Hosts a copy of the <strong>AD …</strong></li></ul></div>
     <br>
     <a class="btn" href="https://ojack69.github.io/jacks-corner/ad/cheatsheet.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/glibc-appendix.html">Heap Journey - GLIBC Concepts Appendix</a></h2>
-    <p>
-
-
-    </p>
-  </header>
-  <div>
-    <div><p>GLIBC ptmalloc concepts:</p>
-<ul>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-force.html#glibc-version-checking">GLIB Version Checking</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/fastbin-dup.html#fastbins">Fastbins</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/unsafe-unlink.html#unsorted-bin">Unsorted Bins</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/unsafe-unlink.html#unsafe-unlink-technique">Unsafe Unlinking</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/safe-unlink.html#safe-unlink-technique">Safe Unlinking</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-orange.html#partial-unlinking">Partial Unlinking</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-orange.html#top-chunk-extension">Top Chunk Extension</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/house-of-orange.html#glibc-file-stream">GLIBC File Streams</a></li>
-<li><a href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/one-byte.html#remaindering">Remaindering</a></li>
-</ul>
-<p>Mitgations from ChatGPT:</p>
-<h3 id="house-of-force">House of Force:</h3>
-<ul>
-<li><strong>glibc 2.27:</strong> Mitigation introduced to prevent the exploitation of House of Force through checks on top chunk size and alignment.</li>
-</ul>
-<h3 id="fastbin-duplication">Fastbin …</h3></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/binary-exploitation/heap-journey/glibc-appendix.html">
       Continue reading
     </a>
   </div>

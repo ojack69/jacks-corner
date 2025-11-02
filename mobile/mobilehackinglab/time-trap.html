@@ -1,0 +1,1118 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+
+  <!--  <link rel="manifest" href="/assets/site.webmanifest" crossorigin="use-credentials">-->
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/stylesheet/style.min.css">
+
+    <link id="dark-theme-style" rel="stylesheet" type="text/css"
+          media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+    href="https://ojack69.github.io/jacks-corner/theme/stylesheet/dark-theme.min.css">
+
+    <link id="pygments-dark-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: dark), (prefers-color-scheme: no-preference)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/monokai.min.css">
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+              media="(prefers-color-scheme: light)"
+          href="https://ojack69.github.io/jacks-corner/theme/pygments/emacs.min.css">
+
+
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://ojack69.github.io/jacks-corner/theme/stork/stork.css" />
+
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/theme/font-awesome/css/solid.css">
+
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/custom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/zoom.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/collapsible-toc.css"> 
+        <link rel="stylesheet" type="text/css" href="https://ojack69.github.io/jacks-corner/css/goals.css"> 
+
+
+      <script src="https://code.jquery.com/jquery-3.7.1.min.js" type="application/javascript"></script>
+      <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.4/dist/purify.min.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/collapsible-toc.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/zoom.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/app.js" type="application/javascript"></script>
+      <script src="https://ojack69.github.io/jacks-corner/js/goals.js" type="application/javascript"></script>
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+<meta name="author" content="Jack69" />
+<meta name="description" content="This is an iOS mobile challenge from MobileHackingLabs Time Trap is a fictional application that showcases insecure practices commonly found in internal applications. Objective: Your objective is to get access to another users account and trigger the command injection vulnerability to run commands on the device. The app presents itself …" />
+<meta name="keywords" content="">
+
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="MobileHackingLab - Time Trap"/>
+  <meta property="og:description" content="This is an iOS mobile challenge from MobileHackingLabs Time Trap is a fictional application that showcases insecure practices commonly found in internal applications. Objective: Your objective is to get access to another users account and trigger the command injection vulnerability to run commands on the device. The app presents itself …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/mobile/mobilehackinglab/time-trap.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="2025-10-26 18:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Mobile"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; MobileHackingLab - Time Trap</title>
+
+
+</head>
+<body >
+
+<aside>
+  <div>
+    <a href="https://ojack69.github.io/jacks-corner/">
+      <img src="https://ojack69.github.io/jacks-corner/theme/img/profile.png" alt="Jack's Corner" title="Jack's Corner">
+    </a>
+
+    <h1>
+      <a href="https://ojack69.github.io/jacks-corner/">Jack's Corner</a>
+    </h1>
+
+
+    <div class="stork">
+        <input class="stork-input" type="text" autocomplete="off" name="q" data-stork="sitesearch" placeholder="Search..." onclick=""/>
+      <div class="stork-output" data-stork="sitesearch-output"></div>
+    </div>
+
+
+    <ul class="social">
+      <li>
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/profile/177323"
+           target="_blank">
+          <i class="fa-brands fa-htb"></i>
+        </a>
+      </li>
+      <li>
+        <a class="sc-thm"
+           href="https://tryhackme.com/p/jack69"
+           target="_blank">
+          <i class="fa-brands fa-thm"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+  <main>
+
+<nav>
+  <a href="https://ojack69.github.io/jacks-corner/">Home</a>
+
+  <a href="https://ojack69.github.io/jacks-corner/categories.html">Categories</a>
+  <a href="https://ojack69.github.io/jacks-corner/category/cheatsheet.html">Cheatsheets</a>
+  <a href="https://ojack69.github.io/jacks-corner/personal/goals.html">Goals</a>
+
+
+</nav>
+
+<article class="single">
+  <header>
+      
+    <h1 id="mobile/mobilehackinglab/time-trap">MobileHackingLab - Time Trap</h1>
+    <p>
+
+    </p>
+  </header>
+
+
+  <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#password-bruteforcing" title="Password Bruteforcing">Password Bruteforcing</a></li><li><a class="toc-href" href="#dynamic-static-analysis" title="Dynamic &amp; Static Analysis">Dynamic &amp; Static Analysis</a></li></ul></div>
+        </div>
+    <p>This is an iOS mobile challenge from <a href="https://www.mobilehackinglab.com/course/lab-time-trap">MobileHackingLabs</a>
+Time Trap is a fictional application that showcases insecure practices commonly found in internal applications.</p>
+<p><strong>Objective</strong>: Your objective is to get access to another users account and trigger the command injection vulnerability to run commands on the device.</p>
+<p>The app presents itself as follows:</p>
+<p><img alt="time-trap-app-1.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-app-1.jpg"/></p>
+<h2 id="password-bruteforcing">Password Bruteforcing</h2>
+<p>In the challenge tips, the username <code>emp002</code> is provided, stating that this user is known for use weak passwords; first-step has been to brute-force this user password</p>
+<p>When trying logging in, the following HTTP request is sent:</p>
+<p><img alt="time-trap-req-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-1.png"/></p>
+<p>Password has been brute-forced using Burp's intruder, performing a dictionary-based brute-force attack as follows:</p>
+<p><img alt="time-trap-req-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-2.png"/></p>
+<p>Found password is: <code>firefly</code>.</p>
+<p><img alt="time-trap-req-3.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-3.png"/></p>
+<p>Having the password, it's possible to login into the application:</p>
+<p><img alt="time-trap-app-2.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-app-2.jpg"/></p>
+<p>Following the successful login HTTP request:</p>
+<p><img alt="time-trap-req-4.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-4.png"/></p>
+<p>This is the home screen of the application after the login:</p>
+<p><img alt="time-trap-app-3.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-app-3.jpg"/></p>
+<h2 id="dynamic-static-analysis">Dynamic &amp; Static Analysis</h2>
+<p>After tapping on "Check In", a time starts as follows:</p>
+<p><img alt="time-trap-app-4.jpg" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-app-4.jpg"/></p>
+<p>Two request HTTP are sent:</p>
+<ol>
+<li></li>
+</ol>
+<p><img alt="time-trap-req-5.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-5.png"/></p>
+<p><img alt="time-trap-req-6.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-6.png"/></p>
+<div class="highlight"><pre><span></span><code>frida-trace -U -N com.mobilehackinglab.TimeTrap3.36V2J65722 -m '*[Time_Trap* *]'
+</code></pre></div>
+<p><img alt="time-trap-frida-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-frida-1.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="cm">/* WARNING: Removing unreachable block (ram,0x00010000ea08) */</span>
+<span class="cm">/* WARNING: Removing unreachable block (ram,0x00010000ec0c) */</span>
+<span class="cm">/* WARNING: Removing unreachable block (ram,0x00010000f10c) */</span>
+<span class="cm">/* Time_Trap.AttendanceController.buttonPressed(__C.UIButton) -&gt; () */</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">__thiscall</span>
+<span class="nf">Time_Trap::AttendanceController::buttonPressed</span><span class="p">(</span><span class="n">AttendanceController</span><span class="w"> </span><span class="o">*</span><span class="n">this</span><span class="p">,</span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">param_1</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">uname</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">uname_00</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AttendanceController</span><span class="w"> </span><span class="o">*</span><span class="n">pAVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">StaticString</span><span class="w"> </span><span class="n">SVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">bVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">lVar7</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ContiguousArray</span><span class="o">&lt;</span><span class="kr">__int8</span><span class="o">&gt;</span><span class="w"> </span><span class="n">CVar8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_ContiguousArrayBuffer</span><span class="w"> </span><span class="n">_Var10</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pvVar11</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">pNVar12</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">uVar14</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uVar15</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar16</span><span class="p">;</span>
+<span class="w">  </span><span class="n">DefaultStringInterpolation</span><span class="w"> </span><span class="n">DVar17</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar18</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">extraout_x8_00</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar19</span><span class="p">;</span>
+<span class="w">  </span><span class="n">tuple2</span><span class="p">.</span><span class="n">conflict1</span><span class="w"> </span><span class="n">tVar20</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar21</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">SVar22</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator_00</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">separator_01</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_700</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">uStack_6f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">auStack_6f0</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_6e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_6d8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6d0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6b0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_6a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_6a0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_698</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_690</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_688</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_680</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_678</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_670</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_668</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_660</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_658</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_650</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_648</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_640</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_638</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_630</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_628</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_620</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_618</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_610</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_608</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_600</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_5f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_5f0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">**</span><span class="n">local_5e8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_5e0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_5d8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_5d0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_5c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_5c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_5b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_5b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_5a8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_598</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_590</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_ContiguousArrayBuffer</span><span class="w"> </span><span class="n">local_588</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_580</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_578</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_570</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_568</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_560</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_558</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_550</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_548</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_540</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_538</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_530</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_528</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_520</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">local_518</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_510</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">**</span><span class="n">local_508</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_500</span><span class="p">;</span>
+<span class="w">  </span><span class="n">DefaultStringInterpolation</span><span class="w"> </span><span class="n">local_4f8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_4f0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_4e8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_4e0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_4d8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_4d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_4c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_4c0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_4b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_4b0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_4a8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_4a0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_498</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_490</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_488</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_480</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_478</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_470</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_468</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined4</span><span class="w"> </span><span class="n">local_45c</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_458</span><span class="p">;</span>
+<span class="w">  </span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="n">local_450</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_410</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_408</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_400</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_3f8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_3f0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_3e8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_3e0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_3d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_3d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_3c8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_3b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_3b0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_ContiguousArrayBuffer</span><span class="w"> </span><span class="n">local_3a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_3a0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_398</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_390</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_388</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_380</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_378</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_370</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_368</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_360</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_358</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_350</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_348</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_340</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_338</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_330</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_328</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_320</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_31c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_318</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_310</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">**</span><span class="n">local_308</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_300</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2f0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_2b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_2b0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_2a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_2a0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_298</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_28c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_288</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_280</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_274</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AttendanceController</span><span class="w"> </span><span class="o">*</span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">  </span><span class="n">StaticString</span><span class="w"> </span><span class="n">local_268</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_258</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_250</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_248</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_240</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_238</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_230</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_228</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_220</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="n">local_218</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_210</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_204</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_200</span><span class="p">;</span>
+<span class="w">  </span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_1e4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1c0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_1b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_1b0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_1a8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_1a0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">pvStack_198</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_190</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_180</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_178</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_170</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_168</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_160</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_158</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_150</span><span class="p">;</span>
+<span class="w">  </span><span class="n">String</span><span class="w"> </span><span class="n">local_148</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="n">local_138</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_130</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_128</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_118</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_110</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_108</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_100</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_f8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_f0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_e8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_e0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_d8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_d0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_c8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_a0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_98</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_90</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_80</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_60</span><span class="w"> </span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_58</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_50</span><span class="p">;</span>
+<span class="w">  </span><span class="n">byte</span><span class="w"> </span><span class="n">local_48</span><span class="p">;</span>
+<span class="w">  </span><span class="n">AttendanceController</span><span class="w"> </span><span class="o">*</span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="n">local_38</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">local_1f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR__swift_isaMask_1000286b8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_268</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Fatal error"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_260</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Unexpectedly found nil while unwrapping an Optional value"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_258</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Time_Trap/AttendanceController.swift"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_250</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Swift/arm64-apple-ios.swiftinterface"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_248</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Unexpectedly found nil while implicitly unwrapping an Optional value"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_240</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PTR_$$type_metadata_for_Any_100028790</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_38</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AttendanceController</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_48</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_58</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_80</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UIButton</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_204</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_270</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_200</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param_1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_118</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mh">0x48</span><span class="p">);</span>
+<span class="w">  </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">$$demangling_cache_variable_for_type_metadata_for_Foundation</span><span class="p">.</span><span class="n">Date</span><span class="o">?</span><span class="p">;</span>
+<span class="w">  </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_238</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">puVar9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x40</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pUVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_200</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100028208</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_6e0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_238</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_228</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_230</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100028208</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_228</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_218</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">extraout_x8_00</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xfU</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xfffffffffffffff0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_220</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100028208</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">lVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">local_218</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_210</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_38</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">uVar14</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x2332b</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_200</span><span class="p">,</span><span class="s">"setEnabled:"</span><span class="p">,</span><span class="n">local_204</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pUVar6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_200</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">();</span>
+<span class="w">  </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">this</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xd0</span><span class="p">))();</span>
+<span class="w">  </span><span class="n">local_1f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1e4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar14</span><span class="p">;</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">uVar14</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xff</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mh">0xff</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">local_48</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">byte</span><span class="p">)</span><span class="n">uVar14</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_28c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar14</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_288</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_280</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_274</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar14</span><span class="p">;</span>
+<span class="w">    </span><span class="n">local_50</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">uVar14</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">local_318</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_298</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_80</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_318</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_308</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_d0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_318</span><span class="p">;</span>
+<span class="w">      </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">$$demangling_cache_variable_for_type_metadata_for_</span><span class="p">[</span><span class="n">Time_Trap</span><span class="p">.</span><span class="n">AttendanceDetails</span><span class="p">];</span>
+<span class="w">      </span><span class="n">___swift_instantiateConcreteTypeFromMangledName</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_310</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;&gt;::</span><span class="n">$lazy_protocol_witness_table_accessor</span><span class="p">();</span>
+<span class="w">      </span><span class="p">(</span><span class="n">extension_Swift</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">Collection</span><span class="o">::</span><span class="n">$get_first</span><span class="p">();</span>
+<span class="w">      </span><span class="n">pAVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">      </span><span class="n">$$outlined_destroy_of_</span><span class="p">[</span><span class="n">Time_Trap</span><span class="p">.</span><span class="n">AttendanceDetails</span><span class="p">](</span><span class="n">local_308</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_300</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_c8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_98</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_90</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_118</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_c8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_110</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_108</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_100</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_b0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_a0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_98</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_90</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_88</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_128</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_120</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pAVar2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xa0</span><span class="p">))(</span><span class="n">local_210</span><span class="p">);</span>
+<span class="w">      </span><span class="n">$$outlined_init_with_copy_of_Foundation</span><span class="p">.</span><span class="n">Date</span><span class="o">?</span><span class="p">(</span><span class="n">local_210</span><span class="p">,</span><span class="n">local_220</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_2b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Foundation</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">typeMetadataAccessor</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_2a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_2b0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">);</span>
+<span class="w">      </span><span class="n">lVar7</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_220</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_2a8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x30</span><span class="p">))(</span><span class="n">local_220</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">bVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">lVar7</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">bVar5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">$$outlined_destroy_of_Foundation</span><span class="p">.</span><span class="n">Date</span><span class="o">?</span><span class="p">(</span><span class="n">local_220</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">local_31c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="n">bVar5</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_320</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_31c</span><span class="p">;</span>
+<span class="w">      </span><span class="n">$$outlined_destroy_of_Foundation</span><span class="p">.</span><span class="n">Date</span><span class="o">?</span><span class="p">(</span><span class="n">local_210</span><span class="p">);</span>
+<span class="w">      </span><span class="n">pAVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">local_320</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">uVar15</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_138</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Swift</span><span class="o">::</span><span class="n">DefaultStringInterpolation</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="mh">0x2d</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DVar17</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_130</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">uVar15</span><span class="p">;</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"if $(uname -a) != </span><span class="se">\"</span><span class="s">"</span><span class="p">,</span><span class="mh">0x16</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_478</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">DefaultStringInterpolation</span><span class="o">::</span><span class="n">appendLiteral</span><span class="p">(</span><span class="n">SVar19</span><span class="p">,</span><span class="n">DVar17</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_478</span><span class="p">);</span>
+<span class="w">        </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">$outlined_copy</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_2e0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_4a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_498</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_490</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_488</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_480</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4b0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4c8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4c0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_4a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4b8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_4a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4b0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_4d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4a0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_4d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4a8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_158</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_150</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4d0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_4d0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_148</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">""</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_148</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_148</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4d8</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4d0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_518</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_168</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_168</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_148</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_160</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_148</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_508</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_138</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">DefaultStringInterpolation</span><span class="o">::</span><span class="n">$appendInterpolation</span>
+<span class="w">                  </span><span class="p">(</span><span class="n">local_518</span><span class="p">,</span><span class="n">PTR_$$type_metadata_for_Swift</span><span class="p">.</span><span class="n">String_100028460</span><span class="p">,</span>
+<span class="w">                   </span><span class="n">PTR_$$protocol_witness_table_for_Swift</span><span class="p">.</span><span class="n">String_</span><span class="o">:</span><span class="n">_Swift</span><span class="p">.</span><span class="n">CustomStringConvertible_in_</span><span class="w"> </span><span class="n">Swift_1000286a8</span>
+<span class="w">                   </span><span class="p">,</span>
+<span class="w">                   </span><span class="n">PTR_$$protocol_witness_table_for_Swift</span><span class="p">.</span><span class="n">String_</span><span class="o">:</span><span class="n">_Swift</span><span class="p">.</span><span class="n">TextOutputStreamable_in_Swi</span><span class="w"> </span><span class="n">ft_1000287d0</span>
+<span class="w">                  </span><span class="p">);</span>
+<span class="w">        </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="p">(</span><span class="n">local_518</span><span class="p">);</span>
+<span class="w">        </span><span class="n">DVar17</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"</span><span class="se">\"</span><span class="s">; then uname -a; fi"</span><span class="p">,</span><span class="mh">0x17</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_510</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">DefaultStringInterpolation</span><span class="o">::</span><span class="n">appendLiteral</span><span class="p">(</span><span class="n">SVar19</span><span class="p">,</span><span class="n">DVar17</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_510</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_4f8</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_138</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_500</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_130</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">        </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">DefaultStringInterpolation</span><span class="p">(</span><span class="n">local_508</span><span class="p">);</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="n">local_4f8</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_4f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">CVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">get_utf8CString</span><span class="p">(</span><span class="n">SVar19</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_$sSaySayxGqd__c7ElementQyd__RszSTRd__lufCs4Int8V_s15ContiguousArrayVyAEGTgmq5</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_4e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">undefined</span><span class="o">&gt;::</span><span class="n">$get__baseAddressIfContiguous</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_4e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">           </span><span class="p">(</span><span class="n">bVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Swift</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">Collection</span><span class="o">::</span><span class="n">get_isEmpty</span><span class="p">(),</span><span class="w"> </span><span class="n">bVar5</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">undefined</span><span class="o">&gt;::</span><span class="n">$get__owner</span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_538</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_520</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_4e0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_530</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_528</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4e0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">local_530</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4e0</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_4e8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_4e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_$ss15ContiguousArrayVyAByxGqd__c7ElementQyd__RszSTRd__lufCs4Int8V_s01_B6BufferVyAGGTgmq5</span>
+<span class="w">                    </span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_588</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_retain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_swift_release</span><span class="p">(</span><span class="n">local_588</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_Var10</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_588</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">_ContiguousArrayBuffer</span><span class="o">::</span><span class="n">$get_owner</span><span class="p">(</span><span class="n">local_588</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_580</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_Var10</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_578</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Swift</span><span class="o">::</span><span class="n">_ContiguousArrayBuffer</span><span class="o">::</span><span class="n">get_firstElementAddress</span><span class="p">(</span><span class="n">local_588</span><span class="p">)</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_release</span><span class="p">(</span><span class="n">local_588</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_530</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_578</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_538</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_580</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_548</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_530</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_540</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_538</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_530</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_178</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_558</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_560</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_170</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4e8</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_550</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_530</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_170</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_530</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4e8</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_170</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_executeCommand</span><span class="p">();</span>
+<span class="w">        </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_568</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_unknownObjectRelease</span><span class="p">(</span><span class="n">local_540</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_4f0</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_568</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_598</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_590</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_570</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_568</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_5b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_568</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_5a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">$_unconditionallyBridgeFromObjectiveC</span><span class="p">()</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_5b0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_598</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5a8</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_590</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5a8</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_5b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_590</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_5c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_598</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">        </span><span class="n">pvVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_128</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5c0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_120</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">pvVar11</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pcVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">        </span><span class="n">SVar3</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_268</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="n">pAVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_5b8</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x20</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x5e</span><span class="p">;</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">_assertionFailure</span><span class="p">(</span><span class="n">SVar3</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0xb</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,(</span><span class="n">__uint64</span><span class="p">)</span><span class="n">pcVar13</span><span class="p">,</span><span class="mh">0x39</span><span class="p">)</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Does not return */</span>
+<span class="w">          </span><span class="n">pcVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">SoftwareBreakpoint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x10000f2b0</span><span class="p">);</span>
+<span class="w">          </span><span class="p">(</span><span class="o">*</span><span class="n">pcVar4</span><span class="p">)();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_5d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5c0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_5c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">uname</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">uname</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5c0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_5d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">updateAttendance</span><span class="p">(</span><span class="n">uname</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pvVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">();</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pAVar2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xb8</span><span class="p">))();</span>
+<span class="w">        </span><span class="n">local_180</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvVar11</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pvVar11</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">NSTimer</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_180</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_5e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">local_180</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_5e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pvVar11</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">$$outlined_destroy_of___C</span><span class="p">.</span><span class="n">NSTimer</span><span class="o">?</span><span class="p">(</span><span class="n">local_5e8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_5e0</span><span class="p">,</span><span class="s">"invalidate"</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_5e0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_5f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_270</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">))();</span>
+<span class="w">        </span><span class="n">pAVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_2a8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x38</span><span class="p">))(</span><span class="n">local_230</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">local_2b0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pAVar2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xa8</span><span class="p">))(</span><span class="n">local_230</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_270</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x130</span><span class="p">))();</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"Check In"</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_600</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_5f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_600</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_200</span><span class="p">,</span><span class="s">"setTitle:forState:"</span><span class="p">,</span><span class="n">local_5f0</span><span class="p">,</span><span class="n">local_5f8</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pNVar12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_5f0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_release</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Foundation</span><span class="o">::</span><span class="n">Date</span><span class="o">::</span><span class="n">init</span><span class="p">();</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="n">local_2a8</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x38</span><span class="p">))(</span><span class="n">local_230</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">local_2b0</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pAVar2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xa8</span><span class="p">))(</span><span class="n">local_230</span><span class="p">);</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"uname -a"</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_338</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">CVar8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">get_utf8CString</span><span class="p">(</span><span class="n">SVar19</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_$sSaySayxGqd__c7ElementQyd__RszSTRd__lufCs4Int8V_s15ContiguousArrayVyAEGTgmq5</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_330</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">undefined</span><span class="o">&gt;::</span><span class="n">$get__baseAddressIfContiguous</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_328</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">CVar8</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">           </span><span class="p">(</span><span class="n">bVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Swift</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">Collection</span><span class="o">::</span><span class="n">get_isEmpty</span><span class="p">(),</span><span class="w"> </span><span class="n">bVar5</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_330</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">undefined</span><span class="o">&gt;::</span><span class="n">$get__owner</span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_358</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_340</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_328</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_350</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">          </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">local_348</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_328</span><span class="p">;</span>
+<span class="w">            </span><span class="n">local_350</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_328</span><span class="p">;</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_330</span><span class="p">);</span>
+<span class="w">          </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_330</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_$ss15ContiguousArrayVyAByxGqd__c7ElementQyd__RszSTRd__lufCs4Int8V_s01_B6BufferVyAGGTgmq5</span>
+<span class="w">                    </span><span class="p">();</span>
+<span class="w">          </span><span class="n">local_3a8</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_retain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_swift_release</span><span class="p">(</span><span class="n">local_3a8</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_Var10</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3a8</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">_ContiguousArrayBuffer</span><span class="o">::</span><span class="n">$get_owner</span><span class="p">(</span><span class="n">local_3a8</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_3a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_Var10</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_398</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">Swift</span><span class="o">::</span><span class="n">_ContiguousArrayBuffer</span><span class="o">::</span><span class="n">get_firstElementAddress</span><span class="p">(</span><span class="n">local_3a8</span><span class="p">)</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_release</span><span class="p">(</span><span class="n">local_3a8</span><span class="p">.</span><span class="n">unknown</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_350</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_398</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_358</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3a0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_368</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_350</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_360</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_358</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_350</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_1c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_378</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_380</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_1b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0xffffffffffffffff</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_330</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_370</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_350</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_1b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_350</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_330</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_executeCommand</span><span class="p">();</span>
+<span class="w">        </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_388</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_unknownObjectRelease</span><span class="p">(</span><span class="n">local_360</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_338</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_388</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">undefined</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_3b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_3b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_390</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_388</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_3d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_388</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_3c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">$_unconditionallyBridgeFromObjectiveC</span><span class="p">()</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">          </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_3d0</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_3b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3c8</span><span class="p">.</span><span class="n">str</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_3b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3c8</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_3d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3b0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_3e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3b8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">        </span><span class="n">pvVar11</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_128</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3e0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_120</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">pvVar11</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pcVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_260</span><span class="p">;</span>
+<span class="w">        </span><span class="n">SVar3</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_268</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_3d8</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x20</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x59</span><span class="p">;</span>
+<span class="w">          </span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">Swift</span><span class="o">::</span><span class="n">_assertionFailure</span><span class="p">(</span><span class="n">SVar3</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0xb</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,(</span><span class="n">__uint64</span><span class="p">)</span><span class="n">pcVar13</span><span class="p">,</span><span class="mh">0x39</span><span class="p">)</span>
+<span class="w">          </span><span class="p">;</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Does not return */</span>
+<span class="w">          </span><span class="n">pcVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">SoftwareBreakpoint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x10000ebac</span><span class="p">);</span>
+<span class="w">          </span><span class="p">(</span><span class="o">*</span><span class="n">pcVar4</span><span class="p">)();</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_3f0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3e0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_3e8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">uname_00</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">uname_00</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3e0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_408</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_3d8</span><span class="p">;</span>
+<span class="w">        </span><span class="n">updateAttendance</span><span class="p">(</span><span class="n">uname_00</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_408</span><span class="p">);</span>
+<span class="w">        </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_NSTimer</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_opt_self</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_400</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_270</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pAVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_270</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_1c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_1d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_1d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_1e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_3f8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"updateTime"</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_410</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_470</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_45c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="n">puVar9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_400</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="mh">0x3ff0000000000000</span><span class="p">,</span><span class="n">local_400</span><span class="p">,</span>
+<span class="w">                      </span><span class="s">"scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:"</span><span class="p">,</span><span class="n">local_270</span><span class="p">,</span>
+<span class="w">                      </span><span class="s">"updateTime"</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_objc_retainAutoreleasedReturnValue</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_468</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">puVar9</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_unknownObjectRelease</span><span class="p">(</span><span class="n">local_470</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_swift_unknownObjectRelease</span><span class="p">(</span><span class="n">pAVar2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">pAVar2</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xc0</span><span class="p">))(</span><span class="n">local_468</span><span class="p">);</span>
+<span class="w">        </span><span class="n">SVar19</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"Check Out"</span><span class="p">,</span><span class="mi">9</span><span class="p">,(</span><span class="n">byte</span><span class="p">)</span><span class="n">local_45c</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="n">local_458</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_450</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_458</span><span class="p">);</span>
+<span class="w">        </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_200</span><span class="p">,</span><span class="s">"setTitle:forState:"</span><span class="p">,</span><span class="n">local_450</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">        </span><span class="n">pNVar12</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_450</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_objc_release</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_270</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0xe8</span><span class="p">))();</span>
+<span class="w">      </span><span class="n">pcVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_248</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar3</span><span class="p">.</span><span class="n">unknown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_268</span><span class="p">.</span><span class="n">unknown</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_608</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pNVar12</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pNVar12</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="n">NSString</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">*</span><span class="p">(</span><span class="n">undefined1</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x20</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x67</span><span class="p">;</span>
+<span class="w">        </span><span class="o">*</span><span class="p">(</span><span class="n">undefined4</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Swift</span><span class="o">::</span><span class="n">_assertionFailure</span><span class="p">(</span><span class="n">SVar3</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0xb</span><span class="p">,(</span><span class="n">StaticString</span><span class="p">)</span><span class="mh">0x2</span><span class="p">,(</span><span class="n">__uint64</span><span class="p">)</span><span class="n">pcVar13</span><span class="p">,</span><span class="mh">0x44</span><span class="p">);</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Does not return */</span>
+<span class="w">        </span><span class="n">pcVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">SoftwareBreakpoint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mh">0x10000f4b8</span><span class="p">);</span>
+<span class="w">        </span><span class="p">(</span><span class="o">*</span><span class="n">pcVar4</span><span class="p">)();</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="n">local_620</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_128</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_618</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_120</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_628</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pNVar12</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_610</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pNVar12</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">(</span><span class="n">local_618</span><span class="p">);</span>
+<span class="w">      </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">$outlined_copy</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_1a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_620</span><span class="p">;</span>
+<span class="w">      </span><span class="n">pvStack_198</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_618</span><span class="p">;</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_618</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">$outlined_copy</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_2e0</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_658</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_650</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_648</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_640</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_638</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_630</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_670</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_678</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2d0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_660</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e0</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_668</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2e8</span><span class="p">;</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_660</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_678</span><span class="p">);</span>
+<span class="w">          </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_670</span><span class="p">);</span>
+<span class="w">          </span><span class="n">local_658</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_668</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_650</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_660</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">local_680</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_650</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_688</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_658</span><span class="p">;</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRetain</span><span class="p">();</span>
+<span class="w">        </span><span class="n">local_1b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_688</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_1a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_680</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">local_680</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_190</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">init</span><span class="p">(</span><span class="s">"Unable to find device information."</span><span class="p">,</span><span class="mh">0x22</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">local_190</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_680</span><span class="p">;</span>
+<span class="w">          </span><span class="n">local_190</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_688</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_680</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">local_190</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_618</span><span class="p">;</span>
+<span class="w">        </span><span class="n">local_190</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_620</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">      </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">$outlined_consume</span><span class="p">();</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_618</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_698</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_190</span><span class="p">.</span><span class="n">bridgeObject</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_690</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">extension_Foundation</span><span class="p">)</span><span class="o">::</span><span class="n">Swift</span><span class="o">::</span><span class="n">String</span><span class="o">::</span><span class="n">_bridgeToObjectiveC</span><span class="p">();</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_698</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_628</span><span class="p">,</span><span class="s">"setText:"</span><span class="p">,</span><span class="n">local_690</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_690</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_628</span><span class="p">);</span>
+<span class="w">      </span><span class="n">$$outlined_destroy_of_Swift</span><span class="p">.</span><span class="n">String</span><span class="o">?</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_128</span><span class="p">);</span>
+<span class="w">      </span><span class="o">*</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">lVar1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x10</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_2c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">$outlined_consume</span><span class="p">();</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_318</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">local_6a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_2a0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pUVar6</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_errorRetain</span><span class="p">();</span>
+<span class="w">      </span><span class="n">local_58</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6a0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_200</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_200</span><span class="p">,</span><span class="s">"setEnabled:"</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_200</span><span class="p">);</span>
+<span class="w">      </span><span class="n">tVar20</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Swift</span><span class="o">::</span><span class="n">$_allocateUninitializedArray</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_6e0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tVar20</span><span class="mf">.1</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6c8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tVar20</span><span class="p">.</span><span class="n">_0_8_</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_swift_getErrorValue</span><span class="p">(</span><span class="n">local_6a0</span><span class="p">,</span><span class="n">auStack_60</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_78</span><span class="p">);</span>
+<span class="w">      </span><span class="n">local_6d8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_78</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6d0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">      </span><span class="o">*</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="kt">long</span><span class="p">)</span><span class="n">local_6e0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x18</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_70</span><span class="p">;</span>
+<span class="w">      </span><span class="n">___swift_allocate_boxed_opaque_existential_0</span><span class="p">();</span>
+<span class="w">      </span><span class="n">pcVar18</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6d0</span><span class="p">;</span>
+<span class="w">      </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)(</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)(</span><span class="n">local_6d0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">-8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x10</span><span class="p">))();</span>
+<span class="w">      </span><span class="n">pcVar13</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6c8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">pcVar16</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_240</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$_finalizeUninitializedArray</span><span class="p">();</span>
+<span class="w">      </span><span class="n">SVar19</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar16</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar19</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar18</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6a8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">SVar19</span><span class="p">,</span><span class="n">separator</span><span class="p">);</span>
+<span class="w">      </span><span class="n">SVar21</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar16</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar21</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_00</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">in_x3</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_00</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar18</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6c0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6b0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar16</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">SVar21</span><span class="p">,</span><span class="n">separator_00</span><span class="p">);</span>
+<span class="w">      </span><span class="n">SVar22</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6c0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">SVar22</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6a8</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_01</span><span class="p">.</span><span class="n">bridgeObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar13</span><span class="p">;</span>
+<span class="w">      </span><span class="n">separator_01</span><span class="p">.</span><span class="n">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_6b0</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_6b8</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar16</span><span class="p">;</span>
+<span class="w">      </span><span class="n">Swift</span><span class="o">::</span><span class="n">$print</span><span class="p">(</span><span class="n">SVar22</span><span class="p">,</span><span class="n">separator_01</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_6b8</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_6b0</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_bridgeObjectRelease</span><span class="p">(</span><span class="n">local_6a8</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_swift_errorRelease</span><span class="p">(</span><span class="n">local_6a0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">$outlined_consume</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">(</span><span class="o">**</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">**</span><span class="p">)((</span><span class="o">*</span><span class="p">(</span><span class="n">ulong</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">local_270</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="o">*</span><span class="n">local_1f8</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">0x138</span><span class="p">))();</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">(</span><span class="n">local_200</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_msgSend</span><span class="p">(</span><span class="n">local_200</span><span class="p">,</span><span class="s">"setEnabled:"</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">local_200</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="time-trap-static-1.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-static-1.png"/></p>
+<p><img alt="time-trap-static-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-static-2.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">_executeCommand</span><span class="p">(</span><span class="n">undefined8</span><span class="w"> </span><span class="n">param_1</span><span class="p">)</span>
+
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">iVar1</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">pVar2</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cfstringStruct</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">ssize_t</span><span class="w"> </span><span class="n">sVar4</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cfstringStruct</span><span class="w"> </span><span class="o">*</span><span class="n">pcVar5</span><span class="p">;</span>
+<span class="w">  </span><span class="n">posix_spawn_file_actions_t</span><span class="w"> </span><span class="n">pvStack_1070</span><span class="p">;</span>
+<span class="w">  </span><span class="n">cfstringStruct</span><span class="w"> </span><span class="o">*</span><span class="n">local_1068</span><span class="p">;</span>
+<span class="w">  </span><span class="n">uint</span><span class="w"> </span><span class="n">local_1060</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">pid_t</span><span class="w"> </span><span class="n">local_105c</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_1058</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined1</span><span class="w"> </span><span class="n">auStack_1050</span><span class="w"> </span><span class="p">[</span><span class="mi">4096</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">local_50</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">local_4c</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_48</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">local_40</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_38</span><span class="p">;</span>
+<span class="w">  </span><span class="n">undefined8</span><span class="w"> </span><span class="n">local_30</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">long</span><span class="w"> </span><span class="n">local_28</span><span class="p">;</span>
+
+<span class="w">  </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">code</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____chkstk_darwin_100028208</span><span class="p">)();</span>
+<span class="w">  </span><span class="n">local_28</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____stack_chk_guard_100028250</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_48</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"sh"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_40</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"-c"</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_30</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">cf_</span><span class="s">""</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_1058</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param_1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">local_38</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">param_1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">local_1068</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar3</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_pipe</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="o">&amp;</span><span class="n">stack0xfffffffffffffff0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mh">-0x40</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_posix_spawn_file_actions_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_posix_spawn_file_actions_addclose</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">,</span><span class="n">local_50</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_posix_spawn_file_actions_adddup2</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">,</span><span class="n">local_4c</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">_posix_spawn_file_actions_addclose</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">,</span><span class="n">local_4c</span><span class="p">);</span>
+<span class="w">  </span><span class="n">iVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_posix_spawn</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_105c</span><span class="p">,</span><span class="s">"/bin/sh"</span><span class="p">,</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">,(</span><span class="n">posix_spawnattr_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="mh">0x0</span><span class="p">,</span><span class="o">&amp;</span><span class="n">local_48</span><span class="p">,</span>
+<span class="w">                       </span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">)</span><span class="mh">0x0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">iVar1</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_close</span><span class="p">(</span><span class="n">local_4c</span><span class="p">);</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">sVar4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_read</span><span class="p">(</span><span class="n">local_50</span><span class="p">,</span><span class="n">auStack_1050</span><span class="p">,</span><span class="mh">0x1000</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">sVar4</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">pcVar5</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">cfstringStruct</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">_OBJC_CLASS_$_NSString</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_alloc</span><span class="p">();</span>
+<span class="w">      </span><span class="nl">_objc_msgSend$initWithBytes</span><span class="p">:</span><span class="n">length</span><span class="o">:</span><span class="n">encoding</span><span class="o">:</span><span class="p">();</span>
+<span class="w">      </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1068</span><span class="p">;</span>
+<span class="w">      </span><span class="n">local_1068</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pcVar5</span><span class="p">;</span>
+<span class="w">      </span><span class="n">_objc_release</span><span class="p">(</span><span class="n">pcVar3</span><span class="p">);</span>
+<span class="w">      </span><span class="n">_NSLog</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cf_Output</span><span class="o">:%</span><span class="err">@</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">_close</span><span class="p">(</span><span class="n">local_50</span><span class="p">);</span>
+<span class="w">    </span><span class="n">pVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_waitpid</span><span class="p">(</span><span class="n">local_105c</span><span class="p">,(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">local_1060</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pVar2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">_perror</span><span class="p">(</span><span class="s">"waitpid"</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">local_1060</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0x7f</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">_NSLog</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cf_Commandexitedwithstatus</span><span class="o">%</span><span class="n">d</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">_NSLog</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cf_Commandexitedabnormally</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_perror</span><span class="p">(</span><span class="s">"posix_spawn"</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">_posix_spawn_file_actions_destroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">pvStack_1070</span><span class="p">);</span>
+<span class="w">  </span><span class="n">pcVar3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_1068</span><span class="p">;</span>
+<span class="w">  </span><span class="n">_objc_retain</span><span class="p">();</span>
+<span class="w">  </span><span class="n">_objc_storeStrong</span><span class="p">(</span><span class="o">&amp;</span><span class="n">local_1068</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">PTR____stack_chk_guard_100028250</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">local_28</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_objc_autoreleaseReturnValue</span><span class="p">(</span><span class="n">pcVar3</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">                    </span><span class="cm">/* WARNING: Subroutine does not return */</span>
+<span class="w">  </span><span class="n">___stack_chk_fail</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><img alt="time-trap-static-3.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-static-3.png"/></p>
+<p><img alt="time-trap-static-4.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-static-4.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="nx">Interceptor</span><span class="p">.</span><span class="nx">attach</span><span class="p">(</span><span class="nx">Module</span><span class="p">.</span><span class="nx">findExportByName</span><span class="p">(</span><span class="s2">"Time Trap"</span><span class="p">,</span><span class="w"> </span><span class="s2">"executeCommand"</span><span class="p">),</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">onEnter</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[&gt;] Executing command..."</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"[&gt;] Arguments: "</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">Memory</span><span class="p">.</span><span class="nx">readUtf8String</span><span class="p">(</span><span class="nx">args</span><span class="p">[</span><span class="mf">0</span><span class="p">]));</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">onLeave</span><span class="o">:</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">retval</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">});</span>
+</code></pre></div>
+<p><img alt="time-trap-frida-2.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-frida-2.png"/></p>
+<p><img alt="time-trap-req-7.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-7.png"/></p>
+<p><img alt="time-trap-frida-3.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-frida-3.png"/></p>
+<div class="highlight"><pre><span></span><code><span class="se">\"</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>touch<span class="w"> </span>/tmp/pwned<span class="p">;</span><span class="w"> </span><span class="k">elif</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>touch<span class="w"> </span>/tmp/pwned<span class="p">;</span><span class="w"> </span><span class="k">elif</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-a<span class="k">)</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">""</span><span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>uname<span class="w"> </span>-a<span class="p">;</span><span class="w"> </span><span class="k">fi</span>
+</code></pre></div>
+<p><img alt="time-trap-frida-4.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-frida-4.png"/></p>
+<p><img alt="time-trap-req-8.png" src="https://ojack69.github.io/jacks-corner/images/mobile/mobilehackinglab/time-trap/time-trap-req-8.png"/></p>
+<p><code>MHL{9_t0_5_C0mm4ndz_Sl4v1ng_4w4y}</code></p>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
+</article>
+
+<footer>
+<p>&copy; Jack69 - 2025 </p>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+  <span class="footer-separator">|</span>
+  Switch to the <a href="javascript:void(0)" onclick="theme.switch(`dark`)">dark</a> | <a href="javascript:void(0)" onclick="theme.switch(`light`)">light</a> | <a href="javascript:void(0)" onclick="theme.switch(`browser`)">browser</a> theme
+  <script id="dark-theme-script"
+          src="https://ojack69.github.io/jacks-corner/theme/dark-theme/dark-theme.min.js"
+          data-enable-auto-detect-theme="True"
+          data-default-theme="dark"
+          type="text/javascript">
+  </script>
+</p></footer>  </main>
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Jack's Corner ",
+  "url" : "https://ojack69.github.io/jacks-corner",
+  "image": "",
+  "description": "My personal notes on stuff I like, nothing special"
+}
+</script>  <script>
+    window.loadStorkIndex = function () {
+      stork.initialize("https://ojack69.github.io/jacks-corner/theme/stork/stork.wasm")
+      stork.register("sitesearch", "https://ojack69.github.io/jacks-corner/search-index.st", { showProgress: false });
+    }
+  </script>
+  <script src="https://ojack69.github.io/jacks-corner/theme/stork/stork.js"></script>
+
+</body>
+</html>
