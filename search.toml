@@ -219,6 +219,11 @@ url = "/certifications/inesecurity/ejpt-cheatsheet.html"
 title = "eJPT-v2 Cheatsheet"
 
 [[input.files]]
+path = "certifications/oswe/oswe-notes.md"
+url = "/certifications/oswe.html"
+title = "OSWE Notes"
+
+[[input.files]]
 path = "cloud/cloud-cheatsheet.md"
 url = "/cloud/cheatsheet.html"
 title = "Cloud Cheatsheet"
