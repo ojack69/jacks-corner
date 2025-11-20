@@ -235,15 +235,27 @@
     </p>
   </header>
   <div>
-    <div><h2 id="tools-methodologies">Tools &amp; Methodologies</h2>
-<p>Web Traffic Inspection:</p>
-<ul>
-<li>Burp Suite</li>
-<li>Python</li>
-<li>C#</li>
-<li>dnSpy</li>
-<li>JD-GUI</li>
-</ul></div>
+    <div><p>Run/Compile <code>dotnet</code> console script:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># init project</span>
+dotnet<span class="w"> </span>new<span class="w"> </span>console<span class="w"> </span>
+
+<span class="c1"># edit Program.cs</span>
+
+<span class="c1"># Build</span>
+dotnet<span class="w"> </span>build
+<span class="c1"># Run - will also build</span>
+dotnet<span class="w"> </span>run<span class="w"> </span>
+</code></pre></div>
+<p>Build and run a C# script using <code>mono</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install dependency</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mono-devel
+
+<span class="c1"># Build exe</span>
+mono-csc<span class="w"> </span>&lt;cs<span class="w"> </span>script<span class="w"> </span>path&gt;
+
+<span class="c1"># Run Exe</span>
+mono<span class="w"> </span>&lt;output<span class="w"> </span>exe&gt;
+</code></pre></div></div>
   </div>
   <hr />
 </article>

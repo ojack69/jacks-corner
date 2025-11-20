@@ -60,13 +60,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Tools &amp; Methodologies Web Traffic Inspection: Burp Suite Python C# dnSpy JD-GUI" />
+<meta name="description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt;" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="OSWE Notes"/>
-  <meta property="og:description" content="Tools &amp; Methodologies Web Traffic Inspection: Burp Suite Python C# dnSpy JD-GUI"/>
+  <meta property="og:description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt;"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/certifications/oswe.html"/>
   <meta property="og:type" content="article"/>
@@ -140,18 +140,27 @@
 
 
   <div>
-        <div class="toc col-lg-3 hidden-xs hidden-sm">
-            <div id="toc"><ul><li><a class="toc-href" href="#tools-methodologies" title="Tools &amp; Methodologies">Tools &amp; Methodologies</a></li></ul></div>
-        </div>
-    <h2 id="tools-methodologies">Tools &amp; Methodologies</h2>
-<p>Web Traffic Inspection:</p>
-<ul>
-<li>Burp Suite</li>
-<li>Python</li>
-<li>C#</li>
-<li>dnSpy</li>
-<li>JD-GUI</li>
-</ul>
+    <p>Run/Compile <code>dotnet</code> console script:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># init project</span>
+dotnet<span class="w"> </span>new<span class="w"> </span>console<span class="w"> </span>
+
+<span class="c1"># edit Program.cs</span>
+
+<span class="c1"># Build</span>
+dotnet<span class="w"> </span>build
+<span class="c1"># Run - will also build</span>
+dotnet<span class="w"> </span>run<span class="w"> </span>
+</code></pre></div>
+<p>Build and run a C# script using <code>mono</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install dependency</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>mono-devel
+
+<span class="c1"># Build exe</span>
+mono-csc<span class="w"> </span>&lt;cs<span class="w"> </span>script<span class="w"> </span>path&gt;
+
+<span class="c1"># Run Exe</span>
+mono<span class="w"> </span>&lt;output<span class="w"> </span>exe&gt;
+</code></pre></div>
   </div>
   <div class="tag-cloud">
     <p>
