@@ -60,13 +60,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt;" />
+<meta name="description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt; Java A natural …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="OSWE Notes"/>
-  <meta property="og:description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt;"/>
+  <meta property="og:description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt; Java A natural …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/certifications/oswe.html"/>
   <meta property="og:type" content="article"/>
@@ -140,6 +140,9 @@
 
 
   <div>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#java" title="Java">Java</a></li><li><a class="toc-href" href="#sink-cheatsheet" title="Sink Cheatsheet">Sink Cheatsheet</a></li></ul></div>
+        </div>
     <p>Run/Compile <code>dotnet</code> console script:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># init project</span>
 dotnet<span class="w"> </span>new<span class="w"> </span>console<span class="w"> </span>
@@ -160,6 +163,27 @@ mono-csc<span class="w"> </span>&lt;cs<span class="w"> </span>script<span class=
 
 <span class="c1"># Run Exe</span>
 mono<span class="w"> </span>&lt;output<span class="w"> </span>exe&gt;
+</code></pre></div>
+<h2 id="java">Java</h2>
+<p>A natural question at this point might be: how do we know which Java process to target? In this case, we are fortunate as there is only one Java process running on our vulnerable machine. Some applications use multiple Java process instances though. In such cases, we can check any given process properties in Process Explorer by right-clicking on the process name and choosing <em>Properties</em></p>
+<p>Compile test.java:</p>
+<div class="highlight"><pre><span></span><code>javac -source 1.8 -target 1.8 test.java
+</code></pre></div>
+<p>Package Java File:</p>
+<div class="highlight"><pre><span></span><code>jar cmvf META-INF/MANIFEST.MF test.jar test.class
+</code></pre></div>
+<p>Start Servlet with remote debug enabled:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">java</span><span class="w"> </span><span class="o">-</span><span class="nx">agentlib</span><span class="p">:</span><span class="nx">jdwp</span><span class="p">=</span><span class="nx">transport</span><span class="p">=</span><span class="nx">dt_socket</span><span class="p">,</span><span class="nx">server</span><span class="p">=</span><span class="nx">y</span><span class="p">,</span><span class="nx">suspend</span><span class="p">=</span><span class="nx">n</span><span class="p">,</span><span class="nx">address</span><span class="p">=</span><span class="mi">9898</span><span class="w"> </span><span class="o">-</span><span class="nx">jar</span><span class="w"> </span><span class="o">~/</span><span class="nx">NumberGame</span><span class="p">.</span><span class="nx">jar</span>
+</code></pre></div>
+<h2 id="sink-cheatsheet">Sink Cheatsheet</h2>
+<p>SQL Injections:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// JD-GUI</span>
+<span class="n">SELECT</span><span class="o">*</span><span class="s">"+</span>
+<span class="n">SELECT</span><span class="o">*</span><span class="s">"+</span>
+
+<span class="c1">// Regex</span>
+<span class="n">SELECT</span><span class="p">.</span><span class="o">*?</span><span class="s">"\s{0,1}\+</span>
+<span class="o">^</span><span class="p">.</span><span class="o">*?</span><span class="n">query</span><span class="p">.</span><span class="o">*?</span><span class="n">select</span><span class="p">.</span><span class="o">*?</span>
 </code></pre></div>
   </div>
   <div class="tag-cloud">

