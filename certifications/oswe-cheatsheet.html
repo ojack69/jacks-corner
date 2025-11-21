@@ -59,16 +59,24 @@
 
  
 
-    <meta name="author" content="Jack69" />
-    <meta name="description" content="My personal notes on stuff I like, nothing special" />
-  <meta property="og:site_name" content="Jack's Corner"/>
-  <meta property="og:type" content="blog"/>
-  <meta property="og:title" content="Jack's Corner"/>
-  <meta property="og:description" content="My personal notes on stuff I like, nothing special"/>
-  <meta property="og:locale" content="en_US"/>
-  <meta property="og:url" content="https://ojack69.github.io/jacks-corner"/>
+<meta name="author" content="Jack69" />
+<meta name="description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt; Java Identify java …" />
+<meta name="keywords" content="">
 
-  <title>Jack's Corner &ndash; Category Certifications</title>
+
+  <meta property="og:site_name" content="Jack's Corner"/>
+  <meta property="og:title" content="OSWE Cheatsheet"/>
+  <meta property="og:description" content="Run/Compile dotnet console script: # init project dotnet new console # edit Program.cs # Build dotnet build # Run - will also build dotnet run Build and run a C# script using mono: # Install dependency sudo apt install mono-devel # Build exe mono-csc &lt;cs script path&gt; # Run Exe mono &lt;output exe&gt; Java Identify java …"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:url" content="https://ojack69.github.io/jacks-corner/certifications/oswe-cheatsheet.html"/>
+  <meta property="og:type" content="article"/>
+  <meta property="article:published_time" content="1957-01-01 00:00:00+01:00"/>
+  <meta property="article:modified_time" content=""/>
+  <meta property="article:author" content="https://ojack69.github.io/jacks-corner/author/jack69.html">
+  <meta property="article:section" content="Certifications"/>
+  <meta property="og:image" content="">
+
+  <title>Jack's Corner &ndash; OSWE Cheatsheet</title>
 
 
 </head>
@@ -121,41 +129,21 @@
 
 </nav>
 
-
-
-<article>
+<article class="single">
   <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html">eJPT-v2 Concepts</a></h2>
+      
+    <h1 id="certifications/oswe-cheatsheet">OSWE Cheatsheet</h1>
     <p>
-
 
     </p>
   </header>
-  <div>
-    <div><h1 id="information-gathering">Information Gathering</h1>
-<p>Active: actively interacting with systems or individuals to obtain specific information
-Passive: find as much information about a target from public available information</p>
-<h2 id="passive-information-gathering">Passive Information Gathering</h2>
-<h3 id="whois">WHOIS</h3>
-<p>Whois: protocol used to perform a lookup of a domains or ip address blocks registered users or assignee</p>
-<p>when privacy options …</p></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/certifications/inesecurity/ejpt-concepts.html">
-      Continue reading
-    </a>
-  </div>
-  <hr />
-</article>
-<article>
-  <header>
-    <h2><a href="https://ojack69.github.io/jacks-corner/certifications/oswe-cheatsheet.html">OSWE Cheatsheet</a></h2>
-    <p>
 
 
-    </p>
-  </header>
   <div>
-    <div><p>Run/Compile <code>dotnet</code> console script:</p>
+        <div class="toc col-lg-3 hidden-xs hidden-sm">
+            <div id="toc"><ul><li><a class="toc-href" href="#java" title="Java">Java</a></li><li><a class="toc-href" href="#sink-cheatsheet" title="Sink Cheatsheet">Sink Cheatsheet</a></li></ul></div>
+        </div>
+    <p>Run/Compile <code>dotnet</code> console script:</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># init project</span>
 dotnet<span class="w"> </span>new<span class="w"> </span>console<span class="w"> </span>
 
@@ -177,18 +165,48 @@ mono-csc<span class="w"> </span>&lt;cs<span class="w"> </span>script<span class=
 mono<span class="w"> </span>&lt;output<span class="w"> </span>exe&gt;
 </code></pre></div>
 <h2 id="java">Java</h2>
-<p>Identify java …</p></div>
-    <br>
-    <a class="btn" href="https://ojack69.github.io/jacks-corner/certifications/oswe-cheatsheet.html">
-      Continue reading
-    </a>
+<p>Identify java origin from task manager:
+ - check any given process properties in Process Explorer by right-clicking on the process name and choosing <em>Properties</em></p>
+<p>Compile test.java:</p>
+<div class="highlight"><pre><span></span><code>javac -source 1.8 -target 1.8 test.java
+</code></pre></div>
+<p>Package Java File:</p>
+<div class="highlight"><pre><span></span><code>jar cmvf META-INF/MANIFEST.MF test.jar test.class
+</code></pre></div>
+<p>Start Servlet with remote debug enabled:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">java</span><span class="w"> </span><span class="o">-</span><span class="nx">agentlib</span><span class="p">:</span><span class="nx">jdwp</span><span class="p">=</span><span class="nx">transport</span><span class="p">=</span><span class="nx">dt_socket</span><span class="p">,</span><span class="nx">server</span><span class="p">=</span><span class="nx">y</span><span class="p">,</span><span class="nx">suspend</span><span class="p">=</span><span class="nx">n</span><span class="p">,</span><span class="nx">address</span><span class="p">=</span><span class="mi">9898</span><span class="w"> </span><span class="o">-</span><span class="nx">jar</span><span class="w"> </span><span class="o">~/</span><span class="nx">NumberGame</span><span class="p">.</span><span class="nx">jar</span>
+</code></pre></div>
+<p>In a typical Java servlet, HTTP request handler functions are named as follows:</p>
+<ul>
+<li><em>doGet</em></li>
+<li><em>doPost</em></li>
+<li><em>doPut</em></li>
+<li><em>doDelete</em></li>
+<li><em>doCopy</em></li>
+<li><em>doOptions</em></li>
+</ul>
+<h2 id="sink-cheatsheet">Sink Cheatsheet</h2>
+<p>SQL Injections:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// JD-GUI</span>
+<span class="n">SELECT</span><span class="o">*</span><span class="s">"+</span>
+<span class="n">SELECT</span><span class="o">*</span><span class="s">"+</span>
+
+<span class="c1">// Regex</span>
+<span class="n">SELECT</span><span class="p">.</span><span class="o">*?</span><span class="s">"\s{0,1}\+</span>
+<span class="o">^</span><span class="p">.</span><span class="o">*?</span><span class="n">query</span><span class="p">.</span><span class="o">*?</span><span class="n">select</span><span class="p">.</span><span class="o">*?</span>
+</code></pre></div>
   </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+
+
 </article>
-
-  <div class="pagination">
-  </div>
-
-
 
 <footer>
 <p>&copy; Jack69 - 2025 </p>
