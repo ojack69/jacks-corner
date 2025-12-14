@@ -157,6 +157,7 @@ python<span class="w"> </span>-m<span class="w"> </span>smtpd<span class="w"> </
 
 <span class="c1"># Using https://aiosmtpd.aio-libs.org/en/latest/index.html</span>
 <span class="c1">## Start a debug server on port 8025</span>
+<span class="c1"># pipx install aiosmtpd</span>
 python<span class="w"> </span>-m<span class="w"> </span>aiosmtpd<span class="w"> </span>-n
 </code></pre></div>
 <p><strong>Note</strong>: Always better to not run it as root; use instead <code>iptables</code> to redirect traffic from a not restricted port (eg. <code>2525</code>) to <code>25</code>.</p>
