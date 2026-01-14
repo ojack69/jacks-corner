@@ -2050,6 +2050,18 @@ Java deserialization, the same applies to the <code>ObjectInputStream.readObject
 <li><code>-rl</code>: set the max number of concurrent HTTP requests.</li>
 <li><code>-sresp</code>: save all requests and responses in the output file (<code>-o</code>)</li>
 </ul>
+<p>Verb Tampering with <code>feroxbuster</code>:</p>
+<div class="highlight"><pre><span></span><code>feroxbuster<span class="w"> </span>-u<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-m<span class="w"> </span>GET,POST<span class="w"> </span>-w<span class="w"> </span>/usr/share/dirb/wordlists/small.txt<span class="w"> </span>-
+-burp-replay<span class="w"> </span>--replay-codes<span class="w"> </span><span class="m">200</span>,201,301,302,400,401
+
+<span class="c1"># Silent and without recursion, useful to pipe output to other users</span>
+feroxbuster<span class="w"> </span>--silent<span class="w"> </span>-n<span class="w"> </span>-u<span class="w"> </span>&lt;target&gt;<span class="w"> </span>-m<span class="w"> </span>GET,POST<span class="w"> </span>-w<span class="w"> </span>/usr/share/dirb/wordlists/small.txt<span class="w"> </span>--burp-replay<span class="w"> </span>--replay-codes<span class="w"> </span><span class="m">200</span>,201,301,302,400,401
+</code></pre></div>
+<p><strong>Note</strong>:</p>
+<ul>
+<li><code>--burp-replay</code>: sets replay proxy to localhost:8080 and allows insecure HTTPS</li>
+<li><code>--replay-codes</code>: replays specified status codes to specified replay proxy</li>
+</ul>
   </div>
   <div class="tag-cloud">
     <p>
