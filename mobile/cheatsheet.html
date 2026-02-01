@@ -764,6 +764,9 @@ adb<span class="w"> </span>shell<span class="w"> </span><span class="s2">"reboot
 <p>Take screenshot:</p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span>adb<span class="w"> </span>shell<span class="o">]</span><span class="w"> </span>screencap<span class="w"> </span>-p<span class="w"> </span><span class="s2">"/path/to/screenshot.png"</span>
 </code></pre></div>
+<p>Trace all invocations to methods in a package using <code>frida-trace</code>:</p>
+<div class="highlight"><pre><span></span><code>frida-trace<span class="w"> </span>-U<span class="w"> </span>-j<span class="w"> </span><span class="s1">'com.package.!*'</span><span class="w"> </span>-f<span class="w"> </span><span class="s1">'&lt;target application package&gt;'</span>
+</code></pre></div>
 <h4 id="logging">Logging</h4>
 <p>View devices logs:</p>
 <div class="highlight"><pre><span></span><code>adb<span class="w"> </span>logcat<span class="w"> </span><span class="o">[</span>options<span class="o">]</span><span class="w"> </span><span class="o">[</span>filter<span class="o">]</span>
