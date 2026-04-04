@@ -101,17 +101,17 @@
 
     <ul class="social">
       <li>
-        <a class="sc-htb"
-           href="https://app.hackthebox.com/profile/177323"
+        <a class="sc-linkedin"
+           href="https://www.linkedin.com/in/riccardo-palumbo-b6770a170"
            target="_blank">
-          <i class="fa-brands fa-htb"></i>
+          <i class="fa-brands fa-linkedin"></i>
         </a>
       </li>
       <li>
-        <a class="sc-thm"
-           href="https://tryhackme.com/p/jack69"
+        <a class="sc-htb"
+           href="https://app.hackthebox.com/users/177323"
            target="_blank">
-          <i class="fa-brands fa-thm"></i>
+          <i class="fa-brands fa-htb"></i>
         </a>
       </li>
     </ul>
@@ -1812,7 +1812,7 @@ SMUGGLED // There insert an HTTP request well formatted (if post, must contain c
 </ul>
 <p>To detect SSTI:</p>
 <ul>
-<li>Try fuzzing the template by injecting a sequence of special characters commonly used in template expressions, such as <code>${{</code> <code>&lt;</code> <code>%[%'"}}%\</code> to detect if a template engine is being used. If an exception is raised, this indicates that the injected template syntax is potentially being interpreted by the server in some way.</li>
+<li>Try fuzzing the template by injecting a sequence of special characters commonly used in template expressions, such as <code>${{&lt;%[%'"}}%\</code> to detect if a template engine is being used. If an exception is raised, this indicates that the injected template syntax is potentially being interpreted by the server in some way.</li>
 <li>Test if input is reflected in Plaintext Context: try at least these <code>${7*7}</code>, <code>#{7*7}</code>, <code>[=3*3]</code>, <code>&lt;%= 7 * 7 %&gt;</code>, <code>{{7*'7'}}</code> </li>
 <li>Test if input is reflected in Code Context: send <code>7*7</code> or try breaking the code context, es: <code>7*7}}&lt;tag&gt;</code></li>
 </ul>
