@@ -2007,19 +2007,19 @@ MS-RPRN.exe<span class="w"> </span>&lt;TARGET<span class="w"> </span>HOST&gt;<sp
 </ul>
 <p>Constrained delegation flow <strong>without protocol transition</strong> (<strong>Kerberos Only</strong>):</p>
 <ol>
-<li>The user requests a TGS for a particular service server (SS1) after obtaining the TGT from the DC.</li>
+<li>The user requests a <strong>forwardable TGS</strong> for a particular service server (SS1) after obtaining the TGT from the DC. A forwardable ticket is provided only when delegation is permitted.</li>
 <li>The user sends the TGS to service server (SS1) and authenticates to it.</li>
-<li>The service server (SS1) sends the TGS to the DC to request a new TGS for another service server (SS2)</li>
-<li>The DC checks the <code>msDS-AllowedToDelegateTo</code> on the service server's service account; if the requested service is present in the list, the DC returns a new TGS for the requested service (S4U2proxy)</li>
+<li>The service server (SS1) sends the TGS to the DC to request (<strong>since it is forwadable!</strong>) a new TGS for another service server (SS2)</li>
+<li>The DC checks the <code>msDS-AllowedToDelegateTo</code> on the service server's service account; if the requested service is present in the list, the DC returns a new TGS for the requested service (<strong>S4U2proxy</strong>)</li>
 <li>The first service server (SS1) send the new ticket to the other service server (SS2) on behalf of the user.</li>
 </ol>
 <p><img alt="kerberos-constrained-delegation-no-protocol-transition.png" src="https://ojack69.github.io/jacks-corner/images/ad/active-directory/kerberos-constrained-delegation-no-protocol-transition.png"/></p>
 <p>Constrained delegation flow <strong>with protocol transition</strong>:</p>
 <ol>
 <li>The user authenticates directly to the service server (SS1) using a non-Kerberos authentication (e.g., NTLM, form-based authentication, basic authentication, etc.).</li>
-<li>The service server (SS1) requests a delegation TGT to the DC without supplying any password.</li>
-<li>The DC checks if the service server's service account has the <code>TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION</code> User Access Control (UAC)'s attribute. if everything checks out, the DC returns a TGT (S4U2Self) - <strong>Protocol Transition</strong>.</li>
-<li>The service server (SS1) passes back the TGT to the DC requesting a new TGS for another service server (SS2). The DC checks the <code>msDS-AllowedToDelegateTo</code> on the service server's service account; if the requested service is present in the list, the DC returns a new TGS for the requested service (S4U2proxy)</li>
+<li>The service server (SS1) requests a TGS to itself to the DC without supplying any password.</li>
+<li>The DC checks if the service server's service account has the <code>TRUSTED_TO_AUTHENTICATE_FOR_DELEGATION</code> User Access Control (UAC)'s attribute. if everything checks out, the DC returns a TGS (<strong>S4U2Self Ticket</strong>) - <strong>Protocol Transition</strong>.</li>
+<li>The service server (SS1) passes back the TGS (<strong>S4U2Self Ticket</strong>) to the DC requesting a new TGS for another service server (SS2). The DC checks the <code>msDS-AllowedToDelegateTo</code> on the service server's service account; if the requested service is present in the list, the DC returns a new TGS for the requested service (<strong>S4U2proxy</strong>)</li>
 <li>The first service server (SS1) send the new ticket to the other service server (SS2) on behalf of the user.</li>
 </ol>
 <p><img alt="kerberos-constrained-delegation-with-protocol-transition.png" src="https://ojack69.github.io/jacks-corner/images/ad/active-directory/kerberos-constrained-delegation-with-protocol-transition.png"/></p>
@@ -2079,13 +2079,13 @@ Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<
 <ol>
 <li>An attacker compromises a domain user with enough privileges for the target host.</li>
 <li>The attacker creates his own machine account (or compromises an existing one). When doing this, consider the <code>msDS-MachineAccountQuota</code> on the domain object; this defines the max number of machine account that is possible to add to a domain.</li>
-<li>The attacker modifies the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute on the targeted machine account adding his newly created machine account.</li>
-<li>The attacker requests a <strong>forwardable TGS</strong> for an administrative user, by utilizing the controlled machine account.</li>
-<li>The attacker requests a TGS for an administrative user on the target host through <code>S4UProxy</code>.</li>
+<li>The attacker modifies the <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> attribute on the targeted machine account, adding his newly created machine account.</li>
+<li>The attacker performs <code>S4U2Self</code> as the controlled machine account</li>
+<li>The attacker performs <code>S4U2Proxy</code> to the target service.</li>
 <li>The attacker uses the TGS to authenticate against the target host as Administrator.</li>
 </ol>
 <p><strong>Note</strong>: RBCD works <strong>across domain trusts</strong>!</p>
-<p>After patching CVE-2020-17049 and CVE-2020-16996, members of Protected Users group are not vulnerable to delegation even though the "sensitive and cannot be delegated" flag is disabled. However, the native <code>Administrator</code> account (RID 500) doesn't seem to benefit from that restriction, even if it's added to the Protected Users group!</p>
+<p>After patching <strong>CVE-2020-17049</strong> and <strong>CVE-2020-16996</strong>, members of Protected Users group are not vulnerable to delegation even though the "sensitive and cannot be delegated" flag is disabled. However, the native <code>Administrator</code> account (RID 500) doesn't seem to benefit from that restriction, even if it's added to the Protected Users group!</p>
 <p>Enumerate machine quota:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-DomainObject</span> <span class="n">-Identity</span> <span class="s2">"DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;"</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">domain</span><span class="p">&gt;</span> <span class="n">-DomainController</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">dc</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ms-ds-machineaccountquota</span>
