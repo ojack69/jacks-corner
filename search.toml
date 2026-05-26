@@ -209,6 +209,11 @@ url = "/ad/cheatsheet.html"
 title = "Active Directory Cheatsheet"
 
 [[input.files]]
+path = "ai/llm-cheatsheet.md"
+url = "/ai/cheatsheet.html"
+title = "LLM Cheatsheet"
+
+[[input.files]]
 path = "binary-exploitation/heap-journey/glibc-appendix.md"
 url = "/binary-exploitation/heap-journey/glibc-appendix.html"
 title = "Heap Journey - GLIBC Concepts Appendix"
