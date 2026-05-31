@@ -1387,6 +1387,9 @@ r2<span class="w"> </span>-q<span class="w"> </span>-c<span class="w"> </span>iz
 <li><code>platform 7</code>&nbsp;= iOS Simulator</li>
 <li>(Others:&nbsp;<code>1</code>&nbsp;macOS,&nbsp;<code>3</code>&nbsp;tvOS,&nbsp;<code>5</code>&nbsp;watchOS, etc.)</li>
 </ul>
+<p>Check build platform using <code>vtool</code>:</p>
+<div class="highlight"><pre><span></span><code>vtool<span class="w"> </span>-show-build<span class="w"> </span>&lt;appname&gt;.app/&lt;appname&gt;<span class="w"> </span>
+</code></pre></div>
 <p>Check linked libraries with <code>otool</code>:</p>
 <div class="highlight"><pre><span></span><code>otool<span class="w"> </span>-L<span class="w"> </span>&lt;appname&gt;.app/&lt;appname&gt;
 </code></pre></div>
@@ -1448,6 +1451,10 @@ ipsw<span class="w"> </span>swift-dump<span class="w"> </span>--headers<span cla
 <div class="highlight"><pre><span></span><code>strings<span class="w"> </span>&lt;binary&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"UIWebView"</span>
 strings<span class="w"> </span>&lt;binary&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"WKWebView"</span>
 strings<span class="w"> </span>&lt;binary&gt;<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span><span class="s2">"SFSafariViewController"</span>
+</code></pre></div>
+<p>Cross-compile a dynamic library from MacOS for iOS:  </p>
+<div class="highlight"><pre><span></span><code>clang<span class="w"> </span>-arch<span class="w"> </span>arm64<span class="w"> </span>-miphoneos-version-min<span class="o">=</span><span class="m">15</span>.0<span class="w"> </span>-isysroot<span class="w"> </span><span class="s2">"</span><span class="k">$(</span>xcrun<span class="w"> </span>--sdk<span class="w"> </span>iphoneos<span class="w"> </span>--show-sdk-path<span class="k">)</span><span class="s2">"</span><span class="w"> </span>-dynamiclib<span class="w"> </span>-install_name<span class="w"> </span>@rpath/libexampl<span class="w">  </span>
+e.dylib<span class="w"> </span>License.c<span class="w"> </span>-o<span class="w"> </span>license.dylib
 </code></pre></div>
 <h4 id="objective-c-analysis">Objective-C Analysis</h4>
 <p><strong>Step 1: Review Header Files</strong></p>
