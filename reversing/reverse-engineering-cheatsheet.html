@@ -60,13 +60,13 @@
  
 
 <meta name="author" content="Jack69" />
-<meta name="description" content="Reverse Engineering Common Strategies Patching assembly Tampering registers Delete instructions replacing them with a number of nop instructions equal to the size of the deleted instruction in term of bytes. Fundamentals Data sizes In x86 terminology/documentation, a &#34;word&#34; is 16 bits because x86 evolved out of 16-bit 8086. Term …" />
+<meta name="description" content="Reverse Engineering Common Strategies Patching Assembly: Patching assembly involves modifying an executable file&#39;s binary code at runtime, typically by injecting malicious or benign code into the original program. This can be achieved through various techniques such as buffer overflows, return-oriented programming (ROP), and jump tables. The goal of patching assembly …" />
 <meta name="keywords" content="">
 
 
   <meta property="og:site_name" content="Jack's Corner"/>
   <meta property="og:title" content="Reverse Engineering Cheatsheet"/>
-  <meta property="og:description" content="Reverse Engineering Common Strategies Patching assembly Tampering registers Delete instructions replacing them with a number of nop instructions equal to the size of the deleted instruction in term of bytes. Fundamentals Data sizes In x86 terminology/documentation, a &#34;word&#34; is 16 bits because x86 evolved out of 16-bit 8086. Term …"/>
+  <meta property="og:description" content="Reverse Engineering Common Strategies Patching Assembly: Patching assembly involves modifying an executable file&#39;s binary code at runtime, typically by injecting malicious or benign code into the original program. This can be achieved through various techniques such as buffer overflows, return-oriented programming (ROP), and jump tables. The goal of patching assembly …"/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:url" content="https://ojack69.github.io/jacks-corner/reversing/reverse-engineering-cheatsheet.html"/>
   <meta property="og:type" content="article"/>
@@ -145,9 +145,9 @@
         </div>
     <h2 id="reverse-engineering-common-strategies">Reverse Engineering Common Strategies</h2>
 <ul>
-<li>Patching assembly</li>
-<li>Tampering registers</li>
-<li>Delete instructions replacing them with a number of <code>nop</code> instructions equal to the size of the deleted instruction in term of bytes.</li>
+<li><strong>Patching Assembly</strong>: Patching assembly involves modifying an executable file's binary code at runtime, typically by injecting malicious or benign code into the original program. This can be achieved through various techniques such as buffer overflows, return-oriented programming (ROP), and jump tables. The goal of patching assembly is to evade detection by security software that relies on static analysis or dynamic analysis of the executable's binary code.</li>
+<li><strong>Tampering Registers</strong>:  Tampering with registers involves modifying their values at runtime, which can be used to bypass security controls such as access control lists (ACLs) and data execution prevention (DEP). This technique is often employed in attacks like buffer overflows and return-oriented programming (ROP). By manipulating register values, attackers can inject malicious code into the program's memory space.</li>
+<li><strong>Replace instructions with</strong> <code>nop</code>: This strategy involves deleting specific instructions from an executable file and replacing them with a series of <code>nop</code> (no operation) instructions, each equal in size to the original instruction. The deleted instructions are typically used to perform malicious actions such as data corruption or unauthorized access.</li>
 </ul>
 <h2 id="fundamentals">Fundamentals</h2>
 <h2 id="data-sizes">Data sizes</h2>
