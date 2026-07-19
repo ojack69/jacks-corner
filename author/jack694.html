@@ -93,8 +93,15 @@
 
     <ul class="social">
       <li>
+        <a class="sc-linkedin"
+           href="https://www.linkedin.com/in/riccardo-palumbo-b6770a170"
+           target="_blank">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </li>
+      <li>
         <a class="sc-htb"
-           href="https://app.hackthebox.com/profile/177323"
+           href="https://app.hackthebox.com/users/177323"
            target="_blank">
           <i class="fa-brands fa-htb"></i>
         </a>
@@ -123,6 +130,59 @@
 
 
 
+<article>
+  <header>
+    <h2><a href="http://localhost:1337/misc/network.html">Network Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="firewall">Firewall</h2>
+<p>Redirect all requests on loopback interface (lo) port 80 to port 8080:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-t<span class="w"> </span>nat<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>lo<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">80</span><span class="w"> </span>-j<span class="w"> </span>REDIRECT<span class="w"> </span>--to-port<span class="w"> </span><span class="m">8080</span>
+</code></pre></div>
+<p>Create a Windows firewall rule:</p>
+<div class="highlight"><pre><span></span><code>netsh advfirewall firewall add rule name="&lt;rule name&gt;" dir=&lt;in|out&gt; action=&lt;allow|deny&gt; protocol=&lt;protocol …</code></pre></div></div>
+    <br>
+    <a class="btn" href="http://localhost:1337/misc/network.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
+<article>
+  <header>
+    <h2><a href="http://localhost:1337/misc/powershell-cheatsheet.html">PowerShell Cheatsheet</a></h2>
+    <p>
+
+
+    </p>
+  </header>
+  <div>
+    <div><h2 id="common">Common</h2>
+<p>PowerShell Execution Policy bypass:</p>
+<div class="highlight"><pre><span></span><code><span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">ExecutionPolicy</span> <span class="n">bypass</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">c</span> <span class="p">&lt;</span><span class="n">cmd</span><span class="p">&gt;</span>
+<span class="n">powershell</span> <span class="err">&ndash;</span><span class="n">encodedcommand</span>
+<span class="nv">$env:PSExecutionPolicyPreference</span><span class="p">=</span><span class="s2">"bypass"</span>
+</code></pre></div>
+<p>*Note: It is NOT a security measure, it is present to prevent user from accidentally executing scripts.</p>
+<p>Check <code>LanguageMode</code> in current <code>ExecutionContenxt</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">$ExecutionContext</span><span class="p">.</span><span class="n">SessionState</span><span class="p">.</span><span class="n">LanguageMode</span>
+</code></pre></div>
+<p>Import a module:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">Import-Module</span> <span class="p">&lt;</span><span class="n">modulepath</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>List commands in a …</p></div>
+    <br>
+    <a class="btn" href="http://localhost:1337/misc/powershell-cheatsheet.html">
+      Continue reading
+    </a>
+  </div>
+  <hr />
+</article>
 <article>
   <header>
     <h2><a href="http://localhost:1337/mobile/cheatsheet.html">Mobile Cheatsheet</a></h2>
@@ -165,7 +225,8 @@ It uses as well SELinux.</p>
     <div><ul>
 <li goal-group="">Practice</li>
 <li goal-note="Slowly ongoing on iOS labs ~ 50%">Mobile Hacking Labs (iOS and Android)</li>
-<li goal-note="Postponed due to lack of time :(">VulnLabs AD Labs</li>
+<li>8kSec Labs (iOS and Android)</li>
+<li>HTB Windows and AD Mini-labs</li>
 </ul>
 <hr/>
 <ul>
@@ -176,20 +237,18 @@ It uses as well SELinux.</p>
 <hr/>
 <ul>
 <li goal-group="">Certifications</li>
-<li goal-expire="01/04/2026" goal-note="50%">OSWE</li>
+<li>Relax :)</li>
 </ul>
 <hr/>
 <ul>
 <li goal-group="">Completed</li>
+<li goal-completed="30/03/2026">OSWE</li>
 <li goal-completed="15/09/2025">iOS Penetration Testing Basics</li>
 <li goal-completed="01/09/2025">Pwnedlabs AWS challenges</li>
 <li goal-completed="01/08/2025">AWS Penetration Testing Basics</li>
 <li goal-completed="07/06/2025">eWPTX</li>
 <li goal-completed="23/03/2025">CAPen</li>
-<li goal-completed="17/03/2025">Game of Active Directory Full Lab (GOAD)</li>
-<li goal-completed="03/03/2025">CRTA</li>
-<li goal-completed="27/01/2025">CRTA Course</li>
-<li goal-completed="23/01/2025">Tib3rius - Windows Privilege …</li></ul></div>
+<li goal-completed="17/03/2025">Game of Active Directory Full …</li></ul></div>
     <br>
     <a class="btn" href="http://localhost:1337/personal/goals.html">
       Continue reading
@@ -297,17 +356,7 @@ It uses as well SELinux.</p>
   <div>
     <div><h2 id="reverse-engineering-common-strategies">Reverse Engineering Common Strategies</h2>
 <ul>
-<li>Patching assembly</li>
-<li>Tampering registers</li>
-<li>Delete instructions replacing them with a number of <code>nop</code> instructions equal to the size of the deleted instruction in term of bytes.</li>
-</ul>
-<h2 id="fundamentals">Fundamentals</h2>
-<h2 id="data-sizes">Data sizes</h2>
-<p><strong>In x86 terminology/documentation, a "word" is 16 bits</strong> because x86 evolved out of 16-bit 8086.</p>
-<table>
-<thead>
-<tr>
-<th>Term …</th></tr></thead></table></div>
+<li><strong>Patching Assembly</strong>: Patching assembly involves modifying an executable file's binary code at runtime, typically by injecting malicious or benign code into the original program. This can be achieved through various techniques such as buffer overflows, return-oriented programming (ROP), and jump tables. The goal of patching assembly …</li></ul></div>
     <br>
     <a class="btn" href="http://localhost:1337/reversing/reverse-engineering-cheatsheet.html">
       Continue reading
