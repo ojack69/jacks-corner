@@ -579,7 +579,7 @@ ntlmrelayx.py<span class="w"> </span>-6<span class="w"> </span>-wh<span class="w
 </li>
 <li>If WPAD is not in use internally, disable it via Group Policy and by disabling the <strong>WinHttpAutoProxySvc service</strong>.</li>
 <li>Relaying to LDAP and LDAPS can only be mitigated by enabling both LDAP signing and LDAP channel binding.</li>
-<li>Consider <em>Administrative</em> users to the <em>Protected Users</em> group or marking them as <em>Account</em> is sensitive and cannot be delegated, which will prevent any impersonation of that user via delegation.</li>
+<li>Consider <em>Administrative</em> users to the <em>Protected Users</em> group or marking them as <em>Account</em> is sensitive and cannot be delegated, which will prevent any impersonation of that user via delegation. <strong>Note</strong>: the Administrator user (RID 500) will not benefit of these restrictions due to a default behaviour!</li>
 </ul>
 <h3 id="ldap-pass-back_1">LDAP Pass-back</h3>
 <p>Another method of AD authentication that applications can use is <strong>Lightweight Directory Access Protocol (LDAP)</strong> authentication. With this type of authentication, the application directly verifies the user's credentials by querying the LDAP. To do so, it necessarily has to hold its pair of AD credentials in order to authenticate itself to the LDAP.</p>
@@ -2085,7 +2085,8 @@ Rubeus.exe<span class="w"> </span>s4u<span class="w"> </span>/ticket:&lt;base64<
 <li>The attacker uses the TGS to authenticate against the target host as Administrator.</li>
 </ol>
 <p><strong>Note</strong>: RBCD works <strong>across domain trusts</strong>!</p>
-<p>After patching <strong>CVE-2020-17049</strong> and <strong>CVE-2020-16996</strong>, members of Protected Users group are not vulnerable to delegation even though the "sensitive and cannot be delegated" flag is disabled. However, the native <code>Administrator</code> account (RID 500) doesn't seem to benefit from that restriction, even if it's added to the Protected Users group!</p>
+<p>After patching <strong>CVE-2020-17049</strong> and <strong>CVE-2020-16996</strong>, members of Protected Users group are not vulnerable to delegation even though the "sensitive and cannot be delegated" flag is disabled. However, the native <code>Administrator</code> account (RID 500) <strong>doesn't benefit from that restriction</strong>, even if it's added to the Protected Users group!
+Moreover, this allows to perform pass-the-hash attacks for user <code>Administrator</code> even though this is not possible for other Protected Users members.</p>
 <p>Enumerate machine quota:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
 <span class="nb">Get-DomainObject</span> <span class="n">-Identity</span> <span class="s2">"DC=&lt;domain_component&gt;,DC=&lt;domain_component&gt;?&gt;"</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">domain</span><span class="p">&gt;</span> <span class="n">-DomainController</span> <span class="p">&lt;</span><span class="n">target</span> <span class="n">dc</span><span class="p">&gt;</span> <span class="p">|</span> <span class="nb">select </span><span class="n">ms-ds-machineaccountquota</span>
