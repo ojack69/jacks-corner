@@ -925,6 +925,15 @@ EXEC<span class="w"> </span>master..xp_fileexist<span class="w"> </span><span cl
 <li><strong>cmd.exe</strong> - This is the program we want to execute once the credentials are injected. This can be changed to anything, but the safest bet is cmd.exe since allows then to launch any other program with the credentials injected.</li>
 </ul>
 <p><strong>Note</strong>: it's always helpful to run the first cmd as Administrator since this will inject and Administrative token in the CMD. <strong>This DOES NOT give you administrative privileges on the network</strong>, it just ensure that any <strong>local</strong> command gets executed with administrative privileges.</p>
+<p>In a scenario where the attacker has no direct network access to the AD network BUT it manages to obtain a local account hash and, performing pass the hash, it connects to a remote machine into the AD network,  when using tools like <code>evil-winrm</code>, <code>runas.exe</code> password prompt will not work. In these case, it's possible to obtain the same result using <code>RunasCs</code>: </p>
+<div class="highlight"><pre><span></span><code><span class="c"># Powershell wrapper</span>
+<span class="p">.</span> <span class="p">.\</span><span class="nb">Invoke-RunasCs</span><span class="p">.</span><span class="n">ps1</span>
+<span class="nb">Invoke-RunasCs</span> <span class="n">-Domain</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;</span> <span class="n">-Username</span> <span class="p">&lt;</span><span class="n">user</span><span class="p">&gt;</span> <span class="n">-Password</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span> <span class="n">-Command</span> <span class="s1">'&lt;command&gt;'</span> <span class="n">-LogonType</span> <span class="n">9</span>
+
+<span class="c"># C# Executable</span>
+<span class="p">.\</span><span class="n">RunasCs</span><span class="p">.</span><span class="n">exe</span> <span class="p">&lt;</span><span class="n">user</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="n">password</span><span class="p">&gt;</span> <span class="s1">'&lt;command&gt;'</span> <span class="n">-d</span> <span class="p">&lt;</span><span class="n">domain</span><span class="p">&gt;</span> <span class="n">-l</span> <span class="n">9</span> 
+</code></pre></div>
+<p><strong>Note</strong>: <code>-l 9</code> / <code>-LogonType 9</code> = <code>LOGON32_LOGON_NEW_CREDENTIALS</code>, which is exactly what runas /netonly does - current session stays as your local user, but any outbound network auth uses the injected domain creds.</p>
 <p>Once the previous <code>runas</code> command get executed, the network credential gets injected into memory; all network communication generate from application executed from the opened command line terminal will use these injected credentials for authentication.
 For example, it's possible to run the <strong>Microsoft Management Console (MMC)</strong> and visually enumerate forests, domain, OUs, and objects. </p>
 <p>Another example is to launch <code>sharphound</code> from the attacker-controlled machine with the credentials injected; this allows to circumvent the problem of AVs blocking <code>sharphound</code>, <strong>even though, it remains a noisy tool and it can still be detected by blue teams</strong>. </p>
@@ -974,7 +983,7 @@ Another alternative is <a href="https://github.com/adrecon/ADRecon">ADRecon</a>.
 <li>However, PowerShell is often monitored more by the blue teams than Command Prompt and the AD-RSAT tooling need to be installed. The alternative is to use other, potentially detectable, enumeration scripts.</li>
 <li>PowerSploit has been deprecated and is no longer mantained!</li>
 </ul>
-<p>*Note: If <em>RSAT</em> is not available, it's possible to directly import the Active Directory Module's DLL with the <code>Import-Module</code> PowerShell cmdlet. <strong>This operation does NOT require elevated privileges</strong>.</p>
+<p>*Note: If <em>RSAT</em> is not available, it's possible to directly import the <a href="https://github.com/samratashok/ADModule">Active Directory Module's DLL</a> with the <code>Import-Module</code> PowerShell cmdlet. <strong>This operation does NOT require elevated privileges</strong>.</p>
 <p>A more manual enumeration is possible by using  powershell's <strong>Windows Management Instrumentation (WMI)</strong> cmdlet. WMI is the infrastructure for management data and operations on Windows-based operating systems generally used to automate administrative tasks on remote computers.
 WMI has a provider called <code>root\directory\ldap</code> which can be used for interaction with the active directory environment. Each class contained in this is provider is prefixed; each prefix has a meaning:</p>
 <ul>
@@ -3889,6 +3898,9 @@ https://github.com/anonymous300502/Nuke-AMSI</p>
 </tbody>
 </table>
 <h2 id="misc">Misc</h2>
+<p>Mount local folder as network share using <code>xfreerdp</code>:</p>
+<div class="highlight"><pre><span></span><code>xfreerdp3<span class="w"> </span>/v:&lt;target<span class="w"> </span>ip&gt;<span class="w"> </span>/u:&lt;domain&gt;<span class="se">\\</span>&lt;user&gt;<span class="w"> </span>/p:&lt;password&gt;<span class="w"> </span>/drive:&lt;Local<span class="w"> </span>folder&gt;,&lt;RDP<span class="w"> </span>Network<span class="w"> </span>Share&gt;
+</code></pre></div>
 <h3 id="cracking">Cracking</h3>
 <p>Enable logging on <code>mimikatz</code> (useful for long e continuous outputs):</p>
 <div class="highlight"><pre><span></span><code><span class="c1"># Set the log file for the next command</span>
