@@ -1068,21 +1068,21 @@ WMI has a provider called <code>root\directory\ldap</code> which can be used for
 </code></pre></div>
 <p>Get user wrong password count:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
-<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="n">cn</span><span class="p">,</span><span class="n">badpwdcount</span>
+<span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">select </span><span class="n">cn</span><span class="p">,</span><span class="n">badpwdcount</span>
 
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">badpwdcount</span>
 </code></pre></div>
 <p>Get the list of all available users' properties:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
-<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
+<span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
 
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="p">*</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">select </span><span class="n">-First</span> <span class="n">1</span> <span class="p">|</span> <span class="nb">Get-Member</span> <span class="n">-MemberType</span> <span class="s2">"*Property"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">Name</span>
 </code></pre></div>
 <p>Search user by property:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># PowerView</span>
-<span class="nb">Get-NetUser</span> <span class="n">-Properties</span> <span class="p">*</span> <span class="p">|</span> <span class="nb">where </span><span class="n">-Property</span> <span class="n">Description</span> <span class="o">-Like</span> <span class="s2">"*built*"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
+<span class="nb">Get-NetUser</span> <span class="p">|</span> <span class="nb">where </span><span class="n">-Property</span> <span class="n">Description</span> <span class="o">-Like</span> <span class="s2">"*built*"</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
 
 <span class="c"># AD Module</span>
 <span class="nb">Get-ADUser</span> <span class="n">-Filter</span> <span class="s1">'Description -like "*something*"'</span> <span class="n">-Properties</span> <span class="n">Description</span> <span class="p">|</span> <span class="nb">select </span><span class="n">name</span><span class="p">,</span><span class="n">description</span>
