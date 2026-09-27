@@ -192,6 +192,9 @@
 </code></pre></div>
 <p>Convert SecureString to cleartext string:</p>
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">New-Object</span> <span class="n">PSCredential</span> <span class="n">0</span><span class="p">,</span> <span class="nv">$secureString</span><span class="p">).</span><span class="n">GetNetworkCredential</span><span class="p">().</span><span class="n">Password</span>
+
+<span class="c"># Alternatively</span>
+<span class="no">[System.Net.NetworkCredential]</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="s2">""</span><span class="p">,</span> <span class="nv">$secureString</span><span class="p">).</span><span class="n">Password</span>
 </code></pre></div>
 <h2 id="remote-file">Remote File</h2>
 <p>Download remote script and execute it in memory:</p>
